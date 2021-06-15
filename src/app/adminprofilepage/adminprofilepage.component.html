@@ -1,0 +1,1152 @@
+<app-sdashheader [profileImage]="headerPic" [profileName]="headerName" ></app-sdashheader>
+<div class="container scroll-bar">
+
+    <!--c  Modal start -->
+    <div class="modal fade" id="notify" role="dialog">
+        <div class="modal-dialog vry_modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+                </div>
+                <div class="modal-body modal_text">
+                    <p>Do you really want to notify these records? This process cannot be undone</p>
+                </div>
+                <div class="modal-footer modal_foot">
+                    <button type="submit" class="bt btn-warning">notify</button>
+                    <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- verifed Modal end-->
+
+    <!--Delete  Modal start -->
+    <div class="modal fade" id="delete" role="dialog">
+        <div class="modal-dialog vry_modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+                </div>
+                <div class="modal-body modal_text">
+                    <p>Do you really want to delete these records? This process cannot be undone</p>
+                </div>
+                <div class="modal-footer modal_foot">
+                    <button type="submit" class="bt btn-warning">Delete</button>
+                    <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- verifed Modal end-->
+
+    <!--Accept  Modal start -->
+    <div class="modal fade" id="accept" role="dialog">
+        <div class="modal-dialog vry_modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+                </div>
+                <div class="modal-body modal_text">
+                    <p>Do you really want to Accept these records? This process cannot be undone</p>
+                </div>
+                <div class="modal-footer modal_foot">
+                    <button type="submit" class="bt btn-warning">Accept</button>
+                    <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- verifed Modal end-->
+
+    <!--Declined  Modal start -->
+    <div class="modal fade" id="declined" role="dialog">
+        <div class="modal-dialog vry_modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+                </div>
+                <div class="modal-body modal_text">
+                    <p>Do you really want to declined these records? This process cannot be undone</p>
+                </div>
+                <div class="modal-footer modal_foot">
+                    <button type="submit" class="bt btn-warning">declined</button>
+                    <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- declined Modal end-->
+
+    <!--Block  Modal start -->
+    <div class="modal fade" id="block" role="dialog">
+        <div class="modal-dialog vry_modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+                </div>
+                <div class="modal-body modal_text">
+                    <p>Do you really want to declined these records? This process cannot be undone</p>
+                </div>
+                <div class="modal-footer modal_foot">
+                    <button type="submit" class="bt btn-warning">Block</button>
+                    <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- block Modal end-->
+
+    <!--====top profile background start====-->
+    <section class="profile_sec">
+        <div class="card">
+                <div class="timelineloader" *ngIf="isTimelineLoading"></div>
+                <div class="card-header" [ngStyle]="{'background-image': 'url(' + timelineUrl + ')'}">
+                        <form [formGroup]="timelinepicUpload" (ngSubmit)="uploadTimelinepic(timelinepicUpload)">
+                                <input type="hidden" formControlName="admin_id" [(ngModel)]="Check_admin_id">
+                    <div class="card-header-menu " style="cursor:pointer">
+                        <i class="fa fa-pencil-square-o" style="cursor:pointer"></i>
+                        <input type="file" class="picupload_admip2 col-sm-6" (change)="handleTimelinePic($event.target.files)" [(ngModel)]="admin_timeline_pic" formControlName="admin_timeline_pic">
+                        <button *ngIf="timeChange==true" type="submit" class="btn btn-primary">Upload</button>
+                    </div>
+                    </form>
+                    <form [formGroup]="profilepicUpload" (ngSubmit)="uploadProfilepic(profilepicUpload)">
+                        <input type="hidden" formControlName="admin_id" [(ngModel)]="Check_admin_id">
+                        <div class="card-header-headshot">
+                        <div class="profileloader" *ngIf="isProfileLoading"></div>
+                        <img class="profileImage" [src]="imageUrl" width="100px" height="100px">
+                        <p class="user_pic">
+                            <i class="fa fa-pencil-square-o"></i>
+                            <input type="file" class="picupload_admip" (change)="handleFileInput($event.target.files)" [(ngModel)]="admin_pic" formControlName="admin_pic" accept="image/*">
+                        </p>
+                        <button *ngIf="picChange==true" type="submit" class="btn btn-primary">Upload</button>
+                    </div>
+                    
+                </form>
+                    <div class="user_name">
+                        <span>Usere Name </span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="card-footer-stats">
+
+                    </div>
+                </div>
+            
+        </div>
+    </section>
+    <!--====top profile background End====-->
+
+    <!--====parsonal user start====-->
+    <section class="personal_user">
+        <div class="container1">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-3  left_tab" id="pers_inf">
+                        <div class="panel-body">
+                            <div class=" card Personal_1">
+                                <div class="header">
+                                    <h3 class=" Per1_title">Personal Information</h3>
+                                </div>
+                                <div class="body">
+
+                                    <ul class="country-state list-unstyled" *ngFor="let adpi of adminProfile">
+                                        <li class=" m-b-10">
+                                            <small>Full name</small>
+                                            <div class="float-right">{{adpi.admin_fname}}</div>
+                                        </li>
+                                        <li class=" m-b-10">
+                                            <small>Gender</small>
+                                            <div class="float-right">{{adpi.admin_gender}}</div>
+                                        </li>
+                                        <li class=" m-b-10">
+                                            <small>Birth Date</small>
+                                            <div class="float-right">{{adpi.admin_dob}}</div>
+                                        </li>
+                                        <li class=" m-b-10">
+                                            <small>SignUp Date</small>
+                                            <div class="float-right">{{adpi.admin_created_date}}</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!--====Contact Information bar====-->
+                            <div class=" card Personal_4">
+                                <div class="header">
+                                    <h3 class=" Per4_title">Contact Information</h3>
+                                </div>
+                                <div class="body">
+                                    <ul class="country-state list-unstyled" *ngFor="let adpi of adminProfile">
+                                        <li class=" m-b-10">
+                                            <small>Mobile No</small>
+                                            <div class="float-right">{{adpi.ac_user_phone}}</div>
+                                        </li>
+                                        <!--li class=" m-b-10">
+                                    <small>Phone No</small>
+                                    <div class="float-right">7 Friends</div>
+                                  </li-->
+                                        <li class=" m-b-10">
+                                            <small>Email</small>
+                                            <div class="float-right">{{adpi.ac_user_email}}</div>
+                                        </li>
+                                        <li class=" m-b-10">
+                                            <small>City</small>
+                                            <div class="float-right">{{adpi.city_name}}</div>
+                                        </li>
+                                        <li class=" m-b-10">
+                                            <small>State</small>
+                                            <div class="float-right">{{adpi.state_name}}</div>
+                                        </li>
+                                        <li class=" m-b-10">
+                                            <small>Country</small>
+                                            <div class="float-right">{{adpi.cntry_name}}</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- DUMMY -->
+                            <!--div class="profile-picture">
+                    <img *ngIf="url" width=300 height=300 src="{{url}}" />
+                    <label *ngIf="editmode" for="uploader-input" ng2FileDrop [ngClass]="{'drag-over': hasDragOver}" (fileOver)="fileOver($event)" [uploader]="uploader">
+                      <div class="infotext"><span *ngIf="!url" >Drop your picture<br>or click to upload</span></div>
+                    </label>
+                    <input *ngIf="editmode" type="file" ng2FileSelect [uploader]="uploader" id="uploader-input" style="display:none" />
+                  </div-->
+
+                            <!-- DUMMY -->
+                        </div>
+                    </div>
+
+                    <div class="col-md-9">
+                        <div class="profile_tab">
+                            <div class="tab" role="tabpanel">
+                                <!-- Nav tabs -->
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li role="presentation" class="active">
+                                        <a href="#tab_4" aria-controls="messages" role="tab" data-toggle="tab">
+                                  My Profile</a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a href="#tab_1" aria-controls="home" role="tab" data-toggle="tab">
+                                   Recent Activity</a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a href="#tab_2" aria-controls="profile" role="tab" data-toggle="tab">
+                                  Contents</a></li>
+
+                                    <li role="presentation">
+                                        <a href="#tab_6" aria-controls="messages" role="tab" data-toggle="tab">
+                                  Group</a>
+                                    </li>
+
+                                </ul>
+                                <!-- Nav tabs end -->
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane fade in" id="tab_1">
+                                        <div class="row">
+                                            <!--===col-md-6-first-left Start=====-->
+                                            <div class="col-md-6">
+                                                <!--====discussion-card-Start====-->
+                                                <div class="left-tab">
+                                                    <div class="discussion-title head-title">
+                                                        <div class="panel-title">
+                                                            <h4>DISCUSSION</h4>
+                                                            <span>Topic : Maths</span>
+                                                            <div class="full-icon">
+                                                                <a href=""><i class="glyphicon glyphicon-resize-full"></i></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="inbox-item">
+                                                        <div class="inbox-item-img">
+                                                            <img src="assets/dist/img/avatar.png" class="img-circle" alt="">
+                                                        </div>
+                                                        <strong class="inbox-item-author">Naeem Khan</strong>
+                                                        <p class="inbox-item-date mrn">Started a new Discussion</p>
+                                                        <p class="inbox-item-text pd-lft mrn">March, 16 2018 at 04:47 PM</p>
+                                                        <div class="dis_mainbar">
+                                                            <div class="dis_text">
+                                                                <p>In 21st century, world has evolved in to a smart global village using the benefits provided by internet technologies.</p>
+                                                            </div>
+                                                            <div class="social_icon">
+                                                                <ul>
+                                                                    <li><a href=""><span class="green_c">15</span> Views</a></li>
+                                                                    <li><a href=""><span class="green_c">10</span> Refer</a></li>
+                                                                    <li><a href=""><span class="green_c">13</span></a></li>
+                                                                </ul>
+                                                            </div>
+
+                                                            <div class="social_icon dark-bg">
+                                                                <ul>
+                                                                    <li>
+                                                                        <a href="">
+                                                                            <i class="glyphicon glyphicon-bell"></i> Alarm</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <button type="button" class="re-btn" data-toggle="collapse" data-target="#reviews">Reviews</button>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="" class="red_clr">
+                                                                            <i class="glyphicon glyphicon-ban-circle red_clr"></i> Report
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <!--revies-->
+                                                            <div id="reviews" class="collapse">
+                                                                <div class="re-drop">
+                                                                    <!--<label for="exampleTextarea">Example textarea</label>-->
+                                                                    <textarea class="form-control" id="" rows="3"></textarea>
+                                                                    <div class="re-sub">
+                                                                        <button type="submit" class="btn"> Submit Comment
+                                                                        </button>
+                                                                    </div>
+                                                                    <ul class="chat_list">
+                                                                        <li class="clearfix">
+                                                                            <div class="chat-avatar">
+                                                                                <img src="assets/dist/img/avatar4.png" alt=male>
+                                                                                <i>10:00</i>
+                                                                            </div>
+                                                                            <div class="conversation-text">
+                                                                                <div class=ctext-wrap>
+                                                                                    <i>John Deo</i>
+                                                                                    <p>Hello Unisun</p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                            <!--revies-->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--===col-md-6-first-left End=====-->
+
+                                            <!--===col-md-6-second-right Start=====-->
+                                            <div class="col-md-6">
+                                                <!--====content card Start====-->
+                                                <div class="right-tab">
+                                                    <div class="content-title head-title">
+                                                        <div class="panel-title">
+                                                            <h4>CONTENT</h4>
+                                                            <span>Title : Science.dox</span>
+                                                            <div class="full-icon">
+                                                                <a href=""><i class="glyphicon glyphicon-resize-full"></i></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="inbox-item">
+                                                        <div class="inbox-item-img">
+                                                            <img src="assets/dist/img/avatar.png" class="img-circle" alt="">
+                                                        </div>
+                                                        <strong class="inbox-item-author">Naeem Khan</strong>
+                                                        <p class="inbox-item-date mrn">Started a new Discussion</p>
+                                                        <p class="inbox-item-text pd-lft mrn">March, 16 2018 at 04:47 PM</p>
+                                                        <div class="dis_mainbar">
+                                                            <div class="up-img">
+                                                                <div class="col-md-6">
+                                                                    <div class="course-title">
+                                                                        <span><b>Course:</b>Social</span>
+                                                                        <br>
+                                                                        <span><b>Class:</b>6th</span>
+                                                                        <br>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="course-title">
+                                                                        <span><b>Subject:</b>Social</span>
+                                                                    </div>
+                                                                </div>
+                                                                <img src="assets/gems-img/upload/upload.jpg">
+                                                            </div>
+                                                            <div class="social_icon">
+                                                                <ul>
+                                                                    <li><a href=""><span class="green_c">15</span> Views</a></li>
+                                                                    <li><a href=""><span class="green_c">10</span> Refer</a></li>
+                                                                    <li><a href=""><span class="green_c">13</span></a></li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="social_icon dark-bg">
+                                                                <ul>
+                                                                    <li>
+                                                                        <a href="">
+                                                                            <i class="glyphicon glyphicon-bell"></i> Alarm</a>
+                                                                    </li>
+                                                                    <li><a href=""><i class="fa fa-comment"></i>Reviews</a></li>
+                                                                    <li>
+                                                                        <a href="" class="red_clr">
+                                                                            <i class="glyphicon glyphicon-ban-circle red_clr"></i> Report
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--====content card End====-->
+
+                                            </div>
+                                            <!--===col-md-6-second-right End=====-->
+                                        </div>
+                                    </div>
+
+                                    <div role="tabpanel" class="tab-pane fade" id="tab_2">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>File</th>
+                                                        <th>Title</th>
+                                                        <th>Board</th>
+                                                        <th>Class</th>
+                                                        <th>Subject</th>
+                                                        <th>File Size</th>
+                                                        <th>View/Delete</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>30.05.1016</td>
+                                                        <td>gems</td>
+                                                        <td>CBSE</td>
+                                                        <td>Class 6</td>
+                                                        <td>science</td>
+                                                        <td>5.01 MB</td>
+                                                        <td>
+                                                            <button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="left" title="Update">
+                                                                <i class="fa fa-eye"></i></button>
+                                                            <button class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Delete ">
+                                                                <i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>30.05.1016</td>
+                                                        <td>gems</td>
+                                                        <td>CBSE</td>
+                                                        <td>Class 6</td>
+                                                        <td>science</td>
+                                                        <td>5.01 MB</td>
+                                                        <td>
+                                                            <button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="left" title="Update">
+                                                                <i class="fa fa-eye"></i></button>
+                                                            <button class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Delete ">
+                                                                <i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>30.05.1016</td>
+                                                        <td>gems</td>
+                                                        <td>CBSE</td>
+                                                        <td>Class 6</td>
+                                                        <td>science</td>
+                                                        <td>5.01 MB</td>
+                                                        <td>
+                                                            <button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="left" title="Update">
+                                                                <i class="fa fa-eye"></i></button>
+                                                            <button class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Delete ">
+                                                                <i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <!--====friend start====-->
+
+                                    <!--====friend end====-->
+
+                                    <!--====Group start====-->
+                                    <div role="tabpanel" class="tab-pane fade" id="tab_6">
+                                        <div class="group  table-responsive">
+                                            <div class="group_search">
+                                                <h4>Search for group Name & Send Assignment Request</h4>
+                                                <select class="form-control basic-single">
+                                                    <option value="AL">select</option>
+                                                    <option value="AR">Arkansas</option>
+                                                    <option value="IL">Illinois</option>
+                                                    <option value="IA">Iowa</option>
+                                                    <option value="KS">Kansas</option>
+                                                </select>
+                                            </div>
+                                            <table class="table table-bordered table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <thead>
+                                                            <th>Group/Name</th>
+                                                            <th>Group/Type</th>
+                                                            <th>Req.Date</th>
+                                                            <th>Req.By</th>
+                                                            <th>Req.Approved</th>
+                                                            <th>Declined By</th>
+                                                            <th>Delete</th>
+                                                        </thead>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Jone</td>
+                                                        <td>Public</td>
+                                                        <td>12-05-2018</td>
+                                                        <td>Req.By</td>
+                                                        <td>Approved</td>
+                                                        <td>Declined</td>
+                                                        <td>
+                                                            <button class="pading_4 bt   btn-purple" data-toggle="modal" data-target="#notify">notify </button>
+                                                            <button class="pading_4 bt btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Jone</td>
+                                                        <td>Public</td>
+                                                        <td>12-05-2018</td>
+                                                        <td>Req.By</td>
+                                                        <td>Approved</td>
+                                                        <td>Declined</td>
+                                                        <td>
+                                                            <button class="pading_4 bt btn-success" data-toggle="modal" data-target="#accept">Accept </button>
+
+                                                            <button class="pading_4 bt btn-info" data-toggle="modal" data-target="#declined">Declined</button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Jone</td>
+                                                        <td>Public</td>
+                                                        <td>12-05-2018</td>
+                                                        <td>Req.By</td>
+                                                        <td>Approved</td>
+                                                        <td>Declined</td>
+                                                        <td>
+                                                            <button class="pading_4 bt   btn-purple" data-toggle="modal" data-target="#notify">notify </button>
+                                                            <button class="pading_4 bt btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                            <!--table-2-->
+                                            <div class="group_search">
+                                                <h4>User is Member of below Groups</h4>
+                                            </div>
+                                            <table class="table table-bordered table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <thead>
+                                                            <th>Group/Name</th>
+                                                            <th>Group/Type</th>
+                                                            <th>Group/Owner</th>
+                                                            <th>No.Of/Users</th>
+                                                            <th>Requested/by</th>
+                                                            <th>Canceled</th>
+                                                            <th>Canceld/By</th>
+                                                            <th width="70">Date</th>
+                                                            <th>Delete</th>
+                                                        </thead>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Jone</td>
+                                                        <td>Public</td>
+                                                        <td>sandeep</td>
+                                                        <td>250</td>
+                                                        <td>Jone</td>
+                                                        <td>Canceled</td>
+                                                        <td>Jone</td>
+                                                        <td>12-05-18</td>
+                                                        <td>
+                                                            <button class="pading_4 bt btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Jone</td>
+                                                        <td>Public</td>
+                                                        <td>sandeep</td>
+                                                        <td>250</td>
+                                                        <td>Jone</td>
+                                                        <td>Canceled</td>
+                                                        <td>Jone</td>
+                                                        <td>12-05-18</td>
+                                                        <td>
+                                                            <button class="pading_4 bt btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Jone</td>
+                                                        <td>Public</td>
+                                                        <td>sandeep</td>
+                                                        <td>250</td>
+                                                        <td>Jone</td>
+                                                        <td>Canceled</td>
+                                                        <td>Jone</td>
+                                                        <td>12-05-18</td>
+                                                        <td>
+                                                            <button class="pading_4 bt btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                            <!--table-3-->
+                                            <div class="group_search">
+                                                <h4>Select the Group where User is a Owner or Admin to Mange Requests</h4>
+                                                <select class="form-control basic-single">
+                                                    <option value="AL">Select</option>
+                                                    <option value="AR">Arkansas</option>
+                                                    <option value="IL">Illinois</option>
+                                                    <option value="IA">Iowa</option>
+                                                    <option value="KS">Kansas</option>
+                                                </select>
+                                            </div>
+                                            <table class="table table-bordered table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <thead>
+                                                            <th>Member Name</th>
+                                                            <th>Reqst Date</th>
+                                                            <th>Approve</th>
+                                                            <th>Decline</th>
+                                                            <th>Cancel Membshp</th>
+                                                        </thead>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Jone</td>
+                                                        <td>Public</td>
+                                                        <td>sandeep</td>
+                                                        <td>250</td>
+                                                        <td>
+                                                            <button class="pading_4 bt btn-warning" data-toggle="modal" data-target="#block">Block</button>
+                                                            <button class="pading_4 bt btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Jone</td>
+                                                        <td>Public</td>
+                                                        <td>sandeep</td>
+                                                        <td>250</td>
+                                                        <td>
+                                                            <button class="pading_4 bt btn-warning" data-toggle="modal" data-target="#block">Block</button>
+                                                            <button class="pading_4 bt btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Jone</td>
+                                                        <td>Public</td>
+                                                        <td>sandeep</td>
+                                                        <td>250</td>
+                                                        <td>
+                                                            <button class="pading_4 bt btn-warning" data-toggle="modal" data-target="#block">Block</button>
+                                                            <button class="pading_4 bt btn-danger" data-toggle="modal" data-target="#delete">Delete</button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                    <!--====Group start====-->
+
+                                    <!--====My-profile start====-->
+                                    <div role="tabpanel" class="tab-pane fade in active" id="tab_4">
+                                        <div class="panel">
+                                            <div class="panel-body">
+                                                <div class="alert {{alertmsgClass}}" *ngIf="msgSucc==true">
+                                                    <strong>{{alertmsgSucc}}</strong>
+                                                </div>
+                                                <div class="alert alert-danger" *ngIf="msgErr==true">
+                                                    <strong>This value is not available</strong>
+                                                </div>
+                                                <form [formGroup]="profileAdmin" (ngSubmit)=updateProfile(profileAdmin)>
+
+                                                    <div class="row my-pfo_bg m-b-20" *ngFor="let admpr of adminProfile">
+                                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                                            <div class="col-md-12 mrb_10">
+                                                                <label class="col-md-4 col-form-label">User Id </label>
+
+                                                                <div class="col-md-5 uid-sadp">
+                                                                    <input class="form-control" formControlName="admin_id" [(ngModel)]="admpr.admin_id" type="text" readonly placeholder="User ID">
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="col-md-12 mrb_10">
+                                                                <label class="col-md-4 col-form-label">Display name</label>
+                                                                <div class="col-md-8">
+                                                                    <div class="row sadmin-edit-hover">
+                                                                        <div class="hoveruseredit">
+                                                                          <div class="input-group">
+                                                                            <input class="form-control" formControlName="admin_dname" [value]="admpr.admin_dname" type="text" [readonly]="!profileEdit_1">
+                                                                            <button *ngIf="profileEdit_1==true" (click)="profilefieldUpdate_1(profileForm.admin_dname.value,'admin_dname')" class="btn btn-sm btn-success edithoversav"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save </button>
+                                                                            <a *ngIf="profileEdit_1==true" (click)="profileForm.admin_dname.setValue(this.adminProfileData.admin_dname);profileEdit_1=false;"  class="btn btn-sm btn-success edithoversav"><i class="fa fa-floppy-o" aria-hidden="true"></i> Cancel </a>
+                                                                            <div class="edit-button input-group-btn">
+                                                                            <button *ngIf="profileEdit_1==false" (click)="profilefieldEdit_1()" class="btn btn-sm btn-primary edithoveredit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit </button>
+                                                                        </div>
+                                                                        </div>
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12 mrb_10">
+                                                                <label class="col-md-4 col-form-label">First name</label>
+                                                                <div class="col-md-8">
+                                                                    <div class="row">
+                                                                            <div class="hoveruseredit">
+                                                                                <div class="input-group">
+                                                                            <input class="form-control" formControlName="admin_fname" [value]="admpr.admin_fname" type="text" [readonly]="!profileEdit_2">
+                                                                            <button *ngIf="profileEdit_2==true" (click)="profilefieldUpdate_2(profileForm.admin_fname.value,'admin_fname');profileEdit_2=false;" class="btn btn-sm btn-success edithoversav"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</button>
+                                                                            <a *ngIf="profileEdit_2==true" (click)="profileForm.admin_fname.setValue(this.adminProfileData.admin_fname);profileEdit_2=false;"  class="btn btn-sm btn-success edithoversav"><i class="fa fa-floppy-o" aria-hidden="true"></i> Cancel </a>  
+                                                                        <div class="edit-button input-group-btn">
+                                                                            <button *ngIf="profileEdit_2==false" (click)="profilefieldEdit_2()" class="btn btn-sm btn-primary edithoveredit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button>
+                                                                        </div>
+                                                                        </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12 mrb_10">
+                                                                <label class="col-md-4 col-form-label">Middle name</label>
+                                                                <div class="col-md-8">
+                                                                    <div class="row">
+                                                                            <div class="hoveruseredit">
+                                                                                <div class="input-group">
+                                                                                    <input class="form-control" formControlName="admin_mname" [value]="admpr.admin_mname" type="text" [readonly]="!profileEdit_3">
+                                                                                    <button *ngIf="profileEdit_3==true" (click)="profilefieldUpdate_3(profileForm.admin_mname.value,'admin_mname');profileEdit_3=false;" class="btn btn-sm btn-success edithoversav"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</button>
+                                                                                    <a *ngIf="profileEdit_3==true" (click)="profileForm.admin_mname.setValue(this.adminProfileData.admin_mname);profileEdit_3=false;"  class="btn btn-sm btn-success edithoversav"><i class="fa fa-floppy-o" aria-hidden="true"></i> Cancel </a> 
+                                                                        <div class="edit-button input-group-btn">
+                                                                                <button *ngIf="profileEdit_3==false" (click)="profilefieldEdit_3()" class="btn btn-sm btn-primary edithoveredit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button>
+                                                                        </div>
+                                                                        </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12 mrb_10">
+                                                                <label class="col-md-4 col-form-label">Last name</label>
+                                                                <div class="col-md-8">
+                                                                    <div class="row">
+                                                                            <div class="hoveruseredit">
+                                                                                <div class="input-group">
+                                                                            <input class="form-control" formControlName="admin_lname" [value]="admpr.admin_lname" type="text" [readonly]="!profileEdit_4">
+                                                                            <button *ngIf="profileEdit_4==true" (click)="profilefieldUpdate_4(profileForm.admin_lname.value,'admin_lname');profileEdit_4=false;" class="btn btn-sm btn-success edithoveresav"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save </button>
+                                                                            <a *ngIf="profileEdit_4==true" (click)="profileForm.admin_lname.setValue(this.adminProfileData.admin_lname);profileEdit_4=false;"  class="btn btn-sm btn-success edithoversav"><i class="fa fa-floppy-o" aria-hidden="true"></i> Cancel </a> 
+                                                                        <div class="edit-button input-group-btn">
+                                                                                <button *ngIf="profileEdit_4==false" (click)="profilefieldEdit_4()" class="btn btn-sm btn-primary edithoveredit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button>
+                                                                        </div>
+                                                                        </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                            <!---email fields-->
+                                                            <hr>
+
+                                                            <div class="clearfix"></div>
+                                                            <div class="emailfields">
+                                                                <div class="col-md-12 mrb_10">
+                                                                    <label class="col-sm-4 col-form-label">Email</label>
+                                                                    <div class="col-sm-8">
+                                                                        <div class="row">
+                                                                                <div class="hoveruseredit">
+                                                                                 <div class="input-group">
+                                                                             <input class="form-control" formControlName="admin_email" [value]="admpr.admin_email" type="text" [readonly]="!profileEdit_5">
+                                                                             <button *ngIf="profileEdit_5==true" (click)="profilefieldUpdate_5(profileForm.admin_email.value,'admin_email');profileEdit_5=false;" class="btn btn-sm btn-success edithoversav"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save </button>
+                                                                             <a *ngIf="profileEdit_5==true" (click)="profileForm.admin_email.setValue(this.adminProfileData.admin_email);profileEdit_5=false;"  class="btn btn-sm btn-success edithoversav"><i class="fa fa-floppy-o" aria-hidden="true"></i> Cancel </a> 
+                                                                             <div class="edit-button input-group-btn">
+                                                                                <button *ngIf="profileEdit_5==false" (click)="profilefieldEdit_5()" class="btn btn-sm btn-primary edithoveredit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button>
+                                                                            </div>
+                                                                            </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-12 mrb_10">
+                                                                    <label class="col-sm-4 col-form-label">Email 2</label>
+                                                                    <div class="col-sm-8">
+                                                                        <div class="row">
+                                                                            <div class="hoveruseredit">
+                                                                                <div class="input-group">
+                                                                                <input class="form-control" formControlName="admin_alt_email" [value]="admpr.admin_alt_email" type="text" [readonly]="!profileEdit_6">
+                                                                                <button *ngIf="profileEdit_6==true" (click)="profilefieldUpdate_6(profileForm.admin_alt_email.value,'admin_alt_email');profileEdit_6=false;" class="btn btn-sm btn-success edithoversav"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save </button>
+                                                                                <a *ngIf="profileEdit_6==true" (click)="profileForm.admin_alt_email.setValue(this.adminProfileData.admin_alt_email);profileEdit_6=false;"  class="btn btn-sm btn-success edithoversav"><i class="fa fa-floppy-o" aria-hidden="true"></i> Cancel </a> 
+                                                                                   <div class="edit-button input-group-btn">
+                                                                                <button *ngIf="profileEdit_6==false" (click)="profilefieldEdit_6()" class="btn btn-sm btn-primary edithoveredit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button>
+                                                                                
+
+                                                                            </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                </div>
+
+                                                                <div class="col-md-12 mrb_10">
+                                                                    <label class="col-sm-4 col-form-label"> Phone-1 </label>
+                                                                    <div class="phonefields">
+                                                                        <div class="col-sm-8">
+                                                                            <div class="row">
+                                                                                <div class="col-xs-3">                                                                                   
+                                                                                    <input *ngIf="profileEdit_8==false" type="text" class="form-control" formControlName="admin_phone_cont_code" [(ngModel)]="adminphonecontcode" readonly>
+                                                                                    <select *ngIf="profileEdit_8==true" class="form-control phonecode_manageu" formControlName="admin_phone_cont_code" [(ngModel)]="admin_phone_cont_code" (change)="enablePhone($event.target.value,'1')">
+                                                                                        <option value="">Code</option>
+                                                                                        <option *ngFor="let country of country" value="{{country.cntry_isdcode}}"> {{country.cntry_isdcode}} {{country.cntry_name}}</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div class="hoveruseredit">
+                                                                                        <div class="input-group">
+                                                                                      <input class="form-control" type="text"  placeholder="phone" formControlName="admin_phone" [value]="admpr.admin_phone" [readonly]="!phoneEnable_1">
+                                                                                      <div class="edit-button input-group-btn">
+                                                                                            <button *ngIf="profileEdit_8==false" (click)="profilefieldEdit_8()"  class="btn btn-sm btn-primary edithoveredit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit </button>
+                                                                                            <a *ngIf="profileEdit_8==true" (click)="profileForm.admin_phone.setValue(this.adminProfileData.admin_phone);"  class="btn btn-sm btn-primary edithoversav"><i class="fa fa-floppy-o" aria-hidden="true"></i> Cancel </a> 
+                                                                                            <button *ngIf="profileEdit_8==true" (click)="profilefieldUpdate_8(admin_phone_cont_code,'admin_phone_cont_code',profileForm.admin_phone.value,'admin_phone')" class="btn btn-sm btn-success edithoversav"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save </button>
+                                                                                         </div>
+                                                                                         </div>
+                                                                                         </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-12 mrb_10">
+                                                                    <label class="col-sm-4 col-form-label"> Phone-2 </label>
+                                                                    <div class="phonefields">
+                                                                        <div class="col-sm-8">
+                                                                            <div class="row">
+                                                                                <div class="col-xs-3">
+
+                                                                                    <input *ngIf="profileEdit_9==false" type="text" class="form-control" formControlName="admin_alt_phone_cont_code" [(ngModel)]="adminaltphonecontcode" readonly>
+                                                                                    <select *ngIf="profileEdit_9==true" class="form-control phonecode_manageu" formControlName="admin_alt_phone_cont_code" [(ngModel)]="admin_alt_phone_cont_code" (change)="enablePhone($event.target.value,'2')">
+                                                                                            <option value="">Code</option>
+                                                                                        <option *ngFor="let country of country" value="{{country.cntry_isdcode}}"> {{country.cntry_isdcode}} {{country.cntry_name}}</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div class="hoveruseredit">
+                                                                                        <div class="input-group">
+                                                                                      <input class="form-control" type="text"  placeholder="Alter phone" formControlName="admin_alt_phone" [value]="admpr.admin_alt_phone" [readonly]="!phoneEnable_2">
+                                                                                      <div class="edit-button input-group-btn">
+                                                                                            <button *ngIf="profileEdit_9==false" (click)="profilefieldEdit_9()"  class="btn btn-sm btn-primary edithoveredit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit </button> 
+                                                                                            <a *ngIf="profileEdit_9==true" (click)="profileForm.admin_alt_phone.setValue(this.adminProfileData.admin_alt_phone);"  class="btn btn-sm btn-primary edithoversav"><i class="fa fa-floppy-o" aria-hidden="true"></i> Cancel </a> 
+                                                                                            <button *ngIf="profileEdit_9==true" (click)="profilefieldUpdate_9(admin_alt_phone_cont_code,'admin_alt_phone_cont_code',profileForm.admin_alt_phone.value,'admin_alt_phone')" class="btn btn-sm btn-success edithoversav"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save </button>
+                                                                                         </div>
+                                                                                         </div>
+                                                                                         </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <!--div class="checkbox checkbox-success col-sm-2 publiccheckb1">
+                                                            <input id="checkbox5" type="checkbox">
+                                                            <label for="checkbox5">Public</label>
+                                                        </div-->
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                            <!--email-->
+                                                        </div>
+
+                                                        <div class="col-lg-6 col-md-6 col-sm-12">
+
+                                                            <!--div class="col-md-12 mrb_10">
+                                                <label class="col-sm-4 col-form-label">Language</label>
+                                                <div class="col-sm-8">
+                                                    <select class="form-control basic-single">
+                                                        <option value="AL">Alabama</option>
+                                                        <option value="AR">Arkansas</option>
+                                                        <option value="IL">Illinois</option>
+                                                        <option value="IA">Iowa</option>
+                                                        <option value="KS">Kansas</option>
+                                                    </select>
+                                                </div>
+                                            </div-->
+                                                            <div class="col-md-12 mrb_10">
+                                                                <label class="col-sm-4 col-form-label">Birthday</label>
+                                                                <div class="col-sm-8">
+                                                                        <div class="hoveruseredit">
+                                                                            <div class="input-group">
+                                                                        <input type="date" class="fomr-control col-xs-8" formControlName="admin_dob" [value]="admpr.admin_dob" [readonly]="!profileEdit_10">
+                                                                        <button *ngIf="profileEdit_10==true" (click)="profilefieldUpdate_10(profileForm.admin_dob.value,'admin_dob')" class="btn btn-sm btn-success edithoversav"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save </button>
+                                                                        <a *ngIf="profileEdit_10==true" (click)="profileForm.admin_dob.setValue(this.adminProfileData.admin_dob);"  class="btn btn-sm btn-success edithoversav"><i class="fa fa-floppy-o" aria-hidden="true"></i> Cancel </a> 
+                                                                        <div class="edit-button input-group-btn">
+                                                                                <button *ngIf="profileEdit_10==false" (click)="profilefieldEdit_10()" class="btn btn-sm btn-primary edithoveredit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit </button>
+                                                                        </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!--p-calendar [(ngModel)]="date3" [showIcon]="true" formControlName=""></p-calendar-->
+
+                                                                </div>
+                                                                <!--div class="checkbox checkbox-success col-sm-2 ">
+                                                    <input id="checkbox2" type="checkbox">
+                                                    <label for="checkbox2">Public</label>
+                                                </div-->
+                                                            </div>
+                                                            <div class="col-md-12 mrb_10">
+                                                                <label class="col-md-4 col-form-label">Gender</label>
+                                                                <div class="col-sm-8">
+                                                                    <div class="row">
+                                                                        <div class="col-xs-8">
+                                                                                <label class="radio-inline">
+                                                                            <input type="radio" class="" formControlName="admin_gender" [(ngModel)]="admpr.admin_gender" (change)="onSelectionChange()" value="Male">Male
+                                                                            </label>
+                                                                            <label class="radio-inline">
+                                                                            <input type="radio" class="" formControlName="admin_gender" [(ngModel)]="admpr.admin_gender" (change)="onSelectionChange()" value="Female">Female
+                                                                        </label>
+                                                                            <!-- <span *ngIf="profileEdit_12==false">
+                                                                                <input type="text" class="form-control" formControlName="admin_gender" [(ngModel)]="admpr.admin_gender" readonly>
+                                                                            </span>
+                                                                            <span *ngIf="profileEdit_12==true">
+                                                                                <select formControlName="admin_gender" class="testselect1 form-control" formControlName="admin_gender" [(ngModel)]="admpr.admin_gender">
+                                                                                    <-placeholder->
+                                                                                    <option value="Male">Male</option>
+                                                                                    <option value="Female">Female</option>
+                                                                                    <option value="Prefer">Prefer not to disclose</option>
+                                                                                </select>
+                                                                            </span> -->
+                                                                        </div>
+                                                                        <div class="col-xs-4">
+                                                                            <!-- <span *ngIf="profileEdit_12==false" (click)="profilefieldEdit_12()" class="btn btn-sm btn-primary edithoveredit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit </span> -->
+                                                                            <span *ngIf="profileEdit_12==true" (click)="profilefieldUpdate_12(admpr.admin_gender,'admin_gender')" class="btn btn-sm btn-success edithoversav"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!--div class="checkbox checkbox-success col-sm-2">
+                                                            <span *ngIf="admpr.is_gender_public==1"><input id="checkbox3_1" type="checkbox" (change)="isPublic(0,'is_gender_public')" checked><label for="checkbox3_1">Public</label></span>                                                            
+                                                            <span *ngIf="admpr.is_gender_public==0"><input id="checkbox3_2" type="checkbox" (change)="isPublic(1,'is_gender_public')"><label for="checkbox3_2">Public</label></span>
+                                                     </div-->
+                                                                <!--div class="checkbox checkbox-success col-sm-2">
+                                                    <input id="checkbox1" type="checkbox">
+                                                    <label for="checkbox1">Public</label>
+                                                </div-->
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                            <div class="addressfields">
+                                                                <div class="col-md-12 mrb_10">
+                                                                    <label class="col-sm-4 col-form-label">Country</label>
+                                                                    <div class="col-sm-8">
+                                                                        <span *ngIf="profileEdit_11==false">
+                                                                    <input type="text" class="form-control" formControlName="admin_country" [(ngModel)]="adminCountry" readonly>
+                                                                </span>
+                                                                        <span *ngIf="profileEdit_11==true">
+                                                            <select class="form-control color-filter" formControlName="admin_country" [(ngModel)]="admin_country" (ngModelChange)="getStatesoncountry($event)">
+                                                                <!--option [ngValue]="uPro.cntry_id" >{{uPro.cntry_name}}</option--> 
+                                                                <option value="">Select Country</option>
+                                                                <option *ngFor="let cnt of country" value="{{cnt.cntry_id}}"  >{{cnt.cntry_name}}</option>
+                                                            </select>
+                                                            </span>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-12 mrb_10">
+                                                                    <label class="col-sm-4 col-form-label">State</label>
+                                                                    <div class="col-sm-8">
+                                                                        <span *ngIf="profileEdit_11==false">
+                                                                    <input type="text" class="form-control"  value="{{adminState}}" readonly>                                                    
+                                                                </span>
+                                                                        <span *ngIf="profileEdit_11_1==false">
+                                                                        <input type="text" class="form-control" formControlName="admin_state" [(ngModel)]="state_name" readonly>                                                    
+                                                                    </span>
+                                                                        <span *ngIf="profileEdit_11==true">
+                                                                <select class="form-control"  formControlName="admin_state" [(ngModel)]="admin_state" (ngModelChange)="getCitiesonstates($event)">
+                                                                        <!--option [ngValue]="userInst.state_id" [selected]="userInst.state_id">{{userInst.state_name}}</option-->
+                                                                        <option value="">Select State</option>
+                                                                        <option *ngFor="let state of states" value="{{state.state_id}}">{{state.state_name}}</option>
+                                                                    </select>
+                                                                    </span>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-12 mrb_10">
+                                                                    <label class="col-sm-4 col-form-label">City</label>
+                                                                    <div class="col-sm-8">
+                                                                        <span *ngIf="profileEdit_11==false">
+                                                                    <input type="text" class="form-control" formControlName="admin_city" [(ngModel)]="adminCity" readonly>
+                                                                </span>
+                                                                        <span *ngIf="profileEdit_11==true">
+                                                                <select class="form-control"  formControlName="admin_city" [(ngModel)]="admin_city" (ngModelChange)="getCitiesoncity($event)">
+                                                                        <option value="">Select city</option>
+                                                                        <option *ngFor="let city of cities" value="{{city.city_id}}">{{city.city_name}}</option>
+                                                                </select>
+                                                                </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-12 mrb_10">
+                                                                    <label class="col-sm-4 col-form-label">Address</label>
+                                                                    <div class="col-sm-8">
+                                                                        <div class="row">
+                                                                            <div class="col-sm-12">
+                                                                                <textarea class="form-control" formControlName="admin_address" placeholder="address" style=" height:100px;" [value]="admpr.admin_address" [readonly]="!profileEdit_11"></textarea>
+
+                                                                            </div>
+                                                                            <div class="pull-right">
+                                                                                    <div class="edit-button input-group-btn">
+                                                                                <button *ngIf="profileEdit_11==false" (click)="profilefieldEdit_11()" class="btn btn-sm btn-primary edithoveredit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit </button>
+                                                                                <!--span *ngIf="profileEdit_11==true" (click)="profilefieldUpdate_11(uPro.user_address,'user_address',user_city,'user_city',user_state,'user_state',user_country,'user_country')" class="btn btn-sm btn-primary edithoversav"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save </span-->
+                                                                            </div>
+                                                                            </div>
+                                                                            <button *ngIf="profileEdit_11==true" (click)="profilefieldUpdate_11(profileAdmin.controls.admin_address.value,admin_city,admin_state,admin_country)" class="btn btn-sm btn-success pull-right edithoversav"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save </button>
+                                                                            <a *ngIf="profileEdit_11==true" (click)="profileForm.admin_address.setValue(this.adminProfileData.admin_address);admin_city=adminProfileData.admin_city;admin_state=adminProfileData.admin_state;admin_country=adminProfileData.admin_country;profileEdit_11=false"  class="btn btn-sm btn-success edithoversav"><i class="fa fa-floppy-o" aria-hidden="true"></i> Cancel </a> 
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!--====profile update end start====-->
+                                                        </div>
+                                                        <!--div class="m-t-20" align="center">
+                                                        <button type="submit" class="bt btn btn-primary">Update</button>
+                                                    </div-->
+                                                    </div>
+                                                </form>
+
+                                                <!--====password reset start====-->
+                                                <!-- <div class="alert {{alertmsgClass}}" *ngIf="msgSuccLogin==true">
+                                                    <strong>{{alertmsgSucc}}</strong>
+                                                </div> -->
+                                                <div class="reset_pss rest_bg m-b-20">
+                                                    <form [formGroup]="updateLogins">
+                                                        <div class="row" *ngFor="let admpr of adminProfile">
+
+                                                            <div class="col-md-offset-2 col-md-4 p-b-15">
+                                                                <span>User Id</span>
+                                                                <div class="hoveruseredit">
+                                                                    <div class="input-group">
+
+                                                                <input type="text" formControlName="ac_user_loginid" [value]="admpr.ac_user_loginid" class="form-control" (keyup)="CheckAdminidAvailability($event.target.value,'ac_user_loginid')" [readonly]="!loginsEdit_1">
+                                                                <span *ngIf="adminloginId==true" class="error-msg pull-right">{{adminloginIdErrText}}</span>
+                                                                <button *ngIf="loginsEdit_1==true" (click)="loginsfieldUpdate_1(updateLogins.controls.ac_user_loginid.value,'ac_user_loginid');loginsEdit_1=false" class="btn btn-sm btn-success edithoversav"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save </button>
+                                                                <a *ngIf="loginsEdit_1==true" (click)="updateLogins.controls.ac_user_loginid.setValue(this.adminProfileData.ac_user_loginid);loginsEdit_1=false;"  class="btn btn-sm btn-success edithoversav"><i class="fa fa-floppy-o" aria-hidden="true"></i> Cancel </a> 
+                                                                <div class="edit-button input-group-btn">
+                                                                    <button *ngIf="loginsEdit_1==false" (click)="loginsfieldEdit_1();" class="btn btn-sm btn-primary edithoveredit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit </button>
+                                                                </div>
+                                                                </div>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class=" col-md-5 p-b-15">
+                                                                <span>Emails</span>
+                                                                <div class="hoveruseredit">
+                                                                <div class="input-group">
+                                                                <input type="text" class="form-control" formControlName="ac_user_email" [value]="admpr.ac_user_email" (keyup)="CheckAdminAvailability($event.target.value,'ac_user_email')" [readonly]="!loginsEdit_2">
+                                                                <span *ngIf="instAdminEmail==true" class="error-msg pull-right">{{instAdminEmailErrText}}</span>
+                                                                <div *ngIf="updateLogins.controls.ac_user_email.hasError('pattern')" class="text-danger " style="color:red;">enter valid email</div>
+                                                               
+                                                                <div class="edit-button input-group-btn">
+                                                                        <button *ngIf="loginsEdit_2==false" (click)="loginsfieldEdit_2()" class="btn btn-sm btn-primary edithoveredit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit </button>
+                                                                    <button *ngIf="loginsEdit_2==true" (click)="loginsfieldUpdate_2(updateLogins.controls.ac_user_email.value,'ac_user_email');loginsEdit_2=false" class="btn btn-sm btn-success edithoversav"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save </button>
+                                                                    <a *ngIf="loginsEdit_2==true" (click)="updateLogins.controls.ac_user_email.setValue(this.adminProfileData.ac_user_email);loginsEdit_2=false"  class="btn btn-sm btn-success edithoversav"><i class="fa fa-floppy-o" aria-hidden="true"></i> Cancel </a> 
+                                                                </div>
+                                                                </div>
+                                                                </div>
+                                                                <!--div *ngIf="admpr.ac_user_email==''">
+                                                    <span *ngIf="loginsEdit_2==false" (click)="loginsfieldUpdate_2(admpr.ac_user_email,'ac_user_email')" class="btn btn-sm btn-primary edithoversav"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save </span>
+                                                </div-->
+                                                            </div>
+                                                            <!-- <div class="col-md-4 p-b-15">
+                                                                <span>Phone</span>
+                                                                <input (keypress)="numberOnly($event)" type="text" class="form-control" formControlName="ac_user_phone" [(ngModel)]="admpr.ac_user_phone" [readonly]="!loginsEdit_3">
+                                                                <div class="edithover pull-right">
+                                                                    <span *ngIf="loginsEdit_3==false" (click)="loginsfieldEdit_3()" class="btn btn-sm btn-primary edithoveredit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit </span>
+                                                                    <span *ngIf="loginsEdit_3==true" (click)="loginsfieldUpdate_3(admpr.ac_user_phone,'ac_user_phone')" class="btn btn-sm btn-primary edithoversav"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save </span>
+                                                                </div>
+                                                            </div> -->
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="reset_pss rest_bg m-b-20">
+                                                    <div class="row resetpw">
+                                                        <h5>Reset Password</h5>
+                                                        <form [formGroup]="changePassword" (ngSubmit)="updatePassword(changePassword)">
+                                                            <input type="hidden" formControlName="admin_id" [(ngModel)]="Check_admin_id" class="form-control">
+                                                            <div class="col-md-4 p-b-15">
+                                                                <span>Old Password</span>
+                                                                <input type="password" formControlName="oldPassword" class="form-control">
+                                                                <div *ngIf="passwordSubmitted && f.oldPassword.errors" style="color:red">
+                                                                    <div *ngIf="f.oldPassword.errors.required">Password is required</div>
+                                                                </div>
+                                                
+                                                            </div>
+                                                            <div class="col-md-4 p-b-15">
+                                                                <span>New Password</span>
+                                                                <input type="password" pPassword formControlName="newPassword" class="form-control">
+                                                                <div *ngIf="passwordSubmitted && f.newPassword.errors" style="color:red">
+                                                                    <div *ngIf="f.newPassword.errors.required">Password is required</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4 p-b-15">
+                                                                <span>Confirm Password</span>
+                                                                <input type="password" formControlName="renewPassword" class="form-control" (keyup)='passwordMatchValidator()'>
+                                                                <div *ngIf="passwordSubmitted && f.renewPassword.errors" style="color:red">
+                                                                    <div *ngIf="f.renewPassword.errors.required">Confirm Password is required</div>
+                                                                </div>
+                                                                <p *ngIf="mismatch &&passwordSubmitted" class="validation-p" style="color:red">
+                                                                    Password doesn't match*
+                                                                </p>
+                                                            </div>
+                                            
+                                                            <div class="m-t-20" align="center">
+                                                                <button type="submit" class="bt btn btn-primary"><i class="fa fa-check"></i> Change Password</button>
+                                                                <button type="button" (click)="resetchangePassword()" class="bt btn btn-primary"><i class="fa fa-refresh" ></i> Reset</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+
+                                                <!--====password reset End====-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--====My-profile start====-->
+
+                                    <!--====friend start====-->
+
+                                    <!--====friend start====-->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--====Nav tabs End====-->
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!--====top nav bar End====-->
+</div>
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
+
+<p-toast [style]="{marginTop: '80px'}" position="top-left" key="tl"></p-toast>
+
+<p-toast [style]="{marginTop: '80px'}" position="top-center" key="tc"></p-toast>
+
+<p-toast [style]="{marginTop: '80px'}" styleClass="custom-toast" key="custom" position="bottom-center"></p-toast>
+
+<p-toast position="center" key="c" (onClose)="onReject()" [modal]="true" [baseZIndex]="5000">
+    <ng-template let-message pTemplate="message">
+        <div style="text-align: center">
+            <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i>
+            <h3>{{message.summary}}</h3>
+            <p>{{message.detail}}</p>
+        </div>
+        <div class="ui-g ui-fluid">
+            <div class="ui-g-6">
+                <button type="button" pButton (click)="onConfirm()" label="Yes" class="ui-button-success"></button>
+            </div>
+            <div class="ui-g-6">
+                <button type="button" pButton (click)="onReject()" label="No" class="ui-button-secondary"></button>
+            </div>
+        </div>
+    </ng-template>
+</p-toast>

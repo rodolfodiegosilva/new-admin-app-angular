@@ -1,0 +1,1685 @@
+ <section class="content">
+                                <div id="pers_inf">
+                                    <!--<a href="#" id="edit_profil">Edit</a>-->
+                                    <div id="pers_int_cont">
+                                        <div id="pers_intitule">
+                                            <img src="../../assets/img/upload/avatar.png" alt="" />
+                                            <h4 pers_inf>{{user_dname}}</h4>
+                                            <p>User id : {{suser_id}}</p>
+                                            <p *ngIf="Check_admintype_id == '1'|| Check_admintype_id =='2'"><a
+                                                    class="bt btn-success" (click)="resendActivation(uac_email);">User
+                                                    activation </a></p>
+                                        </div>
+                                    </div>
+                                    <!--<div class="shadow sh1"></div><div class="shadow sh2"></div>-->
+                                    <h3> User Information</h3>
+                                    <div class="des-rel" id="status_inf">
+                                        <div class="popup_dla">
+                                            <form [formGroup]="updateUser" (ngSubmit)="UserUpdate(updateUser)">
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <div class=" row">
+                                                            <div class="col-sm-10">
+                                                                <div class="hoveruseredit">
+                                                                    <div class="input-group">
+                                                                        <input class="form-control" type="text"
+                                                                            placeholder="Display Name"
+                                                                            formControlName="user_dname"
+                                                                            [(ngModel)]="user_dname"
+                                                                            [readonly]="!profileEdit_1">
+                                                                        <div class="edit-button input-group-btn">
+                                                                            <button *ngIf="profileEdit_1==false"
+                                                                                (click)="profilefieldEdit_1()"
+                                                                                class="btn btn-sm btn-primary edithoveredit"><i
+                                                                                    class="fa fa-pencil-square-o"
+                                                                                    aria-hidden="true"></i> Edit
+                                                                            </button>
+                                                                            <button *ngIf="profileEdit_1==true"
+                                                                                (click)="profilefieldUpdate_1(user_dname,'user_dname')"
+                                                                                class="btn btn-sm btn-success edithoversav"><i
+                                                                                    class="fa fa-floppy-o"
+                                                                                    aria-hidden="true"></i> Save
+                                                                            </button>
+                                                                            <button *ngIf="profileEdit_1==true"
+                                                                                (click)="profileEdit_1=false;user_dname=userShow.user.user_dname"
+                                                                                class="btn btn-sm btn-success edithoversav"><i
+                                                                                    class="fa fa-pencil-square-o"
+                                                                                    aria-hidden="true"></i> Cancel
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-10">
+                                                                <div class="hoveruseredit">
+                                                                    <div class="input-group">
+                                                                        <input class="form-control" type="text"
+                                                                            placeholder="First Name"
+                                                                            formControlName="user_fname"
+                                                                            [(ngModel)]="user_fname"
+                                                                            [readonly]="!profileEdit_2">
+                                                                        <div class="edit-button input-group-btn">
+                                                                            <button *ngIf="profileEdit_2==false"
+                                                                                (click)="profilefieldEdit_2()"
+                                                                                class="btn btn-sm btn-primary edithoveredit"><i
+                                                                                    class="fa fa-pencil-square-o"
+                                                                                    aria-hidden="true"></i> Edit
+                                                                            </button>
+                                                                            <button *ngIf="profileEdit_2==true"
+                                                                                (click)="profilefieldUpdate_2(user_fname,'user_fname')"
+                                                                                class="btn btn-sm btn-success edithoversav"><i
+                                                                                    class="fa fa-floppy-o"
+                                                                                    aria-hidden="true"></i> Save
+                                                                            </button>
+                                                                            <button *ngIf="profileEdit_2==true"
+                                                                                (click)="profileEdit_2=false;user_fname = userShow.user.user_fname"
+                                                                                class="btn btn-sm btn-success edithoversav"><i
+                                                                                    class="fa fa-floppy-o"
+                                                                                    aria-hidden="true"></i> Cancel
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="row">
+                                                            <div class="col-sm-10">
+                                                                <div class="hoveruseredit">
+                                                                    <div class="input-group">
+                                                                        <input class="form-control" type="text"
+                                                                            placeholder="Middle Name"
+                                                                            formControlName="user_mname"
+                                                                            [(ngModel)]="user_mname"
+                                                                            [readonly]="!profileEdit_3">
+                                                                        <div class="edit-button input-group-btn">
+                                                                            <button *ngIf="profileEdit_3==false"
+                                                                                (click)="profilefieldEdit_3()"
+                                                                                class="btn btn-sm btn-primary edithoveredit"><i
+                                                                                    class="fa fa-pencil-square-o"
+                                                                                    aria-hidden="true"></i> Edit
+                                                                            </button>
+                                                                            <button *ngIf="profileEdit_3==true"
+                                                                                (click)="profilefieldUpdate_3(user_mname,'user_mname')"
+                                                                                class="btn btn-sm btn-success edithoversav"><i
+                                                                                    class="fa fa-floppy-o"
+                                                                                    aria-hidden="true"></i> Save
+                                                                            </button>
+                                                                            <button *ngIf="profileEdit_3==true"
+                                                                                (click)="profileEdit_3=false;user_mname = userShow.user.user_mname;"
+                                                                                class="btn btn-sm btn-success edithoversav"><i
+                                                                                    class="fa fa-floppy-o"
+                                                                                    aria-hidden="true"></i> Cancel
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class=" row">
+                                                            <div class="col-sm-10">
+                                                                <div class="hoveruseredit">
+                                                                    <div class="input-group">
+                                                                        <input class="form-control" type="text"
+                                                                            placeholder="Last Name"
+                                                                            formControlName="user_lname"
+                                                                            [(ngModel)]="user_lname"
+                                                                            [readonly]="!profileEdit_4">
+                                                                        <div class="edit-button input-group-btn">
+                                                                            <button *ngIf="profileEdit_4==false"
+                                                                                (click)="profilefieldEdit_4()"
+                                                                                class="btn btn-sm btn-primary edithoveredit"><i
+                                                                                    class="fa fa-pencil-square-o"
+                                                                                    aria-hidden="true"></i> Edit
+                                                                            </button>
+                                                                            <button *ngIf="profileEdit_4==true"
+                                                                                (click)="profilefieldUpdate_4(user_lname,'user_lname')"
+                                                                                class="btn btn-sm btn-success edithoversav"><i
+                                                                                    class="fa fa-floppy-o"
+                                                                                    aria-hidden="true"></i> Save
+                                                                            </button>
+                                                                            <button *ngIf="profileEdit_4==true"
+                                                                                (click)="profileEdit_4=false;user_lname = userShow.user.user_lname;"
+                                                                                class="btn btn-sm btn-success edithoversav"><i
+                                                                                    class="fa fa-floppy-o"
+                                                                                    aria-hidden="true"></i> Cancel
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class=" row">
+                                                            <div class="col-sm-12">
+                                                                <div class="hoveruseredit">
+                                                                    <div class="input-group">
+                                                                        <label class="radio-inline">
+                                                                            <input type="radio"
+                                                                                formControlName="user_gender"
+                                                                                [(ngModel)]="user_gender"
+                                                                                [disabled]="!profileEdit_5"
+                                                                                value="Male">Male
+                                                                        </label>
+                                                                        <label class="radio-inline">
+                                                                            <input type="radio"
+                                                                                formControlName="user_gender"
+                                                                                [(ngModel)]="user_gender"
+                                                                                [disabled]="!profileEdit_5"
+                                                                                value="Female">Female
+                                                                        </label>
+
+                                                                        <div class="edit-button input-group-btn">
+                                                                            <button *ngIf="profileEdit_5==false"
+                                                                                (click)="profilefieldEdit_5()"
+                                                                                class="btn btn-sm btn-primary edithoveredit"><i
+                                                                                    class="fa fa-pencil-square-o"
+                                                                                    aria-hidden="true"></i> Edit
+                                                                            </button>
+                                                                            <button *ngIf="profileEdit_5==true"
+                                                                                (click)="profilefieldUpdate_5(user_gender,'user_gender')"
+                                                                                class="btn btn-sm btn-success edithoversav"><i
+                                                                                    class="fa fa-floppy-o"
+                                                                                    aria-hidden="true"></i> Save
+                                                                            </button>
+                                                                            <button *ngIf="profileEdit_5==true"
+                                                                                (click)="profileEdit_5=false;user_gender = userShow.user.user_gender;"
+                                                                                class="btn btn-sm btn-success edithoversav"><i
+                                                                                    class="fa fa-floppy-o"
+                                                                                    aria-hidden="true"></i> Cancel
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class=" row">
+                                                            
+                                                            <div class="col-sm-10">
+                                                                <div class="hoveruseredit">
+                                                                    <div class="input-group">
+                                                                        <input type="text" class="form-control"
+                                                                            ngxDaterangepickerMd [autoApply]="true"
+                                                                            [linkedCalendars]="options.linkedCalendars"
+                                                                            [singleDatePicker]="true" applyLabel="Okay"
+                                                                            [showDropdowns]="true"
+                                                                            [(ngModel)]="user_dob"
+                                                                            placeholder="date of birth"
+                                                                            formControlName="user_dob"
+                                                                            [readonly]="!profileEdit_6">
+
+                                                                        <!--input class="form-control" type="date"  placeholder="date birth" formControlName="user_dob" [(ngModel)]="user_dob" [readonly]="!profileEdit_6"-->
+                                                                        <div class="edit-button input-group-btn">
+                                                                            <button *ngIf="profileEdit_6==false"
+                                                                                (click)="profilefieldEdit_6()"
+                                                                                class="btn btn-sm btn-primary edithoveredit"><i
+                                                                                    class="fa fa-pencil-square-o"
+                                                                                    aria-hidden="true"></i> Edit
+                                                                            </button>
+                                                                            <button *ngIf="profileEdit_6==true"
+                                                                                (click)="profilefieldUpdate_6(user_dob,'user_dob')"
+                                                                                class="btn btn-sm btn-success edithoversav"><i
+                                                                                    class="fa fa-floppy-o"
+                                                                                    aria-hidden="true"></i> Save
+                                                                            </button>
+                                                                            <button *ngIf="profileEdit_6==true"
+                                                                                (click)="profileEdit_6=false;user_dob = userShow.user.user_dob;"
+                                                                                class="btn btn-sm btn-success edithoversav"><i
+                                                                                    class="fa fa-floppy-o"
+                                                                                    aria-hidden="true"></i> Cancel
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class=" row">
+                                                            <div class="col-md-10">
+                                                                <div class="hoveruseredit">
+                                                                    <div class="input-group">
+                                                                        <input class="form-control" type="text"
+                                                                            placeholder="Email"
+                                                                            formControlName="user_email"
+                                                                            [(ngModel)]="user_email"
+                                                                            [readonly]="!profileEdit_9">
+                                                                        <div class="edit-button input-group-btn">
+                                                                            <button *ngIf="profileEdit_9==false"
+                                                                                (click)="profilefieldEdit_9()"
+                                                                                class="btn btn-sm btn-primary edithoveredit"><i
+                                                                                    class="fa fa-pencil-square-o"
+                                                                                    aria-hidden="true"></i> Edit
+                                                                            </button>
+                                                                            <button *ngIf="profileEdit_9==true"
+                                                                                (click)="profilefieldUpdate_9(user_email,'user_email')"
+                                                                                class="btn btn-sm btn-success edithoversav"><i
+                                                                                    class="fa fa-floppy-o"
+                                                                                    aria-hidden="true"></i> Save
+                                                                            </button>
+                                                                            <button *ngIf="profileEdit_9==true"
+                                                                                (click)="profileEdit_9=false;user_school = userShow.user.user_email;"
+                                                                                class="btn btn-sm btn-success edithoversav"><i
+                                                                                    class="fa fa-floppy-o"
+                                                                                    aria-hidden="true"></i> Cancel
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class=" row">
+                                                            <div class="col-md-6">
+                                                                <div class="hoveruseredit" style="width: 55%; display: flex;">
+                                                                    <label>Partner :- </label>
+                                                                    <!-- <select class="language ">
+                                                                        <option  *ngFor="let mentor of mNames" [value]="mentor.mentor_id">{{mentor.mentor_name}}</option>
+                                                                       
+                                                                    </select> -->
+                                                                    <select class="language" formControlName="user_asind_partner" [(ngModel)]="user_asind_partner"
+                                                                     >
+                                                                        <option *ngFor="let partner of pNames" 
+                                                                            [value]="partner.partner_id">{{partner.partner_name}}({{partner.partner_id}})
+                                                                        </option>
+                                                                    </select>
+                                                                    <div class="edit-button input-group-btn">
+                                                                        <button *ngIf="loginsEdit_3==false"
+                                                                            (click)="loginsEdit_3=true"
+                                                                            class="btn btn-sm btn-primary edithoveredit"><i
+                                                                                class="fa fa-pencil-square-o"
+                                                                                aria-hidden="true"></i> Edit </button>
+                                                                        <button 
+                                                                            (click)="loginsfieldUpdate_2(uac_email,'uac_email',usertype_id,'usertype_id',usr_asind_mentor,'usr_asind_mentor',user_asind_partner,'user_asind_partner',schoolInstitute)"
+                                                                            class="btn btn-sm btn-primary edithoversav"><i
+                                                                                class="fa fa-floppy-o" aria-hidden="true"></i>
+                                                                            Save </button>
+        
+                                                                        <button 
+                                                                            (click)="loginsEdit_3=false;usrtyp_name=userShow.user.usrtyp_name;"
+                                                                            class="btn btn-sm btn-primary edithoversav"><i
+                                                                                class="fa fa-floppy-o" aria-hidden="true"></i>
+                                                                            Cancel </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-10">
+                                                                <div class="hoveruseredit">
+                                                                    <div class="input-group">
+                                                                        <input class="form-control" type="text"
+                                                                            placeholder="Email-2"
+                                                                            formControlName="user_alt_email"
+                                                                            [(ngModel)]="user_alt_email"
+                                                                            [readonly]="!profileEdit_10">
+                                                                        <div class="edit-button input-group-btn">
+                                                                            <button *ngIf="profileEdit_10==false"
+                                                                                (click)="profilefieldEdit_10()"
+                                                                                class="btn btn-sm btn-primary edithoveredit"><i
+                                                                                    class="fa fa-pencil-square-o"
+                                                                                    aria-hidden="true"></i> Edit
+                                                                            </button>
+                                                                            <button *ngIf="profileEdit_10==true"
+                                                                                (click)="profilefieldUpdate_10(user_alt_email,'user_alt_email')"
+                                                                                class="btn btn-sm btn-success edithoversav"><i
+                                                                                    class="fa fa-floppy-o"
+                                                                                    aria-hidden="true"></i> Save
+                                                                            </button>
+                                                                            <button *ngIf="profileEdit_10==true"
+                                                                                (click)="profileEdit_10=false;user_alt_email = userShow.user.user_alt_email;"
+                                                                                class="btn btn-sm btn-success edithoversav"><i
+                                                                                    class="fa fa-floppy-o"
+                                                                                    aria-hidden="true"></i> Cancel
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class=" row">
+                                                            <div class="col-md-3">
+
+                                                                <input *ngIf="profileEdit_12==false" type="text"
+                                                                    class="form-control"
+                                                                    formControlName="user_phone_code"
+                                                                    [(ngModel)]="userpCountry" readonly>
+                                                                <select *ngIf="profileEdit_12==true"
+                                                                    class="form-control phonecode_manageu"
+                                                                    formControlName="user_phone_code"
+                                                                    [(ngModel)]="user_phone_code">
+                                                                    <!--option [ngValue]="userInst.cntry_id" [selected]="userInst.cntry_id">{{userInst.cntry_name}}</option-->
+                                                                    <option *ngFor="let country of countries"
+                                                                        [value]="country.cntry_isdcode">+
+                                                                        {{country.cntry_isdcode}} {{country.cntry_name}}
+                                                                    </option>
+                                                                </select>
+
+                                                            </div>
+
+                                                            <div class="hoveruseredit">
+                                                                <div class="input-group">
+                                                                    <input class="form-control" type="text"
+                                                                        placeholder="phone" formControlName="user_phone"
+                                                                        [(ngModel)]="user_phone"
+                                                                        [readonly]="!profileEdit_12">
+                                                                    <div class="edit-button input-group-btn">
+                                                                        <button *ngIf="profileEdit_12==false"
+                                                                            (click)="profilefieldEdit_12()"
+                                                                            class="btn btn-sm btn-primary edithoveredit"><i
+                                                                                class="fa fa-pencil-square-o"
+                                                                                aria-hidden="true"></i> Edit </button>
+                                                                        <button *ngIf="profileEdit_12==true"
+                                                                            (click)="profilefieldUpdate_12(user_phone_code,'user_phone_code',user_phone,'user_phone')"
+                                                                            class="btn btn-sm btn-success edithoversav"><i
+                                                                                class="fa fa-floppy-o"
+                                                                                aria-hidden="true"></i> Save </button>
+                                                                        <button *ngIf="profileEdit_12==true"
+                                                                            (click)="profileEdit_12=false;user_phone_code=userShow.user.user_phone_code;user_phone=userShow.user.user_phone;"
+                                                                            class="btn btn-sm btn-success edithoversav"><i
+                                                                                class="fa fa-floppy-o"
+                                                                                aria-hidden="true"></i> Cancel </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class=" row">
+                                                            <div class="col-md-3">
+                                                                <input *ngIf="profileEdit_13==false" type="text"
+                                                                    class="form-control"
+                                                                    formControlName="user_alt_phone_code"
+                                                                    [(ngModel)]="userapCountry" readonly>
+                                                                <select *ngIf="profileEdit_13==true"
+                                                                    class="form-control phonecode_manageu"
+                                                                    formControlName="user_alt_phone_code"
+                                                                    [(ngModel)]="user_alt_phone_code">
+                                                                    <option *ngFor="let country of countries"
+                                                                        [value]="country.cntry_isdcode">+
+                                                                        {{country.cntry_isdcode}} {{country.cntry_name}}
+                                                                    </option>
+                                                                </select>
+
+                                                            </div>
+                                                            <div class="hoveruseredit">
+                                                                <div class="input-group">
+                                                                    <input class="form-control" type="text"
+                                                                        placeholder="phone"
+                                                                        formControlName="user_alt_phone"
+                                                                        [(ngModel)]="user_alt_phone"
+                                                                        [readonly]="!profileEdit_13">
+
+                                                                    <div class="edit-button input-group-btn">
+                                                                        <button *ngIf="profileEdit_13==false"
+                                                                            (click)="profilefieldEdit_13()"
+                                                                            class="btn btn-sm btn-primary edithoveredit"><i
+                                                                                class="fa fa-pencil-square-o"
+                                                                                aria-hidden="true"></i> Edit </button>
+                                                                        <button *ngIf="profileEdit_13==true"
+                                                                            (click)="profilefieldUpdate_13(user_alt_phone_code,'user_alt_phone_code',user_alt_phone,'user_alt_phone')"
+                                                                            class="btn btn-sm btn-success edithoversav"><i
+                                                                                class="fa fa-floppy-o"
+                                                                                aria-hidden="true"></i> Save </button>
+                                                                        <button *ngIf="profileEdit_13==true"
+                                                                            (click)="profilefieldUpdate_13=false;user_alt_phone_code=userShow.user.user_alt_phone_code;user_alt_phone=userShow.user.user_alt_phone"
+                                                                            class="btn btn-sm btn-success edithoversav"><i
+                                                                                class="fa fa-floppy-o"
+                                                                                aria-hidden="true"></i> Caancel
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class=" row">
+                                                            <div class="col-md-3">
+                                                                <input *ngIf="profileEdit_14==false" type="text"
+                                                                    class="form-control" formControlName="user_fax_code"
+                                                                    [(ngModel)]="user_fax_code" readonly>
+                                                                <select *ngIf="profileEdit_14==true"
+                                                                    class="form-control phonecode_manageu"
+                                                                    formControlName="user_fax_code"
+                                                                    [(ngModel)]="user_fax_code">
+                                                                    <option *ngFor="let country of countries"
+                                                                        [value]="country.cntry_isdcode">+
+                                                                        {{country.cntry_isdcode}} {{country.cntry_name}}
+                                                                    </option>
+                                                                </select>
+
+                                                            </div>
+                                                            <div class="hoveruseredit">
+                                                                <div class="input-group">
+                                                                    <input class="form-control" type="text"
+                                                                        placeholder="phone" formControlName="user_fax"
+                                                                        [(ngModel)]="user_fax"
+                                                                        [readonly]="!profileEdit_14">
+                                                                    <div class="edit-button input-group-btn">
+                                                                        <button *ngIf="profileEdit_14==false"
+                                                                            (click)="profilefieldEdit_14()"
+                                                                            class="btn btn-sm btn-primary edithoveredit"><i
+                                                                                class="fa fa-pencil-square-o"
+                                                                                aria-hidden="true"></i> Edit </button>
+                                                                        <button *ngIf="profileEdit_14==true"
+                                                                            (click)="profilefieldUpdate_14(user_fax_code,'user_fax_code',user_fax,'user_fax')"
+                                                                            class="btn btn-sm btn-success edithoversav"><i
+                                                                                class="fa fa-floppy-o"
+                                                                                aria-hidden="true"></i> Save </button>
+                                                                        <button *ngIf="profileEdit_14==true"
+                                                                            (click)="profilefieldUpdate_14=false;user_fax_code=userShow.user.user_fax_code;user_fax=userShow.user.user_fax"
+                                                                            class="btn btn-sm btn-success edithoversav"><i
+                                                                                class="fa fa-floppy-o"
+                                                                                aria-hidden="true"></i> Cancel </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="addressfields">
+                                                            <div class="col-md-12 mrb_10">
+                                                                <div class="col-sm-10">
+                                                                    <span *ngIf="profileEdit_11==false">
+                                                                        <input type="text" class="form-control"
+                                                                            formControlName="user_country"
+                                                                            [(ngModel)]="userCountry" readonly>
+                                                                    </span>
+                                                                    <span *ngIf="profileEdit_11==true">
+                                                                        <select
+                                                                            class="form-control color-filter managefield"
+                                                                            formControlName="user_country"
+                                                                            [(ngModel)]="user_country"
+                                                                            (ngModelChange)="getStatesoncountry($event)">
+                                                                            <option value="">Select Country</option>
+                                                                            <option *ngFor="let cnt of country"
+                                                                                value="{{cnt.cntry_id}}">
+                                                                                {{cnt.cntry_name}}</option>
+                                                                        </select>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-12 mrb_10">
+                                                                <!--label class="col-sm-4 col-form-label">State</label!-->
+                                                                <div class="col-sm-10">
+                                                                    <span *ngIf="profileEdit_11==false">
+                                                                        <input type="text" class="form-control "
+                                                                            formControlName="user_state"
+                                                                            [(ngModel)]="userState" readonly>
+                                                                    </span>
+                                                                    <span *ngIf="profileEdit_11==true">
+                                                                        <select class="form-control managefield"
+                                                                            formControlName="user_state"
+                                                                            [(ngModel)]="user_state"
+                                                                            (ngModelChange)="getCitiesonstates($event)">
+                                                                            <!--option [ngValue]="userInst.state_id" [selected]="userInst.state_id">{{userInst.state_name}}</option-->
+                                                                            <option value="">Select State</option>
+                                                                            <option *ngFor="let state of states"
+                                                                                value="{{state.state_id}}">
+                                                                                {{state.state_name}}</option>
+                                                                        </select>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12 mrb_10">
+                                                                <!--label class="col-sm-4 col-form-label">City</label-->
+                                                                <div class="col-sm-10">
+                                                                    <span *ngIf="profileEdit_11==false">
+                                                                        <input type="text" class="form-control"
+                                                                            formControlName="user_city"
+                                                                            [(ngModel)]="userCity" readonly>
+                                                                    </span>
+                                                                    <span *ngIf="profileEdit_11==true">
+                                                                        <select class="form-control managefield"
+                                                                            formControlName="user_city"
+                                                                            [(ngModel)]="user_city"
+                                                                            (ngModelChange)="getCitiesoncity($event)">
+                                                                            <!--option [ngValue]="admpr.city_id" [selected]="admpr.city_id">{{admpr.city_name}} </option-->
+                                                                            <option value="">Select City</option>
+                                                                            <option *ngFor="let city of cities"
+                                                                                value="{{city.city_id}}">
+                                                                                {{city.city_name}}</option>
+                                                                        </select>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12 mrb_10">
+                                                                <!--label class="col-sm-4 col-form-label">Address</label-->
+                                                                <div class="col-sm-10">
+                                                                    <textarea class="form-control" placeholder="address"
+                                                                        style=" height:100px;"
+                                                                        formControlName="user_address"
+                                                                        [(ngModel)]="user_address"
+                                                                        [readonly]="!profileEdit_11"></textarea>
+                                                                </div>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                            <div class="edit-button input-group-btn">
+                                                                <button *ngIf="profileEdit_11==false"
+                                                                    (click)="profilefieldEdit_11()"
+                                                                    class="btn btn-sm btn-primary edithoveredit"><i
+                                                                        class="fa fa-pencil-square-o"
+                                                                        aria-hidden="true"></i> Edit </button>
+                                                                <button *ngIf="profileEdit_11==true"
+                                                                    (click)="profilefieldUpdate_11(user_address,user_city,user_state,user_country)"
+                                                                    class="btn btn-sm btn-primary edithoversav"><i
+                                                                        class="fa fa-floppy-o" aria-hidden="true"></i>
+                                                                    Save </button>
+                                                                <button *ngIf="profileEdit_11==true"
+                                                                    (click)="profileEdit_11=false;user_address=userShow.user.user_address;userCity=userShow.user.city_name;;userState=userShow.user.state_name;userCountry=userShow.user.cntry_name;"
+                                                                    class="btn btn-sm btn-primary edithoversav"><i
+                                                                        class="fa fa-floppy-o" aria-hidden="true"></i>
+                                                                    Cancel </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row usertype-createprofile"
+                                                    *ngIf="Check_inst_id==1 || Check_inst_id==2">
+                                                    <div class="col-md-6">
+                                                        <!-- style="width: 55%; display: flex;" -->
+                                                        <div class="hoveruseredit" >
+                                                            <label>User Type :- </label>
+                                                            <select class="language"
+                                                                formControlName="usertype_id" [(ngModel)]="usertype_id"
+                                                                [attr.disabled]="loginsEdit_3 == false ? 'disabled' : null"
+                                                                (change)="changeUsertype($event)">
+                                                                <option *ngFor="let usrtyp of userTypes"
+                                                                    [value]="usrtyp.usrtyp_id">{{usrtyp.usrtyp_name}}
+                                                                </option>
+                                                            </select>
+                                                            <div class="edit-button input-group-btn"
+                                                                *ngIf="schoolInstitute ==null">
+                                                                <button *ngIf="loginsEdit_3==false"
+                                                                    (click)="loginsEdit_3=true"
+                                                                    class="btn btn-sm btn-primary edithoveredit"><i
+                                                                        class="fa fa-pencil-square-o"
+                                                                        aria-hidden="true"></i> Edit </button>
+                                                                <button *ngIf="loginsEdit_3==true"
+                                                                    (click)="loginsfieldUpdate_2(uac_email,'uac_email',usertype_id,'usertype_id',usr_asind_mentor,'usr_asind_mentor',user_asind_partner,'user_asind_partner',schoolInstitute)"
+                                                                    class="btn btn-sm btn-primary edithoversav"><i
+                                                                        class="fa fa-floppy-o" aria-hidden="true"></i>
+                                                                    Save </button>
+
+                                                                <button *ngIf="loginsEdit_3==true"
+                                                                    (click)="loginsEdit_3=false;usrtyp_name=userShow.user.usrtyp_name;"
+                                                                    class="btn btn-sm btn-primary edithoversav"><i
+                                                                        class="fa fa-floppy-o" aria-hidden="true"></i>
+                                                                    Cancel </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="hoveruseredit">
+                                                            <div class="">
+                                                                <label>Reg Email :- </label>
+                                                                <input class="" type="text"
+                                                                    placeholder="Register Email"
+                                                                    formControlName="uac_email" [(ngModel)]="uac_email"
+                                                                    [readonly]="!loginsEdit_2">
+                                                                <div class="edit-button input-group-btn">
+                                                                    <button *ngIf="loginsEdit_2==false"
+                                                                        (click)="loginsfieldEdit_2()"
+                                                                        class="btn btn-sm btn-primary edithoveredit"><i
+                                                                            class="fa fa-pencil-square-o"
+                                                                            aria-hidden="true"></i> Edit </button>
+                                                                    <button *ngIf="loginsEdit_2==true"
+                                                                        (click)="loginsfieldUpdate_2(uac_email,'uac_email',usertype_id,'usertype_id',usr_asind_mentor,'usr_asind_mentor',user_asind_partner,'user_asind_partner',schoolInstitute)"
+                                                                        class="btn btn-sm btn-primary edithoversav"><i
+                                                                            class="fa fa-floppy-o"
+                                                                            aria-hidden="true"></i> Save </button>
+
+                                                                    <button *ngIf="loginsEdit_2==true"
+                                                                        (click)="loginsEdit_2=false;usrtyp_name=userShow.user.usrtyp_name;uac_email=userShow.user.uac_email"
+                                                                        class="btn btn-sm btn-primary edithoversav"><i
+                                                                            class="fa fa-floppy-o"
+                                                                            aria-hidden="true"></i> Cancel </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="hoveruseredit" style="width: 55%; display: flex;">
+                                                            <label>Mentor :- </label>
+                                                            <!-- <select class="language ">
+                                                                <option  *ngFor="let mentor of mNames" [value]="mentor.mentor_id">{{mentor.mentor_name}}</option>
+                                                               
+                                                            </select> -->
+                                                            <select class="language" formControlName="usr_asind_mentor" [(ngModel)]="usr_asind_mentor"
+                                                             (change)="changeMentor($event.target.value)">
+                                                                <option *ngFor="let mentor of mNames" 
+                                                                    [value]="mentor.mentor_id">{{mentor.mentor_name}}({{mentor.mentor_id}})
+                                                                </option>
+                                                            </select>
+                                                            <div class="edit-button input-group-btn">
+                                                                <button *ngIf="loginsEdit_3==false"
+                                                                    (click)="loginsEdit_3=true"
+                                                                    class="btn btn-sm btn-primary edithoveredit"><i
+                                                                        class="fa fa-pencil-square-o"
+                                                                        aria-hidden="true"></i> Edit </button>
+                                                                <button 
+                                                                    (click)="loginsfieldUpdate_2(uac_email,'uac_email',usertype_id,'usertype_id',usr_asind_mentor,'usr_asind_mentor',user_asind_partner,'user_asind_partner',schoolInstitute)"
+                                                                    class="btn btn-sm btn-primary edithoversav"><i
+                                                                        class="fa fa-floppy-o" aria-hidden="true"></i>
+                                                                    Save </button>
+
+                                                                <button 
+                                                                    (click)="loginsEdit_3=false;usrtyp_name=userShow.user.usrtyp_name;"
+                                                                    class="btn btn-sm btn-primary edithoversav"><i
+                                                                        class="fa fa-floppy-o" aria-hidden="true"></i>
+                                                                    Cancel </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="main_holder table-responsive">
+                                    <table class="table  table-responsive" *ngIf="Check_inst_id==1 || Check_inst_id==2">
+                                        <thead>
+                                            <tr class="adm_tr_bg">
+                                                <th>Sing Up </th>
+                                                <th>Reg&nbsp;Conform</th>
+                                                <th> verified </th>
+                                                <th>Blokced</th>
+                                                <th>Deleted</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="blc_del_bg">
+                                                <td>
+                                                    <div data-toggle="modal" data-target="#verified">
+                                                    </div>
+                                                    <p>
+                                                        <Label>Date</Label> <span class="actin_dat">:
+                                                            {{user_regdate}}</span> </p>
+                                                    <!-- <p><label>Person</label> <span class="person">: {{createdby_admin}}</span> </p> -->
+                                                </td>
+                                                <td>
+                                                    <div class=" brd_r">
+                                                        <div *ngIf="dataTarget==false" data-toggle="modal"
+                                                            data-target="#regConfirm">
+                                                            <div class="toggle btn btn-info off" data-toggle="toggle"
+                                                                style="width: 0px; height: 0px;">
+                                                                <!--input type="checkbox" data-toggle="toggle" data-on="Blokced" data-off="Cancel" data-onstyle="success" data-offstyle="info"-->
+                                                                <div class="toggle-group">
+                                                                    <label
+                                                                        class="btn  btn btn-info toggle-off">Confirm</label>
+                                                                    <span class="toggle-handle btn btn-default"></span>
+                                                                </div>
+                                                            </div>
+                                                            <p>
+                                                                <Label>Date</Label> <span class="actin_dat">: -- </span>
+                                                            </p>
+                                                            <!-- <p><label>Person</label> <span class="person">: -- </span> </p> -->
+                                                        </div>
+                                                        <div *ngIf="dataTarget==true">
+                                                            <div class="toggle btn btn btn-success off"
+                                                                data-toggle="toggle" style="width: 0px; height: 0px;">
+                                                                <!--input type="checkbox" data-toggle="toggle" data-on="Blokced" data-off="Cancel" data-onstyle="success" data-offstyle="info"-->
+                                                                <div class="toggle-group">
+                                                                    <label
+                                                                        class="btn  btn-success toggle-off">Confirmed</label>
+                                                                    <span class="toggle-handle btn btn-default"></span>
+                                                                </div>
+                                                            </div>
+                                                            <p>
+                                                                <Label>Date</Label> <span class="actin_dat">:
+                                                                    {{uac_reg_cnf_date}}</span> </p>
+                                                            <!-- <p><label>Person</label> <span class="person">: {{uac_reg_cnf_by}}</span> </p> -->
+                                                        </div>
+
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div *ngIf="verifyTarget==false" data-toggle="modal"
+                                                        data-target="#userVerified">
+                                                        <div class="toggle btn btn-info off" data-toggle="toggle"
+                                                            style="width: 0px; height: 0px;">
+                                                            <input type="checkbox" data-toggle="toggle"
+                                                                data-on="Blokced" data-off="Cancel"
+                                                                data-onstyle="success" data-offstyle="info">
+                                                            <div class="toggle-group">
+                                                                <label
+                                                                    class="btn btn-info active toggle-off">Verify</label><span
+                                                                    class="toggle-handle btn btn-default"></span>
+                                                            </div>
+                                                        </div>
+                                                        <p>
+                                                            <Label>Date</Label> <span class="actin_dat">: --</span> </p>
+                                                        <!-- <p><label>Person</label> <span class="person">: --</span> </p> -->
+                                                    </div>
+                                                    <div *ngIf="verifyTarget==true">
+                                                        <div class="toggle btn btn-success off" data-toggle="toggle"
+                                                            style="width: 0px; height: 0px;">
+                                                            <input type="checkbox" data-toggle="toggle"
+                                                                data-on="Blokced" data-off="Cancel"
+                                                                data-onstyle="success" data-offstyle="info">
+                                                            <div class="toggle-group">
+                                                                <label
+                                                                    class="btn btn-success active toggle-off">Verified</label><span
+                                                                    class="toggle-handle btn btn-default"></span>
+                                                            </div>
+                                                        </div>
+                                                        <p>
+                                                            <Label>Date</Label> <span class="actin_dat">:
+                                                                {{user_verified_date}}</span> </p>
+                                                        <!-- <p><label>Person</label> <span class="person">: {{user_verified_by}}</span> </p> -->
+                                                    </div>
+
+                                                </td>
+                                                <td>
+
+                                                    <div class=" brd_r">
+                                                        <div data-toggle="modal" data-target="#userRegBlocked">
+                                                            <div class="toggle btn {{btnClass}} off"
+                                                                data-toggle="toggle" style="width: 0px; height: 0px;">
+                                                                <input type="checkbox" data-toggle="toggle"
+                                                                    data-on="Blokced" data-off="Cancel"
+                                                                    data-onstyle="success" data-offstyle="info">
+                                                                <div class="toggle-group">
+                                                                    <label
+                                                                        class="btn {{btnClass}} active toggle-off">{{btnText}}</label><span
+                                                                        class="toggle-handle btn btn-default"></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <p><Label>Date</Label> <span class="actin_dat">:
+                                                                {{uac_blocked_date}}</span> </p>
+                                                        <p *ngIf="uac_is_blocked==1"><label>Reason</label><span>:
+                                                                {{usrblock_reason}}</span></p>
+                                                        <!-- <p><label>Person</label> <span class="person">: {{uac_blocked_by}}</span> </p> -->
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class=" brd_r">
+                                                        <div data-toggle="modal" data-target="#userRegDeleted">
+                                                            <div class="toggle btn {{btnClassd}} off"
+                                                                data-toggle="toggle" style="width: 0px; height: 0px;">
+                                                                <input type="checkbox" data-toggle="toggle"
+                                                                    data-on="Blokced" data-off="Cancel"
+                                                                    data-onstyle="success" data-offstyle="info">
+                                                                <div class="toggle-group">
+                                                                    <label
+                                                                        class="btn {{btnClassd}} active toggle-off">{{btnTextd}}</label><span
+                                                                        class="toggle-handle btn btn-default"></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <p><Label>Date</Label> <span class="actin_dat">:
+                                                                {{uac_deleted_date}}</span> </p>
+                                                        <p *ngIf="uac_is_deleted==1"><label>Reason</label><span>:
+                                                                {{usrblock_reasond}}</span></p>
+                                                        <!-- <p><label>Person</label> <span class="person">: {{uac_deleted_by}}</span> </p> -->
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr class="adm_tr_bg1">
+                                                        <th *ngIf="Check_inst_id==1">Free Access</th>
+                                                        <th *ngIf="Check_inst_id==2">Gems Access</th>
+                                                        <th *ngIf="Check_inst_id>2">Institute Access</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="blc_del_bg1">
+                                                        <td style="width: 100%;">
+                                                            <!-- <label>Free Access </label> -->
+                                                            <div class=" brd_r">
+                                                                <form [formGroup]="accessControl"
+                                                                    (ngSubmit)="changeAccessControls()">
+                                                                    <input type="hidden"
+                                                                        formControlName="created_by_admin"
+                                                                        [(ngModel)]="Check_admin_id">
+                                                                    <input type="hidden" formControlName="uac_id"
+                                                                        [(ngModel)]="uac_id">
+                                                                    <input type="hidden" formControlName="user_id"
+                                                                        [(ngModel)]="user_id">
+
+                                                                    <div style="margin-top: 3%;" style="display: none;">
+                                                                        <label>Access To Institute</label>
+                                                                        <input type="radio"
+                                                                            formControlName="user_acc_institute"
+                                                                            [(ngModel)]="user_acc_institute"
+                                                                            value="{{user_acc_institute}}"
+                                                                            (click)="accessChange($event.target.value)">Yes
+                                                                        <input type="radio"
+                                                                            formControlName="user_acc_institute"
+                                                                            value="NULL"
+                                                                            (click)="accessChange($event.target.value)">No
+                                                                        <a class="btn btn-sm btn-primary edithoversav"
+                                                                            id="saveChangesId" style="display: none;"
+                                                                            (click)="saveAccessChanges(accessChangeTrueFalse);">Save</a>
+                                                                    </div>
+                                                                    <div style="margin-top: 12px;">
+                                                                        <a class="btn btn-sm btn-primary"
+                                                                            id="grantChangesId"
+                                                                            (click)="changeAccess(1);sbbtnText = 'Create'"
+                                                                            *ngIf="is_inst_access == 0">Grant Access</a>
+                                                                        <a class="btn btn-sm btn-danger edithoversav"
+                                                                            id="revokeChangesId" data-toggle="modal"
+                                                                            data-target="#revokeModal"
+                                                                            *ngIf="is_inst_access == 1">Revoke
+                                                                            Access</a>
+                                                                    </div>
+                                                                    <div *ngIf="is_inst_access == 1">
+                                                                        <div>
+                                                                            <!-- <input type="text" data-date="" data-date-format="DD MMMM YYYY" placeholder="Access Upto" [(ngModel)]="acc_valid_to" formControlName="acc_valid_to">-->
+                                                                            <div class="col-md-12"
+                                                                                style="margin-top: 3%; display: flex;margin-bottom: 1%;">
+                                                                                <div class="col-md-4 access-from">
+                                                                                    <div style=" text-align: left;">
+                                                                                        <label>Access from</label>
+                                                                                        <input
+                                                                                            class="mar-rght access-input"
+                                                                                            type="text"
+                                                                                            formControlName="oldvalidFromDate"
+                                                                                            [(ngModel)]="acc_valid_from"
+                                                                                            readonly>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-4 access-from"
+                                                                                    style="margin-left: 3%;">
+                                                                                    <div style="text-align: left;">
+                                                                                        <label> Upto</label>
+                                                                                        <input
+                                                                                            class="mar-rght access-input"
+                                                                                            type="text"
+                                                                                            formControlName="oldvalidToDate"
+                                                                                            [(ngModel)]="validToDate"
+                                                                                            readonly>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-4 access-from">
+                                                                                    <div style=" text-align: left;">
+                                                                                        <label>New End Date</label>
+                                                                                        <div style="display: inline-block;"
+                                                                                            *ngIf="!profileEdit_15">
+                                                                                            <p-calendar
+                                                                                                [(ngModel)]="acc_valid_to_calender"
+                                                                                                [showIcon]="true"
+                                                                                                [minDate]="dateTime"
+                                                                                                formControlName="acc_valid_to"
+                                                                                                dateFormat="dd-mm-yy"
+                                                                                                [yearNavigator]="true"
+                                                                                                [monthNavigator]="true"
+                                                                                                [inputStyle]="{width:'100px',height:'28px'}"
+                                                                                                yearRange="1970:9999"
+                                                                                                (onSelect)="selectDateacc_valid_to($event)">
+                                                                                            </p-calendar>
+                                                                                        </div>
+
+                                                                                        <input type="text"
+                                                                                            class="mar-rght access-input"
+                                                                                            formControlName="acc_valid_to"
+                                                                                            [value]="acc_valid_to.split('-').reverse().join('-')"
+                                                                                            *ngIf="profileEdit_15"
+                                                                                            readonly>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+                                                                            <div class="col-md-12"
+                                                                                style=" margin : 2px; margin-bottom: 1%;">
+
+                                                                                <div class="col-md-4">
+                                                                                    <div class="col-sm-12 access-css">
+                                                                                        <div
+                                                                                            class="col-md-2 checkbox-back">
+                                                                                            <input type="checkbox"
+                                                                                                class="input-checkbox"
+                                                                                                name="uac_contnt_upload"
+                                                                                                formControlName="uac_contnt_upload"
+                                                                                                (change)="checked($event.target.checked,'uac_contnt_upload')"
+                                                                                                [(ngModel)]="uac_contnt_upload"
+                                                                                                [attr.disabled]="profileEdit_15 == true?true:null"
+                                                                                                [checked]="userAccessData.uac_contnt_upload === '1'?true:false">
+                                                                                        </div>
+                                                                                        <div
+                                                                                            class="col-md-10 name-back">
+                                                                                            <label
+                                                                                                style="padding: 5px;">Upload
+                                                                                                Content </label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-4">
+                                                                                    <div class="col-sm-12 access-css">
+                                                                                        <div
+                                                                                            class="col-md-2 checkbox-back">
+                                                                                            <input type="checkbox"
+                                                                                                class="input-checkbox"
+                                                                                                name="uac_testcr_access"
+                                                                                                formControlName="uac_testcr_access"
+                                                                                                (change)="checked   ($event.target.checked,'uac_testcr_access')"
+                                                                                                [(ngModel)]="uac_testcr_access"
+                                                                                                [attr.disabled]="profileEdit_15 == true?true:null"
+                                                                                                [checked]="userAccessData.uac_testcr_access === '1'?true:false">
+                                                                                        </div>
+                                                                                        <div
+                                                                                            class="col-md-10 name-back">
+                                                                                            <label
+                                                                                                style="padding: 5px;">Create
+                                                                                                Test </label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-4">
+                                                                                    <div class="col-sm-12 access-css">
+                                                                                        <div
+                                                                                            class="col-md-2 checkbox-back">
+                                                                                            <input type="checkbox"
+                                                                                                class="input-checkbox"
+                                                                                                name="uac_testatnd_access"
+                                                                                                formControlName="uac_testatnd_access"
+                                                                                                (change)="checked($event.target.checked,'uac_testatnd_access')"
+                                                                                                [(ngModel)]="uac_testatnd_access"
+                                                                                                [attr.disabled]="profileEdit_15 == true?true:null"
+                                                                                                [checked]="userAccessData.uac_testatnd_access === '1'?true:false">
+                                                                                        </div>
+                                                                                        <div
+                                                                                            class="col-md-10 name-back">
+                                                                                            <label
+                                                                                                style="padding: 5px;">Attend
+                                                                                                Test</label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+                                                                            <div class="col-md-12"
+                                                                                style=" margin : 2px; margin-bottom: 1%;">
+                                                                                <div class="col-md-4">
+                                                                                    <div class="col-sm-12 access-css">
+                                                                                        <div
+                                                                                            class="col-md-2 checkbox-back">
+                                                                                            <input type="checkbox"
+                                                                                                class="input-checkbox"
+                                                                                                name="uac_qns_upload"
+                                                                                                formControlName="uac_qns_upload"
+                                                                                                (change)="checked($event.target.checked,'uac_qns_upload')"
+                                                                                                [(ngModel)]="uac_qns_upload"
+                                                                                                [attr.disabled]="profileEdit_15 == true?true:null"
+                                                                                                [checked]="userAccessData.uac_qns_upload == '1'?true:false">
+                                                                                        </div>
+                                                                                        <div
+                                                                                            class="col-md-10 name-back">
+                                                                                            <label
+                                                                                                style="padding: 5px;">Create
+                                                                                                Questions </label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-md-4">
+                                                                                    <div class="col-sm-12 access-css">
+                                                                                        <div
+                                                                                            class="col-md-2 checkbox-back">
+                                                                                            <input type="checkbox"
+                                                                                                class="input-checkbox"
+                                                                                                name="uac_disc_create"
+                                                                                                formControlName="uac_disc_create"
+                                                                                                (change)="checked($event.target.checked,'uac_disc_create')"
+                                                                                                [(ngModel)]="uac_disc_create"
+                                                                                                [attr.disabled]="profileEdit_15 == true?true:null"
+                                                                                                [checked]="userAccessData.uac_disc_create == '1'?true:false">
+                                                                                        </div>
+                                                                                        <div
+                                                                                            class="col-md-10 name-back">
+                                                                                            <label
+                                                                                                style="padding: 5px;">Start
+                                                                                                Discussion</label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-4">
+                                                                                    <div class="col-sm-12 access-css">
+                                                                                        <div
+                                                                                            class="col-md-2 checkbox-back">
+                                                                                            <input type="checkbox"
+                                                                                                class="input-checkbox"
+                                                                                                name="uac_groupcr_access"
+                                                                                                formControlName="uac_groupcr_access"
+                                                                                                (change)="checked($event.target.checked,'uac_groupcr_access')"
+                                                                                                [(ngModel)]="uac_groupcr_access"
+                                                                                                [attr.disabled]="profileEdit_15 == true?true:null"
+                                                                                                [checked]="userAccessData.uac_groupcr_access == '1'?true:false">
+                                                                                        </div>
+                                                                                        <div
+                                                                                            class="col-md-10 name-back">
+                                                                                            <label
+                                                                                                style="padding: 5px;">Create
+                                                                                                Groups </label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div style="margin-top: 118px;"
+                                                                        *ngIf="is_inst_access == 1">
+                                                                        <ng-container *ngIf="is_inst_access == 1">
+                                                                            <br><a *ngIf="profileEdit_15"
+                                                                                class="btn btn-primary"
+                                                                                (click)="profileEdit_15=false;"
+                                                                                style="margin-top: 17px;">Edit</a>
+                                                                            <br><input type="submit"
+                                                                                *ngIf="!profileEdit_15"
+                                                                                class="btn btn-success"
+                                                                                value="{{sbbtnText}}">
+                                                                            <a *ngIf="!profileEdit_15"
+                                                                                class="btn btn-primary"
+                                                                                (click)="resetAccess()">Cancel</a>
+                                                                        </ng-container>
+                                                                    </div>
+                                                                </form>
+                                                                <!-- <div data-toggle="modal" data-target="#schoolAccess">
+                                                                    <div class="toggle btn btn-info off" data-toggle="toggle" style="width: 0px; height: 0px;">
+                                                                        <input type="checkbox" data-toggle="toggle" data-on="Deleted" data-off="Cancel" data-onstyle="success" data-offstyle="info">
+                                                                        <div class="toggle-group">
+                                                                            <label class="btn btn-success toggle-on">Deleted</label>
+                                                                            <label class="btn btn-info active toggle-off">Cancel</label><span class="toggle-handle btn btn-default"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div> -->
+                                                            </div>
+                                                        </td>
+
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <div class="row main_holder">
+                                        <div class="col-md-12 table-responsive pad-l-r-5">
+                                            <!--====Education start====-->
+                                            <div class="educa_bg m-b-20" *ngIf="usertype_id !='4'"
+                                                (mouseenter)="schoolEditShow=true" style="height:160px;"
+                                                (mouseleave)="schoolEditShow=false">
+                                                <h5 class="educa_title">Education</h5>
+                                                <form [formGroup]="userEducation"
+                                                    (ngSubmit)="updateEducation(userEducation)">
+                                                    <input type="hidden" class="form-control" formControlName="UserId"
+                                                        [(ngModel)]="Check_user_id">
+                                                    <div class="row reset_pss">
+                                                        <div class="col-md-11" style="width: 100%; left: 6%;">
+                                                            <div class="col-md-4 p-b-15" (click)="addDropdownCss()">
+                                                                <span>School Name</span>
+
+                                                                <p-dropdown [options]="allSchoolNames"
+                                                                    formControlName="user_school"
+                                                                    [readonly]="schoolEdit" [(ngModel)]="user_school"
+                                                                    [baseZIndex]="13000" (keyup)="addDropdownCss()"
+                                                                    [filter]="true" filterBy="label,value.name"
+                                                                    placeholder="Select School">
+                                                                </p-dropdown>
+                                                                <!-- <select class="form-control basic-single"
+                                                                    formControlName="user_school" [(ngModel)]="user_school" [attr.disabled] ="schoolEdit == true ? 'disabled' : null">
+                                                                    <option value="0" >Select School</option>
+                                                                    <option *ngFor="let school of allSchools"
+                                                                        value="{{school.inst_id}}">{{school.user_dname}}
+                                                                    </option>
+                                                                </select> -->
+                                                            </div>
+                                                            <div class="col-md-4 p-b-15" (click)="addDropdownCss()">
+                                                                <span>Course</span>
+                                                                <p-dropdown [options]="allCoursesNames"
+                                                                    formControlName="user_course"
+                                                                    [readonly]="schoolEdit" [(ngModel)]="user_course"
+                                                                    [baseZIndex]="13000" (keyup)="addDropdownCss()"
+                                                                    [filter]="true" filterBy="label,value.name"
+                                                                    placeholder="Select Course">
+                                                                </p-dropdown>
+                                                                <!-- <select class="form-control basic-single" [(ngModel)]="user_course"
+                                                                    formControlName="user_course"
+                                                                    [attr.disabled]="schoolEdit == true ? 'disabled' : null">
+                                                                    <option value="null">Select course</option>
+                                                                    <option value="{{course.course_id}}"
+                                                                        *ngFor="let course of allCourses">{{course.course_sname}}
+                                                                    </option>
+                                                                </select> -->
+                                                            </div>
+                                                            <div class="col-md-4 p-b-15" (click)="addDropdownCss()">
+                                                                <span>Class</span>
+                                                                <p-dropdown [options]="allClassesName"
+                                                                    formControlName="user_class" [readonly]="schoolEdit"
+                                                                    [(ngModel)]="user_class" [baseZIndex]="13000"
+                                                                    (keyup)="addDropdownCss()" [filter]="true"
+                                                                    filterBy="label,value.name"
+                                                                    placeholder="Select Class"></p-dropdown>
+                                                                <!-- <select class="form-control basic-single" [(ngModel)]="user_class"
+                                                                    formControlName="user_class"
+                                                                    [attr.disabled]="schoolEdit == true ? 'disabled' : null">
+                                                                    <option value="0">Select Class</option>
+                                                                    <option value="{{class.class_id}}" *ngFor="let class of allClasses">
+                                                                        {{class.class_sname}}</option>
+                                                                </select> -->
+                                                            </div>
+                                                        </div>
+                                                        <ng-container *ngIf="schoolEditShow">
+                                                            <div class="col-md-12 edithoveredit" align="center"
+                                                                *ngIf="schoolEdit">
+                                                                <a type="submit" class="bt btn btn-primary"
+                                                                    (click)="schoolEdit=false">Edit</a>
+                                                            </div>
+                                                            <div class="col-md-12" align="center" *ngIf="!schoolEdit">
+                                                                <button type="submit"
+                                                                    class="bt btn btn-primary">Update</button>
+                                                                <a type="submit" class="bt btn btn-primary"
+                                                                    (click)="schoolEdit=true;user_school = userShow.user.user_school;user_class = userShow.user.user_class;user_course = userShow.user.user_course;">Cancel</a>
+                                                            </div>
+                                                        </ng-container>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="row main_holder">
+                                                <h5 class="mentor_title">Mentor</h5>
+                                                <div class="mentor-section">
+                                                    <div *ngIf="usr_mentor_id==0" class="create_bttn">
+                                                        <button class="btn btn-success" data-toggle="modal"
+                                                            data-target="#CreateMentorModel" id="bt">
+                                                            Create Mentor
+                                                        </button>
+                                                    </div>
+                                                    <!-- <ng-template #elseBlock> -->
+                                                    <div *ngIf="is_show_user">
+                                                        <div class="form-group col-md-4">
+                                                            <label class="control-label">Mentor Id :- </label>
+                                                            <!-- <div class="input-group"> -->
+                                                                <span>{{mentor_id}}</span>
+                                                            <!-- </div> -->
+
+                                                        </div>
+                                                        <div class="form-group col-md-4">
+                                                            <label class="control-label">Mentor name :- </label>
+                                                            <!-- <div class="input-group"> -->
+                                                                <span>{{mentor_name}}</span>
+                                                            <!-- </div> -->
+
+                                                        </div>
+                                                        <div class="form-group col-md-4">
+                                                            <label class="control-label">User Id :- </label>
+                                                            <!-- <div class="input-group"> -->
+                                                                <span>{{mentor_user_id}}</span>
+                                                            <!-- </div> -->
+
+                                                        </div>
+                                                        <div class="form-group col-md-4">
+                                                            <label class="control-label">Phone :- </label>
+                                                            <!-- <div class="input-group"> -->
+                                                                <span>{{mentor_phone}}</span>
+                                                            <!-- </div> -->
+
+                                                        </div>
+                                                        <div class="form-group col-md-4">
+                                                            <label class="control-label">Other Phone :- </label>
+                                                            <!-- <div class="input-group"> -->
+                                                                <span>{{mentor_alt_phone}}</span>
+                                                            <!-- </div> -->
+
+                                                        </div>
+                                                        <div class="form-group col-md-4">
+                                                            <label class="control-label">Fax :- </label>
+                                                            <!-- <div class="input-group"> -->
+                                                                <span>{{mentor_fax}}</span>
+                                                            <!-- </div> -->
+
+                                                        </div>
+                                                        <div class="form-group col-md-4">
+                                                            <label class="control-label">Address :- </label>
+                                                            <!-- <div class="input-group"> -->
+                                                                <span>{{mentor_address}}</span>
+                                                            <!-- </div> -->
+
+                                                        </div>
+                                                        <div class="form-group col-md-4">
+                                                            <label class="control-label">Email :- </label>
+                                                            <!-- <div class="input-group"> -->
+                                                                <span>{{mentor_email}}</span>
+                                                            <!-- </div> -->
+
+                                                        </div>
+                                                        <div class="form-group col-md-4">
+                                                            <button (click)="editMentorForm()" type="submit"
+                                                                        class="btn btn-success">
+                                                                        Edit
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div *ngIf="show_mentor_edit_form">
+                                                        <form [formGroup]="mentorUser">
+                                                            <div class="form-group col-md-4">
+                                                                <label class="control-label">Mentor Id</label>
+                                                                <div class="input-group">
+                                                                    <input type="text" formControlName="mentor_id"
+                                                                        [readonly]="mentorid" class="form-control"
+                                                                        placeholder="Mentor Id" [(ngModel)]="mentor_id" value="">
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="form-group col-md-4">
+                                                                <label class="control-label">Mentor name</label>
+                                                                <div class="input-group">
+                                                                    <input type="text" formControlName="mentor_name"
+                                                                        class="form-control" placeholder="Name"
+                                                                        [(ngModel)]="mentor_name" value="">
+                                                                </div>
+
+                                                            </div>
+                                                            
+                                                            <div class="form-group col-md-4">
+                                                                <label class="control-label">Mentor User Id</label>
+                                                                <div class="input-group">
+                                                                    <input type="text" formControlName="mentor_user_id"
+                                                                        [readonly]="mentorid" class="form-control"
+                                                                        placeholder="Mentor ID" [(ngModel)]="mentor_user_id" value="">
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="form-group col-md-4">
+                                                                <label class="control-label">Phone</label>
+                                                                <div class="input-group">
+                                                                    <input type="text" formControlName="mentor_phone"
+                                                                        class="form-control" placeholder="Phone Number"
+                                                                        [(ngModel)]="mentor_phone" value="">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group col-md-4">
+                                                                <label class="control-label">Other Phone</label>
+                                                                <div class="input-group">
+                                                                    <input type="text"
+                                                                        formControlName="mentor_alt_phone"
+                                                                        class="form-control"
+                                                                        placeholder="Other Phone Number"
+                                                                        [(ngModel)]="mentor_alt_phone" value="">
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="form-group col-md-4">
+                                                                <label class="control-label">Fax</label>
+                                                                <div class="input-group">
+                                                                    <input type="text" formControlName="mentor_fax"
+                                                                        class="form-control" placeholder="Fax"
+                                                                        [(ngModel)]="mentor_fax" value="">
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="form-group col-md-4">
+                                                                <label class="control-label">Address</label>
+                                                                <div class="input-group">
+                                                                    <input type="text" formControlName="mentor_address"
+                                                                        class="form-control" placeholder="Address"
+                                                                        [(ngModel)]="mentor_address" value="">
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="form-group col-md-4">
+                                                                <label class="control-label">Email</label>
+                                                                <div class="input-group">
+                                                                    <input type="text" formControlName="mentor_email"
+                                                                        class="form-control" placeholder="Email"
+                                                                        [(ngModel)]="mentor_email" value="">
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="mentor_btn edit_btn">
+                                                                    <button (click)="EditMentor(mentorUser)" type="submit"
+                                                                        class="btn btn-success">
+                                                                        Save
+                                                                    </button>
+                                                                    <!-- <button (click)="CancelMentor()" type="submit"
+                                                                        class="btn btn-success">
+                                                                        Cancel
+                                                                    </button> -->
+                                                                    <button (click)="editMentorFormBack()" type="submit"
+                                                                        class="btn btn-success">
+                                                                        Back
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <!-- </ng-template> -->
+                                                    <!-- <div class="create_bttn">
+                                                        <button class="btn btn-success" data-toggle="modal"
+                                                            data-target="#CreateMentorModel" id="bt">
+                                                            Create Mentor
+                                                        </button>
+                                                    </div> -->
+
+                                                </div>
+                                            </div>
+                                            <div class="row main_holder">
+                                                <h5 class="partner_title">Partner</h5>
+                                                <div class="pertner-section">
+                                                    <div *ngIf="usr_parnter==0"
+                                                        class="create_bttn_partner">
+                                                        <button class="btn btn-success" data-toggle="modal"
+                                                            data-target="#CreatePartnerModel" id="bt">
+                                                            Create Partner
+                                                        </button>
+                                                    </div>
+                                                    <!-- <ng-template #elseBlockpartner> -->
+                                                        <div *ngIf="is_show_user_partner">
+                                                            <!-- <form [formGroup]="partnerUser"> -->
+                                                                <div class="form-group col-md-4">
+                                                                    <label class="control-label">Partner ID :- </label>
+                                                                    <span>{{partner_id}}</span>
+                                                                </div>
+                                                                <div class="form-group col-md-4">
+                                                                    <label class="control-label">Partner Name :- </label>
+                                                                    <span>{{partner_name}}</span>
+    
+                                                                </div>
+                                                                <div class="form-group col-md-4">
+                                                                    <label class="control-label">User Partner ID :- </label>
+                                                                    <span>{{partner_user_id}}</span>
+                                                                </div>
+                                                                <div class="form-group col-md-4">
+                                                                    <label class="control-label">Phone :- </label>
+                                                                    <span>{{partner_phone}}</span>
+                                                                </div>
+                                                                <div class="form-group col-md-4">
+                                                                    <label class="control-label">Other Phone :- </label>
+                                                                    <span>{{partner_alt_phone}}</span>
+    
+                                                                </div>
+                                                                <div class="form-group col-md-4">
+                                                                    <label class="control-label">Fax :- </label>
+                                                                    <span>{{partner_fax}}</span>
+    
+                                                                </div>
+                                                                <div class="form-group col-md-4">
+                                                                    <label class="control-label">Address :- </label>
+                                                                    <span>{{partner_address}}</span>
+    
+                                                                </div>
+                                                                <div class="form-group col-md-4">
+                                                                    <label class="control-label">Email :- </label>
+                                                                    <span>{{partner_email}}</span>
+                                                                </div>
+                                                                <!-- <div class="partner_btn edit_btn">
+                                                                    <button (click)="EditPartner(partnerUser)" type="submit"
+                                                                        class="btn btn-success"> Edit
+                                                                    </button>
+                                                                    <button (click)="CancelPartner()" type="submit"
+                                                                        class="btn btn-success">
+                                                                        Cancel
+                                                                    </button>
+                                                                </div> -->
+                                                                <div class="form-group col-md-4">
+                                                                    <button (click)="editPartnerForm()" type="submit"
+                                                                                class="btn btn-success">
+                                                                                Edit
+                                                                    </button>
+                                                                </div>
+                                                            <!-- </form> -->
+                                                        </div>
+                                                        <div *ngIf="show_partner_edit_form">
+                                                            <form [formGroup]="partnerUser">
+                                                                <div class="form-group col-md-4">
+                                                                    <label class="control-label">Partner ID</label>
+                                                                    <div class="input-group">
+                                                                        <input type="text" [readonly]="partnerid"
+                                                                            formControlName="partner_id" class="form-control"
+                                                                            placeholder="Partner ID" [(ngModel)]="partner_id">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group col-md-4">
+                                                                    <label class="control-label">Partner Name</label>
+                                                                    <div class="input-group">
+                                                                        <input type="text" formControlName="partner_name"
+                                                                            class="form-control" placeholder="Name" [(ngModel)]="partner_name" value="">
+                                                                    </div>
+    
+                                                                </div>
+                                                                <div class="form-group col-md-4">
+                                                                    <label class="control-label">Partner ID</label>
+                                                                    <div class="input-group">
+                                                                        <input type="text" [readonly]="partnerid"
+                                                                            formControlName="partner_user_id" class="form-control"
+                                                                            placeholder="Partner User ID" [(ngModel)]="partner_user_id">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group col-md-4">
+                                                                    <label class="control-label">Phone</label>
+                                                                    <div class="input-group">
+                                                                        <input type="text" formControlName="partner_phone"
+                                                                            class="form-control" placeholder="Phone Number" [(ngModel)]="partner_phone" value="">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group col-md-4">
+                                                                    <label class="control-label">Other Phone</label>
+                                                                    <div class="input-group">
+                                                                        <input type="text"
+                                                                            formControlName="partner_alt_phone"
+                                                                            class="form-control"
+                                                                            placeholder="Other Phone Number" [(ngModel)]="partner_alt_phone" value="">
+                                                                    </div>
+    
+                                                                </div>
+                                                                <div class="form-group col-md-4">
+                                                                    <label class="control-label">Fax</label>
+                                                                    <div class="input-group">
+                                                                        <input type="text" formControlName="partner_fax"
+                                                                            class="form-control" placeholder="Fax" [(ngModel)]="partner_fax" value="">
+                                                                    </div>
+    
+                                                                </div>
+                                                                <div class="form-group col-md-4">
+                                                                    <label class="control-label">Address</label>
+                                                                    <div class="input-group">
+                                                                        <input type="text" formControlName="partner_address"
+                                                                            class="form-control" placeholder="Address" [(ngModel)]="partner_address" value="">
+                                                                    </div>
+    
+                                                                </div>
+                                                                <div class="form-group col-md-4">
+                                                                    <label class="control-label">Email</label>
+                                                                    <div class="input-group">
+                                                                        <input type="text" formControlName="partner_email"
+                                                                            class="form-control" placeholder="Email" [(ngModel)]="partner_email" value="">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="partner_btn edit_btn">
+                                                                        <button (click)="EditPartner(partnerUser)" type="submit"
+                                                                            class="btn btn-success"> Save
+                                                                        </button>
+                                                                        <!-- <button (click)="CancelPartner()" type="submit"
+                                                                            class="btn btn-success">
+                                                                            Cancel
+                                                                        </button> -->
+                                                                        <button (click)="editPartnerFormBack()" type="submit"
+                                                                            class="btn btn-success">
+                                                                            Back
+                                                                        </button>
+                                                                    </div>
+                                                                </div>                                                                
+                                                            </form>
+
+                                                        </div>
+                                                    <!-- </ng-template> -->
+                                                </div>
+                                            </div>
+                                            <div class="row  main_holder">
+                                                <div class="col-md-3 table-responsive pad-l-r-5">
+                                                    <div class="all_brd m-t-10">
+                                                        <div class="question_title">
+                                                            <h4> User Mentor Mentor </h4>
+                                                        </div>
+                                                        <div class="content_sub">
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr class="danger">
+                                                                        <th>Mentor Name</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody class="multiple_bg">
+                                                                    <tr>
+                                                                        <td>Ravindar2</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                            <select class="language form-control">
+                                                                <optgroup label="Subject">
+                                                                    <option value="CT">Search Mentor</option>
+                                                                    <option value="DE">Mentor2</option>
+                                                                    <option value="FL">Mentor3</option>
+                                                                </optgroup>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 table-responsive pad-l-r-5">
+                                                    <div class="all_brd m-0">
+                                                        <div class="question_title">
+                                                            <h4> Subject Leve Mentor </h4>
+                                                        </div>
+                                                        <div class="content_sub">
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr class="danger">
+                                                                        <th>Subject</th>
+                                                                        <th>Grade</th>
+                                                                        <th>Mentor</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody class="multiple_bg">
+                                                                    <tr>
+                                                                        <td>Social</td>
+                                                                        <td>B Grade</td>
+                                                                        <td>Ravindar</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Social</td>
+                                                                        <td>B Grade</td>
+                                                                        <td>Ravindar</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Social</td>
+                                                                        <td>B Grade</td>
+                                                                        <td>Ravindar</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <select class="language form-control">
+                                                                                <optgroup label="Add Subject">
+                                                                                    <option value="CT">Add Subject
+                                                                                    </option>
+                                                                                    <option value="DE">Subject2</option>
+                                                                                    <option value="FL">Subject3</option>
+                                                                                </optgroup>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td></td>
+                                                                        <td><a href="">Add</a></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-5 table-responsive pad-l-r-5">
+                                                    <div class="all_brd m-0">
+                                                        <div class="question_title">
+                                                            <h4>Restricted Access</h4>
+                                                        </div>
+                                                        <div class="content_sub">
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr class="blc_del_bg">
+                                                                        <th>Country</th>
+                                                                        <th>Course</th>
+                                                                        <th>Class</th>
+                                                                        <th>Subject</th>
+                                                                        <th>Remove/Add</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody class="multiple_bg">
+                                                                    <tr>
+                                                                        <td>Country</td>
+                                                                        <td>Course</td>
+                                                                        <td>Class</td>
+                                                                        <td>Subject</td>
+                                                                        <td><a href="">Remove</a></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Country</td>
+                                                                        <td>Course</td>
+                                                                        <td>Class</td>
+                                                                        <td>Subject</td>
+                                                                        <td><a href="">Remove</a></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Country</td>
+                                                                        <td>Course</td>
+                                                                        <td>Class</td>
+                                                                        <td>Subject</td>
+                                                                        <td><a href="">Remove</a></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <select class="language form-control">
+                                                                                <optgroup label="Countrys">
+                                                                                    <option value="CT">Bangladesh
+                                                                                    </option>
+                                                                                    <option value="DE">Belarus</option>
+                                                                                    <option value="FL">Belize</option>
+                                                                                </optgroup>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <select class="language form-control">
+                                                                                <optgroup label="Course">
+                                                                                    <option value="CT">Course1</option>
+                                                                                    <option value="DE">Course2</option>
+                                                                                    <option value="FL">Course3</option>
+                                                                                </optgroup>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <select class="language form-control">
+                                                                                <optgroup label="Class">
+                                                                                    <option value="CT">Class1</option>
+                                                                                    <option value="DE">Class2</option>
+                                                                                    <option value="FL">Class3</option>
+                                                                                </optgroup>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <select class="language form-control">
+                                                                                <optgroup label="Subject">
+                                                                                    <option value="CT">Subject1</option>
+                                                                                    <option value="DE">Subject2</option>
+                                                                                    <option value="FL">Subject3</option>
+                                                                                </optgroup>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td><a href="">Add</a></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--====Education End====-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>

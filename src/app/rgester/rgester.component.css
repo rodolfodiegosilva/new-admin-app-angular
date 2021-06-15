@@ -1,0 +1,36 @@
+.btn {
+    box-shadow: 0px 0px 0px #b9334d;
+  }
+  
+  .header-titlea {
+      margin-left: 150px;
+  }
+  .float-label-control input {
+    line-height: 10px;
+    height: 30px;
+    border: 1px solid;
+    padding: 12px 13px;
+    border-radius: 3px;
+}
+
+.float-label-control input, .float-label-control textarea {
+    display: block;
+    width: 100%;
+    padding: 0.1em 0em 1px 0em;
+    border: none;
+    border-radius: 0px;
+    border-bottom: 1px solid #aaa;
+    outline: none;
+    margin: 0px;
+    background: none;
+    line-height: 15px;
+}
+.float-label-control input, .float-label-control textarea, .float-label-control label {
+    font-size: 12px;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+.float-label-control input {
+    color: #196a21;
+    font-weight: 600;
+}

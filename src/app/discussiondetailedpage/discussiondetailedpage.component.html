@@ -1,0 +1,534 @@
+<!--verified  Modal start --> 
+<div class="modal fade" id="verified" role="dialog">
+      <div class="modal-dialog vry_modal">
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+               <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+            </div>
+            <div class="modal-body modal_text">
+               <p>Do you really want to {{(is_discus_verified==1)?"Unverify":'Verify'}} these records? This process cannot be undone</p>
+            </div>
+            <div class="modal-footer modal_foot">
+               <button type="submit" class="bt btn-warning" data-dismiss="modal" (click)="verifyDiscussions('is_discus_verified',discus_id,is_discus_verified,'discus_verified_date')">{{(is_discus_verified==0)?"Verify":'Verified'}}</button>
+               <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="modal fade" id="verifiedtopic" role="dialog">
+      <div class="modal-dialog vry_modal">
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+               <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+            </div>
+            <div class="modal-body modal_text">
+               <p>Do you really want to {{(distopic_is_verified==1)?"Unverify":'Verify'}} these records? This process cannot be undone</p>
+            </div>
+            <div class="modal-footer modal_foot">
+               <button type="submit" class="bt btn-warning" data-dismiss="modal" (click)="verifyTopics('distopic_is_verified',discus_topic,distopic_is_verified,'distopic_verified_date','distopic_verified_by')">{{(is_discus_verified==0)?"Verify":'Verified'}}</button>
+               <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="modal fade" id="deleted" role="dialog">
+         <div class="modal-dialog vry_modal">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+               </div>
+               <div class="modal-body modal_text">
+                  <p>Do you really want to {{(is_disc_del_by_admin==1)?"Activate":'Delete'}} this records?</p>
+               </div>
+               <div class="modal-footer modal_foot">
+                  <button type="submit" class="bt btn-warning" data-dismiss="modal" (click)="deleteDescussion(discus_id)">{{(is_disc_del_by_admin==0)?"Delete":'Activate'}}</button>
+                  <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+               </div>
+            </div>
+         </div>
+      </div>
+   <div class="modal fade" id="blocked" role="dialog">
+      <div class="modal-dialog vry_modal">
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+               <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+            </div>
+            <div class="modal-body modal_text">
+               <p>Do you really want to {{(is_discus_blocked==1)?"un Block":'Block'}} these records? This process cannot be undone</p>
+            </div>
+            <div class="modal-footer modal_foot">
+               <button type="submit" class="bt btn-warning" data-dismiss="modal" (click)="verifyDiscussions('is_discus_blocked',discus_id,is_discus_blocked,'discus_blocked_date')">{{(is_discus_blocked==0)?"Block":'Blocked'}}</button>
+               <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="modal fade" id="closed" role="dialog">
+         <div class="modal-dialog vry_modal">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+               </div>
+               <div class="modal-body modal_text">
+                  <p>Do you really want to {{(is_discus_closed_admin==1)?"Open":'Close'}} these records? This process cannot be undone</p>
+               </div>
+               <div class="modal-footer modal_foot">
+                  <button type="submit" class="bt btn-warning" data-dismiss="modal" (click)="closeDiscussions()">{{(is_discus_closed_admin==1)?"Open":'Close'}}</button>
+                  <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+               </div>
+            </div>
+         </div>
+      </div>
+   <div class="modal fade" id="blockedTopic" role="dialog">
+      <div class="modal-dialog vry_modal">
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+               <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+            </div>
+            <div class="modal-body modal_text">
+               <p>Do you really want to {{(distopic_is_blocked==1)?"un Block":'Block'}} these records? This process cannot be undone</p>
+            </div>
+            <div class="modal-footer modal_foot">
+               <button type="submit" class="bt btn-warning" data-dismiss="modal" (click)="verifyTopics('distopic_is_blocked',discus_topic,distopic_is_blocked,'distopic_blocked_date','distopic_blocked_by')">{{(distopic_is_blocked==0)?"Block":'Unblock'}}</button>
+               <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+            </div>
+         </div>
+      </div> 
+   </div> 
+   <div class="modal fade" id="deleteTopic" role="dialog">
+         <div class="modal-dialog vry_modal">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+               </div>
+               <div class="modal-body modal_text">
+                  <p>Do you really want to {{(distopic_is_deleted==1)?"Activate":'Delete'}} this topic?</p>
+               </div>
+               <div class="modal-footer modal_foot">
+                  <button type="submit" class="bt btn-warning" data-dismiss="modal" (click)="verifyTopics('distopic_is_deleted',discus_topic,distopic_is_deleted,'distopic_deleted_date','distopic_deleted_by')">{{(distopic_is_deleted==0)?"Delete":'Activate'}}</button>
+                  <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+               </div>
+            </div>
+         </div> 
+      </div>
+   <!-- verified Modal end-->
+   <!--Blocked  Modal start -->
+   <div class="modal fade" id="block" role="dialog">
+      <div class="modal-dialog vry_modal">
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+               <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+            </div>
+            <div class="modal-body modal_text">
+               <p>Do you really want to Block these records? This process cannot be undone</p>
+            </div>
+            <div class="modal-footer modal_foot">
+               <button type="submit" class="bt btn-warning">Block</button>
+               <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- Blocked Modal end-->
+   <!--Delete  Modal start -->
+   <div class="modal fade" id="delete" role="dialog">
+      <div class="modal-dialog vry_modal">
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+               <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+            </div>
+            <div class="modal-body modal_text">
+               <p>Do you really want to Delete these records? This process cannot be undone</p>
+            </div>
+            <div class="modal-footer modal_foot">
+               <button type="submit" class="bt btn-warning">Delete</button>
+               <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="modal fade" id="deleteDiscussion" role="dialog">
+      <div class="modal-dialog vry_modal">
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+               <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+            </div>
+            <div class="modal-body modal_text">
+               <p>Do you really want to Delete these records? This process cannot be undone</p>
+            </div>
+            <div class="modal-footer modal_foot">
+               <button type="submit" class="bt btn-warning" (click)="deleteDescussion(discus_id)">Delete</button>
+               <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="modal fade" id="deleteComment" role="dialog">
+      <div class="modal-dialog vry_modal">
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+               <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+            </div>
+            <div class="modal-body modal_text">
+               <p>Do you really want to delete this comment? This process cannot be undone</p>
+            </div>
+            <div class="modal-footer modal_foot">
+               <button type="submit" class="bt btn-warning" data-dismiss="modal" (click)="deleteDiscussionComment(deleteFlwid)" >Delete</button>
+               <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- Delete Modal end-->
+   <app-sdashheader></app-sdashheader>
+   <div class="leftsidemenus">
+      <app-sdahshmenu></app-sdahshmenu>
+   </div>
+   <div id="page-wrapper">
+      <div class="content">
+         <!--====Question upload page start====-->
+         <section class="question_search question_sec selt_ht scroll-yes">
+            <div class="container-fluid">
+               <div class="all_brd">
+                  <div class="question_title" id="pers_inf">
+                     <h3>Discussion Page</h3>
+                  </div>
+                  <div class="content_sub">
+                     <div class="row pd-10">
+                        <div class="col-md-12">
+                           <div class="qution_tab">
+                              <!--details--tabs-->
+                              <div class="all_info">
+                                 <div class="table-responsive">
+                                    <table class="table table-responsive">
+                                       <thead>
+                                          <tr class="adm_tr_bg">
+                                             <th>Instute</th>
+                                             <th>Owner</th>
+                                             <th>Date</th>
+                                             <th>Views</th>
+                                             <th>Rating</th>
+                                          </tr>
+                                       </thead>
+                                       <tbody>
+                                          <tr class="blc_del_bg">
+                                             <td>{{inst_name}}</td>
+                                             <td>{{user_dname}}</td>
+                                             <td>{{discus_date}}</td>
+                                             <td>25140</td>
+                                             <td>4.3</td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                    <table class="table">
+                                       <thead>
+                                          <tr>
+                                             <th colspan="4">Topic Details</th>
+                                          </tr>
+                                          <tr class="adm_tr_bg1">
+                                             <th>Verified</th>
+                                             <th>Deleted</th>
+                                             <th>Blocked</th>
+                                             <th>Feedbacks</th>
+                                          </tr>
+                                       </thead>
+                                       <tbody>
+                                          <tr class="blc_del_bg1">
+                                             <td>
+                                                <div data-toggle="modal" data-target="#verifiedtopic">
+                                                   <div class="toggle btn btn-success off" data-toggle="toggle" style="width: 81px; height: 23px;">
+                                                      <input type="checkbox" checked="" data-toggle="toggle" data-on="Verify" data-off="Verified" data-onstyle="warning" data-offstyle="success">
+                                                      <div class="toggle-group">
+                                                         <label class="btn btn-warning active toggle-on">Verify</label>
+                                                         <label class="btn btn-success toggle-off">{{(distopic_is_verified==0)?"Verify":'Verified'}}</label><span class="toggle-handle btn btn-default"></span>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                                <p>{{distopic_verified_date}}</p>
+                                             </td>
+                                             <td>
+                                                <div data-toggle="modal" data-target="#deleteTopic">
+                                                   <div class="toggle btn btn-success off" data-toggle="toggle" style="width: 81px; height: 23px;">
+                                                      <input type="checkbox" checked="" data-toggle="toggle" data-on="Verify" data-off="Verified" data-onstyle="warning" data-offstyle="success">
+                                                      <div class="toggle-group">
+                                                         <label class="btn btn-warning active toggle-on">Block</label>
+                                                         <label class="btn btn-success toggle-off">{{(distopic_is_deleted==0)?"Delete":'Activate'}}</label><span class="toggle-handle btn btn-default"></span>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                                <p>{{distopic_deleted_date}}</p>
+                                             </td>
+                                             <td>
+                                                <div data-toggle="modal" data-target="#blockedTopic">
+                                                   <div class="toggle btn btn-success off" data-toggle="toggle" style="width: 81px; height: 23px;">
+                                                      <input type="checkbox" checked="" data-toggle="toggle" data-on="Verify" data-off="Verified" data-onstyle="warning" data-offstyle="success">
+                                                      <div class="toggle-group">
+                                                         <label class="btn btn-warning active toggle-on">Block</label>
+                                                         <label class="btn btn-success toggle-off">{{(distopic_is_blocked==0)?"Block":'Blocked'}}</label><span class="toggle-handle btn btn-default"></span>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                                <p>{{distopic_blocked_date}}</p>
+                                             </td>
+                                             <td> Some Content Tag</td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                    <table class="table">
+                                       <thead>
+                                          <tr>
+                                             <th colspan="5">Discussion Details</th>
+                                          </tr>
+                                          <tr class="adm_tr_bg1">
+                                             <th>Verified</th>
+                                             <th>Deleted</th>
+                                             <th>Blocked</th>
+                                             <th>Closed</th>
+                                             <th>Feedbacks</th>
+                                          </tr>
+                                       </thead>
+                                       <tbody>
+                                          <tr class="blc_del_bg1">
+                                             <td>
+                                                <div data-toggle="modal" data-target="#verified">
+                                                   <div class="toggle btn btn-success off" data-toggle="toggle" style="width: 81px; height: 23px;">
+                                                      <input type="checkbox" checked="" data-toggle="toggle" data-on="Verify" data-off="Verified" data-onstyle="warning" data-offstyle="success">
+                                                      <div class="toggle-group">
+                                                         <label class="btn btn-warning active toggle-on">Verify</label>
+                                                         <label class="btn btn-success toggle-off">{{(is_discus_verified==0)?"Verify":'Verified'}}</label><span class="toggle-handle btn btn-default"></span>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                                <p>{{discus_verified_date}}</p>
+                                             </td>
+                                             <td>
+                                                   <div data-toggle="modal" data-target="#deleted">
+                                                         <div class="toggle btn btn-success off" data-toggle="toggle" style="width: 81px; height: 23px;">
+                                                            <input type="checkbox" checked="" data-toggle="toggle" data-on="Verify" data-off="Verified" data-onstyle="warning" data-offstyle="success">
+                                                            <div class="toggle-group">
+                                                               <label class="btn btn-warning active toggle-on">Block</label>
+                                                               <label class="btn btn-success toggle-off">{{(is_disc_del_by_admin==0)?"Delete":'Activate'}}</label><span class="toggle-handle btn btn-default"></span>
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                      <p>{{discus_deleted_date}}</p>
+                                             </td>
+                                             <td>
+                                                <div data-toggle="modal" data-target="#blocked">
+                                                   <div class="toggle btn btn-success off" data-toggle="toggle" style="width: 81px; height: 23px;">
+                                                      <input type="checkbox" checked="" data-toggle="toggle" data-on="Verify" data-off="Verified" data-onstyle="warning" data-offstyle="success">
+                                                      <div class="toggle-group">
+                                                         <label class="btn btn-warning active toggle-on">Block</label>
+                                                         <label class="btn btn-success toggle-off">{{(is_discus_blocked==0)?"Block":'Blocked'}}</label><span class="toggle-handle btn btn-default"></span>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                                <p>{{discus_blocked_date}}</p>
+                                             </td>
+                                             <td>
+                                                <div data-toggle="modal" data-target="#closed">
+                                                   <div class="toggle btn btn-success off" data-toggle="toggle" style="width: 81px; height: 23px;">
+                                                      <input type="checkbox" checked="" data-toggle="toggle" data-on="Verify" data-off="Verified" data-onstyle="warning" data-offstyle="success">
+                                                      <div class="toggle-group">
+                                                         <label class="btn btn-warning active toggle-on">Block</label>
+                                                         <label class="btn btn-success toggle-off">{{(is_discus_closed_admin==1)?"Open":'Close'}}</label><span class="toggle-handle btn btn-default"></span>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                                <p>{{discus_closed_date}}</p>
+                                             </td>
+                                             <td> Some Content Tag</td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                 </div>
+                              </div>
+                              <!---///details--tabs----->
+                              <!--Top--Discussion-->
+                              <div class="coment-content">
+                                 <div class="comm-text bor-b">
+                                    <h3 class="col_des">Discussion</h3>
+                                    <h4 class="col_des1" *ngIf="discus_topic!==edittopicid">
+                                       <span class="edit-color">
+                                       <i class="fa fa-edit" (click)="editTopic(discus_topic)"></i>
+                                       </span>&nbsp;&nbsp;&nbsp;
+                                       Topic : {{distopic_name}} 
+                                    </h4>
+                                    <h4 class="" *ngIf="discus_topic===edittopicid" style="color:black;background-color: aliceblue">
+                                       <textarea rows="3" cols="40" [(ngModel)]="distopic_name" placeholder="Update Discussion"></textarea>
+                                       <button type="submit" class="bt btn-danger pull-right" (click)="updateTopic(distopic_name,discus_topic,distopic_owner)" >Submit</button>
+                                    </h4>
+                                 </div>
+                                 <div class="inbox-avatar">
+                                    <img *ngIf="user_pic" src="http://localhost:4200/assets/profilePics/user_{{discus_owner}}/{{user_pic}}" class="hidden-xs hidden-sm" alt="">
+                                    <img *ngIf="!user_pic" src="../../assets/img/avatar.png" class="hidden-xs hidden-sm" alt="">
+                                    <div class="inbox-avatar-text">
+                                       <div class="avatar-name">{{user_dname}}</div>
+                                       <small>{{discus_date}}</small>
+                                    </div>
+                                    <div class="m-l-58">
+                                       <p *ngIf="discus_id!== editDescusId">{{discus_desc}}</p>
+                                       <p *ngIf="discus_id === editDescusId">
+                                          <textarea rows="3" cols="100" [(ngModel)]="discus_desc" placeholder="Update Discussion"></textarea>
+                                          <button type="submit" class="bt btn-danger pull-right" (click)="updateDescussion(discus_desc,discus_id,discus_owner)" >Submit</button>
+                                       </p>
+                                       <br>
+                                       <!--Report & delete css Start-->
+                                       <div class="del_rep">
+                                          <div data-toggle="modal" class="delt-color" (click)="assignDeleteflid(discus_id,2)" data-target="#deleteDiscussion">
+                                             <button type="submit"><i class="fa fa-trash-o"></i> Delete</button>
+                                          </div>
+                                          <div class="edit-color">
+                                             <div data-toggle="modal" class="edit-color" >
+                                                <button type="submit" *ngIf="discus_id!== editDescusId" (click)="editDescuss(discus_id)"><i class=" fa fa-edit"></i>Edit</button>
+                                             </div>
+                                          </div>
+                                          <div class="rpt-color">
+                                             <button type="button" class="repl-btn" data-toggle="collapse" 
+                                                data-target="#report"><i class="fa fa-file-o"></i> Report
+                                             </button>
+                                          </div>
+                                       </div>
+                                       <!--Report & delete css end-->
+                                       <div class="clearfix"></div>
+                                       <!--replay collapse  css start-->
+                                       <div id="reply" class="collapse">
+                                          <div class="re-drop">
+                                             <div class="comment_npt">
+                                                <h3>Start Discussion</h3>                                                
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <!--replay collapse  css End-->
+                                       <div class="clearfix"></div>
+                                       <!--Report collapse  css start-->
+                                       <div id="report" class="collapse">
+                                          <div class="re-drop">
+                                             <div class="comment_npt">
+                                                <h3>Start Discussion</h3>
+                                                <div class="form-group"><textarea rows="6"></textarea></div>
+                                                <button type="submit" class="bt btn-danger pull-right">Submit</button>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <!--Report collapse  css End-->
+                                    </div>
+                                 </div>
+                                 <!--Top--Discussion//-->
+                                 <!--Discussion tab-->
+                                 <div class="comment_npt">
+                                    <!--<h3>Start New Discussion</h3>-->
+                                    <div class="form-group" *ngIf="discus_closed_ownr==0 && is_discus_closed_admin==0">
+                                       <form [formGroup]="followDiscussion" (ngSubmit)="createDiscussionFollow()">                                       
+                                       <textarea rows="6" [(ngModel)]="discusn_desc" formControlName="discusn_desc" placeholder="Follow Discussion"></textarea>
+                                       <div class="re-sub">
+                                          <button type="submit" class="bt btn-danger pull-right">Submit</button>
+                                       </div>
+                                       </form>
+                                    </div>
+                                 </div>
+                                 <!--Discussion tab///-->
+                                 <div class="clearfix"></div>
+                                 <div class="inbox-avatar" *ngFor="let fldt of followData; let i = index">
+                                    <img *ngIf="fldt.user_pic" src="http://localhost:4200/assets/profilePics/user_{{fldt.user_id}}/{{fldt.user_pic}}" class="hidden-xs hidden-sm" alt="">
+                                    <img *ngIf="!fldt.user_pic" src="../../assets/img/avatar.png" class="hidden-xs hidden-sm" alt="">
+                                    <div class="inbox-avatar-text">
+                                       <div class="avatar-name">{{(fldt.user_dname)?fldt.user_dname:'Admin'}}</div>
+                                       <small>{{fldt.discusn_date}}</small>
+                                    </div>
+                                    <div class="m-l-58">
+                                       <p *ngIf="fldt.discusnflw_id !== editCommentId">{{fldt.discusn_desc}}
+                                       </p>
+                                       <p *ngIf="fldt.discusnflw_id === editCommentId">
+                                          <textarea rows="3" cols="100" [(ngModel)]="fldt.discusn_desc" placeholder="Start New Discussion"></textarea>
+                                          <button type="submit" class="bt btn-danger pull-right" (click)="updateComment(fldt.discusn_desc,fldt.discusnflw_id,fldt.discusn_owner)" >Submit</button>
+                                       </p>
+                                       <br>
+                                       <!--Report & delete css Start-->
+                                       <div class="del_rep">
+                                          <div data-toggle="modal" class="delt-color" data-target="#deleteComment" (click)="assignDeleteflid(fldt.discusnflw_id,1)">
+                                             <button type="submit"><i class="fa fa-trash-o"></i> Delete</button>
+                                          </div>
+                                          <div class="edit-color" >
+                                             <div data-toggle="modal" class="edit-color">
+                                                <button type="submit" *ngIf="fldt.discusnflw_id !== editCommentId" (click)="editComment(fldt.discusnflw_id)"><i class=" fa fa-edit"></i>Edit</button>
+                                             </div>
+                                          </div>
+                                          <div class="rpt-color">
+                                             <button type="button" class="repl-btn" data-toggle="collapse" 
+                                                data-target="#report"><i class="fa fa-file-o"></i> Report
+                                             </button>
+                                          </div>
+                                       </div>
+                                       <!--Report & delete css end-->
+                                       <div class="clearfix"></div>
+                                       <!--replay collapse  css start-->
+                                       <div id="reply" class="collapse">
+                                          <div class="re-drop">
+                                             <div class="comment_npt">
+                                                <h3>Start Discussion</h3>
+                                                <div class="form-group"><textarea rows="6"></textarea></div>
+                                                <button type="submit" class="bt btn-danger pull-right">Submit
+                                                </button>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <!--replay collapse  css End-->
+                                       <!--Report collapse  css start-->
+                                       <div id="report" class="collapse">
+                                          <div class="re-drop">
+                                             <div class="comment_npt">
+                                                <h3>Start Discussion</h3>
+                                                <div class="form-group"><textarea rows="6"></textarea></div>
+                                                <button type="submit" class="bt btn-danger pull-right">Submit
+                                                </button>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <!--Report collapse  css End-->
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <!--right strat End--->
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <!--====top profile background End====-->
+      </div>
+   </div>
+   <p-toast [style]="{marginTop: '80px'}"></p-toast>
+   <p-toast [style]="{marginTop: '80px'}" position="top-left" key="tl"></p-toast>
+   <p-toast [style]="{marginTop: '80px'}" position="top-center" key="tc"></p-toast>
+   <p-toast [style]="{marginTop: '80px'}" styleClass="custom-toast" key="custom" position="bottom-center"></p-toast>
+   <p-toast position="center" key="c" (onClose)="onReject()" [modal]="true" [baseZIndex]="5000">
+   <ng-template let-message pTemplate="message">
+      <div style="text-align: center">
+         <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i>
+         <h3>{{message.summary}}</h3>
+         <p>{{message.detail}}</p>
+      </div>
+      <div class="ui-g ui-fluid">
+         <div class="ui-g-6">
+            <button type="button" pButton (click)="onConfirm()" label="Yes" class="ui-button-success"></button>
+         </div>
+         <div class="ui-g-6">
+            <button type="button" pButton (click)="onReject()" label="No" class="ui-button-secondary"></button>
+         </div>
+      </div>
+   </ng-template>
+   </p-toast>

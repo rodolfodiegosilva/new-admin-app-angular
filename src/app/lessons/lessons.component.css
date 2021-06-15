@@ -1,0 +1,15 @@
+.table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: #d9edf7;
+}
+.editbutton{
+    display: none;
+}
+.hoveruseredit:hover .editbutton{
+    display: block;
+  }
+  .editbuttonSname{
+    display: none;
+}
+.hoverusereditSname:hover .editbuttonSname{
+    display: block;
+  }

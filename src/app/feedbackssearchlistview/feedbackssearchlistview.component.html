@@ -1,0 +1,211 @@
+<!--verified  Modal start -->
+<div class="modal fade" id="verified" role="dialog">
+    <div class="modal-dialog vry_modal">
+       <div class="modal-content">
+        <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+               </div>
+              <div class="modal-body modal_text">
+                  <p>Do you really want to verify these records? This process cannot be undone</p>
+              </div>
+               <div class="modal-footer modal_foot">
+                <button type="submit" class="bt btn-warning">verify</button>
+                  <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+              </div>
+          </div>
+     </div>
+ </div>
+<!-- verified Modal end-->
+  
+  <!--Blocked  Modal start -->
+  <div class="modal fade" id="block" role="dialog">
+    <div class="modal-dialog vry_modal">
+       <div class="modal-content">
+        <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+               </div>
+              <div class="modal-body modal_text">
+                  <p>Do you really want to Block these records? This process cannot be undone</p>
+              </div>
+               <div class="modal-footer modal_foot">
+                <button type="submit" class="bt btn-warning">Block</button>
+                  <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+              </div>
+          </div>
+     </div>
+ </div>
+<!-- Blocked Modal end-->
+  
+  <!--Delete  Modal start -->
+  <div class="modal fade" id="delete" role="dialog">
+    <div class="modal-dialog vry_modal">
+       <div class="modal-content">
+        <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+               </div>
+              <div class="modal-body modal_text">
+                  <p>Do you really want to Delete these records? This process cannot be undone</p>
+              </div>
+               <div class="modal-footer modal_foot">
+                <button type="submit" class="bt btn-warning">Delete</button>
+                  <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+              </div>
+          </div>
+     </div>
+ </div>
+<!-- Delete Modal end-->
+<app-sdashheader></app-sdashheader>
+<div class="leftsidemenus">
+<app-sdahshmenu></app-sdahshmenu>
+</div>
+<div id="page-wrapper">
+<div class="content">
+    <section class="question_search question_sec selt_ht scroll-yes">
+        <div class="container-fluid">
+                 <div class="col-md-12"> 
+                      <div class="all_brd">
+                           <div class="question_title" id="pers_inf">
+                              <h3>Feedbacks Search & List View</h3>
+                            </div>
+                            <div class="top_btn">
+                                <button type="submit" class="bt btn-info">verify</button>
+                                <button type="submit" class="bt btn-warning">Block</button>
+                                <button type="submit" class="bt btn-danger">Delete</button>
+                              </div>
+                           <div class="content_sub"> 
+                              <!--<div class="question_bg">
+                                 <h4>Upload QA Database</h4>
+                              </div>-->
+                                
+                             <div class="all_mian">     	 
+                                <div class="table-responsive check_all">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th><input type="checkbox" id="fruit1" name="checkbox" checked=
+                                                "checked"/>
+                                                <label for="fruit1">Lable</label></th>
+                                                <th>Feedback&nbsp;ID</th>
+                                                <th>Feeback&nbsp;Type</th>
+                                                <th>General&nbsp;Feedback</th>
+                                                <th>Reported&nbsp;Item</th>
+                                                <th>Feedback&nbsp;User</th>
+                                                <th>Feedback&nbsp;Date</th>
+                                                <th>Content&nbsp;ID</th>
+                                                <th>Question&nbsp;ID</th>
+                                                <th>Discussion&nbsp;ID</th>
+                                                <th>Review&nbsp;ID</th>
+                                                <th>Timeline&nbsp;ID</th>
+                                                <th>Verified&nbsp;by&nbsp;User</th>
+                                                <th>Verfication&nbsp;conformed</th>
+                                                <th>Admin&nbsp;Conf&nbsp;Date</th>
+                                                <th>Feedback&nbsp;Details</th>
+                                            </tr>
+                                        </thead>
+                                       <tbody>
+                                            <tr class="info"> 
+                                              <td>Default/Value</td>
+                                                <td><p-multiSelect [options]="classification" [(ngModel)]="selectedclasid" [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
+                                                </td>
+                                                <td>
+                                                   <p-multiSelect [options]="clascountry" [(ngModel)]="selecteclascountry" [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
+
+                                            </td>
+                                                <td> <p-multiSelect [options]="clascourse" [(ngModel)]="selecteclascourse" [panelStyle]="{minWidth:'12em'}"></p-multiSelect></td>
+                                                <td><p-multiSelect [options]="clasclass" [(ngModel)]="selecteclasclass" [panelStyle]="{minWidth:'12em'}"></p-multiSelect></td>
+                                                <td><p-multiSelect [options]="classubject" [(ngModel)]="selecteclassubject" [panelStyle]="{minWidth:'12em'}"></p-multiSelect></td>
+                                                <td>   <input type="text"
+                                                 class="form-control"
+                                                 ngxDaterangepickerMd
+                                                 [(ngModel)]="crationdate"
+                                                 [alwaysShowCalendars]="true"
+                                                 [singleDatePicker]="true"
+                                                 [autoApply]="true"
+                                                 placeholder="feedback date">
+                                               </td>
+                                                <td><!--verified start-->
+                                                 <p-multiSelect [options]="clasverify" [(ngModel)]="selecteclasverify" [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
+                                                </td><!--verified end-->
+                                                <td><p-multiSelect [options]="clasverifyedadmin" [(ngModel)]="selecteclasverifyadmin" [panelStyle]="{minWidth:'12em'}"></p-multiSelect></td>
+                                                <td><p-multiSelect [options]="clasverifyedadmin" [(ngModel)]="selecteclasverifyadmin" [panelStyle]="{minWidth:'12em'}"></p-multiSelect></td>
+                                                
+                                                <td> <p-multiSelect [options]="clasnocontent" [(ngModel)]="selecteclasnocontent" [panelStyle]="{minWidth:'12em'}"></p-multiSelect></td>
+                                                <td><p-multiSelect [options]="clasnoquest" [(ngModel)]="selecteclasnoquest" [panelStyle]="{minWidth:'12em'}"></p-multiSelect></td>
+                                                <td><p-multiSelect [options]="clasnotest" [(ngModel)]="selecteclasnotest" [panelStyle]="{minWidth:'12em'}"></p-multiSelect></td>
+                                                <td><p-multiSelect [options]="clasnonotific" [(ngModel)]="selecteclasnonotifi" [panelStyle]="{minWidth:'12em'}"></p-multiSelect></td>
+                                                <td> 
+                                                    <input type="text"
+                                                    class="form-control"
+                                                    ngxDaterangepickerMd
+                                                    [(ngModel)]="verifydate"
+                                                    [alwaysShowCalendars]="true"
+                                                    [singleDatePicker]="true"
+                                                    [autoApply]="true"
+                                                    placeholder="config Date">
+                                                 </td>
+                                                 <td><p-multiSelect [options]="clasnonotific" [(ngModel)]="selecteclasnonotifi" [panelStyle]="{minWidth:'12em'}"></p-multiSelect></td>
+
+                                            </tr>
+                                            
+                                            <tr> 
+                                                <th><input type="checkbox" id="check_1" name="checkbox"/>
+                                                  <label for="check_1">1</label></th>
+                                                  <td>50214</td>
+                                                  <td>Feeback Type</td>
+                                                  <td>General Feedback</td>
+                                                  <td>Reported Item</td>
+                                                  <td>ravinder</td>
+                                                  <td>02-05-18</td>
+                                                  <td>12540</td>
+                                                  <td>21503</td>
+                                                  <td>12540</td>
+                                                  <td>21503</td>
+                                                  <td>12540</td>
+                                                  <td>ravindar</td>
+                                                  <td>Verfication conformed</td>
+                                                  <td>02-05-18</td>
+                                                  <td>Feedback Details</td>
+                                            </tr>
+                                            
+                                             <tr class="warning"> 
+                                                <th><input type="checkbox" id="check_1" name="checkbox"/>
+                                                  <label for="check_1">1</label></th>
+                                                  <td>50214</td>
+                                                  <td>Feeback Type</td>
+                                                  <td>General Feedback</td>
+                                                  <td>Reported Item</td>
+                                                  <td>ravinder</td>
+                                                  <td>02-05-18</td>
+                                                  <td>12540</td>
+                                                  <td>21503</td>
+                                                  <td>12540</td>
+                                                  <td>21503</td>
+                                                  <td>12540</td>
+                                                  <td>ravindar</td>
+                                                  <td>Verfication conformed</td>
+                                                  <td>02-05-18</td>
+                                                  <td>Feedback Details</td>
+                                            </tr>
+                                         
+                                        </tbody>
+                                    </table>
+                                    <div class="pages_but">
+                                      <div class="badge-inner">
+                                         <p-paginator [rows]="10" [totalRecords]="120" [rowsPerPageOptions]="[10,20,30]"></p-paginator>
+
+                                        </div>
+                                    </div>
+
+                                   </div> 
+                                  </div>
+                           </div>
+                     </div>
+                 </div>
+               </div> 
+           </section>
+  </div>
+  </div>
+  

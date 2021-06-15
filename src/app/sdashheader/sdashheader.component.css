@@ -1,0 +1,19 @@
+i.alerticon {
+    color: #000;
+}
+i.alerticon:hover{
+    color: #000;
+}
+body {
+    margin: 0;
+    overflow-y: hidden;
+}
+
+
+
+.dis-flex {
+    display: flex !important;
+}
+.mar-custom {
+    margin-top: 30px;
+}

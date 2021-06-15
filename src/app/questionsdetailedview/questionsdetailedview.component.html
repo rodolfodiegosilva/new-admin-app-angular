@@ -1,0 +1,1389 @@
+<!--verified  Modal start -->
+<div class="modal fade" id="verified" role="dialog">
+   <div class="modal-dialog vry_modal">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+         </div>
+         <div class="modal-body modal_text">
+            <p>Do you really want to verify these records? This process cannot be undone</p>
+         </div>
+         <div class="modal-footer modal_foot">
+            <button type="submit" class="bt btn-warning">verify</button>
+            <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- verified Modal end-->
+<!--Blocked  Modal start -->
+<div class="modal fade" id="block" role="dialog">
+   <div class="modal-dialog vry_modal">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+         </div>
+         <div class="modal-body modal_text">
+            <p>Do you really want to Block these records? This process cannot be undone</p>
+         </div>
+         <div class="modal-footer modal_foot">
+            <button type="submit" class="bt btn-warning">Block</button>
+            <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- Blocked Modal end-->
+<!--Delete  Modal start -->
+<div class="modal fade" id="delete" role="dialog">
+   <div class="modal-dialog vry_modal">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+         </div>
+         <div class="modal-body modal_text">
+            <p>Do you really want to Delete these records? This process cannot be undone</p>
+         </div>
+         <div class="modal-footer modal_foot">
+            <button type="submit" class="bt btn-warning">Delete</button>
+            <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- Delete Modal end-->
+<app-sdashheader></app-sdashheader>
+<div class="leftsidemenus">
+   <app-sdahshmenu></app-sdahshmenu>
+   <div class="loadertable">
+      <ng4-loading-spinner [timeout]="8000" [template]="template" [zIndex]="9999"> </ng4-loading-spinner>
+   </div>
+</div>
+<div id="page-wrapper">
+   <div class="content">
+      <!--====Question upload page start====-->
+      <div class="modal fade" #courseModel id="courseModel" role="dialog">
+         <div class="modal-dialog vry_modal">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4><i class="fa fa-info-circle"></i> Add a new course</h4>
+               </div>
+               <div class="modal-body modal_text">
+                  <form [formGroup]="createCourseForm" (ngSubmit)="courseCreateForm()">
+                     <input type="hidden" formControlName="inst_id" [(ngModel)]="inst_id">
+                     <div class="col-md-12">
+                        <label>Course Shortname</label>
+                        <input type="text" placeholder="course Short name" formControlName="course_sname">
+                        <ng-container *ngIf="courseSubbmit&&createCourseForm.controls.course_sname.errors">
+                           <p style="color: red"
+                              *ngIf="courseSubbmit&&createCourseForm.controls.course_sname.errors.required">This field
+                              is required!</p>
+                        </ng-container>
+                     </div>
+                     <div class="col-md-12">
+                        <label>Course Fullname</label>
+                        <input type="text" placeholder="course Full name" formControlName="course_fname"
+                           [(ngModel)]="course_value" (keyup)="onCourseCheck($event.target.value)">
+                        <ng-container *ngIf="courseSubbmit&&createCourseForm.controls.course_fname.errors">
+                           <p style="color: red"
+                              *ngIf="courseSubbmit&&createCourseForm.controls.course_fname.errors.required">This field
+                              is required!</p>
+                        </ng-container>
+                        <p style="color: red" *ngIf="!checkcourse">This course is already exist!</p>
+                     </div>
+                     <!-- <div class="col-md-12">
+                                   <label>Course Logo</label>
+                                   <input type="file" (change)="handleClsfLogo($event.target.files,'course')" formControlName="course_logo" accept="image/*">
+                               </div> -->
+                     <div class="col-md-12">
+                        <ng-select [items]="crsGroup" [searchable]="false" bindLabel="course_group_name"
+                           bindValue="crs_group_id" placeholder="Select Course" formControlName="crs_search_id"
+                           required>
+                        </ng-select>
+                        <!-- <select class="form-control" formControlName="crs_search_id">
+                                       <option value="">Select Group</option>
+                                       <option *ngFor="let crg of crsGroup" value="{{crg.crs_group_id}}">{{crg.course_group_name}}</option>
+                                   </select> -->
+                        <ng-container *ngIf="courseSubbmit&&createCourseForm.controls.crs_search_id.errors">
+                           <p style="color: red"
+                              *ngIf="courseSubbmit&&createCourseForm.controls.crs_search_id.errors.required">This field
+                              is required!</p>
+                        </ng-container>
+                     </div>
+                     <div class="col-md-12">
+                        <button type="submit" class="bt btn-warning">Create</button>
+                        <a class="bt btn-info" data-dismiss="modal">Close</a>
+                     </div>
+                  </form>
+                  <!-- <p> {{course_value}} Do you really want to verify these records? This process cannot be undone</p> -->
+               </div>
+               <div class="modal-footer modal_foot">
+                  <!-- <button type="submit" class="bt btn-warning">verify</button> -->
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="modal fade" #classModel id="classModel" role="dialog">
+         <div class="modal-dialog vry_modal">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4><i class="fa fa-info-circle"></i>Add a new class</h4>
+               </div>
+               <div class="modal-body modal_text">
+                  <form [formGroup]="createClassForm" (ngSubmit)="classCreateForm()">
+                     <input type="hidden" formControlName="inst_id" [(ngModel)]="inst_id">
+                     <div class="col-md-12">
+                        <label>Class Shortname</label>
+                        <input type="text" placeholder="Class Short name" formControlName="class_sname">
+
+                        <ng-container *ngIf="classSubbmit&&createClassForm.controls.class_sname.errors">
+                           <p style="color: red"
+                              *ngIf="classSubbmit&&createClassForm.controls.class_sname.errors.required">This field is
+                              required!</p>
+                        </ng-container>
+                     </div>
+                     <div class="col-md-12">
+                        <label>Class Fullname</label>
+                        <input type="text" placeholder="Class Full name" formControlName="class_fname"
+                           [(ngModel)]="class_value" (keyup)="onClassCheck($event.target.value)">
+                        <ng-container *ngIf="classSubbmit&&createClassForm.controls.class_fname.errors">
+                           <p style="color: red"
+                              *ngIf="classSubbmit&&createClassForm.controls.class_fname.errors.required">This field is
+                              required!</p>
+                        </ng-container>
+                        <p style="color: red" *ngIf="!checkclass">This class is already exist!</p>
+                     </div>
+                     <!-- <div class="col-md-12">
+                                   <label>Course Logo</label>
+                                   <input type="file" (change)="handleClsfLogo($event.target.files,'course')" formControlName="course_logo" accept="image/*">
+                               </div> -->
+                     <div class="col-md-12">
+                        <button type="submit" class="bt btn-warning">Create</button>
+                        <a class="bt btn-info" data-dismiss="modal">Close</a>
+                     </div>
+                  </form>
+                  <!-- <p> {{course_value}} Do you really want to verify these records? This process cannot be undone</p> -->
+               </div>
+               <div class="modal-footer modal_foot">
+                  <!-- <button type="submit" class="bt btn-warning">verify</button> -->
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="modal fade" #subjectModel id="subjectModel" role="dialog">
+         <div class="modal-dialog vry_modal">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4><i class="fa fa-info-circle"></i> Add a new subject</h4>
+               </div>
+               <div class="modal-body modal_text">
+                  <form [formGroup]="createSubjectForm" (ngSubmit)="subjCreateForm()">
+                     <input type="hidden" formControlName="inst_id" [(ngModel)]="inst_id">
+                     <div class="col-md-12">
+                        <label>Subject Shortname</label>
+                        <input type="text" placeholder="Class Short name" formControlName="subject_sname">
+                        <ng-container *ngIf="subjectSubbmit&&createSubjectForm.controls.subject_sname.errors">
+                           <p style="color: red"
+                              *ngIf="subjectSubbmit&&createSubjectForm.controls.subject_sname.errors.required">This
+                              field is required!</p>
+                        </ng-container>
+                     </div>
+                     <div class="col-md-12">
+                        <label>Subject Fullname</label>
+                        <input type="text" placeholder="Class Full name" formControlName="subject_fname"
+                           [(ngModel)]="subject_value" (keyup)="onSubjectCheck($event.target.value)">
+                        <ng-container *ngIf="subjectSubbmit&&createSubjectForm.controls.subject_fname.errors">
+                           <p style="color: red"
+                              *ngIf="subjectSubbmit&&createSubjectForm.controls.subject_fname.errors.required">This
+                              field is required!</p>
+                        </ng-container>
+                        <p style="color: red" *ngIf="!checksubject">This subject is already exist!</p>
+                     </div>
+                     <!-- <div class="col-md-12">
+                                       <label>Course Logo</label>
+                                       <input type="file" (change)="handleClsfLogo($event.target.files,'course')" formControlName="course_logo" accept="image/*">
+                                   </div> -->
+                     <div class="col-md-12">
+                        <ng-select [items]="subGroup" [searchable]="false" bindLabel="sub_group_name"
+                           bindValue="sub_grp_id" placeholder="Select Group" formControlName="search_id" required>
+                        </ng-select>
+                        <ng-container *ngIf="subjectSubbmit&&createSubjectForm.controls.search_id.errors">
+                           <p style="color: red"
+                              *ngIf="subjectSubbmit&&createSubjectForm.controls.search_id.errors.required">This
+                              field is required!</p>
+                        </ng-container>
+                        <!-- <select class="form-control" formControlName="search_id">
+                                           <option value="">Subject Group</option>
+                                           <option *ngFor="let sug of subGroup" value="{{sug.sub_grp_id}}">{{sug.sub_group_name}}</option>
+                                       </select> -->
+                     </div>
+                     <div class="col-md-12">
+                        <button type="submit" class="bt btn-warning">Create</button>
+                        <a type="submit" class="bt btn-info" data-dismiss="modal">Close</a>
+                     </div>
+                  </form>
+                  <!-- <p> {{course_value}} Do you really want to verify these records? This process cannot be undone</p> -->
+               </div>
+               <div class="modal-footer modal_foot">
+                  <!-- <button type="submit" class="bt btn-warning">verify</button> -->
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="modal fade" #lessonModel id="lessonModel" role="dialog">
+         <div class="modal-dialog vry_modal">
+            <div class="modal-content" style="width: 102%;">
+               <div class="modal-header" style="width: 102%;">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4><i class="fa fa-info-circle"></i> Add new lesson</h4>
+               </div>
+               <div class="modal-body modal_text">
+                  <form [formGroup]="createLessonForm" (ngSubmit)="lessonCreate('','')">
+                     <input type="hidden" formControlName="inst_id">
+                     <div class="col-md-12">
+                        <label>Subject name</label>
+                        <ng-select [items]="allSubjects" bindLabel="subject_fname" bindValue="subject_id"
+                           formControlName="subject_name" [(ngModel)]="subject_values">
+                        </ng-select>
+                     </div>
+                     <div class="col-md-12">
+                        <label>Lesson name</label>
+                        <input type="text" placeholder="Subject Short name" formControlName="lesson_name"
+                           (keyup)="onLessonCheck($event.target.value)">
+
+                        <ng-container *ngIf="lessonSubbmit&&createLessonForm.controls.lesson_name.errors">
+                           <p style="color: red"
+                              *ngIf="lessonSubbmit&&createLessonForm.controls.lesson_name.errors.required">This field
+                              is required!</p>
+                        </ng-container>
+
+                        <p style="color: red" *ngIf="!checklesson">This lesson is already exist!</p>
+                     </div>
+                     <!-- <div class="col-md-12">
+                                               <label>Course Logo</label>
+                                               <input type="file" (change)="handleClsfLogo($event.target.files,'course')" formControlName="course_logo" accept="image/*">
+                                           </div> -->
+                     <div class="col-md-12">
+                        <button type="submit" class="bt btn-warning">Create</button>
+                        <a class="bt btn-info" data-dismiss="modal">Close</a>
+                     </div>
+                  </form>
+                  <!-- <p> {{course_value}} Do you really want to verify these records? This process cannot be undone</p> -->
+               </div>
+               <div class="modal-footer modal_foot">
+                  <!-- <button type="submit" class="bt btn-warning">verify</button> -->
+               </div>
+            </div>
+         </div>
+      </div>
+      <section class="question_search question_sec selt_ht scroll-yes" id="scroll">
+         <div class="container-fluid">
+            <div class="col-md-12">
+               <div class="all_brd">
+                  <div class="question_title" id="pers_inf">
+                     <h3>Manage Questions</h3>
+                  </div>
+                  <div class="top_btn" *ngIf="!question_id">
+                     <a class="bt btn-info" (click)="resetFilter();">Reset</a>
+                     <!-- <button type="submit" class="bt btn-warning">Block</button>
+                        <button type="submit" class="bt btn-danger">Delete</button> -->
+                  </div>
+                  <!-- <div class="top_btn">
+                        <button type="submit" class="bt btn-info">verify</button>
+                        <button type="submit" class="bt btn-warning">Block</button>
+                        <button type="submit" class="bt btn-danger">Delete</button>
+                        </div> -->
+                  <div class="content_sub">
+                     <div class="all_mian" *ngIf="!question_id">
+                        <div class="table-responsive check_all">
+                           <table *ngIf="!question_id" class="table table-bordered table-striped">
+                              <thead>
+                                 <tr>
+                                    <!-- <th><input type="checkbox" id="fruit1" name="checkbox" checked=
+                                          "checked"/>
+                                          <label for="fruit1">Lable</label></th>-->
+                                    <th>ID</th>
+                                    <th>Country</th>
+                                    <th>Course</th>
+                                    <th>Class</th>
+                                    <th>Subject</th>
+                                    <th>Lesson/Topics</th>
+                                    <th>Qustion/Type</th>
+                                    <th>Owner</th>
+                                    <th>Created/Date</th>
+                                    <th>Verified</th>
+                                    <th>Verify/Date</th>
+                                    <th>Verify/By</th>
+                                    <th>Blocked</th>
+                                    <th>Blocked/Date</th>
+                                    <th>Delete</th>
+                                    <th>Delete/Date</th>
+                                    <th>Grade</th>
+                                    <th>Marks</th>
+                                    <th>Nagt.Marks</th>
+                                    <th>Date/Time</th>
+                                 </tr>
+                                 <tr class="success">
+                                    <!-- <td>Default/Value</td>-->
+                                    <td>
+                                       <p-multiSelect [options]="qnsidsList" (onChange)="setFilter()"
+                                          [(ngModel)]="seltdqnsidsList" maxSelectedLabels='0'
+                                          [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
+                                    </td>
+                                    <td>
+                                       <p-multiSelect [options]="countryList" (onChange)="setFilter()"
+                                          maxSelectedLabels='0' [(ngModel)]="seltdCntryList"></p-multiSelect>
+                                    </td>
+                                    <td>
+                                       <p-multiSelect [options]="courseList" (onChange)="setFilter()"
+                                          maxSelectedLabels='0' [(ngModel)]="seltdCrsList"></p-multiSelect>
+                                    </td>
+                                    <td>
+                                       <p-multiSelect [options]="classList" (onChange)="setFilter()"
+                                          maxSelectedLabels='0' [(ngModel)]="seltdClsList"></p-multiSelect>
+                                    </td>
+                                    <td>
+                                       <p-multiSelect [options]="subjectList" (onChange)="setFilter()"
+                                          maxSelectedLabels='0' [(ngModel)]="seltdSubjList"></p-multiSelect>
+                                    </td>
+                                    <td>
+                                       <p-multiSelect [options]="lessnsList" (onChange)="setFilter()"
+                                          maxSelectedLabels='0' [(ngModel)]="seltdLesList"></p-multiSelect>
+                                    </td>
+                                    <td>
+                                       <p-multiSelect [options]="qnsTypeList" (onChange)="setFilter()"
+                                          maxSelectedLabels='0' [(ngModel)]="seltdqntList"></p-multiSelect>
+                                    </td>
+                                    <td>
+                                       <p-multiSelect [options]="ownersList" (onChange)="setFilter()"
+                                          maxSelectedLabels='0' [(ngModel)]="selectedOwners"></p-multiSelect>
+                                    </td>
+                                    <td class="date_pic">
+                                       <!-- <input type="text" class="form-control rangedatepic" ngxDaterangepickerMd [(ngModel)]="selected" [showCustomRangeLabel]="true" [alwaysShowCalendars]="true" [ranges]="ranges" [linkedCalendars]="true" [isInvalidDate]="isInvalidDate" [showClearButton]="true" placeholder="Select Date..."> -->
+                                       <input type="text" (change)="getDate($event,'question_created_date')"
+                                          ngxDaterangepickerMd [(ngModel)]="createdDate" [showCustomRangeLabel]="true"
+                                          [alwaysShowCalendars]="true" [ranges]="ranges" [linkedCalendars]="true"
+                                          [showClearButton]="true" placeholder="Select please...">
+                                       <!-- <ngx-daterangepicker-material (choosedDate)="choosedDate($event)">
+                                          </ngx-daterangepicker-material> -->
+                                    </td>
+                                    <td>
+                                       <p-multiSelect [options]="qnsVerify" (onChange)="setFilter()"
+                                          maxSelectedLabels='0' [(ngModel)]="seltdqnsvList"></p-multiSelect>
+                                    </td>
+                                    <td>
+                                       <input type="text" (change)="getDate($event,'question_verified_date')"
+                                          ngxDaterangepickerMd [(ngModel)]="verifiedDate" [showCustomRangeLabel]="true"
+                                          [alwaysShowCalendars]="true" [ranges]="ranges" [linkedCalendars]="true"
+                                          [showClearButton]="true" placeholder="Select please...">
+                                    </td>
+                                    <td>
+                                       <p-multiSelect [options]="cities1" [(ngModel)]="selectedCities1"
+                                          maxSelectedLabels='0'></p-multiSelect>
+                                    </td>
+                                    <td>
+                                       <p-multiSelect [options]="qnsBlock" (onChange)="setFilter()"
+                                          maxSelectedLabels='0' [(ngModel)]="seltdqnsbList"></p-multiSelect>
+                                    </td>
+                                    <td>
+                                       <input type="text" (change)="getDate($event,'question_blocked_date')"
+                                          ngxDaterangepickerMd [(ngModel)]="blockedDate" [showCustomRangeLabel]="true"
+                                          [alwaysShowCalendars]="true" [ranges]="ranges" [linkedCalendars]="true"
+                                          [showClearButton]="true" placeholder="Select please...">
+                                    </td>
+                                    <td>
+                                       <p-multiSelect [options]="qnsDelete" (onChange)="setFilter()"
+                                          maxSelectedLabels='0' [(ngModel)]="seltdqnsdList"></p-multiSelect>
+                                    </td>
+                                    <td>
+                                       <input type="text" (change)="getDate($event,'question_deleted_date')"
+                                          ngxDaterangepickerMd [(ngModel)]="deletedDate" [showCustomRangeLabel]="true"
+                                          [alwaysShowCalendars]="true" [ranges]="ranges" [linkedCalendars]="true"
+                                          [showClearButton]="true" placeholder="Select please...">
+                                    </td>
+                                    <td>
+                                       <p-multiSelect [options]="qnsGradeList" (onChange)="setFilter()"
+                                          maxSelectedLabels='0' [(ngModel)]="seltdqnGrdList"></p-multiSelect>
+                                    </td>
+                                    <td>
+                                       <p-multiSelect [options]="marksList" (onChange)="setFilter()"
+                                          maxSelectedLabels='0' [(ngModel)]="seltdqnMrksList"></p-multiSelect>
+                                    </td>
+                                    <td>
+                                       <p-multiSelect [options]="nmarksList" (onChange)="setFilter()"
+                                          maxSelectedLabels='0' [(ngModel)]="seltdqnnMrksList"></p-multiSelect>
+                                    </td>
+                                    <td>
+                                       <input type="text" class="form-control rangedatepic" ngxDaterangepickerMd
+                                          [(ngModel)]="selected" [showCustomRangeLabel]="true"
+                                          [alwaysShowCalendars]="true" [ranges]="ranges" [linkedCalendars]="true"
+                                          [isInvalidDate]="isInvalidDate" [showClearButton]="true"
+                                          placeholder="Select Date...">
+                                    </td>
+                                 </tr>
+                              </thead>
+                             
+                           </table>
+                           <div class="pages_but">
+                              <div class="badge-inner">
+                                 <!--<a href="#" class="next_bt">prev</a>
+                                       <a href="#"><span class="badge">1</span></a>
+                                       <a href="#"><span class="badge">2</span></a>
+                                       <a href="#"><span class="badge">3</span></a>
+                                       <a href="#"><span class="badge">4</span></a>
+                                       <a href="#"><span class="badge">5</span></a>
+                                       <a href="#" class="next_bt">next</a>-->
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+
+                     <ng-container *ngIf="!question_id">
+                        <p-paginator [rows]="10" [totalRecords]="totalQuestions"
+                           [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]"
+                           (onPageChange)="currentPage = $event.page; onPageChange($event) " #paginator>
+                        </p-paginator>
+                     </ng-container>
+                     <!---top table end-->
+                     <!---Question-1 Owner: start-->
+                     <div *ngIf="showRes==true &&questions.length > 0">
+                        <div class="qusn_oner" *ngFor="let qns of questions; let i=index">
+                           <!--details--tabs-->
+                           <div class="all_info">
+                              <div class="table-responsive">
+                                 <table class="table table-responsive">
+                                    <thead>
+                                       <tr class="adm_tr_bg">
+                                          <th>Question ID </th>
+                                          <th>Question Owner Name</th>
+                                          <th>Date</th>
+                                          <th>Question Type</th>
+                                          <th>Question Grade</th>
+                                          <th>Classify Count</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr class="blc_del_bg">
+                                          <td>{{qns.question_id}}</td>
+                                          <td>{{(qns.question_admin)?'Admin':qns.question_owner}}</td>
+                                          <td>{{qns.question_created_date}}</td>
+                                          <td>
+                                             {{(qns.questntyp_id==1 || qns.questntyp_id==3)?'Multiple Choice':'True/False'}}
+                                          </td>
+                                          <td pTooltip="Click to edit grade" tooltipPosition="top"
+                                             *ngIf="qns.question_id !== editgrdId"
+                                             (click)="editQnsSpec(qns.question_id,qns.question_grade,1)">
+                                             {{qns.gradtyp_name}}
+                                             <!-- <input type="text" pTooltip="Enter your username" tooltipPosition="top"> -->
+                                          </td>
+                                          <td *ngIf="qns.question_id == editgrdId">
+                                             <select class="form-control basic-single" [(ngModel)]="question_grade">
+                                                <option *ngFor="let grd of qnsgrd" [value]="grd.gradtyp_id">
+                                                   {{grd.gradtyp_name}}</option>
+                                             </select>
+                                             <i class="fa fa-times btn btn-danger" (click)="closeQnsSpec(1)"
+                                                aria-hidden="true"></i>
+                                             <i class="fa fa-check btn btn-success"
+                                                (click)="updateQnsSpec(qns.question_id,question_grade,'question_grade','Questions Grade',1)"
+                                                aria-hidden="true"></i>
+                                          </td>
+                                          <td>{{qns.qclsCount}}</td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </div>
+                           </div>
+                           <div class="all_info">
+                              <div class="table-responsive">
+                                 <table class="table table-responsive">
+                                    <thead>
+                                       <tr class="adm_tr_bg">
+                                          <th>Avg. Rating</th>
+                                          <th>Marks</th>
+                                          <th>Nagtive Marks</th>
+                                          <th>Time</th>
+                                          <th>Verified</th>
+                                          <th>Blocked</th>
+                                          <th>Deleted</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr class="blc_del_bg">
+                                          <td>
+                                             <button type="button" class="btn btn-success btn-xs"
+                                                aria-label="Left Align">
+                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                             </button>
+                                             <button type="button" class="btn btn-success btn-xs"
+                                                aria-label="Left Align"><span class="glyphicon glyphicon-star"
+                                                   aria-hidden="true"></span>
+                                             </button>
+                                             <button type="button" class="btn btn-success btn-xs"
+                                                aria-label="Left Align"> <span class="glyphicon glyphicon-star"
+                                                   aria-hidden="true"></span>
+                                             </button>
+                                             <button type="button" class="btn btn-default btn-xs"
+                                                aria-label="Left Align"><span class="glyphicon glyphicon-star"
+                                                   aria-hidden="true"></span>
+                                             </button>
+                                             <button type="button" class="btn btn-default btn-xs"
+                                                aria-label="Left Align"><span class="glyphicon glyphicon-star"
+                                                   aria-hidden="true"></span>
+                                             </button>
+                                          </td>
+                                          <td pTooltip="Click to edit marks" tooltipPosition="top"
+                                             *ngIf="qns.question_id !== editmrkId"
+                                             (click)="editQnsSpec(qns.question_id,qns.question_marks,2)">
+                                             {{qns.question_marks}}
+                                          </td>
+                                          <td *ngIf="qns.question_id == editmrkId">
+                                             <input type="text" [(ngModel)]="question_marks"><br>
+                                             <i class="fa fa-times btn btn-danger" (click)="closeQnsSpec(2)"
+                                                aria-hidden="true"></i>
+                                             <i class="fa fa-check btn btn-success"
+                                                (click)="updateQnsSpec(qns.question_id,question_marks,'question_marks','Question marks',2)"
+                                                aria-hidden="true"></i>
+                                          </td>
+                                          <td pTooltip="Click to edit neg.marks" tooltipPosition="top"
+                                             *ngIf="qns.question_id !== editnmrkId"
+                                             (click)="editQnsSpec(qns.question_id,qns.question_nmarks,3)">
+                                             {{qns.question_nmarks}}
+                                          </td>
+                                          <td *ngIf="qns.question_id == editnmrkId">
+                                             <input type="text" [(ngModel)]="question_nmarks"><br>
+                                             <i class="fa fa-times btn btn-danger" (click)="closeQnsSpec(3)"
+                                                aria-hidden="true"></i>
+                                             <i class="fa fa-check btn btn-success"
+                                                (click)="updateQnsSpec(qns.question_id,question_nmarks,'question_nmarks','Question neg.marks',3)"
+                                                aria-hidden="true"></i>
+                                          </td>
+                                          <td pTooltip="Click to edit time" tooltipPosition="top"
+                                             *ngIf="qns.question_id !== editqntId"
+                                             (click)="editQnsSpec(qns.question_id,qns.question_time,4)">
+                                             {{qns.question_time}}
+                                          </td>
+                                          <td *ngIf="qns.question_id == editqntId">
+                                             <p-calendar [(ngModel)]="question_time" [timeOnly]="true"
+                                                (onSelect)="getTime($event)"></p-calendar><br>
+                                             <i class="fa fa-times btn btn-danger" (click)="closeQnsSpec(4)"
+                                                aria-hidden="true"></i>
+                                             <i class="fa fa-check btn btn-success"
+                                                (click)="updateQnsSpec(qns.question_id,question_time,'question_time','Question time',4)"
+                                                aria-hidden="true"></i>
+                                          </td>
+                                          <td>
+                                             <button *ngIf="qns.question_is_verified !=1"
+                                                (click)="verifyQnsModal(qns.question_id,qns.question_is_verified)"
+                                                class="{{(qns.question_is_verified==1)?'bt btn-success':'bt btn-danger'}}">{{(qns.question_is_verified==1)?'Verified':'Verify'}}</button>
+                                             <button *ngIf="qns.question_is_verified ==1"
+                                                class="{{(qns.question_is_verified==1)?'bt btn-success':'bt btn-danger'}}">{{(qns.question_is_verified==1)?'Verified':'Verify'}}</button>
+                                             <p> {{qns.question_verified_date}} </p>
+                                          </td>
+                                          <td>
+                                             <button (click)="blockQnsModal(qns.question_id,qns.question_is_blocked)"
+                                                class="{{(qns.question_is_blocked==1)?'bt btn-danger':'bt btn-success'}}">{{(qns.question_is_blocked==1)?'Blocked':'Block'}}</button>
+                                             <p>{{qns.question_blocked_date}}</p>
+                                          </td>
+                                          <td>
+                                             <button (click)="deleteQnsModal(qns.question_id,qns.question_is_deleted)"
+                                                class="{{(qns.question_is_deleted==1)?'bt btn-danger':'bt btn-success'}}">{{(qns.question_is_deleted==1)?'Deleted':'Delete'}}</button>
+                                             <p> {{qns.question_deleted_date}} </p>
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </div>
+                           </div>
+                           <button type="button" (click)="getClsfctnforQuestion(qns.question_id)"
+                              class="btn btn-success" data-toggle="collapse"
+                              [attr.data-target]="'#clsfForQuestion_'+qns.question_id">
+                              Classifications</button>
+                           <div class="tab-content">
+                              <div>
+                                 <div class="panel-body">
+                                    <div class="all_info">
+                                       <div class="table-responsive">
+                                          <ng-container *ngIf="qns.question_id === sectdclsfQns">
+                                             <div id="clsfForQuestion_{{qns.question_id}}" class="collapse">
+
+                                                <form autocomplete="off" role="form" #qnClassification="ngForm"
+                                                   (ngSubmit)="newClassificationforQn(qnClassification)">
+                                                   <input type="hidden" #qn_id="ngModel" name="qn_id"
+                                                      [(ngModel)]="qns.question_id">
+                                                   <div class="all_mian">
+                                                      <div class="row">
+                                                         <div class="col-md-12">
+                                                            <div class="col-md-2">
+                                                               <ng-select [items]="countries" bindLabel="cntry_name"
+                                                                  bindValue="cntry_id" placeholder="Select Country"
+                                                                  #country="ngModel" name="country"
+                                                                  [(ngModel)]="country_id" required>
+                                                               </ng-select>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                               <div class="col-md-12">
+                                                                  <div class="margin-size"
+                                                                     style="position: absolute;z-index: 1030;"
+                                                                     *ngIf="is_course_notavailable">
+                                                                     <ul class="">
+                                                                        <li (click)="checkcourse = true;">
+                                                                           <p class="bt btn-success btn"
+                                                                              data-toggle="modal"
+                                                                              data-target="#courseModel">Add</p>
+                                                                        </li>
+                                                                     </ul>
+                                                                  </div>
+                                                                  <ng-select [items]="allCourses"
+                                                                     bindLabel="course_fname" bindValue="course_id"
+                                                                     placeholder="Select Course" #course_ids="ngModel"
+                                                                     name="course_ids" [(ngModel)]="course_value"
+                                                                     (focusin)="is_class_notavailable=false; is_subject_notavailable=false; noLessons=false; noLessonsmsg=false;"
+                                                                     (keyup)="onCourseSearch($event.target.value)"
+                                                                     required>
+                                                                  </ng-select>
+
+                                                               </div>
+
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                               <div class="margin-size"
+                                                                  style="position: absolute;z-index: 1030;">
+                                                                  <ul class="" *ngIf="is_class_notavailable">
+                                                                     <li (click)="checkclassn = true;">
+                                                                        <p class="bt btn-success btn"
+                                                                           (click)="checkclass = true"
+                                                                           data-toggle="modal"
+                                                                           data-target="#classModel">Add</p>
+                                                                     </li>
+                                                                  </ul>
+                                                               </div>
+                                                               <ng-select [items]="allClasses" bindLabel="class_fname"
+                                                                  bindValue="class_id" #class_ids="ngModel"
+                                                                  name="class_ids" [(ngModel)]="class_value"
+                                                                  (focusin)="is_course_notavailable=false; is_subject_notavailable=false; noLessons=false; noLessonsmsg=false;"
+                                                                  (keyup)="onClassSearch($event.target.value)"
+                                                                  placeholder="Select Class" required>
+                                                               </ng-select>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                               <div class="margin-size"
+                                                                  style="position: absolute;z-index: 1030;">
+                                                                  <ul class="" *ngIf="is_subject_notavailable">
+                                                                     <!-- <li><p class="bt btn-success btn" (click)="subjectCreate(subject_value,'n')">Add</p></li> -->
+                                                                     <li (click)="checksubject = true;">
+                                                                        <p class="bt btn-success btn"
+                                                                           data-toggle="modal"
+                                                                           data-target="#subjectModel">Add</p>
+                                                                     </li>
+                                                                  </ul>
+                                                               </div>
+                                                               <ng-select [items]="allSubjects"
+                                                                  bindLabel="subject_fname" bindValue="subject_id"
+                                                                  placeholder="Select Subject" #subject_ids="ngModel"
+                                                                  name="subject_ids" [(ngModel)]="subject_values"
+                                                                  (focusin)="is_course_notavailable=false;is_class_notavailablen=false; noLessonsn=false; noLessonsmsgn=false;"
+                                                                  (keyup)="onSubjectSearch($event.target.value)"
+                                                                  (clear)="lessonsList=[]"
+                                                                  (change)="getLessonsonForSubjnew()" required>
+                                                               </ng-select>
+                                                            </div>
+                                                            <div class="col-md-2">
+
+                                                               <div *ngIf="noLessons" class="margin-size"
+                                                                  style="position: absolute;z-index: 1034;">
+                                                                  <ul class="">
+                                                                     <li>
+                                                                        <p class="bt btn-success btn"
+                                                                           data-toggle="modal"
+                                                                           (click)="checklesson=true;lessonSubbmit=false;"
+                                                                           data-target="#lessonModel">Add</p>
+                                                                     </li>
+                                                                  </ul>
+                                                               </div>
+                                                               <p-multiSelect [options]="lessonsList"
+                                                                  filterPlaceHolder="Search lesson/topics"
+                                                                  defaultLabel="Lession/Topics"
+                                                                  [resetFilterOnHide]="true" [ariaFilterLabel]="Lesson"
+                                                                  #selectedLessonIds="ngModel" name="selectedLessonIds"
+                                                                  [(ngModel)]="selectedlessonList"
+                                                                  [style]="{'width':'100%',   'margin-top': '16px', 'color':'#c5c1c1'}"
+                                                                  (keyup)="onLessonsSearch($event.target.value)"
+                                                                  [panelStyle]="{minWidth:'12em'}" required>
+                                                               </p-multiSelect>
+                                                               <span *ngIf="lessSlct==true"
+                                                                  class="error-msg alert-danger">Please select
+                                                                  lesson(s)</span>
+
+                                                            </div>
+                                                            <div class="col-md-1"
+                                                               style="text-align: right;margin-top: 1%;">
+                                                               <button [disabled]="qnClassification.invalid"
+                                                                  class="btn btn-primary">Create</button>
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </form>
+                                                <table class="table table-responsive">
+                                                   <thead>
+                                                      <tr class="adm_tr_bg">
+                                                         <th>Sl No.</th>
+                                                         <th>Clfctn ID</th>
+                                                         <th>Country</th>
+                                                         <th>Course</th>
+                                                         <th>Class</th>
+                                                         <th>Subject</th>
+                                                         <th>Less/Top</th>
+                                                         <!-- <th>Created By</th> -->
+                                                         <th>Created Date</th>
+                                                         <th>Verifed</th>
+                                                         <th>Blocked</th>
+                                                         <th *ngIf="clsfCount>1">Deleted</th>
+                                                      </tr>
+                                                   </thead>
+                                                   <tbody>
+                                                      <tr class="blc_del_bg"
+                                                         *ngFor="let qncl of qnClassifications; let i = index">
+                                                         <td>{{i+1}}</td>
+                                                         <td>{{qncl.qstnclsf_clsf_id}}</td>
+                                                         <td>{{qncl.cntry_name}}</td>
+                                                         <td>{{qncl.course_fname}}</td>
+                                                         <td>{{qncl.class_fname}}</td>
+                                                         <td>{{qncl.subject_fname}}</td>
+                                                         <td>
+                                                            {{qncl.lesson_name}}
+                                                         </td>
+                                                         <!-- <td></td> -->
+                                                         <td>{{qncl.classf_create_date}}</td>
+                                                         <td>
+                                                            <button
+                                                               (click)="verifyQnsclsfModal(qncl.question_id,qncl.qstnclsf_id,qncl.qstnclsf_is_verified,'qstnclsf_is_verified','qstnclsf_verified_by','qstnclsf_verified_date')"
+                                                               class="{{(qncl.qstnclsf_is_verified==1)?'bt btn-success':'bt btn-danger'}}">{{(qncl.qstnclsf_is_verified==1)?'Verified':'Verify'}}</button>
+                                                            <p>{{qncl.qstnclsf_verified_date}}</p>
+                                                         </td>
+                                                         <td>
+                                                            <button
+                                                               (click)="blockQnsclsfModal(qncl.question_id,qncl.qstnclsf_id,qncl.qstnclsf_is_blocked,'qstnclsf_is_blocked','qstnclsf_blocked_by','qstnclsf_blocked_date')"
+                                                               class="{{(qncl.qstnclsf_is_blocked==1)?'bt btn-danger':'bt btn-success'}}">{{(qncl.qstnclsf_is_blocked==1)?'Blocked':'Block'}}</button>
+                                                            <p>{{qncl.qstnclsf_blocked_date}}</p>
+                                                         </td>
+                                                         <td *ngIf="clsfCount>1">
+                                                            <button
+                                                               (click)="deleteQnsclsfModal(qncl.question_id,qncl.qstnclsf_id,qncl.qstnclsf_is_deleted,'qstnclsf_is_deleted','qstnclsf_deleted_by','qstnclsf_deleted_date')"
+                                                               class="{{(qncl.qstnclsf_is_deleted==1)?'bt btn-danger':'bt btn-success'}}">{{(qncl.qstnclsf_is_deleted==1)?'Deleted':'Delete'}}</button>
+                                                            <p>{{qncl.qstnclsf_deleted_date}}</p>
+                                                         </td>
+                                                      </tr>
+                                                   </tbody>
+                                                </table>
+                                             </div>
+                                          </ng-container>
+
+                                          <div class="row pd-10">
+                                             <div class="col-md-6">
+                                                <div class="qution_tab" style="height: 100px;overflow: hidden;padding-top: 0px;">
+                                                   <div class="row" style="margin-right:0px;margin-left:0px;
+                                                   height: 245px;">
+                                                      <div class="col-md-12" style="padding: 0;">
+                                                         <div class="answertab-postion">
+                                                            <p class="question-p">Question</p>
+                                                            <div class="editbtn-answer2 pull-right editbtn-custom-style" >
+                                                               <a class="btn btn-primary edit-button12 pull"
+                                                                  type="button"
+                                                                  (click)="showPopUp(qns.qns_location,qns.questDetFile);loadDocQuestion(qns.qns_location,qns.questDetFile);setValues(qns.question_id,qns.qns_location,qns.questDetFile);questionObject = qns;"
+                                                                  data-toggle="modal" data-target="#myModal">View</a>
+                                                            </div>
+                                                            <div class="input-group"
+                                                            style="margin-top: 9%; width: 100%; margin-left: 2%;">
+                                                               <div id="div_iframe_{{qns.question_id}}"
+                                                                  style="height: 215px;" *ngIf="qns.avtxtqn==1">
+                                                               </div>
+                                                               <!-- <iframe id="id_description_iframe"
+                                                                  *ngIf="qns.avtxtqn==1"[src]="(filesUrl+'assets/questionsUpload/instNum_'+inst_id+'/'+qns.qns_location+'/'+ qns.questDetFile) | safeurl"
+                                                                  height="200" width="100%"  scrolling="no"></iframe> -->
+                                                               <!-- <div  *ngIf="qns.avtxtqn==1" innerHtml="http://157.230.1.22:83/assets/questionsUpload/instNum_2/q_2_admn_1672_1_20190821182140/QN_2_1672_20190821182140.html | sanitizeHtml" [style]="{width: '100%', height: '200px'}"></div> -->
+                                                               <video controls="true" *ngIf="qns.avtxtqn==2"
+                                                                  [src]="(filesUrl+'assets/questionsUpload/instNum_'+inst_id+'/'+qns.qns_location+'/'+ qns.QuestDet) | safeurl"
+                                                                  width="425" height="220" frameborder="0"
+                                                                  webkitallowfullscreen mozallowfullscreen
+                                                                  allowfullscreen oncontextmenu="return false"></video>
+                                                            </div>
+                                                            <div id="show_more_{{qns.question_id}}" style="display:none;z-index: 991;position: relative;
+                                                            text-align: right;" type="button"><a
+                                                                  class="btn btn-primary"
+                                                                  (click)="showPopUp(qns.qns_location,qns.questDetFile);loadDocQuestion(qns.qns_location,qns.questDetFile);setValues(qns.question_id,qns.qns_location,qns.questDetFile)"
+                                                                  data-toggle="modal" data-target="#myModal">show
+                                                                  more...</a> </div>
+                                                         </div>
+                                                         <!-- /input-group -->
+                                                      </div>
+                                                   </div>
+                                                   <div *ngIf="qns.question_id === QuenstId">
+                                                      <br> <br>
+                                                      <input *ngIf="qns.avtxtqn==2" type="file" style="margin-top:40px"
+                                                         (change)="videoAudioQns($event.target.files)">
+                                                      <video *ngIf="selFile==true" controls="true"
+                                                         [src]="fileUrl | safeurl" width="425" height="220"
+                                                         frameborder="0" webkitallowfullscreen mozallowfullscreen
+                                                         allowfullscreen oncontextmenu="return false"></video>
+                                                      <!-- <video *ngIf="selFile==true" controls="true" class="embed-responsive-item">
+                                                            <source [src]="fileUrl | safeurl" type="video/mp4" />
+                                                          </video> -->
+
+
+                                                      <div class="pull-right">
+                                                      </div>
+                                                   </div>
+                                                   <!-- MOdel question -->
+                                                   <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+                                                      aria-labelledby="myModalLabel">
+                                                      <div class="modal-dialog" role="document"
+                                                         style="width: 75%;top: 14%;">
+                                                         <div class="modal-content" style="border: 2px solid;
+                                                       padding: 20px; 
+                                                       resize: both;
+                                                       overflow: hidden auto;">
+                                                            <div class="row modal-body">
+                                                               <div class="col-md-6">
+                                                                  <p>Question</p>
+                                                               </div>
+                                                               <div class="edit-button1 pull-right">
+                                                                  <button class="btn btn-default edit-button12 pull"
+                                                                     type="button"
+                                                                     (click)="showPeditor('QuenstId',qns.question_id,qns.QuestDet);">Edit</button>
+                                                                  <a class="btn btn-primary edit-button12 pull"
+                                                                     type="button" data-dismiss="modal"
+                                                                     (click)="closeeditor('QuenstId');addCssQus(questionObject.question_id,questionObject.questionUrl)">Close</a>
+                                                               </div>
+                                                               <div class="col-md-12 form-group">
+                                                                  <div class="input-group" style=" width: 100%;"
+                                                                     *ngIf="qns.question_id !== QuenstId">
+                                                                     <div id="id_description_iframe_ques"
+                                                                        *ngIf="qns.avtxtqn==1"
+                                                                        [innerHtml]="questionUrl | sanitizeHtml"></div>
+                                                                     <!-- <div  *ngIf="qns.avtxtqn==1" [innerHtml]="(filesUrl+'assets/questionsUpload/instNum_'+inst_id+'/'+qns.qns_location+'/'+ qns.questDetFile)| sanitizeHtml" [style]="{width: '100%', height: '200px'}"></div> -->
+                                                                     <video *ngIf="qns.avtxtqn==2"
+                                                                        [src]="(filesUrl+'assets/questionsUpload/instNum_'+inst_id+'/'+qns.qns_location+'/'+ qns.QuestDet) | safeurl"
+                                                                        width="425" height="220" frameborder="0"
+                                                                        webkitallowfullscreen mozallowfullscreen
+                                                                        allowfullscreen
+                                                                        oncontextmenu="return false"></video>
+                                                                     <!-- <video *ngIf="qns.avtxtqn==2" [src]="('http://localhost/gemService/assets/questionsUpload/instNum_'+inst_id+'/qnsNum_'+qns.question_id+'/'+ qns.QuestDet) | safeurl" width="425" height="220" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen oncontextmenu="return false"></video> -->
+                                                                  </div>
+                                                                  <!-- /input-group -->
+                                                               </div>
+                                                            </div>
+                                                            <div>
+                                                               <div *ngIf="qns.question_id === QuenstId">
+                                                                  <p-editor *ngIf="qns.avtxtqn==1"
+                                                                     [(ngModel)]="questionUrl"></p-editor>
+                                                                  <input *ngIf="qns.avtxtqn==2" type="file"
+                                                                     style="margin-top:40px"
+                                                                     (change)="videoAudioQns($event.target.files)">
+                                                                  <video *ngIf="selFile==true" [src]="fileUrl | safeurl"
+                                                                     width="425" height="220" frameborder="0"
+                                                                     webkitallowfullscreen mozallowfullscreen
+                                                                     allowfullscreen
+                                                                     oncontextmenu="return false"></video>
+                                                               </div>
+                                                            </div>
+                                                            <div class="modal-footer"
+                                                               *ngIf="qns.question_id === QuenstId">
+                                                               <button class="bt btn-success"
+                                                                  (click)="updateQstnSol(updateQuesId,questionUrl,'QuestDet','QuenstId',qns.avtxtqn,filelocation,filename)">
+                                                                  Update </button>
+                                                               <button class="bt btn-danger"
+                                                                  (click)="closeeditor('QuenstId');questionUrl = questionObject.questionUrl"> Close </button>
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+
+
+                                                </div>
+
+
+                                             </div>
+                                             <div class="col-md-6">
+                                                <div class="qution_tab" style="height: 100px;overflow: hidden;">
+                                                   <div class="answertab-postion">
+                                                      <p class="question-p">Solution</p>
+                                                   </div>
+                                                   <div>
+                                                      <div class="">
+                                                         <!-- <div [innerHtml]="qns.question_solution | sanitizeHtml" class="form-control" style="min-height: 225px;                                       
+                                                               overflow: auto; width:100%"></div> -->
+
+                                                         <div *ngIf="qns.avtxtsol==1" class="form-control"
+                                                            style=" width: 100%;margin-top: 6%;">
+                                                            <div id="div_iframe_ans{{qns.question_id}}"
+                                                               style="height: 215px;" *ngIf="qns.avtxtqn==1">
+                                                            </div>
+                                                            <div id="show_more_ans{{qns.question_id}}" style="display:none;
+                                                            text-align: right;z-index: 991;position: relative;"
+                                                               type="button">
+                                                               <a class="btn btn-primary"
+                                                                  (click)="showPopUp(qns.qns_location,qns.questSolFile);setValues(qns.question_id,qns.qns_location,qns.questSolFile);loadDocAnswer(qns.qns_location,qns.questSolFile)"
+                                                                  data-toggle="modal" data-target="#myModalAns">show
+                                                                  more...</a> </div>
+
+                                                            <!-- <iframe
+                                                                *ngIf="qns.avtxtqn==1"[src]="(filesUrl+'assets/questionsUpload/instNum_'+inst_id+'/'+qns.qns_location+'/'+ qns.questSolFile) | safeurl" scrolling="no"
+                                                                  height="200" width="100%"></iframe> -->
+                                                         </div>
+                                                         <video controls="true" *ngIf="qns.avtxtsol==2"
+                                                            [src]="(filesUrl+'assets/questionsUpload/instNum_'+inst_id+'/'+qns.qns_location+'/'+ qns.QuestSol) | safeurl"
+                                                            width="425" height="220" frameborder="0"
+                                                            webkitallowfullscreen mozallowfullscreen allowfullscreen
+                                                            oncontextmenu="return false"></video>
+                                                         <div class="edit-button14">
+                                                            <a class="btn btn-primary edit-button12 pull" type="button"
+                                                               (click)="showPopUp(qns.qns_location,qns.questSolFile);setValues(qns.question_id,qns.qns_location,qns.questSolFile);loadDocAnswer(qns.qns_location,qns.questSolFile);solutionObject = qns;"
+                                                               data-toggle="modal" data-target="#myModalAns">View</a>
+                                                         </div>
+
+                                                      </div>
+                                                      <!-- /input-group -->
+                                                   </div>
+
+                                                   <!-- Model Popup Window -->
+                                                   <div class="modal fade" id="myModalAns" tabindex="-1" role="dialog"
+                                                      aria-labelledby="myModalLabel">
+                                                      <div class="modal-dialog" role="document"
+                                                         style="width: 75%;top: 14%;">
+                                                         <div class="modal-content" style="border: 2px solid;
+                                                                     padding: 20px;
+                                                                     resize: both;
+                                                                     overflow: auto;">
+                                                            <div class="row">
+                                                               <div class="col-md-6">
+                                                                  <p>Solution</p>
+                                                               </div>
+                                                               <div class="edit-button1 pull-right">
+                                                                  <button class="btn btn-default question-btn1"
+                                                                     type="button"
+                                                                     (click)="showPeditor('SoltnId',qns.question_id);">Edit</button>
+                                                                  <a class="btn btn-primary edit-button12 pull"
+                                                                     type="button" data-dismiss="modal"
+                                                                     (click)="closeeditor('SoltnId');addCssAns(questionUrl.question_id,answerData)">Close</a>
+                                                               </div>
+                                                               <div class="col-md-12">
+                                                                  <div class="input-group default-input-group "
+                                                                     *ngIf="qns.question_id != SoltnId"
+                                                                     style="width: 100%">
+                                                                     <div id="id_description_iframe"
+                                                                        *ngIf="qns.avtxtqn==1" [innerHtml]="answerData | sanitizeHtml">
+                                                                     </div>
+                                                                     <!-- <div id="show_more_{{qns.question_id}}" style="display:none;
+                                                            text-align: right;" type="button"><a
+                                                                           (click)="showPopUp(qns.qns_location,qns.questDetFile);loadDocQuestion(qns.qns_location,qns.questDetFile);setValues(qns.question_id,qns.qns_location,qns.questDetFile)"
+                                                                           data-toggle="modal"
+                                                                           data-target="#myModal">show more...</a>
+                                                                     </div> -->
+                                                                     <!-- <iframe *ngIf="qns.avtxtqn==1"
+                                                                                        [src]="(filesUrl+'assets/questionsUpload/instNum_'+inst_id+'/'+qns.qns_location+'/'+ qns.questSolFile) | safeurl"
+                                                                                        height="200" width="100%"></iframe> -->
+                                                                     <!-- <div *ngIf="qns.avtxtsol==1" [innerHtml]="qns.QuestSol | sanitizeHtml" class="form-control" style="min-height: 225px;                                       
+                                                                             overflow: auto; width:100%"></div> -->
+                                                                     <video *ngIf="qns.avtxtsol==2"
+                                                                        [src]="('https://www.gemstudent.com/API/assets/questionsUpload/instNum_'+inst_id+'/'+qns.qns_location+'/'+ qns.QuestSol) | safeurl"
+                                                                        width="425" height="220" frameborder="0"
+                                                                        webkitallowfullscreen mozallowfullscreen
+                                                                        allowfullscreen
+                                                                        oncontextmenu="return false"></video>
+                                                                     <!-- <video *ngIf="qns.avtxtsol==2" [src]="('http://localhost/gemService/assets/questionsUpload/instNum_'+inst_id+'/qnsNum_'+qns.question_id+'/'+ qns.QuestSol) | safeurl" width="425" height="220" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen oncontextmenu="return false"></video> -->
+                                                                  </div>
+                                                                  <!-- /input-group -->
+                                                               </div>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                               <div *ngIf="qns.question_id == SoltnId">
+                                                                  <p-editor *ngIf="qns.avtxtsol==1"
+                                                                     [(ngModel)]="answerData"></p-editor>
+                                                                  <input *ngIf="qns.avtxtsol==2" type="file"
+                                                                     style="margin-top:40px"
+                                                                     (change)="videoAudioQns($event.target.files)">
+                                                                  <video *ngIf="selFile==true" [src]="fileUrl | safeurl"
+                                                                     width="425" height="220" frameborder="0"
+                                                                     webkitallowfullscreen mozallowfullscreen
+                                                                     allowfullscreen
+                                                                     oncontextmenu="return false"></video>
+                                                               </div>
+                                                            </div>
+                                                            <div class="modal-footer"
+                                                               *ngIf="qns.question_id == SoltnId">
+                                                               <button class="bt btn-success"
+                                                                  (click)="updateQstnSol(updateQuesId,answerData,'QuestSol','SoltnId',qns.avtxtsol,filelocation,filename)">
+                                                                  Update </button>
+                                                               <button class="bt btn-danger"
+                                                                  (click)="closeeditor('SoltnId');" data-dismiss="modal">
+                                                                  Close </button>
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <!---///details--tabs----->
+                           <button type="button" (click)="getAnsforQuestion(qns.question_id,qns.qns_location)"
+                              class="btn btn-success" data-toggle="collapse"
+                              [attr.data-target]="'#ansForQuestion_'+qns.question_id">
+                              Answers </button>
+                           <div class="tab-content" *ngIf="qns.question_id === sectdQns">
+                              <div class="collapse" id="ansForQuestion_{{qns.question_id}}">
+                                 <div class="panel-body">
+                                    <div class="row pd-10">
+                                       <div *ngIf="qns.questntyp_id==1 || qns.questntyp_id==3">
+                                          <div class="col-md-6" *ngFor="let ans of answers; let i = index">
+                                             <div>
+                                                <div class="qution_tab" *ngIf="ans.answer_id !== selAnsId">
+                                                   <div class="answertab-postion">
+                                                      <p class="wrong-pansw">
+                                                         {{(ans.answer_type_id==1)?'Correct':'Wrong'}} Answer </p>
+                                                      <div class="editbtn-answer">
+                                                         <button class=" btn btn-primary question-btn1"
+                                                            (click)="answerObject = ans;filelocation = qns.qns_location;answerHtml = ans.ans_file_text;editClick=''"
+                                                            data-toggle="modal" data-target="#myModalAnswer"
+                                                            type="button">View</button>
+
+                                                         <!-- <button *ngIf="ans.answer_type_id==1" class="btn btn-success"  (click)="deleteAnswer(ans.answer_id,ans.question_id,qns.qns_location,ans.ans_file)">Delete</button>
+                                                   <button *ngIf="ans.answer_type_id==2" class="btn btn-danger" (click)="deleteAnswer(ans.answer_id,ans.question_id,qns.qns_location,ans.ans_file)">Delete</button> -->
+                                                         <button *ngIf="ans.answer_type_id==1 && ans.cransCount>1"
+                                                            class="btn btn-success"
+                                                            (click)="confirmAnsdelete(ans.answer_id,ans.question_id,qns.qns_location,ans.ans_file)">Delete</button>
+                                                         <button *ngIf="ans.answer_type_id==2 && ans.wransCount>4"
+                                                            class="btn btn-danger"
+                                                            (click)="confirmAnsdelete(ans.answer_id,ans.question_id,qns.qns_location,ans.ans_file)">Delete</button>
+                                                      </div>
+                                                   </div>
+                                                   <div class="hoveruseredit2">
+                                                      <div class="input-group default-input-group ">
+                                                         <div [innerHtml]="ans.ans_file_text | sanitizeHtml"
+                                                            class="form-control"></div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                             <!-- <div *ngIf="ans.answer_type_id==2">
+                                                <div class="qution_tab" *ngIf="ans.answer_id !== selAnsId">
+                                                  <div class="answertab-postion"> 
+                                                     <p class="wrong-pansw">{{(ans.answer_type_id==1)?'Correct':'Wrong'}} Answer  </p>
+                                                   <div class="editbtn-answer">
+                                                      <button class=" btn btn-default question-btn1" (click)="showAnsPeditor(ans.answer_id,ans.question_id)" type="button">Edit</button>
+                                                   </div> 
+                                                </div> 
+                                                   <div class="hoveruseredit2">
+                                                      <div class="input-group default-input-group ">
+                                                         <div [innerHtml]="ans.ans_file_text | sanitizeHtml" class="form-control" ></div>                                                    
+                                                      </div>
+                                                   </div>                                                
+                                                </div>
+                                             </div> -->
+                                          </div>
+                                          <!-- Answer model popup -->
+                                                   <div class="modal fade" id="myModalAnswer" tabindex="-1" role="dialog"
+                                                      aria-labelledby="myModalLabel">
+                                                      <div class="modal-dialog" role="document"
+                                                         style="width: 75%;top: 14%;">
+                                                         <div class="modal-content" style="border: 2px solid;
+                                                       padding: 20px; 
+                                                       resize: both;
+                                                       overflow: hidden auto;">
+                                                            <div class="row modal-body">
+                                                               <div class="col-md-6">
+                                                                  <p>Answers</p>
+                                                               </div>
+                                                               <div class="edit-button1 pull-right">
+                                                                  <button class=" btn btn-default question-btn1"
+                                                                  (click)="answerHtml=answerObject.ans_file_text; editClick = 'edit'"
+                                                                  type="button">Edit</button>
+                                                                  <a class="btn btn-primary edit-button12 pull" (click)="editClick =''"
+                                                                     type="button" data-dismiss="modal">Close</a>
+                                                               </div>
+                                                               <div class="col-md-12 form-group"*ngIf="editClick ==''">
+                                                                  <div class="input-group" style=" width: 100%;">
+                                                                     <div class="input-group default-input-group">
+                                                                        <div [innerHtml]="answerHtml | sanitizeHtml"
+                                                                           class="form-control"></div>
+                                                                     </div>
+                                                                     <!-- <div  *ngIf="qns.avtxtqn==1" [innerHtml]="(filesUrl+'assets/questionsUpload/instNum_'+inst_id+'/'+qns.qns_location+'/'+ qns.questDetFile)| sanitizeHtml" [style]="{width: '100%', height: '200px'}"></div> -->
+                                                                     <!-- <video *ngIf="qns.avtxtqn==2"
+                                                                        [src]="('https://www.gemstudent.com/API/assets/questionsUpload/instNum_'+inst_id+'/'+qns.qns_location+'/'+ qns.QuestDet) | safeurl"
+                                                                        width="425" height="220" frameborder="0"
+                                                                        webkitallowfullscreen mozallowfullscreen
+                                                                        allowfullscreen
+                                                                        oncontextmenu="return false"></video> -->
+                                                                     <!-- <video *ngIf="qns.avtxtqn==2" [src]="('http://localhost/gemService/assets/questionsUpload/instNum_'+inst_id+'/qnsNum_'+qns.question_id+'/'+ qns.QuestDet) | safeurl" width="425" height="220" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen oncontextmenu="return false"></video> -->
+                                                                  </div>
+                                                                  <!-- /input-group -->
+                                                               </div>
+                                                            </div>
+                                                            <div *ngIf="editClick =='edit'">
+                                                               <p-editor  [(ngModel)]="answerHtml">
+                                                               </p-editor>
+                                                               <div class="pull-right">
+                                                                  <button class="bt btn-success"
+                                                                     (click)="updateAnswer(answerObject.answer_id,answerObject.question_id,answerHtml,answerObject.ans_file,filelocation,1)">
+                                                                     Update </button>
+                                                                  <!-- <button class="bt btn-danger"
+                                                                     (click)="closeanseditor(answerObject.question_id);"> Close </button> -->
+                                                                  <button class="bt btn-danger"
+                                                                  (click)="editClick ='';answerHtml=answerObject.ans_file_text"> Close </button>
+                                                               </div>
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+
+                                       </div>
+                                       <div *ngIf="qns.questntyp_id==2">
+                                          <div class="col-md-6" *ngFor="let ans of answers; let i = index">
+                                             <div class="qution_tab-tf" *ngIf="ans.answer_id !== selAnsId">
+                                                <div class="answertab-postion">
+                                                      <p class="wrong-pansw">
+                                                         {{(ans.answer_type_id==1)?'Correct':'Wrong'}} Answer </p>
+                                                      <div class="editbtn-answer">
+                                                         
+                                                      </div>
+                                                   </div>
+                                                <div class="hoveruseredit2">
+                                                   <div class="input-group default-input-group ">
+                                                      <div class="form-control">
+                                                         <p class="font-weight-bold">
+                                                            {{(ans.t_f_crt_ans==1)?'True':'False'}}</p>
+                                                      </div>
+                                                      <div class="">
+                                                         <button class="btn btn-default question-btn1"
+                                                            (click)="showAnsPeditor(ans.answer_id,ans.question_id)"
+                                                            type="button">Edit</button>
+
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                             <div class="qution_tab-tf" *ngIf="ans.answer_id === selAnsId">
+                                                <input type="radio" [(ngModel)]="ans.t_f_crt_ans" value="1"> True
+                                                <input type="radio" [(ngModel)]="ans.t_f_crt_ans" value="2"> False
+                                                <div class="pull-right">
+                                                   <button class="bt btn-success"
+                                                      (click)="updateAnswer(ans.answer_id,ans.question_id,ans.t_f_crt_ans,'t_f_crt_ans','',2)">
+                                                      Update </button>
+                                                   <button class="bt btn-danger"
+                                                      (click)="closeanseditor(ans.question_id)"> Close </button>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div *ngIf="showMoreDiv">
+                                    <button type="button" class="btn btn-success"
+                                       (click)="addMore(sectdQns)"><i class="fa fa-plus"
+                                          aria-hidden="true"></i>AddMore</button>
+                                    <span *ngIf="showMorecAnsEditorCtrl==true"><input type="radio" value="1"
+                                          [(ngModel)]="moreAns"
+                                          (change)="showMoreAnsEditor($event.target.value)">Correct
+                                       Answer</span>
+                                    <span *ngIf="showMoreAnsEditorCtrl==true"><input type="radio" value="2"
+                                          [(ngModel)]="moreAns"
+                                          (change)="showMoreAnsEditor($event.target.value)">Wrong Answer</span>
+                                    <p-editor *ngIf="showEditor==true" [(ngModel)]="moreAnsEditor"
+                                       [style]="{'height':'225px'}"></p-editor>
+                                    <!-- <p-editor *ngIf="showEditor==2" [(ngModel)]="moreAnsEditor" [style]="{'height':'225px'}"></p-editor> -->
+                                    <p *ngIf="showMrSub==true"><button class="btn btn-success"
+                                          (click)="submitMoreAns(sectdQns,moreAns,moreAnsEditor)">Submit</button>
+                                    </p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div *ngIf="showRes==false">
+                     <p class="alert alert-danger">No data found</p>
+                  </div>
+                  
+               </div>
+            </div>
+         </div>
+      </section>
+      <!--====top profile background End====-->
+      <p-toast [style]="{marginTop: '80px'}"></p-toast>
+      <p-toast [style]="{marginTop: '80px'}" position="top-left" key="tl"></p-toast>
+      <p-toast [style]="{marginTop: '80px'}" position="top-center" key="tc"></p-toast>
+      <p-toast [style]="{marginTop: '80px'}" styleClass="custom-toast" key="custom" position="bottom-center"></p-toast>
+      <p-toast position="center" key="c" (onClose)="onReject()" [modal]="true" [baseZIndex]="5000">
+         <ng-template let-message pTemplate="message">
+            <div style="text-align: center">
+               <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i>
+               <h3>{{message.summary}}</h3>
+               <p>{{message.detail}}</p>
+            </div>
+            <div class="ui-g ui-fluid">
+               <div class="ui-g-6">
+                  <button type="button" pButton (click)="onConfirm()" label="Yes" class="ui-button-success"></button>
+               </div>
+               <div class="ui-g-6">
+                  <button type="button" pButton (click)="onReject()" label="No" class="ui-button-secondary"></button>
+               </div>
+            </div>
+         </ng-template>
+      </p-toast>
+   </div>
+   <div class="modal fade" #questionVerifyModal id="questionVerifyModal" role="dialog">
+      <div class="modal-dialog vry_modal">
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+               <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+            </div>
+            <div class="modal-body modal_text">
+               <p *ngIf="verify==1">Do you really want to unverify this question?</p>
+               <p *ngIf="verify==0">Do you really want to verify this question?</p>
+            </div>
+            <div class="modal-footer modal_foot">
+               <button *ngIf="verify==0" (click)="verifyQuestion()" data-dismiss="modal" type="submit"
+                  class="bt btn-warning">Verify</button>
+               <button *ngIf="verify==1" (click)="verifyQuestion()" data-dismiss="modal" type="submit"
+                  class="bt btn-warning">Cancel</button>
+               <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <div class="modal fade" #questionclsfVerifyModal id="questionclsfVerifyModal" role="dialog">
+      <div class="modal-dialog vry_modal">
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+               <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+            </div>
+            <div class="modal-body modal_text">
+               <p *ngIf="clsfval==1">This question classification is already verified.</p>
+               <p *ngIf="clsfval==0">Do you really want to verify this question?</p>
+            </div>
+            <div class="modal-footer modal_foot">
+               <button *ngIf="clsfval==0" (click)="verifydlblQuestionclsf()" data-dismiss="modal" type="submit"
+                  class="bt btn-warning">Verify</button>
+               <!-- <button *ngIf="verify==1" (click)="verifyQuestion()" data-dismiss="modal" type="submit" class="bt btn-warning">Cancel</button> -->
+               <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="modal fade" #questionclsfDeleteModal id="questionclsfDeleteModal" role="dialog">
+      <div class="modal-dialog vry_modal">
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+               <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+            </div>
+            <div class="modal-body modal_text">
+               <p *ngIf="clsfval==1">Do you really want to activate this question?</p>
+               <p *ngIf="clsfval==0">Do you really want to delete this question?</p>
+            </div>
+            <div class="modal-footer modal_foot">
+               <button *ngIf="clsfval==0" (click)="verifydlblQuestionclsf()" data-dismiss="modal" type="submit"
+                  class="bt btn-warning">Delete</button>
+               <button *ngIf="clsfval==1" (click)="verifydlblQuestionclsf()" data-dismiss="modal" type="submit"
+                  class="bt btn-warning">Active</button>
+               <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="modal fade" #questionclsfBlockModal id="questionclsfBlockModal" role="dialog">
+      <div class="modal-dialog vry_modal">
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+               <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+            </div>
+            <div class="modal-body modal_text">
+               <p *ngIf="clsfval==1">Do you really want to unblock this question?</p>
+               <p *ngIf="clsfval==0">Do you really want to block this question?</p>
+            </div>
+            <div class="modal-footer modal_foot">
+               <button *ngIf="clsfval==0" (click)="verifydlblQuestionclsf()" data-dismiss="modal" type="submit"
+                  class="bt btn-warning">Block</button>
+               <button *ngIf="clsfval==1" (click)="verifydlblQuestionclsf()" data-dismiss="modal" type="submit"
+                  class="bt btn-warning">Unblock</button>
+               <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <div class="modal fade" #questionBlockModal id="questionBlockModal" role="dialog">
+      <div class="modal-dialog vry_modal">
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+               <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+            </div>
+            <div class="modal-body modal_text">
+               <p *ngIf="block==1">Do you really want to unblock this question?</p>
+               <p *ngIf="block==0">Do you really want to block this question?</p>
+            </div>
+            <div class="modal-footer modal_foot">
+               <button *ngIf="block==0" (click)="blockQuestion()" data-dismiss="modal" type="submit"
+                  class="bt btn-warning">Block</button>
+               <button *ngIf="block==1" (click)="blockQuestion()" data-dismiss="modal" type="submit"
+                  class="bt btn-warning">Unblock</button>
+               <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="modal fade" #questionDeleteModal id="questionDeleteModal" role="dialog">
+      <div class="modal-dialog vry_modal">
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+               <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+            </div>
+            <div class="modal-body modal_text">
+               <p *ngIf="delete==1">Do you really want to activate this question?</p>
+               <p *ngIf="delete==0">Do you really want to delete this question?</p>
+            </div>
+            <div class="modal-footer modal_foot">
+               <button *ngIf="delete==0" (click)="deleteQuestion()" data-dismiss="modal" type="submit"
+                  class="bt btn-warning">Delete</button>
+               <button *ngIf="delete==1" (click)="deleteQuestion()" data-dismiss="modal" type="submit"
+                  class="bt btn-warning">Activate</button>
+               <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="modal fade" #answerDeleteModal id="answerDeleteModal" role="dialog">
+      <div class="modal-dialog vry_modal">
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+               <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+            </div>
+            <div class="modal-body modal_text">
+               <p>Do you want to really delete this answer?</p>
+            </div>
+            <div class="modal-footer modal_foot">
+               <button type="submit" class="bt btn-danger" (click)="deleteAnswer()" data-dismiss="modal">Delete</button>
+               <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

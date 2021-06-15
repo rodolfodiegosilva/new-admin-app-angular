@@ -1,0 +1,184 @@
+
+<div class="modal fade" #mentorDetailModal id="mentorDetail" role="dialog">
+  <div class="modal-dialog vry_modal">
+     <div class="modal-content">
+      <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4><i class="fa fa-info-circle"></i> Mentor Detail</h4>
+             </div>
+             <div>User Detail</div>
+              <div>
+                <div class="col-md-6">
+                  <label>User Id : {{user_id}}</label>
+                </div>
+                <div class="col-md-6">
+                  <label>Name : {{user_name}}</label>
+                </div>
+                <div class="col-md-6">
+                  <label>Phone : {{user_phone}}</label>
+                </div>
+                <div class="col-md-6">
+                  <label>Phone (Alter) : {{user_alt_phone}}</label>
+                </div>
+                <div class="col-md-6">
+                  <label>Request Date : {{request_date | date:'dd-MM-yyyy'}}</label>
+                </div>
+                <div class="col-md-6">
+                  <label>Request Status :{{status}} </label>
+                </div>
+            </div>
+            <div *ngIf="usr_mentor_id != 0 ">
+              <div>Mentor Detail</div>
+               <div class="col-md-6">
+                 <label>Mentor Id: {{mentor_id}}</label>
+               </div>
+               <div class="col-md-6">
+                <label>Mentor Name : {{mentor_name}}</label>
+              </div>
+              <div class="col-md-6">
+               <label>Mentor User Id : {{mentor_user_id}}</label>
+              </div>
+              <div class="col-md-6">
+                <label>Address : {{mentor_address}}</label>
+              </div>
+              <div class="col-md-6">
+                <label>Phone : {{mentor_phone}}</label>
+              </div>
+              <div class="col-md-6">
+                <label>Phone (Alter) : {{mentor_alt_phone}}</label>
+              </div>
+              <div class="col-md-6">
+                <label>Fax : {{mentor_fax}}</label>
+              </div>
+              <div class="col-md-6">
+                <label>Email : {{mentor_email}}</label>
+              </div>
+            </div>
+             
+             <div class="modal-footer modal_foot">
+              <div *ngIf="status == 'Pending'">
+                <button type="submit" class="bt btn-info" (click)="approve_reject_mentor(1)">Approve</button>
+                <button type="submit" class="bt btn-danger" (click)="approve_reject_mentor(2)">Reject</button>
+              </div>              
+                <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+   </div>
+</div>
+<!-- Delete Modal end-->
+<app-sdashheader></app-sdashheader>
+<div class="leftsidemenus">
+  <app-sdahshmenu></app-sdahshmenu>
+</div>
+<div id="page-wrapper" >
+  <div class="content">
+      <!--====Question upload page start====-->
+
+      <section class="question_search question_sec selt_ht scroll-yes">
+          <div class="container-fluid">
+
+              <div class="col-md-12">
+                  <div class="all_brd">
+                      <div class="question_title" id="pers_inf">
+                          <h3>Mentor Request List</h3>
+                          
+                          <button class="btn btn-success" class="bt btn-info media-response"
+                              style="position:absolute;z-index: 111;right: 19%;padding: 0px 15px;"
+                              (click)="resetFilter()">Clear Selections</button>
+                          <button class="btn btn-success" class="bt btn-info"
+                          style="position:absolute;z-index: 111;right: 5%;padding: 0px 15px;"
+                          (click)="reload()">Refresh</button>
+                          <!-- <button type="button" class="bt btn-info"
+                              style="position:absolute;z-index: 111;right: 4%;padding: 0px 15px;"
+                              *ngIf="Check_inst_id==1 || Check_inst_id==2"
+                              (click)="verifyMultipleUsers(Check_admin_id)" [disabled]="CheckedValues.length<1"
+                              [class.disabled-class]="CheckedValues.length<1 == true?{cursor: not-allowed}:{cursor:pointer}">verify</button> -->
+                      </div>
+                      <div class="content_sub">
+                          <!--div class="creat_tab">
+                           <a href="" data-toggle="modal" data-target="#creat_user"><i class="hvr-buzz-out fa fa-user-plus"></i> Create User</a>
+                           </div-->
+                          <div class="all_mian">
+                              <div class="table-responsive check_all " style="height:400px;overflow-x:auto;">
+                                  <table class="table table-bordered table-striped">
+                                      <thead>
+                                          <tr class="first-thead-tr">
+                                              <th>Mentor Id</th>
+                                              <th>Mentor Name</th>
+                                              <th>User Name</th>
+                                              <th>Date</th>
+                                              <th>Status</th>
+                                              <!-- <th>Action</th> -->
+                                              <th>Details</th>
+                                          </tr>
+                                        </thead>
+                                          <tr class="info">
+                                              <th></th>
+                                              <th></th>
+                                              <th>
+                                                <div class="ui-g-12 ui-md-4">
+                                                  <input type="text"
+                                                      (change)="getDate($event)"
+                                                      ngxDaterangepickerMd [(ngModel)]="selected"
+                                                      [showCustomRangeLabel]="true"
+                                                      [alwaysShowCalendars]="true" [ranges]="ranges"
+                                                      [linkedCalendars]="true" [isInvalidDate]="isInvalidDate"
+                                                      [showClearButton]="true" placeholder="Select Date..."
+                                                      style="color: black">
+                                              </div>
+                                              </th>
+                                              <th>
+                                                  <p-multiSelect [options]="statusList" (onChange)="setFilter();" [(ngModel)]="selectedStatus"></p-multiSelect>
+                                              </th>
+                                              <th></th>
+                                              <!-- <th></th> -->
+                                          </tr>
+                                          <tr *ngIf="!createMentorList">
+                                            <td colspan="10">Record not found!</td>
+                                          </tr>
+                                          <tr *ngFor="let mentor of createMentorList; let i = index;" >
+                                            <td>{{mentor.mentor_id}}</td>
+                                            <td>{{mentor.mentor_name}}</td>
+                                            <td>{{mentor.user_dname}}</td>
+                                            <td>{{mentor.request_date | date:'dd-MM-yyyy'}}</td>
+                                            <td>{{mentor.request_completed == 1 ? 'Approved' : mentor.request_rejected == 1 ? 'Rejected' : 'Pending'  }}</td>
+                                            <!-- <td>
+                                                <button class="pading_4 bt   btn-info">Approve
+                                                </button>
+                                                <button class="pading_4 bt btn-danger">Reject
+                                                </button>
+                                            </td> -->
+                                            <td>
+                                              <button class="pading_4 bt   btn-info" data-toggle="modal" data-target="#mentorDetail" (click)="mentorInfo(mentor)">Details
+                                              </button>
+                                          </td>
+                                        </tr>
+                                      
+                                      <tbody>
+                                        
+                                      </tbody>
+                                  </table>
+                                  <div style="text-align: center; margin-top: 8%;" *ngIf="searchLoader">
+                                    <p-progressSpinner></p-progressSpinner>
+                                   </div>
+                              </div>
+                              <!-- <span>
+                                  <p-paginator [rows]="rowsPerPage" [totalRecords]="totalPages"
+                                      (onPageChange)="currentPage = $event.page; onPageChange($event) " #p>
+                                  </p-paginator>
+                              </span>
+                              <select [(ngModel)]="rowsPerPage" (change)="selectItemsperpage($event.target.value)">
+                                  <option value="10">10</option>
+                                  <option value="15">15</option>
+                                  <option value="20">20</option>
+                                  <option value="30">30</option>
+                                  <option value="50">50</option>
+                              </select> -->
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+    </div>
+</div>

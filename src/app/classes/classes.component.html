@@ -1,0 +1,214 @@
+
+       <div class="modal fade" #verifyClassModel id="verified" role="dialog">
+          <div class="modal-dialog vry_modal">
+             <div class="modal-content">
+              <div class="modal-header">
+                       <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+                     </div>
+                    <div class="modal-body modal_text">
+                        <p>Do you really want to verify these records? This process cannot be undone</p>
+                    </div>
+                     <div class="modal-footer modal_foot">
+                      <button type="submit" class="bt btn-warning" (click)="verifyClass()">verify</button>
+                        <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+           </div>
+       </div>
+        
+        <!--Blocked  Modal start -->
+        <div class="modal fade" #blockModel id="block" role="dialog">
+          <div class="modal-dialog vry_modal">
+             <div class="modal-content">
+              <div class="modal-header">
+                       <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+                     </div>
+                    <div class="modal-body modal_text">
+                        <p *ngIf="is_class_blocked =='1'">Do you really want to Block these records? </p>
+                        <p *ngIf="is_class_blocked =='0'">Do you really want to Unblock these records? </p>
+                    </div>
+                     <div class="modal-footer modal_foot">
+                      <button *ngIf="is_class_blocked =='1'" type="submit" class="bt btn-warning" (click)="blockCourse()">Block</button>
+                      <button *ngIf="is_class_blocked =='0'" type="submit" class="bt btn-warning" (click)="blockCourse()">Unblock</button>
+                        <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+           </div>
+       </div>
+  <!-- Blocked Modal end-->
+        
+        <!--Delete  Modal start -->
+        <div class="modal fade" id="delete" role="dialog">
+          <div class="modal-dialog vry_modal">
+             <div class="modal-content">
+              <div class="modal-header">
+                       <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+                     </div>
+                    <div class="modal-body modal_text">
+                        <p>Do you really want to Delete these records? This process cannot be undone</p>
+                    </div>
+                     <div class="modal-footer modal_foot">
+                      <button type="submit" class="bt btn-warning">Delete</button>
+                        <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+           </div>
+       </div>
+  <!-- Delete Modal end-->
+        <app-sdashheader></app-sdashheader>
+      <div class="leftsidemenus">
+      <app-sdahshmenu></app-sdahshmenu>
+      </div>
+      <div id="page-wrapper">
+      <div class="content">
+            <!--====Question upload page start====-->
+            <section class="question_search question_sec selt_ht scroll-yes">
+                <div class="container-fluid">
+                         <div class="col-md-12"> 
+                              <div class="all_brd">
+                                   <div class="question_title" id="pers_inf">
+                                      <h3>Class Search & List View</h3>
+                                    </div>
+                                    <div class="top_btn">
+                                      <input type="checkbox" (change)="getBlockCourse()" id="blockCourse">&nbsp;Blocked&nbsp;&nbsp;&nbsp;
+                                      <input type="checkbox" (change)="getVerifiedCourse()"id="verifiedCourse">&nbsp;Not Verified&nbsp;&nbsp;&nbsp;
+                                      <input type="text" (keyup)="(($event.which <= 90 && $event.which >= 48)||$event.keyCode == 8 ||$event.keyCode == 13 )?searchClass():''"id="searchClass" placeholder="Search...."[(ngModel)]="searchTerm" >&nbsp;&nbsp;&nbsp;
+                                    </div>
+                                   <div class="content_sub"> 
+                                      <!--<div class="question_bg">
+                                         <h4>Upload QA Database</h4>
+                                      </div>-->
+                                      <div class="all_mian">     	 
+                                        <div class="table-responsive check_all">
+                                           <table class="table table-bordered table-striped">
+                                                   <thead>
+                                                       <tr>
+                                                           <td><label for="fruit1">Lable</label></td>
+                                                           <th>ID</th>
+                                                           <th>Full name</th>
+                                                           <th>Short name</th>
+                                                           <th>Verify by</th>
+                                                           <th>Verify date  </th>
+                                                           <th>Block by</th>
+                                                           <th>Block date</th>
+                                                           <th></th>
+                                                           <th></th>
+                                                       </tr>
+                                                   </thead>
+                                                  <tbody  *ngIf="!loading">
+                                                    <ng-container *ngFor="let class of allCourse;let i = index;">
+  
+                                                        <tr [style.font-weight]="class.is_class_verified == 1?normal:600"[style.background-color]="class.is_class_blocked == '1'?'#c9c5c5':''"> 
+                                                            <td><label for="check_1">{{i+1}}</label></td>
+                                                             <td>{{class.class_id}}</td>
+                                                             <td id="savefame_{{i}}" style="display: none" >
+                                                                          <input type="text" id="cfame_{{i}}">
+                                                                  <div style="display: flex;margin-left: 10px;">
+                                                                          <a class="bt btn-success" (click)="saveFname(i,class.class_id,'class_fname')">Save</a>
+                                                                          <a class="bt btn-primary" (click)="cancelRow(i)">Cnacel</a>
+                                                              </div>   </td>
+                                                          <td id="editfame_{{i}}" class="hoveruseredit" pTooltip="{{class.class_fname}}" tooltipPosition="top">
+                                                              <div class="col-md-12">
+                                                                  <div class="col-md-10">
+                                                                    <ng-container *ngIf="class.class_fname !==null">
+                                                                    {{class.class_fname.substr(0,12)}}<ng-container
+                                                                        *ngIf="class.class_fname.length>12">...
+                                                                    </ng-container>
+                                                                </ng-container>
+                                                                  </div>
+                                                                  <div class="col-md-2 editbutton">
+                                                                      <a class="bt btn-success" style="margin-top:0px;" (click)="editRow(i,class.class_fname)">Edit</a>
+                                                                  </div>
+                                                              </div>
+                                                          </td>
+                                                             <td id="saveSname_{{i}}" style="display: none" >
+                                                                          <input type="text" id="sfame_{{i}}">
+                                                                  <div style="display: flex;margin-left: 10px;">
+                                                                          <a class="bt btn-success" (click)="saveSname(i,class.class_id,'class_sname')">Save</a>
+                                                                          <a class="bt btn-primary" (click)="cancelRowSname(i)">Cnacel</a>
+                                                              </div>   </td>
+                                                          <td id="editSname_{{i}}" class="hoverusereditSname" pTooltip="{{class.class_sname}}" tooltipPosition="top">
+                                                              <div class="col-md-12">
+                                                                  <div class="col-md-10">
+                                                                    <ng-container *ngIf="class.class_sname !==null">
+                                                                    {{class.class_sname.substr(0,12)}}<ng-container
+                                                                        *ngIf="class.class_sname.length>12">...
+                                                                    </ng-container>
+                                                                </ng-container>
+                                                                  </div>
+                                                                  <div class="col-md-2 editbuttonSname">
+                                                                      <a class="bt btn-success" style="margin-top:0px;" (click)="editRowSname(i,class.class_sname)">Edit</a>
+                                                                  </div>
+                                                              </div>
+                                                          </td>
+                                                             <td  *ngIf="class.class_verified_by==null">--</td>
+                                                             <ng-container *ngIf="class.class_verified_by!=null">
+                                                              <td pTooltip="{{class.vrfname}}" tooltipPosition="top">
+                                                                <ng-container *ngIf="class.class_verified_by !==null">
+                                                                    {{class.vrfname.substr(0,12)}}<ng-container
+                                                                        *ngIf="class.vrfname.length>12">...
+                                                                    </ng-container>
+                                                                </ng-container>
+                                                            </td>
+                                                             </ng-container>
+                                                             
+                                                             <td>{{class.class_verified_on}}</td>
+                                                             <td  *ngIf="class.class_blocked_by==null">--</td>
+                                                             <ng-container *ngIf="class.class_blocked_by!=null">
+                                                              <td pTooltip="{{class.blockedname}}" tooltipPosition="top">
+                                                                <ng-container *ngIf="class.class_blocked_by !==null">
+                                                                    {{class.blockedname.substr(0,12)}}<ng-container
+                                                                        *ngIf="class.blockedname.length>12">...
+                                                                    </ng-container>
+                                                                </ng-container>
+                                                            </td>
+                                                          </ng-container>
+                                                             <td>{{class.class_blocked_date}}</td>
+                                                             <td *ngIf="class.is_class_verified == '0'"><button class="bt btn-info" data-toggle="modal" data-target="#verified"(click)="class_id = class.class_id">Verify
+                                                         </button></td>
+                                                         <td  *ngIf="class.is_class_verified == '1'">Verified</td>
+                                                             <td *ngIf="class.is_class_blocked == '0'"><!--verified start-->
+                                                                <button class="bt btn-warning"(click)="is_class_blocked ='1';class_id=class.class_id;" data-toggle="modal" data-target="#block"
+                                                                  >Block
+                                                             </button>
+                                                             </td>
+                                                             <td *ngIf="class.is_class_blocked == '1'"><!--verified start-->
+                                                              <button class="bt btn-warning" (click)="is_class_blocked = '0';class_id=class.class_id;" data-toggle="modal" data-target="#block"
+                                                                >Unblock
+                                                           </button>
+                                                           </td><!--verified end-->
+                                                         </tr>
+                                                    </ng-container>
+                                                   </tbody>
+                                               </table
+                                               ><div style="
+                                               text-align: center;
+                                               margin-top: 8%;height: 297px;" *ngIf="loading">
+                                                     <p-progressSpinner></p-progressSpinner>
+                                                 </div>
+                                                 <div style="
+                                                 text-align: center;
+                                                 margin-top: 8%;height: 297px;" *ngIf="allCourse.length<1&&!loading">
+                                                       <h3>No rows found!</h3>
+                                                   </div>
+                                           </div> 
+                                           <div class="pages_but">
+                                             <div class="badge-inner">
+                                                <p-paginator [rows]="10" [totalRecords]="totalCourse" [rowsPerPageOptions]="[10,20,30]" (onPageChange)="currentPage = $event.page; onPageChange($event) "></p-paginator>
+  
+                                               </div>
+                                           </div>  
+       
+                                            
+                                       </div>
+                                   </div>
+                             </div>
+                         </div>
+                       </div> 
+                   </section>
+                   <!--====top profile background End====-->
+                    </div>
+                    </div>

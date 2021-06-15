@@ -1,0 +1,106 @@
+<div class="sidebar bg-color" role="navigation">
+                <div class="sidebar-nav navbar-collapse scroll-y">
+            
+                    <ul class="nav accordion-sidemenu" id="side-menu">
+                        <li class="active mrgn-top">
+                            <a routerLink="/superadmin" routerLinkActive="active-link" class="material-ripple">
+                                <i class="material-icons">home</i> Dashboard</a>
+                        </li>
+            
+                        <p-accordion>
+                            <p-accordionTab header="ADMIN" *ngIf="superadminMenu&&Check_admin_type ==='1'" [ngClass]="'firstsecond'" (click)="setHeader('ADMIN')" [selected]= "headerValue =='ADMIN'">
+                                <li><a routerLink="/createadmin" routerLinkActive="active-color"> Create Admin </a></li>
+                            </p-accordionTab>
+                            <p-accordionTab header="INSTITUTE" *ngIf="instSuperadmin || superadminMenu" styleClass="menuadmin" (click)="setHeader('INSTITUTE')" [selected]= "headerValue =='INSTITUTE'">
+                                <li><a  routerLink="/instutesmanage" routerLinkActive="active-color"  *ngIf="Check_admin_type ==='1'">Create/Update Institutes</a></li>
+                                <li ><a routerLink="/managegemsinstute" routerLinkActive="active-color"> Manage Gems Institute  </a></li>
+                            </p-accordionTab>
+                            <p-accordionTab header="USER" [ngClass]="'mytabmenu'" (click)="setHeader('USER')" [selected]= "headerValue =='USER'">
+                                <li  *ngIf="superadminMenu"><a routerLink="/createuserprofile" routerLinkActive="active-color">Create User<!--span class="nav-tag green">User1</span--></a></li>
+                                <li  ><a routerLink="/manageuser" routerLinkActive="active-color">Manage User<!--span class="nav-tag yellow">User2</span--></a></li>
+                            </p-accordionTab>
+                            <p-accordionTab header="MENTOR" [ngClass]="'mytabmenu'" (click)="setHeader('MENTOR')" [selected]= "headerValue =='MENTOR'">
+                                <li  *ngIf="superadminMenu">
+                                    <a routerLink="/mentorrequest" routerLinkActive="active-color">Manage Mentor Request<!--span class="nav-tag green">User1</span--></a></li>
+                            </p-accordionTab>
+                            <p-accordionTab header="PARTNER" [ngClass]="'mytabmenu'" (click)="setHeader('PARTNER')" [selected]= "headerValue =='PARTNER'">
+                                <li  *ngIf="superadminMenu">
+                                    <a routerLink="/partnerrequest" routerLinkActive="active-color">Manage Partner Request<!--span class="nav-tag green">User1</span--></a>
+                                </li>
+                                <li  *ngIf="superadminMenu">
+                                    <a routerLink="/user-partner-request" routerLinkActive="active-color">Assigned Student Request<!--span class="nav-tag green">User1</span--></a>
+                                </li>
+                            </p-accordionTab>
+                            <p-accordionTab header="CLASSIFICATION" (click)="setHeader('CLASSIFICATION')" [selected]= "headerValue =='CLASSIFICATION'">
+                                <li ><a routerLink="/classification" routerLinkActive="active-color"> Classification  list</a></li>
+                                <li ><a routerLink="/course" routerLinkActive="active-color"> Course</a></li>
+                                <li ><a routerLink="/classes" routerLinkActive="active-color"> Class</a></li>
+                                <li ><a routerLink="/subjects" routerLinkActive="active-color"> Subject</a></li>
+                                <li ><a routerLink="/lessons" routerLinkActive="active-color"> Lesson</a></li>
+                            </p-accordionTab>
+                            <p-accordionTab header="CONTENT" (click)="setHeader('CONTENT')" [selected]= "headerValue =='CONTENT'">
+                                <li ><a routerLink="/contentupload" routerLinkActive="active-color"> Upload Content</a></li>
+                                <li ><a routerLink="/contentsearch" routerLinkActive="active-color"> Search Content</a></li>
+                            </p-accordionTab>
+                            <p-accordionTab header="QUESTIONS" (click)="setHeader('QUESTIONS')"[selected]= "headerValue =='QUESTIONS'">
+                                <li ><a routerLink="/questionsearch" routerLinkActive="active-color"> Questions Search List</a></li>
+                                <li ><a routerLink="/questiondetailedview" routerLinkActive="active-color"> Questions Detailed View</a></li>
+                                <!-- <li ><a routerLink="/questionmangeview" routerLinkActive="active-color"> Questions Manage View </a></li> -->
+                                <li ><a routerLink="/questionanswerupload" routerLinkActive="active-color"> Questions Upload  </a></li>
+                            </p-accordionTab>
+                            <p-accordionTab header="DISCUSSIONS" (click)="setHeader('DISCUSSIONS')" [selected]= "headerValue =='DISCUSSIONS'">
+                                <li ><a routerLink="/discussionsearchpage" routerLinkActive="active-link"> Discussion Search List</a></li>
+                                <!-- <li><a routerLink="/discussiondetailedview" routerLinkActive="active-link"> Discussion Detailed View</a></li> -->
+                            </p-accordionTab>
+                            <p-accordionTab header="TESTS" (click)="setHeader('TESTS')" [selected]= "headerValue =='TESTS'">
+                                <li ><a routerLink="/createtest" routerLinkActive="active-color"> Create Tests</a></li>
+                                <!-- mmlabs4 -->
+                                <!-- <li ><a routerLink="/attendtest" routerLinkActive="active-color">Attend Test</a></li> -->
+                                <!-- <li ><a routerLink="/testresult" routerLinkActive="active-color"> Test Result</a></li> -->
+                                <!-- <li ><a routerLink="/testsearchlistview" routerLinkActive="active-color"> Test Detailed View</a></li> -->
+                                <li ><a routerLink="/SearchandListTests" routerLinkActive="active-color"> Search and List Tests</a></li>
+                            </p-accordionTab>
+                             <p-accordionTab header="MEETING" (click)="setHeader('MEETING')" [selected]= "headerValue =='MEETING'">
+                                <li ><a routerLink="/createmeet" routerLinkActive="active-color"> Create Meeting</a></li>
+                         <!--       <li ><a routerLink="/#" routerLinkActive="active-color">Attend Meeting</a></li>  -->
+                           <!--     <li ><a routerLink="/#" routerLinkActive="active-color"> Meeting Detailed View</a></li>  -->
+                                <li ><a routerLink="/SearchandListMeet" routerLinkActive="active-color"> Search and List Meetings</a></li>
+                            </p-accordionTab>
+                           
+                            <p-accordionTab header="NOTIFICATION"  (click)="setHeader('NOTIFICATION')"[selected]= "headerValue =='NOTIFICATION'">
+                                <li ><a routerLink="/notification" routerLinkActive="active-color">notification List</a></li>
+                                <li ><a routerLink="/createnotification" routerLinkActive="active-color">Create notification </a></li>
+                            </p-accordionTab>
+                            <p-accordionTab header="TIMELINE" (click)="setHeader('TIMELINE')" [selected]= "headerValue =='TIMELINE'">
+                                <li ><a routerLink="/timeline" routerLinkActive="active-color"> Timeline Search List </a></li>
+                            </p-accordionTab>
+                           
+                            <p-accordionTab header="COMMERCIAL" (click)="setHeader('COMMERCIAL')" [selected]= "headerValue =='COMMERCIAL'">
+                                <li ><a href="forms_basic.html">Mentor1</a></li>
+                                <li ><a href="form_input_group.html">Mentor2</a></li>
+                            </p-accordionTab>
+            
+                            <p-accordionTab header="REWARDS" (click)="setHeader('REWARDS')" [selected]= "headerValue =='REWARDS'">
+                                <li ><a href="forms_basic.html">Mentor1</a></li>
+                                <li ><a href="form_input_group.html">Mentor2</a></li>
+                            </p-accordionTab>
+                            <p-accordionTab header="REFERALS" (click)="setHeader('REFERALS')" [selected]= "headerValue =='REFERALS'">
+                                <li ><a href="forms_basic.html">Mentor1</a></li>
+                                <li ><a href="form_input_group.html">Mentor2</a></li>
+                            </p-accordionTab>
+                            <p-accordionTab header="REPORTED" (click)="setHeader('REPORTED')" [selected]= "headerValue =='REPORTED'">
+                                <li ><a href="forms_basic.html">Mentor1</a></li>
+                                <li ><a href="form_input_group.html">Mentor2</a></li>
+                            </p-accordionTab>
+                            <p-accordionTab header="CONTACT US" (click)="setHeader('CONTACT US')" [selected]= "headerValue =='CONTACT US'">
+                                <li ><a href="forms_basic.html">Mentor1</a></li>
+                                <li ><a href="form_input_group.html">Mentor2</a></li>
+                            </p-accordionTab>
+                        </p-accordion>
+            
+                    </ul>
+            
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.Left Sidebar-->

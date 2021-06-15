@@ -1,0 +1,78 @@
+ <!-- Content Wrapper -->
+ <div class="register-wrapper">
+    <div class="container-center lg">
+        <div class="panel panel-bd" *ngIf="linkExpire==false">
+            <div class="panel-heading">
+                <div class="view-header">
+                    <div class="header-icon">
+                        <img src="../../assets/img/favicon.png" alt="">
+                    </div>
+                    <div class="header-title">
+                        <h3>Reset Password</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body" >
+                    <div *ngIf="msgSuccLogin==true" class="alert {{alertmsgClass}}" >
+                            <strong>{{alertmsgSucc}} Please click below link to Login</strong>                            
+                        </div>
+                        <a *ngIf="msgSuccLogin==true" routerLink="/" routerLinkActive="active-link" class="btn btn-success pull-right m-r-5">Login</a>
+                        <form *ngIf="msgSuccLogin==false" [formGroup]="registerAdmin" (ngSubmit)="adminCreate(registerAdmin)" id="loginForm" novalidate autocomplete="off">
+                        <input type="hidden" formControlName="institute_activation_code"  id="uac_activationCode" [(ngModel)]="id">
+                        <input type="hidden" formControlName="inst_id"  id="inst_id" [(ngModel)]="inst_id">
+                        <input type="hidden" formControlName="admintype_id"  id="admintype_id" [(ngModel)]="admintype_id">
+                    <!--Social Buttons--> 
+                     <div class="form-group">
+                        <label class="control-label">Email</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                            <input id="email" type="text"  formControlName="inst_superadmn_eml" [(ngModel)]="inst_superadmn_eml" class="form-control" placeholder="Super admin email" readonly>
+                        
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="control-label">Username</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input id="username" type="text" (keyup)="adminUsernameAvailability($event.target.value,'ac_user_loginid')" [(ngModel)]="admin_user_id" formControlName="ac_user_loginid" class="form-control" placeholder="Username" readonly>                            
+                            <!--div *ngIf="ac_user_loginid.hasError('minlength') || ac_user_loginid.hasError('required') && ac_user_loginid.touched" style="color:red;" class="errorsstyle" >
+                                    User Name Required !
+                                 </div-->
+                            </div>
+                            <!-- <div *ngIf="alertMsgUname==true"  style="color:red;" class="errorsstyle"><strong>{{usernamevlidaionerror}}</strong></div> -->
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Password</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                            <input id="pass" pPassword type="password" (keyup)="checkPassword($event.target.value,1)" formControlName="ac_pswd" class="form-control" placeholder="******">
+                            </div>
+                            <div *ngIf="alertMsgspwd==true"  style="color:red;" class="errorsstyle"><strong>{{pwadmlidaionerror}}</strong></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Repeat Password</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                            <input id="rpass" type="password" (keyup)="checkPassword($event.target.value,2)" formControlName="con_pswd" class="form-control" placeholder="******">
+                        </div>
+                        <div *ngIf="alertMsgs==true"  style="color:red;" class="errorsstyle"><strong>{{pwadmlidaionerrorc}}</strong></div>
+                    </div>
+                    
+                    <div>
+                        <!--a href="#" class="btn btn-primary pull-right">Register</a-->
+                        <button type="submit" class="btn btn-primary pull-right">Reset</button>
+                        <a *ngIf="msgSuccLogin==true" routerLink="/login" routerLinkActive="active-link" class="btn btn-success pull-right m-r-5">Login</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div *ngIf="linkExpire==true">
+            <div class="alert alert-danger">
+                <strong>Sorry! This is link is expired!! Click on below link to login!!</strong>
+            </div>
+            <a routerLink="/" routerLinkActive="active-link" class="btn btn-success pull-right m-r-5">Login</a>
+        </div>
+    </div>
+</div>
+<!-- /.content-wrapper -->

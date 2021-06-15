@@ -1,0 +1,133 @@
+ <!-- Content Wrapper -->
+
+ <div class="login-wrapper">
+  <div class="container-center">
+      <div class="panel panel-bd">
+          <div class="panel-heading">
+              <div class="view-header">
+                  <div class="header-icon">
+                      <img src="../../assets/img/logo.png" alt="">
+                  </div>
+                  <div class="header-titlea text-center">
+                      <h3 class="header-title1">Login</h3>
+                      <!--<small><strong>Please enter your credentials to login.</strong></small>-->
+                  </div>
+              </div>
+          </div>
+          <div class="panel-body">
+              <div *ngIf="alertMsg==true" [ngClass]="alertClass">{{alertText}}</div>
+              <form [formGroup]="adminLogin" (ngSubmit)="loginAdmin(adminLogin)" >
+                 <div class="form-group">
+                      <label class="control-label">Username</label>
+                      <div class="input-group">
+                          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                          <input type="text" formControlName="user_name" (keydown)="clearmessage()" class="form-control" placeholder="Username">
+                      </div>
+                      <span class="help-block small">Your unique username to app</span>
+                      <div *ngIf="alertMsgs==true"  style="color:red;" class="errorsstyle"><strong>{{saloginvlidaionerror}}</strong></div>
+
+                      <div *ngIf="adminLogin.controls.user_name.hasError('required') && adminLogin.controls['user_name'].touched" class="text-danger"><strong> Enter Valid User Name</strong></div>
+                  </div>
+                  <div class="form-group">
+                      <label class="control-label">Password</label>
+                      <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                          <input type="password" formControlName="user_pass" class="form-control" placeholder="******">
+                      </div>
+                      <span class="help-block small">Your unique password to app</span>
+                      <div *ngIf="alertMsgs==true"  style="color:red;" class="errorsstyle"><strong>{{saloginvpwlidaionerror}}</strong></div>
+
+                      <div *ngIf="adminLogin.controls.user_pass.hasError('required') && adminLogin.controls['user_pass'].touched" class="text-danger"><strong> Enter Correct Password </strong> </div>
+
+                  </div>
+                  <!--p-captcha siteKey="6LdxumkUAAAAADZVkLP0YhP55j6mlcwzgGPrsf32
+                  " (onResponse)="showResponse($event)" initCallback="loadCaptcha"></p-captcha-->
+                  <div>
+                      <button type="submit" class="btn btn-success pull-right"> Login </button>
+                     
+                      <!--<div class="checkbox checkbox-success">
+                          <input id="checkbox3" type="checkbox">
+                          <label for="checkbox3">Keep me signed in</label>
+                      </div>-->
+                  </div>
+                  
+              </form>
+              <button data-toggle="modal" data-target="#forgotPassword">Forgot Pasword?</button>
+             <div class="modal fade popup_z" id="forgotPassword" role="dialog">
+                <div class="modal-dialog vry_modal">
+                   <div class="modal-content">
+                      <div class="modal-header">
+                         <button type="button" class="close" data-dismiss="modal">&times;</button>
+                         <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+                      </div>
+                      <div class="modal-body modal_text">
+                        <form [formGroup]="forgotPassword" (ngSubmit)="sendforgotPassword(forgotPassword)">
+                            <div class="modal-body modal_text">
+                                <div class="col-md-12 mrb_10">
+                                    <label class="col-sm-4 col-form-label" >Enter your Email Id</label>
+                                    <div class="col-sm-8">
+                                        <input class="form-control" (keyup)="CheckAdminAvailability($event.target.value,'ac_user_email')" type="email" formControlName="userEmail"  required>
+                                        <br>
+                                        <div *ngIf="instAdminEmail==true" class="text-danger">{{instAdminEmailErrText}}</div>
+                                    </div>  
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <span> <p style="font-size: 12px;">If you forgot your registered email, please contact admin@gemstudent.com</p></span>
+                            <div class="modal-footer modal_foot">
+                                <button type="submit" class="bt btn-warning" [disabled]="instAdminEmail">Send</button>
+                                <button type="button" class="bt btn-info" data-dismiss="modal">Close</button>
+                            </div>
+                        </form>
+                      </div>                    
+                   </div>
+                </div>
+             </div>
+          </div>
+      </div>
+      <div id="bottom_text">
+          <!-- Don't have an account? <a routerLink="/rgester" routerLinkActive="active-link" >Sign Up </a><br> -->
+          <!-- Remind <a href="">Password</a> -->
+      </div>
+
+  </div>
+</div>  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{summary}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          {{alertmsgSucc}}
+        </div>
+      </div>
+    </div>
+  </div>
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
+<p-toast [style]="{marginTop: '80px'}" position="top-left" key="tl"></p-toast>
+<p-toast [style]="{marginTop: '80px'}" position="top-center" key="tc"></p-toast>
+<p-toast [style]="{marginTop: '80px'}" styleClass="custom-toast" key="custom" position="bottom-center"></p-toast>
+<p-toast position="center" key="c" (onClose)="onReject()" [modal]="true" [baseZIndex]="5000">
+    <ng-template let-message pTemplate="message">
+        <div style="text-align: center">
+            <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i>
+            <h3>{{message.summary}}</h3>
+            <p>{{message.detail}}</p>
+        </div>
+        <div class="ui-g ui-fluid">
+            <div class="ui-g-6">
+                <button type="button" pButton (click)="onConfirm()" label="Yes" class="ui-button-success"></button>
+            </div>
+            <div class="ui-g-6">
+                <button type="button" pButton (click)="onReject()" label="No" class="ui-button-secondary"></button>
+            </div>
+        </div>
+    </ng-template>
+</p-toast>
+
+<!-- /.content-wrapper -->

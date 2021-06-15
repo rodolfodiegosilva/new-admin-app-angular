@@ -1,0 +1,244 @@
+<app-sdashheader></app-sdashheader>
+<div class="leftsidemenus">
+   <app-sdahshmenu></app-sdahshmenu>
+</div>
+<div id="page-wrapper">
+   <div class="content">
+      <div id="pers_inf">
+         <!--<a href="#" id="edit_profil">Edit</a>-->
+         <!--div id="pers_int_cont"><div id="pers_intitule">
+            <img src="../../assets/img/upload/avatar.png" alt=""/>
+            <h4 pers_inf>Kaizoku Kuma</h4>
+            <p>User id : 125206</p>
+            </div>
+            </div--> 
+         <!--<div class="shadow sh1"></div><div class="shadow sh2"></div>--> 
+         
+         <h3>Create Admin</h3>
+         <div id="status_inf" >
+            <div class="popup_dla">
+                    
+               <form [formGroup]="createAdmin" (ngSubmit)="adminCreates(createAdmin)" autocomplete="off">
+                   <input type="hidden" formControlName="admin_id" [(ngModel)]="Check_admin_id">
+                   <input type="hidden" formControlName="inst_id" [(ngModel)]="inst_id">
+               <div class="row">
+                  <div class="col-lg-4">
+                     <div class=" row">
+                        <!--div class="col-sm-10">
+                           <input class="form-control" type="text" placeholder="User Id:12115" readonly>
+                           </div-->
+                        <!-- <label for="example-text-input" class="col-sm-3 col-form-label">Text</label>-->
+                        <div class="col-sm-10">
+                           <input class="form-control" type="text" formControlName="admin_dname" placeholder="Display Name">
+                        </div>
+                        <div class="col-sm-10">
+                           <input class="form-control" type="text" formControlName="admin_fname" placeholder="First Name">
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-sm-10">
+                           <input class="form-control" type="text" formControlName="admin_mname" placeholder="Middle Name">
+                        </div>
+                     </div>
+                     <div class=" row">
+                        <div class="col-sm-10">
+                           <input class="form-control" type="text" formControlName="admin_lname" placeholder="Last Name">
+                        </div>
+                     </div>
+                     <div class=" row">
+                        <div class="col-sm-10">
+                            <input type="radio" formControlName="admin_gender" value="Male">&nbsp;&nbsp;Male  
+                            <input type="radio" formControlName="admin_gender" value="Female">&nbsp;&nbsp;Female
+                            <!-- <select class="language form-control" formControlName="admin_gender">                           
+                              <optgroup label="Gender">
+                                 <option value="Male">Male</option>
+                                 <option value="Female">Female</option>
+                              </optgroup>
+                           </select> -->
+                        </div>
+                     </div>
+                     <div class=" row">
+                        <div class="col-sm-10">
+
+                                <div class="">
+                                    <input type="date" class="form-contrl" placeholder="Date of birth" formControlName="admin_dob">
+<!--                                         
+                                        <input type="text" class="form-control" ngxDaterangepickerMd
+                                        [autoApply]="true"
+                                        [linkedCalendars]="options.linkedCalendars"
+                                        [singleDatePicker]="true"
+                                        applyLabel="Okay"[showDropdowns]="true"
+                                        [(ngModel)]="datepicselected"
+                                       placeholder="date of birth"
+                                        formControlName="admin_dob"/> -->
+                                        <!-- <input type="text"
+                           ngxDaterangepickerMd
+                           [isInvalidDate]="isInvalidDate"                           
+                           [locale]="{format: 'DD/MM/YYYY', firstDay: 1}"
+                           [(ngModel)]="selected"
+                           [singleDatePicker]="true"
+                           [autoApply]="true"/> -->
+                                        <!--span class="input-group-addon"><i class="fa fa-calendar" height="26"></i></span-->
+                                      </div>
+                        
+                                      
+                         
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-lg-4">
+                     <div class=" row">
+                     </div>
+                     <div class=" row">
+                     </div>
+                     <div class=" row">
+                        <div class="col-md-10">
+                           <input class="form-control" type="text" formControlName="admin_email" placeholder="Email">
+                           <div *ngIf="createAdmin.controls.admin_email.hasError('pattern')" class="text-danger " style="color:red;">enter valid email</div>
+                        </div>
+                     </div>
+                     <div class=" row">
+                        <div class="col-md-10">
+                           <input class="form-control" type="text" formControlName="admin_alt_email" placeholder="Email-2">
+                           <div *ngIf="createAdmin.controls.admin_alt_email.hasError('pattern')" class="text-danger " style="color:red;">enter valid email</div>
+
+                        </div>
+                     </div>
+                     <div class=" row">
+                        <div class="col-md-3">
+                           <!--input class="form-control" type="text" formControlName="admin_phone_cont_code" placeholder="+91"-->
+                           <div class="input-group" >
+                           <!-- <div class="input-group-addon">+</div> -->
+                           <select class="form-control color-filter" formControlName="admin_phone_cont_code" (ngModelChange)="enbalePhone($event,'1')">
+                              <!--<option [ngValue]="userInst.cntry_id" [selected]="userInst.cntry_id">{{userInst.cntry_name}}</option>-->
+                              <option value="">Code</option>
+                              <option *ngFor="let cnt of country" [ngValue]="cnt.cntry_id">{{cnt.cntry_isdcode+'&nbsp; '}} {{'&nbsp;&nbsp;&nbsp; '+cnt.cntry_name}}</option>
+                           </select>
+                        </div>
+                        </div>
+                        <div class="col-md-7">
+                           <input class="form-control" (keypress)="numberOnly($event)" type="text" formControlName="admin_phone" placeholder="phone" [readonly]="!phoneEnable_1">
+                           <div *ngIf="createAdmin.controls.admin_phone.hasError('minlength')" class="text-danger " style="color:red;">enter valid phone no </div>
+
+                        </div>
+                     </div>
+                     <div class=" row">
+                        <div class="col-md-3">
+                           <!--input class="form-control" type="text" formControlName="admin_alt_phone_cont_code" placeholder="+91"-->
+                           <select class="form-control color-filter" formControlName="admin_alt_phone_cont_code" (ngModelChange)="enbalePhone($event,'2')">
+                              <!--<option [ngValue]="userInst.cntry_id" [selected]="userInst.cntry_id">{{userInst.cntry_name}}</option>-->
+                              <option value="">Code</option>
+                              <option *ngFor="let cnt of country" [ngValue]="cnt.cntry_id">{{cnt.cntry_isdcode+'&nbsp; '}} {{'&nbsp;&nbsp;&nbsp; '+cnt.cntry_name}}</option>
+                           </select>
+                        </div>
+                        <div class="col-md-7">
+                           <input class="form-control" (keypress)="numberOnly($event)" type="text" formControlName="admin_alt_phone" placeholder="phone" [readonly]="!phoneEnable_2">
+                           <div *ngIf="createAdmin.controls.admin_alt_phone.hasError('minlength')" class="text-danger " style="color:red;">enter valid phone no </div>
+
+                        </div>
+                     </div>
+                     <div class=" row">
+                        <div class="col-md-3">
+                           <!--input class="form-control" type="text" formControlName="admin_fax_cnt_code" placeholder="+91"-->
+                           <select class="form-control color-filter" formControlName="admin_fax_cnt_code" (ngModelChange)="enbalePhone($event,'3')">
+                              <!--<option [ngValue]="userInst.cntry_id" [selected]="userInst.cntry_id">{{userInst.cntry_name}}</option>-->
+                              <option value="">Code</option>
+                              <option *ngFor="let cnt of country" value="cnt.cntry_id">{{cnt.cntry_isdcode+'&nbsp; '}} {{'&nbsp;&nbsp;&nbsp; '+cnt.cntry_name}}</option>
+                           </select>
+                        </div>
+                        <div class="col-md-7">
+                           <input class="form-control" type="text" formControlName="admin_fax" placeholder="Fax" [readonly]="!phoneEnable_3">
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-lg-4">
+                     <div class=" row">
+                        <div class="col-sm-11">
+                           <select class="form-control color-filter" formControlName="admin_country" (ngModelChange)="getStatesoncountry($event)">
+                              <!--option [ngValue]="uPro.cntry_id" >{{uPro.cntry_name}}</option-->
+                              <option value="">Select Country</option> 
+                              <option *ngFor="let cnt of country" value="{{cnt.cntry_id}}" >{{cnt.cntry_name}}</option>
+                           </select>
+                        </div>
+                     </div>
+                     <div class=" row">
+                        <div class="col-sm-11">
+                           <select class="form-control"  formControlName="admin_state" (ngModelChange)="getCitiesonstates($event)">
+                           <!--option [ngValue]="userInst.state_id" [selected]="userInst.state_id">{{userInst.state_name}}</option-->
+                           <option value="">Select State</option>
+                           <option *ngFor="let state of states" value="{{state.state_id}}">{{state.state_name}}</option>
+                           </select>
+                        </div>
+                     </div>
+                     <div class=" row">
+                        <div class="col-sm-11">
+                           <select class="form-control"  formControlName="admin_city" >
+                           <!--option [ngValue]="admpr.city_id" [selected]="admpr.city_id">{{admpr.city_name}} </option-->
+                           <option value="">Select City</option>
+                           <option *ngFor="let city of cities" value="{{city.city_id}}">{{city.city_name}}</option>
+                           </select>
+                        </div>
+                     </div>
+                     <div class=" row">
+                        <div class="col-md-11">
+                           <textarea class="form-control" formControlName="admin_address" placeholder="address" style=" height:150px;"></textarea>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="row usertype-createprofile">
+                  <div class="col-md-2">
+                        <input class="form-control" type="hidden" formControlName="admintype_id" [(ngModel)]="admintypeId">
+                     <!--select class="language form-control" formControlName="admintype_id">
+                        <optgroup label="Admin Type">
+                           <option *ngFor="let adtyp of adminTypes" [ngValue]="adtyp.admintyp_id">{{adtyp.admintyp_name}}</option>
+                        </optgroup>
+                     </select-->
+                  </div>
+                  <div class="col-md-5">
+                     <input class="form-control" type="text" formControlName="ac_user_email" (keyup)="CheckAdminAvailability($event.target.value,'ac_user_email')" placeholder="Register Email">          
+                     <span *ngIf="instAdminEmail==true" class="error-msg pull-right">{{instAdminEmailErrText}}</span>
+                  </div>
+                  <div class="col-md-2">
+                     <input class="form-control" type="hidden" formControlName="ac_user_phone" [(ngModel)]="acuserPhone" placeholder="Register Phone">          
+                  </div>
+               </div>
+               <div class="text-center">
+                   <button type="submit" class="bt btn-success">Create Gems Super Admin</button>
+                </div>
+                <!--div *ngIf="msgSuccLogin==true" class="alert {{alertmsgClass}}" >
+                        <strong>{{alertmsgSucc}}</strong>
+                    </div-->
+                    <div *ngIf="msgSuccLogin==true" class="alert alert-success" >
+                            <strong>Admin Created Successfully!</strong>
+                        </div>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
+
+<p-toast [style]="{marginTop: '80px'}" position="top-left" key="tl"></p-toast>
+
+<p-toast [style]="{marginTop: '80px'}" position="top-center" key="tc"></p-toast>
+
+<p-toast [style]="{marginTop: '80px'}" styleClass="custom-toast" key="custom" position="bottom-center"></p-toast>
+<p-toast position="center" key="c" (onClose)="onReject()" [modal]="true" [baseZIndex]="5000">
+    <ng-template let-message pTemplate="message">
+        <div style="text-align: center">
+            <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i>
+            <h3>{{message.summary}}</h3>
+            <p>{{message.detail}}</p>
+        </div>
+        <div class="ui-g ui-fluid">
+            <div class="ui-g-6">
+                <button type="button" pButton (click)="onConfirm()" label="Yes" class="ui-button-success"></button>
+            </div>
+            <div class="ui-g-6">
+                <button type="button" pButton (click)="onReject()" label="No" class="ui-button-secondary"></button>
+            </div>
+        </div>
+    </ng-template>
+</p-toast>

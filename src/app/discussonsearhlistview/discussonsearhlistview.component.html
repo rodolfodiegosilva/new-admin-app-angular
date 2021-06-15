@@ -1,0 +1,240 @@
+<!--verified  Modal start -->
+<!-- <div class="modal fade" id="verified" role="dialog">
+        <div class="modal-dialog vry_modal">
+           <div class="modal-content">
+              <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+                 <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+              </div>
+              <div class="modal-body modal_text">
+                 <p>Do you really want to verify these records? This process cannot be undone</p>
+              </div>
+              <div class="modal-footer modal_foot">
+                 <button type="submit" (click)="verifyQuestion()" class="bt btn-warning">verify</button>
+                 <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+              </div>
+           </div>
+        </div>
+     </div> -->
+     <!-- verified Modal end-->
+     <!--Blocked  Modal start -->
+     <div class="modal fade" id="block" role="dialog">
+        <div class="modal-dialog vry_modal">
+           <div class="modal-content">
+              <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+                 <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+              </div>
+              <div class="modal-body modal_text">
+                 <p>Do you really want to Block these records? This process cannot be undone</p>
+              </div>
+              <div class="modal-footer modal_foot">
+                 <button type="submit" class="bt btn-warning">Block</button>
+                 <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+              </div>
+           </div>
+        </div>
+     </div>
+     <!-- Blocked Modal end-->
+     <!--Delete  Modal start -->
+     <div class="modal fade" id="delete" role="dialog">
+        <div class="modal-dialog vry_modal">
+           <div class="modal-content">
+              <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+                 <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+              </div>
+              <div class="modal-body modal_text">
+                 <p>Do you really want to Delete these records? This process cannot be undone</p>
+              </div>
+              <div class="modal-footer modal_foot">
+                 <button type="submit" class="bt btn-warning">Delete</button>
+                 <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+              </div>
+           </div>
+        </div>
+     </div>
+     <!-- Delete Modal end-->
+     <app-sdashheader></app-sdashheader>
+     <div class="leftsidemenus">
+        <app-sdahshmenu></app-sdahshmenu>
+     </div>
+     <div id="page-wrapper">
+        <div class="content">
+           <!--====Question upload page start====-->
+           <section class="question_search question_sec selt_ht scroll-yes">
+              <div class="col-md-12">
+                 <div class="all_brd">
+                    <div class="question_title" id="pers_inf">
+                       <h3>Discusson Searh & List View</h3>
+                    </div>
+                    <div class="content_sub">                      
+                       <div class="top_btn">
+                          <button type="submit" class="bt btn-warning" (click)="multipleVerify()">Verify</button>                         
+                       </div>
+                       <div class="all_mian">
+                          <div class="table-responsive check_all">
+                             <table class="table table-bordered">
+                                <thead>
+                                   <tr>
+                                      <th>
+                                         <input type="checkbox" id="fruit1" name="checkbox" checked=
+                                            "checked"/>
+                                         <label for="fruit1">Lable</label>
+                                      </th>
+                                      <th>Topic Id</th>
+                                      <th>Topic Name</th>
+                                      <th>Topic Owner</th>
+                                      <th>Topic Created Date</th>
+                                      <th>Topic Verify</th>
+                                      <th>Topic Block</th>
+                                      <th>Topic Delete</th>                                     
+                                      <th>Discusson Id</th>
+                                      <th>Discussion Description</th>
+                                      <th>Discussion Owner</th>
+                                      <th>Disc. Created Date</th>
+                                      <th>Disc. Verify</th>
+                                      <th>Disc. Block</th>
+                                      <th>Disc. Delete</th>
+                                      <th>Disc. Follow Id</th>
+                                      <th>Disc. Follow Description</th>
+                                      <th>Disc. Follow Owner</th>
+                                      <th>Disc.Follow Date</th>
+                                      <th>Disc.flw.Delete</th>                                      
+                                   </tr>
+                                </thead>
+                                <tbody>
+                                   <tr class="success">
+                                      <td>Default/Value</td>
+                                      <td>
+                                         2531
+                                      </td>
+                                      <td>
+                                       <p-multiSelect [options]="TopicsList" [(ngModel)]="selectedTopicsList" (onChange)="getDiscussions()" [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
+                                      </td>
+                                      <td></td>    
+                                      <td class="date_pic">
+                                          <input type="text" ngxDaterangepickerMd  [(ngModel)]="distopic_created_date" 
+                                          [showCustomRangeLabel]="true"
+                                          [alwaysShowCalendars]="true"
+                                          [ranges]="ranges"
+                                          [linkedCalendars]="true"
+                                          [isInvalidDate] = "isInvalidDate"
+                                          [showClearButton]="true"
+                                          (change)="getDate($event,'distopic_created_date')"
+                                          [locale]="{applyLabel: 'ok', format: 'DD-MM-YYYY'}"
+                                          placeholder="Select Date...">
+                                       </td>                                   
+                                      <td><p-multiSelect [options]="TopicsVerifyList" [(ngModel)]="selectedTopicsVerifyList" (onChange)="getDiscussions()" [panelStyle]="{minWidth:'12em'}"></p-multiSelect></td>
+                                      <td><p-multiSelect [options]="TopicsBlockList" [(ngModel)]="selectedTopicsBlockList" (onChange)="getDiscussions()" [panelStyle]="{minWidth:'12em'}"></p-multiSelect></td>
+                                      <td><p-multiSelect [options]="TopicsDeleteList" [(ngModel)]="selectedTopicsDeleteList" (onChange)="getDiscussions()" [panelStyle]="{minWidth:'12em'}"></p-multiSelect></td>
+                                      <td></td>
+                                      <td>
+                                       <p-multiSelect [options]="DiscussionList" [(ngModel)]="selectedDiscussionList" (onChange)="getDiscussions()" [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
+                                      </td>
+                                      <td>                                        
+                                         <p-multiSelect [options]="verify" [(ngModel)]="selectedVerify"></p-multiSelect>
+                                      </td>
+                                      <td class="date_pic">
+                                          <input type="text" ngxDaterangepickerMd  [(ngModel)]="discus_date" [showCustomRangeLabel]="true"
+                                          [alwaysShowCalendars]="true"
+                                          [ranges]="ranges"
+                                          [linkedCalendars]="true"
+                                          [isInvalidDate] = "isInvalidDate"
+                                          [showClearButton]="true"
+                                          (change)="getDate($event,'discus_date')"
+                                          [locale]="{applyLabel: 'ok', format: 'YYYY-MM-DD'}"
+                                          placeholder="Select Date...">
+                                       </td> 
+                                      <td><p-multiSelect [options]="TopicsVerifyList" [(ngModel)]="selectedDiscVerifyList" (onChange)="getDiscussions()" [panelStyle]="{minWidth:'12em'}"></p-multiSelect></td>
+                                      <td><p-multiSelect [options]="TopicsBlockList" [(ngModel)]="selectedDiscBlockList" (onChange)="getDiscussions()" [panelStyle]="{minWidth:'12em'}"></p-multiSelect></td>
+                                      <td><p-multiSelect [options]="TopicsDeleteList" [(ngModel)]="selectedDiscDeleteList" (onChange)="getDiscussions()" [panelStyle]="{minWidth:'12em'}"></p-multiSelect></td>                                      
+                                      <td><input class="e2" name="e2"></td>
+                                      <td> 
+                                         <p-multiSelect [options]="verifyedby" [(ngModel)]="selectedVerifyedby"></p-multiSelect>
+                                      </td>
+                                      <td>                                        
+                                         <p-multiSelect [options]="block" [(ngModel)]="selectedBlocked"></p-multiSelect>
+                                      </td>                                    
+                                         <td class="date_pic">
+                                         <input type="text" ngxDaterangepickerMd  [(ngModel)]="discusn_date" [showCustomRangeLabel]="true"
+                                         [alwaysShowCalendars]="true"
+                                         [ranges]="ranges"
+                                         [linkedCalendars]="true"
+                                         [isInvalidDate] = "isInvalidDate"
+                                         [showClearButton]="true"
+                                         (change)="getDate($event,'discusn_date')"
+                                         [locale]="{applyLabel: 'ok', format: 'YYYY-MM-DD'}"
+                                         placeholder="Select Date...">
+                                      </td> 
+                                       <td><p-multiSelect [options]="TopicsDeleteList" [(ngModel)]="selectedDiscfDelList" (onChange)="getDiscussions()" [panelStyle]="{minWidth:'12em'}"></p-multiSelect></td>
+                                   </tr>
+                                   <!--tr-1-->
+                                   <tr class="info" *ngFor="let disc of discussions | angularPaginator: { itemsPerPage: itemsPerPage, currentPage: currentPage }; let i = index">
+                                      <td>
+                                         <input type="checkbox" id="fruit1" name="checkbox">
+                                         <input type="checkbox" id="check_{{i+1}}" value="{{disc.discus_id}}" (change)="getCheckedcontentValues(disc.discus_id,disc.distopic_id,disc.discusnflw_id,$event.target.checked)"/>
+                                         <label for="check_{{i+1}}">{{i+1}}</label>
+                                      </td>
+                                      <td routerLink='/discussiondetailedview/{{disc.discus_id}}' routerActive='active' target="_blank">{{disc.distopic_id}}</td>
+                                      <td routerLink='/discussiondetailedview/{{disc.discus_id}}' routerActive='active' target="_blank">{{disc.distopic_name}}</td>
+                                      <td routerLink='/discussiondetailedview/{{disc.discus_id}}' routerActive='active' target="_blank">{{disc.user_dname}}</td>
+                                      <td>{{disc.distopic_created_date}}</td>
+                                      <td>{{(disc.distopic_is_verified==0)?"No":"Yes"}}</td>
+                                      <td>{{(disc.distopic_is_blocked==0)?"No":"Yes"}}</td>                                     
+                                      <td>{{(disc.distopic_is_deleted==0)?"No":"Yes"}}</td>
+                                      <td routerLink='/discussiondetailedview/{{disc.discus_id}}' routerActive='active' target="_blank">{{disc.discus_id}}</td>
+                                      <td routerLink='/discussiondetailedview/{{disc.discus_id}}' routerActive='active' target="_blank">{{disc.discus_desc}}</td>                                     
+                                      <td>{{disc.user_dname}}</td>
+                                      <td>{{disc.discus_date}}</td>
+                                      <td>{{(disc.is_discus_verified==0)?"No":"Yes"}}</td>
+                                      <td>{{(disc.is_discus_blocked==0)?"No":"Yes"}}</td>                                     
+                                      <td>{{(disc.is_disc_del_by_admin==0)?"No":"Yes"}}</td>
+                                      <td>{{disc.discusnflw_id}}</td>                                     
+                                      <td>{{disc.discusn_desc}}</td>                                      
+                                      <td>{{disc.user_dname}}</td>  
+                                      <td>{{disc.discusn_date}}</td>                                   
+                                      <td>{{(disc.discusn_deletd==0)?"No":"Yes"}}</td>                                     
+                                   </tr>
+                                   <!--tr-2 end-->
+                                   <!--tr-1-->                                     
+                                </tbody>
+                             </table>
+                             <!-- <p-paginator [rows]="10" [totalRecords]="120" [rowsPerPageOptions]="[10,20,30]"></p-paginator> -->
+                             <app-angular-paginator (pageChange)="currentPage = $event" maxSize="5" ></app-angular-paginator>
+                             <select (change)="selectItemsperpage($event.target.value)">
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                                <option value="30">30</option>
+                                <option value="50">50</option>
+                             </select>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </section>
+        </div>
+     </div>
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
+<p-toast [style]="{marginTop: '80px'}" position="top-left" key="tl"></p-toast>
+<p-toast [style]="{marginTop: '80px'}" position="top-center" key="tc"></p-toast>
+<p-toast [style]="{marginTop: '80px'}" styleClass="custom-toast" key="custom" position="bottom-center"></p-toast>
+<p-toast position="center" key="c" (onClose)="onReject()" [modal]="true" [baseZIndex]="5000">
+    <ng-template let-message pTemplate="message">
+        <div style="text-align: center">
+            <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i>
+            <h3>{{message.summary}}</h3>
+            <p>{{message.detail}}</p>
+        </div>
+        <div class="ui-g ui-fluid">
+            <div class="ui-g-6">
+                <button type="button" pButton (click)="onConfirm()" label="Yes" class="ui-button-success"></button>
+            </div>
+            <div class="ui-g-6">
+                <button type="button" pButton (click)="onReject()" label="No" class="ui-button-secondary"></button>
+            </div>
+        </div>
+    </ng-template>
+</p-toast>
