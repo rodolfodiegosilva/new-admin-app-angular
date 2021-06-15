@@ -1,0 +1,198 @@
+.file_name {
+    margin: 0px  10px !important;
+}
+.file_name textarea.form-control {
+    height: 40px;
+}
+.file_name .col-md-12 {
+    padding: 3px 3px;
+}
+.m-lr-10 {
+    margin: 0px 10px;
+    
+}
+.fallback {
+    padding: 25px;
+}
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 80px;
+    height: 24px;
+  }
+  
+  .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  .error-msg {
+    margin-left: 0%;
+  }
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 25px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  #page-wrapper{
+    margin: 0px 0 0 250px;
+  }
+  .input-group-addon-new{
+    width: 8.5%;
+    background-color: #f1f3f6;
+    border: 1px solid #e4e5e7;
+    border-radius: 0px !important;
+    height: 36px;
+    padding-top: 7px;
+    font-weight: 400;
+    line-height: 1;
+    color: #555;
+    text-align: center;
+ }
+ .fix-add-button{
+    margin-top: 8px;
+    width: 0px;
+    margin-left: opx;
+    position: absolute;
+    left: 88%;
+    z-index: 1030;
+}
+  .editbutton{
+    display: none;
+}
+  .hoveruseredit:hover .editbutton{
+    display: block;
+  }
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(48px);
+    -ms-transform: translateX(48px);
+    transform: translateX(48px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+  /******* input group ********/
+.mb-3, .my-3 {
+    margin-bottom: 1rem!important;
+}
+.input-group {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-align: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    width: 100%;
+}
+.input-group-append, .input-group-prepend {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+.input-group>.input-group-append:last-child>.btn:not(:last-child):not(.dropdown-toggle), .input-group>.input-group-append:last-child>.input-group-text:not(:last-child), .input-group>.input-group-append:not(:last-child)>.btn, .input-group>.input-group-append:not(:last-child)>.input-group-text, .input-group>.input-group-prepend>.btn, .input-group>.input-group-prepend>.input-group-text {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.input-group-text {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: .375rem .75rem;
+    margin-bottom: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    text-align: center;
+    white-space: nowrap;
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+}
+
+.input-group>.custom-select:not(:first-child), .input-group>.form-control:not(:first-child) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.input-group>.custom-file, .input-group>.custom-select, .input-group>.form-control {
+    position: relative;
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    width: 1%;
+    margin-bottom: 0;
+}
+.form-control {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+button, input {
+    overflow: visible;
+}
+
+.input_group_box{display: flex;
+    border: 1px solid #e8788e;
+    border-radius: 6px;}
+.input_group_box > span.input-group-addon, .input_group_box .input-group-addon-new  {
+    width: 26%;
+    background: #e8788e !important;
+    padding: 7px 10px;
+    text-align: center;
+    color: #fff;
+    margin-bottom: -1px;
+    margin-left: -1px;
+    border-radius: 6px 0 0 6px !important;
+}
+.input_group_box .form-control, .input_group_box > .select_box_outer{width: 70%;
+    border: none;
+    border-radius: 0 6px 6px 0;
+    height: 36px;}
+  

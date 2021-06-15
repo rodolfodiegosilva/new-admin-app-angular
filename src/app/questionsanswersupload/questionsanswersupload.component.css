@@ -1,0 +1,20 @@
+ .wrong .ui-editor-container .ui-editor-toolbar {
+    background-color: #ffd9d9 !important;
+}
+.correct .ui-editor-container .ui-editor-toolbar {
+    background-color: #d8ffbf !important;
+}
+
+.question_sub{margin: 0px 15px;}
+.content_sub{height: 600px;}
+.question_sub{border:0px solid #ccc }
+
+.input_group_box .form-control, .input_group_box > .select_box_outer{width: 100%;
+    border: none;
+    border-radius: 0 6px 6px 0;
+    height: 34px;padding: 0px 10px; }
+
+ .pl-5{padding-left:5px !important; }
+ .pr-5{padding-right:5px !important; }   
+
+ .pr-5 .input_group_box .select_box_outer, .pl-5 .input_group_box .select_box_outer{padding: 0px 0px;  }

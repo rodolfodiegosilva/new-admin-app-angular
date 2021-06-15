@@ -1,0 +1,561 @@
+<app-sdashheader></app-sdashheader>
+<div class="leftsidemenus"><app-sdahshmenu></app-sdahshmenu></div>
+<div id="page-wrapper" style="margin-top:70px;">
+  <div class="content">
+      <div class="content-header">
+          <h2>SUPER ADMIN OBJECTS</h2>
+      </div>
+     
+         
+       
+  </div>
+
+<div class="row">
+      <div class="col-lg-12 ">
+          <!-- Social Media widget -->
+          <div class="social-media-inner">
+              <ul class="social-media clearfix">
+                  <li class="das_top_1 admin_bg1">
+                   <img src="../../assets/superadmin/gems-img/icons/top-user.png" alt="">
+                      <p>User</p>
+                     <div class="adm_cont count-number">{{userCount}}</div>
+                  </li>
+                 
+        <!--           <li class="das_top_1 admin_bg2">
+                   <img src="../../assets/superadmin/gems-img/icons/feedback.png" alt="">
+                      <p>Feedback</p>
+                     <div class="adm_cont count-number">2,035</div>
+                  </li>  --->
+                 
+                  <li class="das_top_1 admin_bg3">
+                   <img src="../../assets/superadmin/gems-img/icons/top-content.png" alt="">
+                      <p>Content</p>
+                     <div class="adm_cont count-number">{{contentCount}}</div>
+                  </li>
+             
+                  <li class="das_top_1 admin_bg4">
+                   <img src="../../assets/superadmin/gems-img/icons/quesion.png" alt="">
+                      <p>Question</p>
+                     <div class="adm_cont count-number">{{questionCount}}</div>
+                  </li>
+                   <li class="das_top_1 admin_bg1">
+                   <img src="../../assets/superadmin/gems-img/icons/top-user.png" alt="">
+                      <p>Partner</p>
+                     <div class="adm_cont count-number">{{partnerCount}}</div>
+                  </li>
+                 
+                  <li class="das_top_1 admin_bg5">
+                   <img src="../../assets/superadmin/gems-img/icons/mentor_rqst.png" alt="">
+                      <p>Mentor Requests</p>
+                     <div class="adm_cont count-number">{{mrequesteCount}}</div>
+                  </li>
+                 
+              </ul> <!-- /.social icon -->     
+          </div>
+  </div>
+ </div>
+
+
+
+<div class="admin_all">
+<div class="row m-b-15">
+    <div class="col-md-3" *ngIf="Check_admin_type==1">
+        <div class="admin_dtl">
+            <div class="icon l-amber"><img src="../../assets/superadmin/gems-img/icons/admin.png" alt=""></div>
+            <div class="col-in">
+                <h4>Admin</h4>
+                <small class="text-muted m-t-0">Sales Report</small>
+                 <div class="more_dash">
+                    <div class="dropdown">
+                      <a href="#dropdownMenuButton" data-toggle="dropdown">
+       <i class="hvr-buzz-out fa fa-chevron-down more"></i>
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" routerLink="/createadmin" routerLinkActive="active-link"> Create Admin </a>
+                        <!-- <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a> -->
+                      </div>
+  </div>
+  </div>                                       
+            </div>
+        </div>
+      </div>
+    <div class="col-md-3">
+        <div class="admin_dtl">
+            <div class="icon l-amber"><img src="../../assets/superadmin/gems-img/icons/mentor.png" alt=""></div>
+            <div class="col-in">
+                <h4>Institute</h4>
+                <small class="text-muted m-t-0">Sales Report</small>
+                  <a href=""><i class="hvr-buzz-out fa fa-chevron-down more"></i></a>
+                  <div class="more_dash">
+                    <div class="dropdown">
+                      <a href="#dropdownMenuButton" data-toggle="dropdown">
+       <i class="hvr-buzz-out fa fa-chevron-down more"></i>
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" routerLink="/instutesmanage" *ngIf="Check_admin_type==1" routerLinkActive="active-link"> Create/Update Institutes</a>
+                        <a class="dropdown-item" routerLink="/managegemsinstute" routerLinkActive="active-link">Manage Gems Institute </a>
+                        <!-- <a class="dropdown-item" href="#">Something else here</a> -->
+                      </div>
+  </div>
+  </div>
+            </div>
+        </div>
+      </div>
+          <div class="col-md-3">
+            <div class="admin_dtl">
+                <div class="icon l-amber"><img src="../../assets/superadmin/gems-img/icons/admin.png" alt=""></div>
+                <div class="col-in">
+                    <h4>User</h4>
+                    <small class="text-muted m-t-0">Sales Report</small>
+                     <div class="more_dash">
+                        <div class="dropdown">
+                          <a href="#dropdownMenuButton" data-toggle="dropdown">
+           <i class="hvr-buzz-out fa fa-chevron-down more"></i>
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" routerLink="/createuserprofile" *ngIf="Check_admin_type==1" routerLinkActive="active-link" >Create User</a>
+                            <a class="dropdown-item" routerLink="/manageuser" routerLinkActive="active-link">Manage User</a>
+                            <!-- <a class="dropdown-item" href="#">Something else here</a> -->
+                          </div>
+                      </div>
+                      </div>                                       
+                </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="admin_dtl">
+                <div class="icon l-amber"><img src="../../assets/superadmin/gems-img/icons/admin.png" alt=""></div>
+                <div class="col-in">
+                    <h4>Mentor</h4>
+                    <small class="text-muted m-t-0">Sales Report</small>
+                     <div class="more_dash">
+                        <div class="dropdown">
+                          <a href="#dropdownMenuButton" data-toggle="dropdown">
+           <i class="hvr-buzz-out fa fa-chevron-down more"></i>
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" routerLink="/mentorrequest" *ngIf="Check_admin_type==1" routerLinkActive="active-link" >Manage Mentor Request</a>
+                          </div>
+                      </div>
+                      </div>                                       
+                </div>
+            </div>
+          </div>
+
+           <div class="col-md-3">
+            <div class="admin_dtl">
+                <div class="icon l-amber"><img src="../../assets/superadmin/gems-img/icons/admin.png" alt=""></div>
+                <div class="col-in">
+                    <h4>Partner</h4>
+                    <small class="text-muted m-t-0">Sales Report</small>
+                     <div class="more_dash">
+                        <div class="dropdown">
+                          <a href="#dropdownMenuButton" data-toggle="dropdown">
+           <i class="hvr-buzz-out fa fa-chevron-down more"></i>
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" routerLink="/partnerrequest" *ngIf="Check_admin_type==1" routerLinkActive="active-link" >Manage Partner Request</a>
+                             <a class="dropdown-item" routerLink="/user-partner-request" *ngIf="Check_admin_type==1" routerLinkActive="active-link" >Assigned Student Request</a>
+                          </div>
+                      </div>
+                      </div>                                       
+                </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+              <div class="admin_dtl">
+                  <div class="icon l-amber"><img src="../../assets/superadmin/gems-img/icons/classification.png" alt=""></div>
+                  <div class="col-in">
+                      <h4>Classification</h4>
+                      <small class="text-muted m-t-0">Sales Report</small>
+                       <div class="more_dash">
+                          <div class="dropdown">
+                            <a href="#dropdownMenuButton" data-toggle="dropdown">
+             <i class="hvr-buzz-out fa fa-chevron-down more"></i>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <a class="dropdown-item" routerLink="/classification" routerLinkActive="active-link" > Classification Search List </a>
+                              <a class="dropdown-item" routerLink="/course" routerLinkActive="active-link" > Course </a>
+                              <a class="dropdown-item" routerLink="/classes" routerLinkActive="active-link" > Class </a>
+                              <a class="dropdown-item" routerLink="/subjects" routerLinkActive="active-link" > Subject </a>
+                              <a class="dropdown-item" routerLink="/lessons" routerLinkActive="active-link" > Lesson </a>
+                            
+                            </div>
+                        </div>
+                        </div>                                       
+                  </div>
+              </div>
+            </div>
+
+          <div class="col-md-3">
+            <div class="admin_dtl">
+                <div class="icon l-amber"><img src="../../assets/superadmin/gems-img/icons/content.png" alt=""></div>
+                <div class="col-in">
+                    <h4>Content</h4>
+                    <small class="text-muted m-t-0">Sales Report</small>
+                     <div class="more_dash">
+                        <div class="dropdown">
+                          <a href="#dropdownMenuButton" data-toggle="dropdown">
+           <i class="hvr-buzz-out fa fa-chevron-down more"></i>
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" routerLink="/contentupload" routerLinkActive="active-link" > Upload Content </a>
+                            <a class="dropdown-item" routerLink="/contentsearch" routerLinkActive="active-link"> Search Content</a>
+                           
+                          </div>
+                      </div>
+                      </div>                                       
+                </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="admin_dtl">
+                <div class="icon l-amber"><img src="../../assets/superadmin/gems-img/icons/admin.png" alt=""></div>
+                <div class="col-in">
+                    <h4>Question</h4>
+                    <small class="text-muted m-t-0">Sales Report</small>
+                     <div class="more_dash">
+                        <div class="dropdown">
+                          <a href="#dropdownMenuButton" data-toggle="dropdown">
+           <i class="hvr-buzz-out fa fa-chevron-down more"></i>
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" routerLink="/questionsearch" routerLinkActive="active-link" > Questions Search List</a>
+                            <a class="dropdown-item" routerLink="/questiondetailedview" routerLinkActive="active-link"> Questions Detailed View</a>
+                     <!--       <a class="dropdown-item"routerLink="/manageuser" routerLinkActive="active-link">Questions Manage View </a>  -->
+                            <a class="dropdown-item" routerLink="/questionanswerupload" routerLinkActive="active-link">Questions Upload </a>
+                          </div>
+                      </div>
+                      </div>                                       
+                </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="admin_dtl">
+                <div class="icon l-amber">
+                  <img src="../../assets/superadmin/gems-img/icons/discurssion.png" alt="">
+                </div>
+                <div class="col-in">
+                    <h4> Discussion</h4>
+                    <small class="text-muted m-t-0">Sales Report</small>
+                     <div class="more_dash">
+                        <div class="dropdown">
+                          <a href="#dropdownMenuButton" data-toggle="dropdown">
+                           <i class="hvr-buzz-out fa fa-chevron-down more"></i>
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" routerLink="/discussionsearchpage" routerLinkActive="active-link" > Discussion Search List</a>
+                  <!--          <a class="dropdown-item" routerLink="/manageuser" *ngIf="Check_admin_type==1" routerLinkActive="active-link"> Discussion Deatailed View </a>  -->
+                           
+                          </div>
+                      </div>
+                      </div>                                       
+                </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="admin_dtl">
+                <div class="icon l-amber"><img src="../../assets/superadmin/gems-img/icons/test.png" alt=""></div>
+                <div class="col-in">
+                    <h4>Test</h4>
+                    <small class="text-muted m-t-0">Sales Report</small>
+                     <div class="more_dash">
+                        <div class="dropdown">
+                          <a href="#dropdownMenuButton" data-toggle="dropdown">
+           <i class="hvr-buzz-out fa fa-chevron-down more"></i>
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" routerLink="/createtest" routerLinkActive="active-link" > Create Test </a>
+                  <!--          <a class="dropdown-item" routerLink="/manageuser" routerLinkActive="active-link"> Attend Test</a> -->
+                            <a class="dropdown-item" routerLink="/SearchandListTests" routerLinkActive="active-link" > Search and List Tests </a>
+                     <!---       <a class="dropdown-item" routerLink="/manageuser" routerLinkActive="active-link"> Test Detailed View </a>  --->
+                          </div>
+                      </div>
+                      </div>                                       
+                </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="admin_dtl">
+                <div class="icon l-amber"><img src="../../assets/superadmin/gems-img/icons/test.png" alt=""></div>
+                <div class="col-in">
+                    <h4>Meeting</h4>
+                    <small class="text-muted m-t-0">Sales Report</small>
+                     <div class="more_dash">
+                        <div class="dropdown">
+                          <a href="#dropdownMenuButton" data-toggle="dropdown">
+           <i class="hvr-buzz-out fa fa-chevron-down more"></i>
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" routerLink="/createmeet" routerLinkActive="active-link" > Create Meeting </a>
+                 <!---           <a class="dropdown-item" routerLink="" routerLinkActive="active-link"> Attend Meeting</a>  -->
+                            <a class="dropdown-item" routerLink="/manageMeet" routerLinkActive="active-link" > Meeting Search List </a>
+                     <!---       <a class="dropdown-item" routerLink="" routerLinkActive="active-link"> Meeting Detailed View </a> -->
+                          </div>
+                      </div>
+                      </div>                                       
+                </div>
+            </div>
+          </div>
+
+          
+            <div class="col-md-3">
+                <div class="admin_dtl">
+                    <div class="icon l-amber"><img src="../../assets/superadmin/gems-img/icons/notification.png" alt=""></div>
+                    <div class="col-in">
+                        <h4> Notification </h4>
+                        <small class="text-muted m-t-0">Sales Report</small>
+                         <div class="more_dash">
+                            <div class="dropdown">
+                              <a href="#dropdownMenuButton" data-toggle="dropdown">
+                               <i class="hvr-buzz-out fa fa-chevron-down more"></i>
+                              </a>
+                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" routerLink="/createnotification" routerLinkActive="active-link" > Create Notification </a>
+                                <a class="dropdown-item" routerLink="/manageuser" routerLinkActive="active-link"> Notification Search List</a> 
+                               
+                              </div>
+                          </div>
+                          </div>                                       
+                    </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                  <div class="admin_dtl">
+                      <div class="icon l-amber"><img src="../../assets/superadmin/gems-img/icons/timeline.png" alt=""></div>
+                      <div class="col-in">
+                          <h4> Timeline </h4>
+                          <small class="text-muted m-t-0">Sales Report</small>
+                           <div class="more_dash">
+                              <div class="dropdown">
+                                <a href="#dropdownMenuButton" data-toggle="dropdown">
+                                 <i class="hvr-buzz-out fa fa-chevron-down more"></i>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                  <a class="dropdown-item" routerLink="/timeline" routerLinkActive="active-link" > Timeline Search List </a>
+                                  
+                                  
+                                </div>
+                            </div>
+                            </div>                                       
+                      </div>
+                  </div>
+                </div>
+   <!--             <div class="col-md-3">
+                    <div class="admin_dtl">
+                        <div class="icon l-amber"><img src="../../assets/superadmin/gems-img/icons/eported.png" alt=""></div>
+                        <div class="col-in">
+                            <h4> Feedback </h4>
+                            <small class="text-muted m-t-0">Sales Report</small>
+                             <div class="more_dash">
+                                <div class="dropdown">
+                                  <a href="#dropdownMenuButton" data-toggle="dropdown">
+                                   <i class="hvr-buzz-out fa fa-chevron-down more"></i>
+                                  </a>
+                                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" routerLink="/createuserprofile" routerLinkActive="active-link" > Feedback Search List </a>
+                                    </div>
+                              </div>
+                              </div>                                       
+                        </div>
+                    </div>
+                  </div>  --->
+               
+                     
+                    
+          <!--div class="col-md-3">
+            <div class="admin_dtl">
+                <div class="icon l-amber"><img src="../../assets/superadmin/gems-img/icons/user.png"></div>
+                <div class="col-in">
+                    <h4>User</h4>
+                    <small class="text-muted m-t-0">Sales Report</small>
+                      <a href=""><i class="hvr-buzz-out fa fa-chevron-down more"></i></a>
+                      <div class="more_dash">
+                        <div class="dropdown">
+                          <a href="#dropdownMenuButton" data-toggle="dropdown">
+           <i class="hvr-buzz-out fa fa-chevron-down more"></i>
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                          </div>
+      </div>
+      </div>
+                </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="admin_dtl">
+                <div class="icon l-amber"><img src="../../assets/superadmin/gems-img/icons/classification.png" alt=""></div>
+                <div class="col-in">
+                    <h4>Classification</h4>
+                    <small class="text-muted m-t-0">Sales Report</small>
+                      <a href=""><i class="hvr-buzz-out fa fa-chevron-down more"></i></a>
+                      <div class="more_dash">
+                        <div class="dropdown">
+                          <a href="#dropdownMenuButton" data-toggle="dropdown">
+           <i class="hvr-buzz-out fa fa-chevron-down more"></i>
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                          </div>
+      </div>
+      </div>
+                </div>
+            </div>
+          </div>
+      </div>
+      
+      <div class="row m-b-15">
+          <div class="col-md-3">
+            <div class="admin_dtl">
+                <div class="icon l-amber"><img src="../../assets/superadmin/gems-img/icons/notification.png" alt="">
+                  </div>
+                <div class="col-in">
+                    <h4>Notification</h4>
+                    <small class="text-muted m-t-0">Sales Report</small>
+                      <a href=""><i class="hvr-buzz-out fa fa-chevron-down more"></i></a>
+                      <div class="more_dash">
+                        <div class="dropdown">
+                          <a href="#dropdownMenuButton" data-toggle="dropdown">
+           <i class="hvr-buzz-out fa fa-chevron-down more"></i>
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                          </div>
+      </div>
+      </div>
+                </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="admin_dtl">
+                <div class="icon l-amber"><img src="../../assets/superadmin/gems-img/icons/commercial.png" alt="">
+                  </div>
+                <div class="col-in">
+                    <h4>Commercial</h4>
+                    <small class="text-muted m-t-0">Sales Report</small>
+                      <a href=""><i class="hvr-buzz-out fa fa-chevron-down more"></i></a>
+                      <div class="more_dash">
+                        <div class="dropdown">
+                          <a href="#dropdownMenuButton" data-toggle="dropdown">
+           <i class="hvr-buzz-out fa fa-chevron-down more"></i>
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                          </div>
+      </div>
+      </div>
+                </div>
+            </div>
+          </div>
+          
+          <div class="col-md-3">
+            <div class="admin_dtl">
+                <div class="icon l-amber"><img src="../../assets/superadmin/gems-img/icons/rewords.png" alt=""></div>
+                <div class="col-in">
+                    <h4>Rewards</h4>
+                    <small class="text-muted m-t-0">Sales Report</small>
+                      <a href=""><i class="hvr-buzz-out fa fa-chevron-down more"></i></a>
+                      <div class="more_dash">
+                        <div class="dropdown">
+                          <a href="#dropdownMenuButton" data-toggle="dropdown">
+           <i class="hvr-buzz-out fa fa-chevron-down more"></i>
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                          </div>
+      </div>
+      </div>
+                </div>
+            </div>
+          </div>
+          
+          <div class="col-md-3">
+            <div class="admin_dtl">
+                <div class="icon l-amber"><img src="../../assets/superadmin/gems-img/icons/referals.png" alt=""></div>
+                <div class="col-in">
+                    <h4>Referals</h4>
+                    <small class="text-muted m-t-0">Sales Report</small>
+                      <a href=""><i class="hvr-buzz-out fa fa-chevron-down more"></i></a>
+                      <div class="more_dash">
+                        <div class="dropdown">
+                          <a href="#dropdownMenuButton" data-toggle="dropdown">
+           <i class="hvr-buzz-out fa fa-chevron-down more"></i>
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                          </div>
+      </div>
+      </div>
+                </div>
+            </div>
+          </div>
+      </div>
+      
+      <div class="row m-b-15">
+          <div class="col-md-3">
+            <div class="admin_dtl">
+                <div class="icon l-amber"><img src="../../assets/superadmin/gems-img/icons/eported.png" alt="">
+                  </div>
+                <div class="col-in">
+                    <h4>Reported</h4>
+                    <small class="text-muted m-t-0">Sales Report</small>
+                      <a href=""><i class="hvr-buzz-out fa fa-chevron-down more"></i></a>
+                      <div class="more_dash">
+                        <div class="dropdown">
+                          <a href="#dropdownMenuButton" data-toggle="dropdown">
+           <i class="hvr-buzz-out fa fa-chevron-down more"></i>
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                          </div>
+      </div>
+      </div>
+                </div>
+            </div>
+          </div>
+          
+          <div class="col-md-3">
+            <div class="admin_dtl">
+                <div class="icon l-amber"><img src="../../assets/superadmin/gems-img/icons/contact-us.png" alt="">
+                  </div>
+                <div class="col-in">
+                    <h4>Contact Us</h4>
+                    <small class="text-muted m-t-0">Sales Report</small>
+                      <a href=""><i class="hvr-buzz-out fa fa-chevron-down more"></i></a>
+                      <div class="more_dash">
+                        <div class="dropdown">
+                          <a href="#dropdownMenuButton" data-toggle="dropdown">
+           <i class="hvr-buzz-out fa fa-chevron-down more"></i>
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                          </div>
+      </div>
+      </div>
+                </div>
+            </div>
+          </div>
+      </div-->
+  </div>
+</div>
+<app-sadminfooter></app-sadminfooter>

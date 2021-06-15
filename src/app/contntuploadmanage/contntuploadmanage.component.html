@@ -1,0 +1,1655 @@
+<div class="modal fade" #courseModel id="courseModel" role="dialog">
+    <div class="modal-dialog vry_modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4><i class="fa fa-info-circle"></i> Add a new course</h4>
+            </div>
+            <div class="modal-body modal_text">
+                <form [formGroup]="createCourseForm" (ngSubmit)="courseCreateForm()">
+                    <input type="hidden" formControlName="inst_id" [(ngModel)]="inst_id">
+                    <div class="col-md-12">
+                            <label>Course Shortname</label>
+                        <input type="text" placeholder="course Short name" formControlName="course_sname">
+                        <ng-container *ngIf="courseSubbmit&&createCourseForm.controls.course_sname.errors">
+                                <p style="color: red"
+                                    *ngIf="courseSubbmit&&createCourseForm.controls.course_sname.errors.required">This field
+                                    is required!</p>
+                            </ng-container>
+                    </div>
+                    <div class="col-md-12">
+                        <label>Course Fullname</label>
+                        <input type="text" placeholder="course Full name" formControlName="course_fname" [(ngModel)]="course_value"  (keyup)="onCourseCheck($event.target.value)">
+                        <ng-container *ngIf="courseSubbmit&&createCourseForm.controls.course_fname.errors">
+                                <p style="color: red"
+                                    *ngIf="courseSubbmit&&createCourseForm.controls.course_fname.errors.required">This field
+                                    is required!</p>
+                            </ng-container>
+                            <p style="color: red" *ngIf="!checkcourse">This course is already exist!</p>
+                    </div>
+                    <!-- <div class="col-md-12">
+                        <label>Course Logo</label>
+                        <input type="file" (change)="handleClsfLogo($event.target.files,'course')" formControlName="course_logo" accept="image/*">
+                    </div> -->
+                    <div class="col-md-12">
+                            <ng-select [items]="crsGroup" [searchable]="false" bindLabel="course_group_name"
+                            bindValue="crs_group_id" placeholder="Select Course" formControlName="crs_search_id"
+                            required>
+                        </ng-select>
+                        <!-- <select class="form-control" formControlName="crs_search_id">
+                            <option value="">Select Group</option>
+                            <option *ngFor="let crg of crsGroup" value="{{crg.crs_group_id}}">{{crg.course_group_name}}</option>
+                        </select> -->
+                        <ng-container *ngIf="courseSubbmit&&createCourseForm.controls.crs_search_id.errors">
+                                <p style="color: red"
+                                    *ngIf="courseSubbmit&&createCourseForm.controls.crs_search_id.errors.required">This field
+                                    is required!</p>
+                            </ng-container>
+                    </div>
+                    <div class="col-md-12">
+                        <button type="submit" class="bt btn-warning">Create</button>
+                        <a  class="bt btn-info" data-dismiss="modal">Close</a>
+                    </div>
+                </form>
+                <!-- <p> {{course_value}} Do you really want to verify these records? This process cannot be undone</p> -->
+            </div>
+            <div class="modal-footer modal_foot">
+                <!-- <button type="submit" class="bt btn-warning">verify</button> -->
+            </div>
+        </div>
+    </div>
+</div>   
+<div class="modal fade" #courseModeln id="courseModeln" role="dialog">
+        <div class="modal-dialog vry_modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4><i class="fa fa-info-circle"></i> Add a new course</h4>
+                </div>
+                <div class="modal-body modal_text">
+                    <form [formGroup]="createCourseFormn" (ngSubmit)="courseCreateFormn()">
+                        <input type="hidden" formControlName="inst_id" [(ngModel)]="inst_id">
+                        <div class="col-md-12">
+                                <label>Course Shortname</label>
+                            <input type="text" placeholder="course Short name" formControlName="course_sname">
+                            <ng-container *ngIf="courseSubbmitn&&createCourseFormn.controls.course_sname.errors">
+                                    <p style="color: red"
+                                        *ngIf="courseSubbmitn&&createCourseFormn.controls.course_sname.errors.required">This field
+                                        is required!</p>
+                                </ng-container>
+                        </div>
+                        <div class="col-md-12">
+                            <label>Course Fullname</label>
+                            <input type="text" placeholder="course Full name" formControlName="course_fname" [(ngModel)]="course_valuen"(keyup)="onCourseCheck($event.target.value)">
+                            <ng-container *ngIf="courseSubbmitn&&createCourseFormn.controls.course_fname.errors">
+                                <p style="color: red"
+                                    *ngIf="courseSubbmitn&&createCourseFormn.controls.course_fname.errors.required">This field
+                                    is required!</p>
+                            </ng-container>
+                            <p style="color: red" *ngIf="!checkcoursen">This course is already exist!</p>
+                        </div>
+                        <!-- <div class="col-md-12">
+                            <label>Course Logo</label>
+                            <input type="file" (change)="handleClsfLogo($event.target.files,'course')" formControlName="course_logo" accept="image/*">
+                        </div> -->
+                        <div class="col-md-12">
+                            <!-- <select class="form-control" formControlName="crs_search_id">
+                                <option value="">Select Group</option>
+                                <option *ngFor="let crg of crsGroup" value="{{crg.crs_group_id}}">{{crg.course_group_name}}</option>
+                            </select> -->
+                            <ng-select [items]="crsGroup" [searchable]="false" bindLabel="course_group_name"
+                            bindValue="crs_group_id" placeholder="Select Course" formControlName="crs_search_id"
+                            required>
+                        </ng-select><ng-container *ngIf="courseSubbmitn&&createCourseFormn.controls.crs_search_id.errors">
+                            <p style="color: red"
+                                *ngIf="courseSubbmitn&&createCourseFormn.controls.crs_search_id.errors.required">This field
+                                is required!</p>
+                        </ng-container>
+                        </div>
+                        <div class="col-md-12">
+                            <button type="submit" class="bt btn-warning">Create</button>
+                            <a  class="bt btn-info" data-dismiss="modal">Close</a>
+                        </div>
+                    </form>
+                    <!-- <p> {{course_value}} Do you really want to verify these records? This process cannot be undone</p> -->
+                </div>
+                <div class="modal-footer modal_foot">
+                    <!-- <button type="submit" class="bt btn-warning">verify</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="modal fade" #classModeln id="classModeln" role="dialog">
+        <div class="modal-dialog vry_modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4><i class="fa fa-info-circle"></i> Add a new class</h4>
+                </div>
+                <div class="modal-body modal_text">
+                    <form [formGroup]="createClassFormn" (ngSubmit)="classCreateFormn()">
+                        <input type="hidden" formControlName="inst_id" [(ngModel)]="inst_id">
+                        <div class="col-md-12">
+                                <label>Class Shortname</label>
+                            <input type="text" placeholder="Class Short name" formControlName="class_sname">
+                            <ng-container *ngIf="classSubbmitn&&createClassFormn.controls.class_sname.errors">
+                                    <p style="color: red"
+                                        *ngIf="classSubbmitn&&createClassFormn.controls.class_sname.errors.required">This field is
+                                        required!</p>
+                                </ng-container>
+                        </div>
+                        <div class="col-md-12">
+                            <label>Class Fullname</label>
+                            <input type="text" placeholder="Class Full name" formControlName="class_fname" [(ngModel)]="class_valuen" (keyup)="onClassCheck($event.target.value)">
+                            <ng-container *ngIf="classSubbmitn&&createClassFormn.controls.class_fname.errors">
+                                    <p style="color: red"
+                                        *ngIf="classSubbmitn&&createClassFormn.controls.class_fname.errors.required">This field is
+                                        required!</p>
+                                </ng-container>
+                                <p style="color: red" *ngIf="!checkclassn">This class is already exist!</p>
+                        </div>
+                        <!-- <div class="col-md-12">
+                            <label>Course Logo</label>
+                            <input type="file" (change)="handleClsfLogo($event.target.files,'course')" formControlName="course_logo" accept="image/*">
+                        </div> -->                       
+                        <div class="col-md-12">
+                            <button type="submit" class="bt btn-warning">Create</button>
+                            <a class="bt btn-info" data-dismiss="modal">Close</a>
+                        </div>
+                    </form>
+                    <!-- <p> {{course_value}} Do you really want to verify these records? This process cannot be undone</p> -->
+                </div>
+                <div class="modal-footer modal_foot">
+                    <!-- <button type="submit" class="bt btn-warning">verify</button> -->
+                </div>
+            </div>
+        </div>
+    </div>   
+    <div class="modal fade" #classModel id="classModel" role="dialog">
+            <div class="modal-dialog vry_modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4><i class="fa fa-info-circle"></i>Add a new class</h4>
+                    </div>
+                    <div class="modal-body modal_text">
+                        <form [formGroup]="createClassForm" (ngSubmit)="classCreateForm()">
+                            <input type="hidden" formControlName="inst_id" [(ngModel)]="inst_id">
+                            <div class="col-md-12">
+                                    <label>Class Shortname</label>
+                                <input type="text" placeholder="Class Short name" formControlName="class_sname">
+
+                        <ng-container *ngIf="classSubbmit&&createClassForm.controls.class_sname.errors">
+                                <p style="color: red"
+                                    *ngIf="classSubbmit&&createClassForm.controls.class_sname.errors.required">This field is
+                                    required!</p>
+                            </ng-container>
+                            </div>
+                            <div class="col-md-12">
+                                <label>Class Fullname</label>
+                                <input type="text" placeholder="Class Full name" formControlName="class_fname" [(ngModel)]="class_value"
+                                (keyup)="onClassCheck($event.target.value)">
+                            <ng-container *ngIf="classSubbmit&&createClassForm.controls.class_fname.errors">
+                                <p style="color: red"
+                                    *ngIf="classSubbmit&&createClassForm.controls.class_fname.errors.required">This field is
+                                    required!</p>
+                            </ng-container>
+                            <p style="color: red" *ngIf="!checkclass">This class is already exist!</p>
+                            </div>
+                            <!-- <div class="col-md-12">
+                                <label>Course Logo</label>
+                                <input type="file" (change)="handleClsfLogo($event.target.files,'course')" formControlName="course_logo" accept="image/*">
+                            </div> -->                       
+                            <div class="col-md-12">
+                                <button type="submit" class="bt btn-warning">Create</button>
+                                <a class="bt btn-info" data-dismiss="modal">Close</a>
+                            </div>
+                        </form>
+                        <!-- <p> {{course_value}} Do you really want to verify these records? This process cannot be undone</p> -->
+                    </div>
+                    <div class="modal-footer modal_foot">
+                        <!-- <button type="submit" class="bt btn-warning">verify</button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="modal fade" #subjectModel id="subjectModel" role="dialog">
+            <div class="modal-dialog vry_modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4><i class="fa fa-info-circle"></i> Add a new subject</h4>
+                    </div>
+                    <div class="modal-body modal_text">
+                        <form [formGroup]="createSubjectForm" (ngSubmit)="subjCreateForm()">
+                            <input type="hidden" formControlName="inst_id" [(ngModel)]="inst_id">
+                            <div class="col-md-12">
+                                    <label>Subject Shortname</label>
+                                <input type="text" placeholder="Class Short name" formControlName="subject_sname">
+                                <ng-container *ngIf="subjectSubbmit&&createSubjectForm.controls.subject_sname.errors">
+                                    <p style="color: red"
+                                        *ngIf="subjectSubbmit&&createSubjectForm.controls.subject_sname.errors.required">This
+                                        field is required!</p>
+                                </ng-container>
+                            </div>
+                            <div class="col-md-12">
+                                <label>Subject Fullname</label>
+                                <input type="text" placeholder="Class Full name" formControlName="subject_fname" [(ngModel)]="subject_value"
+                                (keyup)="onSubjectCheck($event.target.value)">
+                            <ng-container *ngIf="subjectSubbmit&&createSubjectForm.controls.subject_fname.errors">
+                                <p style="color: red"
+                                    *ngIf="subjectSubbmit&&createSubjectForm.controls.subject_fname.errors.required">This
+                                    field is required!</p>
+                            </ng-container>
+                            <p style="color: red" *ngIf="!checksubject">This subject is already exist!</p>
+                            </div>
+                            <!-- <div class="col-md-12">
+                                <label>Course Logo</label>
+                                <input type="file" (change)="handleClsfLogo($event.target.files,'course')" formControlName="course_logo" accept="image/*">
+                            </div> -->  
+                            <div class="col-md-12">
+                                    <ng-select [items]="subGroup" [searchable]="false" bindLabel="sub_group_name"
+                                        bindValue="sub_grp_id" placeholder="Select Group" formControlName="search_id" required>
+                                    </ng-select>
+                                    <ng-container *ngIf="subjectSubbmit&&createSubjectForm.controls.search_id.errors">
+                                        <p style="color: red"
+                                            *ngIf="subjectSubbmit&&createSubjectForm.controls.search_id.errors.required">This
+                                            field is required!</p>
+                                    </ng-container>
+                                <!-- <select class="form-control" formControlName="search_id">
+                                    <option value="">Subject Group</option>
+                                    <option *ngFor="let sug of subGroup" value="{{sug.sub_grp_id}}">{{sug.sub_group_name}}</option>
+                                </select> -->
+                            </div>
+                            <div class="col-md-12">
+                                <button type="submit" class="bt btn-warning">Create</button>
+                                <a type="submit" class="bt btn-info" data-dismiss="modal">Close</a>
+                            </div>
+                        </form>
+                        <!-- <p> {{course_value}} Do you really want to verify these records? This process cannot be undone</p> -->
+                    </div>
+                    <div class="modal-footer modal_foot">
+                        <!-- <button type="submit" class="bt btn-warning">verify</button> -->
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <div class="modal fade" #subjectModeln id="subjectModeln" role="dialog">
+                <div class="modal-dialog vry_modal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4><i class="fa fa-info-circle"></i>Add a new subject</h4>
+                        </div>
+                        <div class="modal-body modal_text">
+                            <form [formGroup]="createSubjectFormn" (ngSubmit)="subjCreateFormn()">
+                                <input type="hidden" formControlName="inst_id" [(ngModel)]="inst_id">
+                                <div class="col-md-12">
+                                        <label>Subject Shortname</label>
+                                    <input type="text" placeholder="Class Short name" formControlName="subject_sname">
+                                    <ng-container *ngIf="subjectSubbmitn&&createSubjectFormn.controls.subject_sname.errors">
+                                        <p style="color: red"
+                                            *ngIf="subjectSubbmitn&&createSubjectFormn.controls.subject_sname.errors.required">This
+                                            field is required!</p>
+                                    </ng-container>
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Subject Fullname</label>
+                                    <input type="text" placeholder="Class Full name" formControlName="subject_fname" [(ngModel)]="subject_valuen"(keyup)="onSubjectCheck($event.target.value)">
+
+                                    <ng-container *ngIf="subjectSubbmitn&&createSubjectFormn.controls.subject_fname.errors">
+                                        <p style="color: red"
+                                            *ngIf="subjectSubbmitn&&createSubjectFormn.controls.subject_fname.errors.required">This
+                                            field is required!</p>
+                                    </ng-container>
+                                    <p style="color: red" *ngIf="!checksubjectn">This subject is already exist!</p>
+                                </div>
+                                <!-- <div class="col-md-12">
+                                    <label>Course Logo</label>
+                                    <input type="file" (change)="handleClsfLogo($event.target.files,'course')" formControlName="course_logo" accept="image/*">
+                                </div> -->  
+                                <div class="col-md-12">
+                                    <!-- <select class="form-control" formControlName="search_id">
+                                        <option value="">Subject Group</option>
+                                        <option *ngFor="let sug of subGroup" value="{{sug.sub_grp_id}}">{{sug.sub_group_name}}</option>
+                                    </select> -->
+                            <ng-select [items]="subGroup" [searchable]="false" bindLabel="sub_group_name"
+                            bindValue="sub_grp_id" placeholder="Select Group" formControlName="search_id" required>
+                        </ng-select><ng-container *ngIf="subjectSubbmitn&&createSubjectFormn.controls.search_id.errors">
+                                <p style="color: red"
+                                    *ngIf="subjectSubbmitn&&createSubjectFormn.controls.search_id.errors.required">This
+                                    field is required!</p>
+                            </ng-container>
+                                </div>
+                                <div class="col-md-12">
+                                    <button type="submit" class="bt btn-warning">Create</button>
+                                    <a  class="bt btn-info" data-dismiss="modal">Close</a>
+                                </div>
+                            </form>
+                            <!-- <p> {{course_value}} Do you really want to verify these records? This process cannot be undone</p> -->
+                        </div>
+                        <div class="modal-footer modal_foot">
+                            <!-- <button type="submit" class="bt btn-warning">verify</button> -->
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <div class="modal fade" #lessonModel id="lessonModel" role="dialog">
+                    <div class="modal-dialog vry_modal">
+                        <div class="modal-content" style="width: 102%;">
+                            <div class="modal-header" style="width: 102%;">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4><i class="fa fa-info-circle"></i> Add new lesson</h4>
+                            </div>
+                            <div class="modal-body modal_text">
+                                <form [formGroup]="createLessonForm" (ngSubmit)="lessonCreate('')">
+                                    <input type="hidden" formControlName="inst_id">
+                                    <div class="col-md-12">
+                                        <label>Subject name</label>
+                                        <ng-select [items]="allSubjects" bindLabel="subject_fname" bindValue="subject_id"
+                                            formControlName="subject_name" [(ngModel)]="subject_value">
+                                        </ng-select>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label>Lesson name</label>
+                                        <input type="text" placeholder="Subject Short name" formControlName="lesson_name"
+                                            (keyup)="onLessonCheck($event.target.value)">
+                
+                                        <ng-container *ngIf="lessonSubbmit&&createLessonForm.controls.lesson_name.errors">
+                                            <p style="color: red"
+                                                *ngIf="lessonSubbmit&&createLessonForm.controls.lesson_name.errors.required">This field
+                                                is required!</p>
+                                        </ng-container>
+                
+                                        <p style="color: red" *ngIf="!checklesson">This lesson is already exist!</p>
+                                    </div>
+                                    <!-- <div class="col-md-12">
+                                                    <label>Course Logo</label>
+                                                    <input type="file" (change)="handleClsfLogo($event.target.files,'course')" formControlName="course_logo" accept="image/*">
+                                                </div> -->
+                                    <div class="col-md-12">
+                                        <button type="submit" class="bt btn-warning">Create</button>
+                                        <a class="bt btn-info" data-dismiss="modal">Close</a>
+                                    </div>
+                                </form>
+                                <!-- <p> {{course_value}} Do you really want to verify these records? This process cannot be undone</p> -->
+                            </div>
+                            <div class="modal-footer modal_foot">
+                                <!-- <button type="submit" class="bt btn-warning">verify</button> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" #lessonModeln id="lessonModeln" role="dialog">
+                    <div class="modal-dialog vry_modal">
+                        <div class="modal-content" style="width: 102%;">
+                            <div class="modal-header" style="width: 102%;">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4><i class="fa fa-info-circle"></i> Add new lesson</h4>
+                            </div>
+                            <div class="modal-body modal_text">
+                                <form [formGroup]="createLessonFormn" (ngSubmit)="lessonCreate(1)">
+                                    <input type="hidden" formControlName="inst_id">
+                                    <div class="col-md-12">
+                                        <label>Subject name</label>
+                                        <ng-select [items]="allSubjects" bindLabel="subject_fname" bindValue="subject_id"
+                                            formControlName="subject_namen" [(ngModel)]="subject_valuen">
+                                        </ng-select>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label>Lesson name</label>
+                                        <input type="text" placeholder="Subject Short name" formControlName="lesson_namen"
+                                            (keyup)="onLessonCheck($event.target.value)">
+                
+                                        <ng-container *ngIf="lessonSubbmitn&&createLessonFormn.controls.lesson_namen.errors">
+                                            <p style="color: red"
+                                                *ngIf="lessonSubbmitn&&createLessonFormn.controls.lesson_namen.errors.required">This field
+                                                is required!</p>
+                                        </ng-container>
+                
+                                        <p style="color: red" *ngIf="!checklessonn">This lesson is already exist!</p>
+                                    </div>
+                                    <!-- <div class="col-md-12">
+                                                    <label>Course Logo</label>
+                                                    <input type="file" (change)="handleClsfLogo($event.target.files,'course')" formControlName="course_logo" accept="image/*">
+                                                </div> -->
+                                    <div class="col-md-12">
+                                        <button type="submit" class="bt btn-warning">Create</button>
+                                        <a class="bt btn-info" data-dismiss="modal">Close</a>
+                                    </div>
+                                </form>
+                                <!-- <p> {{course_value}} Do you really want to verify these records? This process cannot be undone</p> -->
+                            </div>
+                            <div class="modal-footer modal_foot">
+                                <!-- <button type="submit" class="bt btn-warning">verify</button> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>            
+<!--verified  Modal start -->
+<div class="modal fade" id="verified" role="dialog">
+    <div class="modal-dialog vry_modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+            </div>
+            <div class="modal-body modal_text">
+                <p>Do you really want to verify these records? This process cannot be undone</p>
+            </div>
+            <div class="modal-footer modal_foot">
+                <button type="submit" class="bt btn-warning">verify</button>
+                <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" #verifiedclassf id="verifiedclassf" role="dialog">
+        <div class="modal-dialog vry_modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+                </div>
+                <div class="modal-body modal_text">
+                    <p>Do you really want to verify these records? This process cannot be undone</p>
+                </div>
+                <div class="modal-footer modal_foot">
+                    <button type="submit" class="bt btn-warning" (click)="verifyClassification()">verify</button>
+                    <a  class="bt btn-info" data-dismiss="modal">Close</a>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- verified Modal end-->
+<!--Blocked  Modal start -->
+<div class="modal fade" id="block" role="dialog">
+    <div class="modal-dialog vry_modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+            </div>
+            <div class="modal-body modal_text">
+                <p>Do you really want to Block these records? This process cannot be undone</p>
+            </div>
+            <div class="modal-footer modal_foot">
+                <button type="submit" class="bt btn-warning">Block</button>
+                <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Blocked Modal end-->
+<!--Delete  Modal start -->
+<div class="modal fade" id="delete" role="dialog">
+    <div class="modal-dialog vry_modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+            </div>
+            <div class="modal-body modal_text">
+                <p>Do you really want to Delete these records? This process cannot be undone</p>
+            </div>
+            <div class="modal-footer modal_foot">
+                <button type="submit" class="bt btn-warning">Delete</button>
+                <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" #deleteClassf id="deleteClassf" role="dialog">
+        <div class="modal-dialog vry_modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+                </div>
+                <div class="modal-body modal_text">
+                    <p>Do you really want to Delete these records? This process cannot be undone</p>
+                </div>
+                <div class="modal-footer modal_foot">
+                    <button type="submit" class="bt btn-warning" (click)="deleteclassification()">Delete</button>
+                    <a type="submit" class="bt btn-info" data-dismiss="modal">Close</a>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Delete Modal end-->
+<!--====Question upload page start====-->
+<app-sdashheader ></app-sdashheader>
+<div class="leftsidemenus" *ngIf="selectedcontent_id==null">
+    <app-sdahshmenu *ngIf="selectedcontent_id==null"></app-sdahshmenu>
+</div>
+
+<section class="question_search question_sec selt_ht scroll-yes">
+    <div id="page-wrapper"  *ngIf="selectedcontent_id==null">
+        <div class="container-fluid">
+            <div class="question_search selt_ht">
+                <div class="student-bg question_title">
+                    <h4 class="h_box_tit">Upload Content
+                    </h4>
+                 </div>
+                <div class="all_brd inst_det_box">
+                    <!-- <div class="question_title" id="pers_inf">
+                        <h3> Content View & Manage Class </h3>
+                    </div> -->
+                    <div class="content_sub">
+                        <!---Question-1 Owner: start-->
+                        <div class="">
+                            <div class="row pd-10">
+                                <div class="col-md-12">
+                                    <div class="upload_content upload_content_form" id="pers_inf">
+                                        <div class="">
+                                            <!-- <form [formGroup]="contentUpload" (ngSubmit)="uploadContent(contentUpload,$event)"> -->
+                                                <!-- <form [formGroup]="contentUpload">
+                                                    <input type="hidden" [(ngModel)]="inst_id" formControlName="inst_id">
+                                                    <input type="hidden" [(ngModel)]="Check_admin_id" formControlName="content_owner">
+                                                    <input type="hidden" [(ngModel)]="fileExtId" formControlName="content_media_type">
+                                                    <input type="hidden" [(ngModel)]="content_sizemb" formControlName="content_sizemb">
+                                                    <input type="hidden" [(ngModel)]="admintype_id" formControlName="created_by_admin">
+                                                <div class="panel-body">
+                                                    <h6>Allowed Formats </h6>
+                                                    <p class="fnt-12"><span *ngFor="let mType of mediaTypes">{{mType.mediatyp_extnsn}} , &nbsp;</span></p>
+                                                    <div action="#" class="dropzone" id="dropzoneForm">
+                                                        <div class="fallback">
+                                                            <input name="file" type="file" (change)="handleTimelinePic($event.target.files)" formControlName="content_file" />
+                                                        </div> <div *ngIf="fileExtError" class="text-danger">{{fileExtErrorText}}</div>
+                                                    </div>
+                                                </div>                                           
+                                                <div class="file_name">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="input-group m-lr-10">
+                                                                <span class="input-group-addon ">Title</span>
+                                                                <input type="text" formControlName="content_title" [(ngModel)]="content_title" class="form-control" placeholder="Title">
+                                                                <app-field-error-display [displayError]="isFieldValid1('content_title')" errorMsg="Please enter content title">
+                                                                </app-field-error-display>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div class="input-group m-lr-10">
+                                                                <span class="input-group-addon">Description</span>
+                                                                <textarea class="form-control" [(ngModel)]="content_desc" formControlName="content_desc" placeholder="Description" required></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div class="input-group m-lr-10">
+                                                                <span class="input-group-addon">Search Terms</span>
+                                                                <textarea class="form-control" [(ngModel)]="content_search" formControlName="content_search" placeholder="Search Terms"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="file_name row">
+                                                    <div class="col-md-12">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">Country</span>
+                                                            <select class="form-control basic-single" formControlName="classf_country_id">
+                                                                <option value="">County</option><option *ngFor="let cnt of country" value="{{cnt.cntry_id}}">{{cnt.cntry_name}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">Course</span>
+                                                            <input type="text" [(ngModel)]="course_id" formControlName="classf_course_id">
+                                                            <input type="text" class="form-control" formControlName="classf_course_id_vlaue" [(ngModel)]="course_value" (keyup)="getClassificationValue($event.target.value,'course_sname','course_fname','course')" placeholder="Course">
+                                                            <ul class="searchfm" *ngIf="is_course_available==true">
+                                                                <li *ngFor="let crs of clfValues" (click)="showInputValue(crs.course_id,crs.course_fname,'course')">{{crs.course_sname}} {{crs.course_fname}}</li>
+                                                            </ul>
+                                                <ul class="" *ngIf="is_course_notavailable==true"><li><p class="bt btn-success btn" (click)="courseCreate(course_value)">Add</p></li></ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">Class</span>
+                                                            <input type="hidden" [(ngModel)]="class_id" formControlName="classf_class_id">
+                                                            <input type="text" class="form-control" formControlName="classf_class_id_value" [(ngModel)]="class_value" (keyup)="getClassificationValue($event.target.value,'class_sname','class_fname','class')" placeholder="class">
+                                                            <ul class="searchfm" *ngIf="is_class_available==true">
+                                                                <li *ngFor="let cls of clfValues" (click)="showInputValue(cls.class_id,cls.class_fname,'class')">{{cls.class_sname}} {{cls.class_fname}}</li>
+                                                            </ul>
+                                                            <ul class="" *ngIf="is_class_notavailable==true"><li><p class="bt btn-success btn" (click)="classCreate(class_value)">Add</p></li></ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">Subject</span>
+                                                            <input type="hidden" [(ngModel)]="subject_id" formControlName="classf_subject_id">
+                                                            <input type="text" class="form-control" formControlName="classf_subject_id_vlaue" [(ngModel)]="subject_value" (keyup)="getClassificationValue($event.target.value,'subject_sname','subject_fname','subject')" placeholder="Subject">
+                                                            <ul class="searchfm" *ngIf="is_subject_available==true">
+                                                                <li *ngFor="let sub of clfValues" (click)="showInputValue(sub.subject_id,sub.subject_fname,'subject')">{{sub.subject_sname}} {{sub.subject_fname}}</li>
+                                                            </ul>
+                                                            <ul class="" *ngIf="is_subject_notavailable==true"><li><p class="bt btn-success btn" (click)="subjectCreate(subject_value)">Add</p></li></ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">Lessons / Topic</span>
+                                                            <input type="text" formControlName="lesson_name" (focus)="getLessonsonFocus()" [(ngModel)]="lesson_value" (keyup)="getLessons($event.target.value)" [readonly]="!subj_id_avail">
+                                                            <input type="hidden" formControlName="selectedLessonId" [(ngModel)]="selectedLessonId">
+                                                            <ul *ngIf="showLessons">
+                                                                <span style="float:right" (click)="closeAllChecks()">X</span>
+                                                                <li *ngFor="let les of allLessons">
+                                                <input type="checkbox" formControlName="checkboxValues"  (change)="isAnswerProvided($event,les.lesson_id,les.lesson_name,checkvalue)" value="{{les.lesson_id}}">{{les.lesson_name}}</li>
+                                                       </ul>
+                                                            <ul *ngIf="noLessons"><li><p class="btn btn-success" (click)="lessonCreate(lesson_value)">Add</p></li></ul>
+                                                            <ul *ngIf="noLessonsmsg"><li>No lesson found, You can add one!</li></ul>
+                                                        </div>
+                                                    </div>                                </div>                                            
+                                                <div class="col-md-offset-2 col-md-6">
+                                                    <div class="save_bt"><button type="button" (click)="uploadContents($event)" class="bt btn-inverse">Save</button></div>
+                                                </div>
+                                            </form>    -->
+                                        <form [formGroup]="contentUploads" (ngSubmit)="addnewContent(contentUploads)">
+                                            <!-- <input type="hidden" [(ngModel)]="inst_id" formControlName="inst_id"> -->
+                                            <input type="hidden" [(ngModel)]="Check_admin_id" formControlName="content_owner">
+                                            <input type="hidden" [(ngModel)]="content_owner_column" formControlName="content_owner_column">
+                                            <input type="hidden" [(ngModel)]="fileExtId" formControlName="content_media_type">
+                                            <input type="hidden" [(ngModel)]="content_sizemb" formControlName="content_sizemb">
+                                            <input type="hidden" [(ngModel)]="admintype_id" formControlName="created_by_admin">
+                                            <input type="hidden" [(ngModel)]="fileName2" formControlName="originalFileName">
+                                            <input type="hidden" [(ngModel)]="uploadUrl" formControlName="uploadUrl">
+                                            <div class="panel-body">
+                                                <h6 class="text-white">Allowed Formats </h6>
+                                                <p class="fnt-12 text-white"><span *ngFor="let mType of mediaTypes">{{mType.mediatyp_extnsn}} , &nbsp;</span></p>
+                                                <div action="#" class="dropzone" id="dropzoneForm">
+                                                    <div class="fallback">
+                                                        <!-- <input type="hidden" formControlName="content_file_id" [(ngModel)]="content_file_id"> -->
+                                                        <input type="file" (change)="handleTimelinePic($event.target.files)" formControlName="content_file"/>
+                                                    </div> 
+                                                    <div *ngIf="fileExtError" class="text-danger">{{fileExtErrorText}}</div>
+                                                    <app-field-error-display [displayError]="isFieldValid2('content_file')" errorMsg="Please select a file to upload">
+                                                        </app-field-error-display>
+                                                    
+                                                </div>                                                    
+                                            </div>
+                                            <div class="file_name">
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <div class="input-group input_group_box">
+                                                            <span class="input-group-addon ">Title</span>
+                                                            <input type="text" formControlName="content_title" [(ngModel)]="content_title" class="form-control" placeholder="Title">
+                                                        </div>
+                                                        <app-field-error-display [displayError]="isFieldValid2('content_title')" errorMsg="Please enter content title">
+                                                    </app-field-error-display>
+                                                    </div>
+                                                    
+                                                    <div class="col-md-6">
+                                                        <div class="input-group input_group_box">
+                                                            <span class="input-group-addon">Description</span>
+                                                            <textarea class="form-control" [(ngModel)]="content_desc" formControlName="content_desc" placeholder="Description" required></textarea>
+
+                                                        </div>
+                                                        <app-field-error-display [displayError]="isFieldValid2('content_desc')" errorMsg="Please enter content Description">
+                                                        </app-field-error-display>
+                                                    </div>
+                                                </div>    
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="input-group input_group_box">
+                                                            <span class="input-group-addon">Search Terms</span>
+                                                            <textarea class="form-control" [(ngModel)]="content_search" formControlName="content_search" placeholder="Search Terms"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <!-- <app-field-error-display [displayError]="isFieldValid2('content_search')" errorMsg="Please enter content search terms">
+                                                    </app-field-error-display> -->
+                                                    <div class="col-md-6">
+                                                        <div class="" >
+                                                                <div class="input-group input_group_box">
+                                                                    <div class="input-group-addon-new">Country</div>
+                                                                    <div class="select_box_outer">
+                                                                        <ng-select [items]="country" style="width: 98%;margin-left: 1.5%;padding-bottom: 0.25 em ;"
+                                                                            id="countrySelect" name="uploadcountry" bindLabel="cntry_name"
+                                                                            bindValue="cntry_id"
+                                                                            (focusin)="is_course_notavailable=false;is_class_notavailable=false; is_subject_notavailable=false; noLessons=false; noLessonsmsg=false;"
+                                                                            [(ngModel)]="cntry_id" formControlName="classf_country_id"
+                                                                            placeholder="Select country">
+                                                                        </ng-select>
+                    
+                                                                    </div>
+                                                                </div>
+                    
+                                                        </div>
+                                                        <app-field-error-display [displayError]="isFieldValid2('classf_country_id')" errorMsg="Please select a country">
+                                                        </app-field-error-display>
+                                                    </div>
+                                                </div>
+                                                <div class="row">    
+                                                    <div class="col-md-6">
+                                                            <div class="input-group input_group_box">
+                                                                <div class="input-group-addon-new">Course
+                                                                </div>
+                                                                <input type="hidden" [(ngModel)]="course_id"
+                                                                    formControlName="classf_course_id">
+                                                                <div>
+                                                                 <div class="select_box_outer select_box_outer_fix_width">
+                                                                    <ng-select [items]="allCourses" id="course"
+                                                                        (focusin)="is_course_notavailable=false;is_class_notavailable=false; is_subject_notavailable=false; noLessons=false; noLessonsmsg=false;"
+                                                                        name="course"
+                                                                        [searchable]="true" bindLabel="course_fname"
+                                                                        bindValue="course_id" [(ngModel)]="course_value"
+                                                                        (keyup)="onCourseSearch($event.target.value)"
+                                                                        placeholder="Select Course"
+                                                                        formControlName="classf_course_id_vlaue" required>
+                                                                    </ng-select>
+                                                                   </div>  
+                                                                </div>
+                                                                <!-- <ul class="searchfm" *ngIf="is_course_available==true">
+                                                                        <li *ngFor="let crs of clfValues" (click)="showInputValue(crs.course_id,crs.course_fname,'course')">{{crs.course_sname}} {{crs.course_fname}}</li>
+                                                                    </ul> -->
+                                                            </div>
+                                                            <div class="fix-add-button">
+                                                                <ul class="" *ngIf="is_course_notavailable">
+                                                                    <li>
+                                                                        <p class="bt btn-success btn" data-toggle="modal"
+                                                                            (click)="checkcourse = true" data-target="#courseModel">Add
+                                                                        </p>
+                                                                    </li>
+                                                                </ul>
+                
+                                                            </div>
+                                                        <app-field-error-display [displayError]="isFieldValid2('classf_course_id_vlaue')" errorMsg="Please select a course">
+                                                        </app-field-error-display>
+                                                    </div>
+                                                    
+                                                    <div class="col-md-6" *ngIf="false">
+                                                        <div class="input-group input_group_box">
+                                                            <span class="input-group-addon">Class</span>
+                                                            <input type="hidden" [(ngModel)]="class_id" formControlName="classf_class_id">
+                                                            <!-- <input type="text" class="form-control" formControlName="classf_class_id_value" [(ngModel)]="class_value" (keyup)="getClassificationValue($event.target.value,'class_sname','class_fname','class')" placeholder="class"> -->
+                                                            <ng-select [items]="allClasses" bindLabel="class_fname" bindValue="class_id" [(ngModel)]="class_value" placeholder="Select Class" formControlName="classf_class_id_value" (keyup)="getClassificationValue($event.target.value,'class_sname','class_fname','class')" required>
+                                                            </ng-select>
+                                                            <!-- <ul class="searchfm" *ngIf="is_class_available==true">
+                                                                <li *ngFor="let cls of clfValues" (click)="showInputValue(cls.class_id,cls.class_fname,'class')">{{cls.class_sname}} {{cls.class_fname}}</li>
+                                                            </ul> -->
+                                                            <ul class="" *ngIf="is_class_notavailable==true">
+                                                                <li><p class="bt btn-success btn" data-toggle="modal" data-target="#classModel">Add</p></li>
+                                                                <!-- <li><p class="bt btn-success btn" (click)="classCreate(class_value)">Add</p></li> -->
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">        
+                                                    <div class="col-md-6">
+                                                    <div class="input-group input_group_box">
+                                                        <div class="input-group-addon-new">Class
+                                                        </div>
+                                                        <input type="hidden" [(ngModel)]="class_id"
+                                                            formControlName="classf_class_id">
+                                                        <!-- <input type="text" class="form-control" formControlName="classf_class_id_value" [(ngModel)]="class_value" (keyup)="getClassificationValue($event.target.value,'class_sname','class_fname','class')" placeholder="class"> -->
+                                                        <div class="select_box_outer">
+                                                            <ng-select [items]="allClasses"
+                                                                 [searchable]="true"
+                                                                name="class"
+                                                                (focusin)="is_course_notavailable=false; is_subject_notavailable=false; noLessons=false; noLessonsmsg=false;"
+                                                                bindLabel="class_fname"
+                                                                (keyup)="onClassSearch($event.target.value)"
+                                                                bindValue="class_id" [(ngModel)]="class_value"
+                                                                placeholder="Select Class"
+                                                                formControlName="classf_class_id_value" required>
+                                                            </ng-select>
+        
+                                                        </div>
+                                                        <!-- 
+                                                                <p-dropdown [options]="allClasses"
+                                                                formControlName="classf_class_id_value"
+                                                                 [(ngModel)]="class_value"  [style]="{'width':'1206px'}"
+                                                                [baseZIndex]="13000" (keyup)="addDropdownCss()"(onHide)="cssWork($event)"
+                                                                [filter]="true" filterBy="label,value.name"
+                                                                placeholder="Select Class">
+                                                            </p-dropdown> -->
+                                                        <!-- <ul class="searchfm" *ngIf="is_class_available==true">
+                                                                    <li *ngFor="let cls of clfValues" (click)="showInputValue(cls.class_id,cls.class_fname,'class')">{{cls.class_sname}} {{cls.class_fname}}</li>
+                                                                </ul> -->
+                                                    </div>
+                                                    <div class="fix-add-button">
+        
+                                                        <ul class="" *ngIf="is_class_notavailable">
+                                                            <!-- <li><p class="bt btn-success btn" (click)="classCreate(class_value)">Add</p></li> -->
+                                                            <li>
+                                                                <p class="bt btn-success btn" data-toggle="modal"
+                                                                    (click)="checkclass = true" data-target="#classModel">Add
+                                                                </p>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <app-field-error-display [displayError]="isFieldValid2('classf_class_id_value')" errorMsg="Please select a class">
+                                                    </app-field-error-display>
+                                                    </div>
+                                                    
+                                                    <div class="col-md-6" *ngIf="false">
+                                                        <div class="input-group input_group_box">
+                                                            <span class="input-group-addon">Subject</span>
+                                                            <input type="hidden" [(ngModel)]="subject_id" formControlName="classf_subject_id">
+                                                            <div class="select_box_outer">
+                                                            <!-- <input type="text" class="form-control" formControlName="classf_subject_id_vlaue" [(ngModel)]="subject_value" (keyup)="getClassificationValue($event.target.value,'subject_sname','subject_fname','subject')" placeholder="Subject"> -->
+                                                            <ng-select [items]="allSubjects" bindLabel="subject_fname" bindValue="subject_id" [(ngModel)]="subject_value" placeholder="Select Subject" formControlName="classf_subject_id_vlaue" (keyup)="getClassificationValue($event.target.value,'subject_sname','subject_fname','subject')" (change)="getLessonsonForSubj(1)" required>
+                                                                </ng-select>
+                                                            <!-- <ul class="searchfm" *ngIf="is_subject_available==true">
+                                                                <li *ngFor="let sub of clfValues" (click)="showInputValue(sub.subject_id,sub.subject_fname,'subject')">{{sub.subject_sname}} {{sub.subject_fname}}</li>
+                                                            </ul> -->
+                                                            <ul class="" *ngIf="is_subject_notavailable==true">
+                                                                <li><p class="bt btn-success btn" data-toggle="modal" data-target="#subjectModel">Add</p></li>
+                                                                <!-- <li><p class="bt btn-success btn" (click)="subjectCreate(subject_value)">Add</p></li> -->
+                                                            </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="input-group input_group_box">
+                                                            <div class="input-group-addon-new">Subject
+                                                            </div>
+                                                            <input type="hidden" [(ngModel)]="subject_id"
+                                                                formControlName="classf_subject_id">
+                                                            <!-- <input type="text" class="form-control" formControlName="classf_subject_id_vlaue" [(ngModel)]="subject_value" (keyup)="getClassificationValue($event.target.value,'subject_sname','subject_fname','subject')" placeholder="Subject"> -->
+                                                            <div class="select_box_outer">
+            
+                                                                <ng-select [items]="allSubjects"
+                                                                    (focusin)="is_course_notavailable=false;is_class_notavailable=false;  noLessons=false; noLessonsmsg=false;"
+                                                                    style="width: 99%;margin-left: 1.5%;padding-bottom: 0.25 em ;" name="subject"
+                                                                    bindLabel="subject_fname" bindValue="subject_id"
+                                                                    [(ngModel)]="subject_value"
+                                                                    (keyup)="onSubjectSearch($event.target.value)"
+                                                                    placeholder="Select Subject"
+                                                                    formControlName="classf_subject_id_vlaue"
+                                                                    (change)="getLessonsonForSubj(1)" required>
+                                                                </ng-select>
+                                                            </div>
+            
+                                                            <!-- <ul class="searchfm" *ngIf="is_subject_available==true">
+                                                                        <li *ngFor="let sub of clfValues" (click)="showInputValue(sub.subject_id,sub.subject_fname,'subject')">{{sub.subject_sname}} {{sub.subject_fname}}</li>
+                                                                    </ul> -->
+                                                        </div>
+                                                        <div class="fix-add-button">
+            
+                                                            <ul class="" *ngIf="is_subject_notavailable==true">
+                                                                <!-- <li><p class="bt btn-success btn" (click)="subjectCreate(subject_value)">Add</p></li> -->
+                                                                <li>
+                                                                    <p class="bt btn-success btn" data-toggle="modal"
+                                                                        (click)="checksubject = true" data-target="#subjectModel">
+                                                                        Add</p>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <app-field-error-display [displayError]="isFieldValid2('classf_subject_id_vlaue')" errorMsg="Please select a subject">
+                                                    </app-field-error-display>
+                                                    </div>
+                                                </div>    
+                                                <div class="row">        
+                                                    <div class="col-md-6" *ngIf="false">
+                                                        <div class="input-group input_group_box">
+                                                            <span class="input-group-addon">Lessons / Topic </span>
+                                                            <div class="select_box_outer">
+                                                            <!-- <input type="text" formControlName="lesson_name" (focus)="getLessonsonFocus()" [(ngModel)]="lesson_value" (keyup)="getLessons($event.target.value)" [readonly]="!subj_id_avail"> -->
+                                                            <p-multiSelect [options]="lessonsList" formControlName="lesson_name" [(ngModel)]="lesson_value" (keyup)="getLessons($event.target.value)" [panelStyle]="{minWidth:'12em'}" required></p-multiSelect>
+                                                            <input type="hidden" formControlName="selectedLessonId" [(ngModel)]="selectedLessonId">
+                                                            <!-- <ul *ngIf="showLessons">
+                                                                <span style="float:right" (click)="closeAllChecks()">X</span>
+                                                                <li *ngFor="let les of allLessons">
+                                                                    <input type="checkbox" formControlName="checkboxValues"  (change)="isAnswerProvided($event,les.lesson_id,les.lesson_name,checkvalue)" value="{{les.lesson_id}}">{{les.lesson_name}}
+                                                                </li>
+                                                            </ul> -->
+                                                            <!-- <ul *ngIf="noLessons"><li><p class="btn btn-success" (click)="lessonCreate(lesson_value,'')">Add</p></li></ul> -->
+                                                            <ul *ngIf="noLessonsmsg"><li>No lesson found, You can add one!</li></ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>  
+                                                    <div class="col-md-6" (click)="addDropdownCss()">
+                                                            <div class="input-group input_group_box">
+                                                                <div class="input-group-addon-new">Lessons
+                                                                </div>
+                                                                <!-- <input type="text" formControlName="lesson_name" (focus)="getLessonsonFocus()" [(ngModel)]="lesson_value" (keyup)="getLessons($event.target.value)" [readonly]="!subj_id_avail"> -->
+                                                                <div class="select_box_outer">
+                                                                    <p-multiSelect [options]="lessonsList"
+                                                                        (focusin)="is_course_notavailable=false;is_class_notavailable=false; is_subject_notavailable=false;" [resetFilterOnHide]= "true"
+                                                                        formControlName="lesson_name" [(ngModel)]="lesson_value"
+                                                                        [style]="{'width':'100%'}"
+                                                                        (keyup)="onLessonsSearch($event.target.value)"
+                                                                        [panelStyle]="{minWidth:'12em'}" required></p-multiSelect>
+                                                                    <input type="hidden" formControlName="selectedLessonId"
+                                                                         [(ngModel)]="selectedLessonId">
+                
+                                                                </div>
+                                                                <!-- (keyup)="getLessons($event.target.value)"  -->
+                                                                <!-- <ul *ngIf="showLessons">
+                                                                        <span style="float:right" (click)="closeAllChecks()">X</span>
+                                                                        <li *ngFor="let les of allLessons">
+                                                                            <input type="checkbox" formControlName="checkboxValues"  (change)="isAnswerProvided($event,les.lesson_id,les.lesson_name,checkvalue)" value="{{les.lesson_id}}">{{les.lesson_name}}
+                                                                        </li>
+                                                                    </ul> -->
+                                                            </div>
+                                                            <div class="fix-add-button">
+                
+                                                                <ul *ngIf="noLessons">
+                                                                    <li>
+                                                                        <p class="bt btn-success btn" (click)="checklesson=true;lessonSubbmit=false;"
+                                                                            data-toggle="modal" data-target="#lessonModel">Add</p>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                
+                                                        <ul *ngIf="noLessonsmsg">
+                                                            <li>No lesson found, You can add one!</li>
+                                                        </ul>
+                                                    <app-field-error-display [displayError]="isFieldValid2('lesson_name')" errorMsg="Please select lessons">
+                                                    </app-field-error-display>
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-success">Upload</button>
+                                        </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--left tab--end--->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--====top profile background End====-->
+        </div>
+    </div>
+    <div id="page-wrapper" *ngIf="selectedcontent_id!=null" style="margin:84px 0 0 2px;">
+            <div class="container-fluid">
+                <div class="question_search question_sec selt_ht" id="pers_inf">
+                    <div class="student-bg question_title">
+                        <h4 class="h_box_tit">Upload Content
+                        </h4>
+                     </div>
+                     <div class="all_brd inst_det_box">
+                        <div class="content_sub" style="overflow-y: auto; height: 640px;">
+                            <!---Question-1 Owner: start-->
+                            <div class="qusn_oner">
+                                <div class="row pd-10">
+                                        <div class="row pd-12" >
+                                                <!--right strat--->
+                                                <div class="col-md-12" >
+                                                   <div class="qution_tab">
+                                                       
+                                                       <!--details--tabs-->
+                                                       <div class="all_info">
+                                                           <div class="table-responsive">
+                                                                   <table class="table table-responsive">
+                                                                           <thead>
+                                                                               <tr class="adm_tr_bg">
+                                                                                   <th>Content Id</th>
+                                                                                   <th>Content Title</th>
+                                                                                   <th>Content Type</th>
+                                                                                   <th>Content Size</th>                                                                
+                                                                               </tr>
+                                                                           </thead>
+                                                                           <tbody class="blc_del_bg">
+                                                                               <tr *ngIf="!content_id"><td></td><td></td><td></td><td></td></tr>
+                                                                               <tr  *ngIf="content_id">
+                                                                                   <td>{{content_id}}</td>
+                                                                                   <td>{{content_title}}</td>
+                                                                                   <td>{{fileExt}}</td>
+                                                                                   <td>{{fileSize}}</td>                                                                
+                                                                               </tr>
+                                                                           </tbody>
+                                                                       </table>
+                                                               <table class="table table-responsive">
+                                                                   <thead>
+                                                                       <tr class="adm_tr_bg">
+                                                                           <th>Classif Count</th>
+                                                                           <th>Views</th>
+                                                                           <th>Refers</th>
+                                                                           <th>Bookmarks</th>
+                                                                           <th>Ratings</th>
+                                                                           <th>Avg. Rating</th>
+                                                                           <th>Reviws</th>
+                                                                       </tr>
+                                                                   </thead>
+                                                                   <tbody>
+                                                                       <tr class="blc_del_bg">
+                                                                           <td>{{classificationCount}}</td>
+                                                                           <td> 120 </td>
+                                                                           <td>25140</td>
+                                                                           <td>2546</td>
+                                                                           <td> 2.5</td>
+                                                                           <td>3.5</td>
+                                                                           <td>120</td>
+                                                                       </tr>
+                                                                   </tbody>
+                                                               </table>
+                                        
+                                                               <table class="table">
+                                                                   <thead>
+                                                                       <tr class="adm_tr_bg1">
+                                                                           <th>Verified</th>
+                                                                           <th>Blocked</th>
+                                                                           <th>Deleted</th>
+                                        
+                                                                       </tr>
+                                                                   </thead>
+                                                                   <tbody>
+                                                                       <tr class="blc_del_bg1">
+                                                                           <td>
+                                                                               <div *ngIf="is_content_verified==1">
+                                                                                       <button type="submit" class="bt btn-warning">Verified</button>
+                                                                               </div>  
+                                                                               <div *ngIf="is_content_verified==0" data-toggle="modal" data-target="#verify">
+                                                                                   <a type="submit" class="bt btn-warning" >Verify</a>
+                                                                               </div>
+                                                                               <br>
+                                                                               <p>Date:  {{content_verified_date}} </p>
+                                                                               <div class="modal fade" id="verify" role="dialog">
+                                                                                   <div class="modal-dialog vry_modal">
+                                                                                       <div class="modal-content">
+                                                                                           <div class="modal-header">
+                                                                                               <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                                               <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+                                                                                           </div>
+                                                                                           <div class="modal-body modal_text">
+                                                                                               <p>Do you really want to verify this content?</p>
+                                                                                           </div>
+                                                                                           <div class="modal-footer modal_foot">
+                                                                                               
+                                                                                               <button type="submit" class="bt btn-warning" data-dismiss="modal" (click)="is_ContentVerifications(is_content_verified,'is_content_verified','content_verified_by','content_verified_date','','')">Verify</button>
+                                                                                               <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+                                                                                           </div>
+                                                                                       </div>
+                                                                                   </div>
+                                                                               </div>
+                                                                           </td>
+                                                                           <td>
+                                                                               <div data-toggle="modal" data-target="#contentblock">
+                                                                                   <div class="toggle btn {{btnClass}} off"
+                                                                                   data-toggle="toggle" style="width: 0px; height: 0px;">
+                                                                                   <input type="checkbox" data-toggle="toggle"
+                                                                                       data-on="Blokced" data-off="Cancel"
+                                                                                       data-onstyle="success" data-offstyle="info">
+                                                                                   <div class="toggle-group" (click)="getBlockReasons(1)">
+                                                                                       <label
+                                                                                           class="btn {{btnClass}} active toggle-off" >{{blocktext}}</label><span
+                                                                                           class="toggle-handle btn btn-default"></span>
+                                                                                   </div>
+                                                                               </div>
+                                                                               </div>
+                                                                               <br>
+                                                                               <p *ngIf="is_content_blocked==1">Reason : {{reasonsblvalues}} </p>
+                                                                               <p> Date: {{content_blocked_date}}</p>
+                                                                               <div class="modal fade" id="contentblock" role="dialog">
+                                                                                       <div class="modal-dialog vry_modal">
+                                                                                           <div class="modal-content">
+                                                                                               <div class="modal-header">
+                                                                                                   <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                                                   <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+                                                                                               </div>
+                                                                                               <div class="modal-body modal_text">                                                                                
+                                                                                                   <p *ngIf="is_content_blocked==0">Do you really want to block this content?</p>
+                                                                                                   <p *ngIf="is_content_blocked==1">Blocked with reason "{{reasonsblvalues}}". Do you really want to unblock this content?</p>
+                                                                                               </div>
+                                                                                               <div *ngIf="is_content_blocked==0">
+                                                                                                   <select [(ngModel)]="block_reason">
+                                                                                                       <option value="">Select Reason</option>
+                                                                                                       <option *ngFor="let rsn of reasons" value="{{rsn.reasontyp_id}}">{{rsn.block_reason}}</option>
+                                                                                                   </select>
+                                                                                               </div>
+                                                                                               <div class="modal-footer modal_foot">                                                                                
+                                                                                                   <button type="submit" class="bt btn-warning" data-dismiss="modal" (click)="is_ContentVerifications(is_content_blocked,'is_content_blocked','content_blocked_by','content_blocked_date',block_reason,'bl_reasontyp_id ')">{{btnblText}}</button>
+                                                                                                   <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+                                                                                               </div>
+                                                                                           </div>
+                                                                                       </div>
+                                                                               </div>
+                                                                           </td>
+                                                                           <td>
+                                                                                   <div data-toggle="modal" data-target="#contentDelete">
+                                                                                           <div class="toggle btn {{btnClass}} off"
+                                                                                           data-toggle="toggle" style="width: 0px; height: 0px;">
+                                                                                           <input type="checkbox" data-toggle="toggle"
+                                                                                               data-on="Blokced" data-off="Cancel"
+                                                                                               data-onstyle="success" data-offstyle="info">
+                                                                                           <div class="toggle-group" (click)="getBlockReasons(2)">
+                                                                                               <label
+                                                                                                   class="btn {{btnClassd}} active toggle-off" >{{deleteText}}</label><span
+                                                                                                   class="toggle-handle btn btn-default"></span>
+                                                                                           </div>
+                                                                                       </div>
+                                                                                   </div>
+                                                                                   <br>
+                                                                                   <p *ngIf="deleted_by_admin!=null">Reason : {{reasonsdlvalues}} </p>
+                                                                                   <p> Date: {{content_deleted_date}}</p>
+                                                                                   <div class="modal fade" id="contentDelete" role="dialog">
+                                                                                           <div class="modal-dialog vry_modal">
+                                                                                               <div class="modal-content">
+                                                                                                   <div class="modal-header">
+                                                                                                       <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                                                       <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+                                                                                                   </div>
+                                                                                                   <div class="modal-body modal_text">
+                                                                                                           <p *ngIf="deleted_by_admin==null">Do you really want to delete this content?</p>
+                                                                                                           <p *ngIf="deleted_by_admin!=null">Deleted with reason "{{reasonsdlvalues}}". Do you really want to activate this content?</p>
+                                                                                                   </div>
+                                                                                                   <div *ngIf="deleted_by_admin==null">
+                                                                                                       <select [(ngModel)]="delete_reason">
+                                                                                                           <option value="">Select Reason</option>
+                                                                                                           <option *ngFor="let rsn of reasons" value="{{rsn.reasontyp_id}}">{{rsn.block_reason}}</option>
+                                                                                                       </select>
+                                                                                                   </div>
+                                                                                                   <div class="modal-footer modal_foot">                                                                                
+                                                                                                       <button type="submit" class="bt btn-warning" data-dismiss="modal" (click)="deleteContent()">{{btndlText}}</button>
+                                                                                                       <a  class="bt btn-info" data-dismiss="modal">Close</a>
+                                                                                                   </div>
+                                                                                               </div>
+                                                                                           </div>
+                                                                                   </div>
+                                                                               </td>
+                                        
+                                                                       </tr>
+                                                                   </tbody>
+                                                               </table>
+                                                           </div>
+                                                       </div>
+                                                       <!---///details--tabs----->
+                                                       
+                                                       <div class="classifi_bg  clfy_tbl">
+                                                           <div class=" student-bg question_title" id="pers_inf">
+                                                               <h3>Classification</h3>
+                                                               <div class="longtext" id="scrollbar_c">
+                                                                   <!-- <div *ngIf="!content_id"> -->
+                                                                           <div>
+                                                                   <form [formGroup]="newClassification" (ngSubmit)="addnewClassification(newClassification)">
+                                                                       <input type="hidden" [(ngModel)]="inst_id" formControlName="inst_id">
+                                                                       <table class="table table-bordered">
+                                                                           <tr>
+                                                                               <td style="width: 18%;">
+                                                                                   <!-- <p-multiSelect  [options]="classification" [(ngModel)]="selectedclasid" [panelStyle]="{minWidth:'12em'}"></p-multiSelect> -->
+                                                                                   <!-- <select class="form-control" formControlName="classf_country_idn" autofocus>
+                                                                                       <option value="">Country</option>
+                                                                                       <option *ngFor="let cnt of country" value="{{cnt.cntry_id}}">{{cnt.cntry_name}}</option>
+                                                                                   </select> -->
+                                                                                   <ng-select [items]="country" bindLabel="cntry_name" bindValue="cntry_id" placeholder="Select country" formControlName="classf_country_idn" required>
+                                                                                       </ng-select>
+                                                                                       <ng-container *ngIf="newClassificationSubmmit&&newClassification.controls.classf_country_idn.errors">
+                                                                                           <span *ngIf="newClassificationSubmmit&&newClassification.controls.classf_country_idn.errors.required" style="color: red">Please select country</span>
+                                                                                       </ng-container>
+                                                                               </td>
+                                                                               <td style="width: 18%;">
+                                                                                   <div
+                                                                                           style="position: absolute;z-index: 1030;margin-left: 9%;">
+                                                                                           <ul class="" *ngIf="is_course_notavailablen"> 
+                                                                                               <li (click)="checkcoursen = true;">
+                                                                                                   <p class="bt btn-success btn"
+                                                                                                       data-toggle="modal"
+                                                                                                       data-target="#courseModeln" >Add</p>
+                                                                                               </li>
+                                                                                           </ul>
+                                                                                       </div>                                                           
+                                                                                   <input type="hidden" [(ngModel)]="course_idn" formControlName="classf_course_idn">
+                                                                                   <!-- <input type="text" class="form-control" formControlName="classf_course_id_vlauen" [(ngModel)]="course_valuen" (keyup)="getClassificationValues($event.target.value,'course_sname','course_fname','course')" placeholder="Course"> -->
+                                                                                   <ng-select [items]="allCourses" bindLabel="course_fname" bindValue="course_id" [(ngModel)]="course_valuen" placeholder="Select Course" formControlName="classf_course_id_vlauen"(focusin)="is_class_notavailablen=false; is_subject_notavailablen=false; noLessonsn=false; noLessonsmsgn=false;" 
+                                                                                   (keyup)="onCourseSearch($event.target.value)" required>
+                                                                                       </ng-select>
+                                                                                   <ul class="searchfm" *ngIf="is_course_availablen">
+                                                                                       <li *ngFor="let crs of clfValuesn" (click)="showInputValues(crs.course_id,crs.course_fname,'course')">{{crs.course_sname}} {{crs.course_fname}}</li>
+                                                                                   </ul> 
+                                                                                   <!-- <ul class="" *ngIf="is_course_notavailablen==true">
+                                                                                       <li><p class="bt btn-success btn" (click)="courseCreaten(course_valuen)">Add</p></li>
+                                                                                       <li><p class="bt btn-success btn" data-toggle="modal" data-target="#courseModeln">Add</p></li>
+                                                                                   </ul> -->
+                                                                                   <ng-container *ngIf="newClassificationSubmmit&&newClassification.controls.classf_course_id_vlauen.errors">
+                                                                                       <span *ngIf="newClassificationSubmmit&&newClassification.controls.classf_course_id_vlauen.errors.required" style="color: red">Please select course</span>
+                                                                                   </ng-container>                                                          
+                                                                               </td>
+                                                                               <td style="width: 18%;"> 
+                                                                                   
+                                                                                   <div
+                                                                                   style="position: absolute;z-index: 1030;margin-left: 9%;">
+                                                                                   <ul class=""
+                                                                                       *ngIf="is_class_notavailablen">
+                                                                                       <!-- <li><p class="bt btn-success btn" (click)="classCreate(class_valuen,'n')">Add</p></li> -->
+                                                                                       <li (click)="checkclassn = true;">
+                                                                                           <p class="bt btn-success btn"
+                                                                                               (click)="checkclass = true"
+                                                                                               data-toggle="modal"
+                                                                                               data-target="#classModeln">Add</p>
+                                                                                       </li>
+                                                                                   </ul>
+                                                                               </div>                                                          
+                                                                                   <input type="hidden" [(ngModel)]="class_idn" formControlName="classf_class_idn">
+                                                                                   <!-- <input type="text" class="form-control" formControlName="classf_class_id_valuen" [(ngModel)]="class_valuen" (keyup)="getClassificationValues($event.target.value,'class_sname','class_fname','class')" placeholder="class"> -->
+                                                                                   <ng-select [items]="allClasses" bindLabel="class_fname" bindValue="class_id" [(ngModel)]="class_valuen" placeholder="Select Class" formControlName="classf_class_id_valuen" (focusin)="is_course_notavailablen=false; is_subject_notavailablen=false; noLessonsn=false; noLessonsmsgn=false;"
+                                                                                   (keyup)="onClassSearch($event.target.value)" required>
+                                                                                       </ng-select>
+                                                                                   <!-- <ul class="searchfm" *ngIf="is_class_availablen==true">
+                                                                                       <li *ngFor="let cls of clfValuesn" (click)="showInputValues(cls.class_id,cls.class_fname,'class')">{{cls.class_sname}} {{cls.class_fname}}</li>
+                                                                                   </ul>  -->
+                                                                                   <!-- <ul class="" *ngIf="is_class_notavailablen==true">
+                                                                                       <li><p class="bt btn-success btn" (click)="classCreate(class_valuen,'n')">Add</p>
+                                                                                           <li><p class="bt btn-success btn" data-toggle="modal" data-target="#classModeln">Add</p></li>
+                                                                                       </ul>  <ng-container *ngIf="newClassificationSubmmit&&newClassification.controls.classf_class_id_valuen.errors"> -->
+                                                                                           <ng-container *ngIf="newClassificationSubmmit&&newClassification.controls.classf_class_id_valuen.errors">
+                                                                                                   <span *ngIf="newClassificationSubmmit&&newClassification.controls.classf_class_id_valuen.errors.required" style="color: red">Please select class</span>
+                                                                                               </ng-container> 
+                                                                                                                                          
+                                                                               </td>
+                                                                               <td style="width: 18%;">
+                                                                                   <div
+                                                                                   style="position: absolute;z-index: 1030;margin-left: 9%;">
+                                                                                   <ul class=""
+                                                                                       *ngIf="is_subject_notavailablen">
+                                                                                       <!-- <li><p class="bt btn-success btn" (click)="subjectCreate(subject_value,'n')">Add</p></li> -->
+                                                                                       <li (click)="checksubjectn = true;">
+                                                                                           <p class="bt btn-success btn"
+                                                                                               data-toggle="modal"
+                                                                                               data-target="#subjectModeln">Add</p>
+                                                                                       </li>
+                                                                                   </ul>
+                                                                               </div>
+                                                                                   <input type="hidden" [(ngModel)]="subject_idn" formControlName="classf_subject_idn">
+                                                                                   <!-- <input type="text" class="form-control" formControlName="classf_subject_id_vlauen" [(ngModel)]="subject_valuen" (keyup)="getClassificationValues($event.target.value,'subject_sname','subject_fname','subject')" placeholder="Subject"> -->
+                                                                                   <ng-select [items]="allSubjects" bindLabel="subject_fname" bindValue="subject_id" [(ngModel)]="subject_valuen" placeholder="Select Subject" (clear)="lessonsList=[]"formControlName="classf_subject_id_vlauen"(focusin)="is_course_notavailablen=false;is_class_notavailablen=false; noLessonsn=false; noLessonsmsgn=false;"
+                                                                                   (keyup)="onSubjectSearch($event.target.value)" (change)="getLessonsonForSubj(2)" required>
+                                                                                       </ng-select>
+                                                                                   <!-- <ul class="searchfm" *ngIf="is_subject_availablen==true">
+                                                                                       <li *ngFor="let sub of clfValuesn" (click)="showInputValues(sub.subject_id,sub.subject_fname,'subject')">{{sub.subject_sname}} {{sub.subject_fname}}</li>
+                                                                                   </ul> -->
+                                                                                   <!-- <ul class="" *ngIf="is_subject_notavailablen==true">
+                                                                                       <li><p class="bt btn-success btn" data-toggle="modal" data-target="#subjectModeln">Add</p></li>
+                                                                                       <li><p class="bt btn-success btn" (click)="subjectCreate(subject_value,'n')">Add</p></li>
+                                                                                   </ul>  -->
+                                                                                    <ng-container *ngIf="newClassificationSubmmit&&newClassification.controls.classf_subject_id_vlauen.errors">
+                                                                                       <span *ngIf="newClassificationSubmmit&&newClassification.controls.classf_subject_id_vlauen.errors.required" style="color: red">Please select subject</span>
+                                                                                   </ng-container>
+                                                                               </td>
+                                                                              
+                                                                               <td style="width: 18%;">    
+                                                                                   <div style="display: flex;">
+                                                                                       <div style="width: 100%;">
+                                                                                           
+                                                                                           <div  *ngIf="noLessonsn"
+                                                                                               style="position: absolute;z-index: 1034;margin-left: 12%;">
+                                                                                               <ul class="">
+                                                                                                   <li>
+                                                                                                       <p class="bt btn-success btn"
+                                                                                                           data-toggle="modal"
+                                                                                                           (click)="checklessonn=true;lessonSubbmitn=false;"
+                                                                                                           data-target="#lessonModeln">Add</p>
+                                                                                                   </li>
+                                                                                               </ul>
+                                                                                           </div>                                                        
+                                                                                   <input type="hidden" formControlName="selectedLessonIdn" [(ngModel)]="selectedLessonIdn">
+                                                                                   <!-- <input type="text" formControlName="lesson_namen" (focus)="getLessonsonFocusn()" [(ngModel)]="lesson_valuen" (keyup)="getLessonsn($event.target.value)" [readonly]="!subj_id_availn"> -->
+                                        
+                                                                                   <p-multiSelect [options]="lessonsList" formControlName="lesson_namen" [(ngModel)]="lesson_valuen" (keyup)="onLessonsSearch($event.target.value)"
+                                                                                   [panelStyle]="{minWidth:'12em','margin-bottom':'16px'}"  [style]="{'width':'100%',   'margin-bottom': '16px'}"required></p-multiSelect>
+                                                                               </div>
+                                                                               </div>
+                                                                                   <!-- <ul *ngIf="showLessonsn">
+                                                                                       <span style="float:right" (click)="closeAllChecksn()">X</span>
+                                                                                       <li *ngFor="let les of allLessonsn">
+                                                                                           <input type="checkbox" formControlName="checkboxValuesn"  (change)="isAnswerProvidedn($event,les.lesson_id,les.lesson_name,checkvaluen)" value="{{les.lesson_id}}">{{les.lesson_name}}
+                                                                                       </li>                                                      
+                                                                                   </ul> -->
+                                                                                   <!-- <ul *ngIf="noLessonsn">
+                                                                                       <li><p class="btn btn-success" (click)="lessonCreate(lesson_valuen,'n')">Add</p></li>
+                                                                                   </ul> -->
+                                                                                   <ul *ngIf="noLessonsmsgn">
+                                                                                       <li>No lesson found, You can add one!</li>
+                                                                                   </ul><ng-container *ngIf="newClassificationSubmmit&&newClassification.controls.lesson_namen.errors">
+                                                                                       <span *ngIf="newClassificationSubmmit&&newClassification.controls.lesson_namen.errors.required" style="color: red">Please select lesson</span>
+                                                                                   </ng-container>
+                                                                               </td>
+                                                                               <td>
+                                                                                   <button type="submit" class="pading_4 bt btn-success pull-right">Adnew</button>
+                                                                               </td>                                                    
+                                                                           </tr>
+                                                                       </table>
+                                                                   </form>
+                                                               </div>
+                                                                   <table class="table table-bordered">
+                                                                       <thead>
+                                                                           <tr class="main_hed">
+                                                                               <th>ClassID</th>
+                                                                               <th>Country</th>
+                                                                               <th>Course</th>
+                                                                               <th>Class</th>
+                                                                               <th>Subject</th>
+                                                                               <th>Lesson/Topic</th>
+                                                                               <!-- <th>Created By</th>
+                                                                               <th>Created Date</th> -->
+                                                                               <th>Verifed</th>
+                                                                               <!-- <th>Verf Admin</th>
+                                                                               <th>Verf Date</th> -->
+                                                                               <th>Add/Delete</th>
+                                                                           </tr>
+                                                                       </thead>
+                                                                       <tbody>
+                                                                           <tr *ngFor="let clf of allClassifications;let i =index;">
+                                                                               <td>{{clf.classf_id}}</td>
+                                                                               <td>{{clf.cntry_name}}</td>
+                                                                               <td>{{clf.course_sname}}{{clf.course_fname}}</td>
+                                                                               <td>{{clf.class_sname}}{{clf.class_fname}}</td>
+                                                                               <td>{{clf.subject_sname}}{{clf.subject_fname}}</td>
+                                                                               <!-- <td>{{clf.course_fname}}</td> -->
+                                                                               <td id="savelesson_{{i}}" style="display: none" >
+                                                                                       <div class="col-md-12"  >
+                                                                                           <div class="col-md-10" *ngIf="clf_lesson_list.length>0"> 
+                                                                                                   <p-multiSelect  [options]="clf_lesson_list"selectedItemsLabel="1" filterPlaceHolder="Search lesson/topics" defaultLabel="Lession/Topics"[resetFilterOnHide]= "true"
+                                                                                                   [ariaFilterLabel]="Lesson"
+                                                                                                   [(ngModel)]="selectedLessons"
+                                                                                                   [panelStyle]="{minWidth:'12em'}" [style]="{'width':'100%'}"required>
+                                        
+                                                                                               </p-multiSelect>
+                                                                                           </div>
+                                                                                           <div class="col-md-2" style="display: flex;">
+                                                                                                   <a class="bt btn-success" (click)="saveRow(i,clf.content_clsf_id)">Save</a>
+                                                                                                   <a class="bt btn-primary" (click)="cancelRow(clf.lesson_id,i)">Cnacel</a>
+                                        
+                                                                                           </div>
+                                                                                       </div>   
+                                                                                   </td>
+                                                                                       <td id="editlesson_{{i}}" class="hoveruseredit">
+                                                                                               <div class="col-md-12">
+                                                                                                   <div class="col-md-10">
+                                                                                                       {{getLessonNames(clf.lesson_id)}}
+                                                                                                   </div>
+                                                                                                   <div class="col-md-2 editbutton" >
+                                                                                                       <a class="bt btn-success" style="margin-top:0px;" (click)="editRow(i,clf.subject_id,clf.lesson_id)">Edit</a>
+                                                                                                   </div>
+                                                                                               </div>
+                                                                                           </td>
+                                                                               <!-- <td>sunbeem</td>
+                                                                               <td>{{clf.classf_create_date}}</td> -->
+                                                                               <td>
+                                                                                   <div *ngIf="clf.is_verified == 0"  data-toggle="modal" data-target="#verifiedclassf">
+                                                                                       <button type="submit" class="bt btn-warning" (click)="classificationId=clf.content_clsf_id">Verify</button>
+                                                                                   </div>
+                                                                               </td>
+                                                                               <!-- <td>Admin</td>
+                                                                               <td>15-06-18</td> -->
+                                                                               <td>
+                                                                                   <div data-toggle="modal" data-target="#deleteClassf">
+                                                                                       <button type="submit" class="bt btn-danger" (click)="classificationId = clf.content_clsf_id">Delete</button>
+                                                                                   </div>
+                                                                               </td>
+                                                                           </tr>
+                                        
+                                                                       </tbody>
+                                                                   </table>
+                                        
+                                                                   <div class="classifi_bg  clfy_tbl">
+                                                                       <div class=" student-bg question_title" id="pers_inf">
+                                                                           <h3>Feedbacks(Reported Items)</h3>
+                                                                           <div class="longtext table-responsive" id="scrollbar_c">
+                                                                               <table class="table table-bordered">
+                                                                                   <thead>
+                                                                                       <tr class="main_hed">
+                                                                                           <th>Feedbk/ID</th>
+                                                                                           <th>User/ID</th>
+                                                                                           <th>Date</th>
+                                                                                           <th>Feedbk/Type</th>
+                                                                                           <th>Feeback</th>
+                                                                                           <th>Verify/Owner</th>
+                                                                                           <th>Date</th>
+                                                                                           <th>Owner/Conformed</th>
+                                                                                           <th>Verify/Amin</th>
+                                                                                           <th>Admin/Date</th>
+                                                                                           <th>View</th>
+                                                                                           <th>Delete</th>
+                                                                                           <th>Notify</th>
+                                                                                           <th>NotifDate</th>
+                                                                                       </tr>
+                                                                                   </thead>
+                                                                                   <tbody>
+                                                                                       <tr>
+                                                                                           <td>5246</td>
+                                                                                           <td>1250</td>
+                                                                                           <td>05/02/18</td>
+                                                                                           <td>public</td>
+                                                                                           <td>Feeback</td>
+                                                                                           <td>Verify</td>
+                                                                                           <td>05/02/18</td>
+                                                                                           <td>Conformed</td>
+                                                                                           <td>
+                                                                                               <div data-toggle="modal" data-target="#delete">
+                                                                                                   <button type="submit" class="bt btn-warning">Verifed</button>
+                                                                                               </div>
+                                                                                           </td>
+                                        
+                                                                                           <td>Admin</td>
+                                                                                           <td>View</td>
+                                                                                           <td>
+                                                                                               <div data-toggle="modal" data-target="#delete">
+                                                                                                   <button type="submit" class="bt btn-danger">Delete</button>
+                                                                                               </div>
+                                                                                           </td>
+                                                                                           <td>
+                                                                                               <div data-toggle="modal" data-target="#delete">
+                                                                                                   <button type="submit" class="bt btn-purple">Notify</button>
+                                                                                               </div>
+                                                                                           </td>
+                                                                                           <td>15/06/18</td>
+                                                                                       </tr>
+                                        
+                                                                                       <tr>
+                                                                                           <td>5246</td>
+                                                                                           <td>1250</td>
+                                                                                           <td>05/02/18</td>
+                                                                                           <td>public</td>
+                                                                                           <td>Feeback</td>
+                                                                                           <td>Verify</td>
+                                                                                           <td>05/02/18</td>
+                                                                                           <td>Conformed</td>
+                                                                                           <td>
+                                                                                               <div data-toggle="modal" data-target="#delete">
+                                                                                                   <button type="submit" class="bt btn-warning">Verifed</button>
+                                                                                               </div>
+                                                                                           </td>
+                                        
+                                                                                           <td>Admin</td>
+                                                                                           <td>View</td>
+                                                                                           <td>
+                                                                                               <div data-toggle="modal" data-target="#delete">
+                                                                                                   <button type="submit" class="bt btn-danger">Delete</button>
+                                                                                               </div>
+                                                                                           </td>
+                                                                                           <td>
+                                                                                               <div data-toggle="modal" data-target="#delete">
+                                                                                                   <button type="submit" class="bt btn-purple">Notify</button>
+                                                                                               </div>
+                                                                                           </td>
+                                                                                           <td>15/06/18</td>
+                                                                                       </tr>
+                                        
+                                                                                       <tr>
+                                                                                           <td>5246</td>
+                                                                                           <td>1250</td>
+                                                                                           <td>05/02/18</td>
+                                                                                           <td>public</td>
+                                                                                           <td>Feeback</td>
+                                                                                           <td>Verify</td>
+                                                                                           <td>05/02/18</td>
+                                                                                           <td>Conformed</td>
+                                                                                           <td>
+                                                                                               <div data-toggle="modal" data-target="#delete">
+                                                                                                   <button type="submit" class="bt btn-warning">Verifed</button>
+                                                                                               </div>
+                                                                                           </td>
+                                        
+                                                                                           <td>Admin</td>
+                                                                                           <td>View</td>
+                                                                                           <td>
+                                                                                               <div data-toggle="modal" data-target="#delete">
+                                                                                                   <button type="submit" class="bt btn-danger">Delete</button>
+                                                                                               </div>
+                                                                                           </td>
+                                                                                           <td>
+                                                                                               <div data-toggle="modal" data-target="#delete">
+                                                                                                   <button type="submit" class="bt btn-purple">Notify</button>
+                                                                                               </div>
+                                                                                           </td>
+                                                                                           <td>15/06/18</td>
+                                                                                       </tr>
+                                                                                   </tbody>
+                                                                               </table>
+                                                                               <div class="coment-content">
+                                                                                   <div class="comment_npt">
+                                                                                       <h3>Write a Review</h3>
+                                                                                       <div class="form-group">
+                                                                                           <textarea rows="6"></textarea>
+                                                                                       </div>
+                                                                                       <button type="submit" class="bt btn-danger pull-right">Post Review</button>
+                                                                                   </div>
+                                                                                   <div class="clearfix"></div>
+                                           
+                                                                                   <div class="comm-text">
+                                                                                       <h3>Reviews</h3>
+                                                                                       <h4>02Reviews</h4>
+                                                                                   </div>
+                                                                                   <div class="inbox-avatar">
+                                                                                       <img src="../../assets/img/avatar.png" class="hidden-xs hidden-sm" alt="">
+                                                                                       <div class="inbox-avatar-text">
+                                                                                           <div class="avatar-name">Amgoth Sandeep</div>
+                                                                                           <small>April 20,2018 at 11:36 AM</small>
+                                                                                       </div>
+                                                                                       <div class="m-l-58">
+                                                                                           <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since</p>
+                                                                                           <!--replay css start-->
+                                                                                           <div class="reply">
+                                                                                               <button type="button" class="repl-btn" data-toggle="collapse" data-target="#reply">
+                                                                                                   <i class="fa fa-mail-reply"></i> Reply
+                                                                                               </button>
+                                                                                           </div>
+                                                                                           <!--replay css End-->
+                                           
+                                                                                           <!--Report & delete css Start-->
+                                                                                           <div class="del_rep">
+                                                                                               <div data-toggle="modal" class="delt-color" data-target="#delete">
+                                                                                                   <button type="submit">
+                                                                                                       <i class="fa fa-trash-o"></i> Delete</button>
+                                                                                               </div>
+                                                                                               <div class="rpt-color">
+                                                                                                   <button type="button" class="repl-btn" data-toggle="collapse" data-target="#report"><i class="fa fa-file-o"></i> Report
+                                                                                                   </button>
+                                                                                               </div>
+                                                                                           </div>
+                                                                                           <!--Report & delete css end-->
+                                                                                           <div class="clearfix"></div>
+                                           
+                                                                                           <!--replay collapse  css start-->
+                                                                                           <div id="reply" class="collapse">
+                                                                                               <div class="re-drop">
+                                                                                                   <div class="comment_npt">
+                                                                                                       <h3>Write a Review</h3>
+                                                                                                       <div class="form-group">
+                                                                                                           <textarea rows="6"></textarea>
+                                                                                                       </div>
+                                                                                                       <button type="submit" class="bt btn-danger pull-right">Post Review
+                                                                                                       </button>
+                                                                                                   </div>
+                                                                                               </div>
+                                                                                           </div>
+                                                                                           <!--replay collapse  css End-->
+                                           
+                                                                                           <!--Report collapse  css start-->
+                                                                                           <div id="report" class="collapse">
+                                                                                               <div class="re-drop">
+                                                                                                   <div class="comment_npt">
+                                                                                                       <h3>Write a Report</h3>
+                                                                                                       <div class="form-group">
+                                                                                                           <textarea rows="6"></textarea>
+                                                                                                       </div>
+                                                                                                       <button type="submit" class="bt btn-danger pull-right">Post Report
+                                                                                                       </button>
+                                                                                                   </div>
+                                                                                               </div>
+                                                                                           </div>
+                                                                                           <!--Report collapse  css End-->
+                                                                                       </div>
+                                                                                   </div>
+                                                                                   <!--first reply end-->
+                                           
+                                                                               </div>
+                                                                           </div>
+                                                                       </div>
+                                                                   </div>
+                                                               </div>
+                                                           </div>
+                                                       </div>
+                                                       <!--end feed back-->
+                                        
+                                                   </div>
+                                                   <!--right strat End--->
+                                               </div>
+                                           </div>
+                                    <!--left tab--end--->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--====top profile background End====-->
+            </div>
+    </div>
+</section>
+
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
+<p-toast [style]="{marginTop: '80px'}" position="top-left" key="tl"></p-toast>
+<p-toast [style]="{marginTop: '80px'}" position="top-center" key="tc"></p-toast>
+<p-toast [style]="{marginTop: '80px'}" styleClass="custom-toast" key="custom" position="bottom-center"></p-toast>
+<p-toast position="center" key="c" (onClose)="onReject()" [modal]="true" [baseZIndex]="5000">
+    <ng-template let-message pTemplate="message">
+        <div style="text-align: center">
+            <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i>
+            <h3>{{message.summary}}</h3>
+            <p>{{message.detail}}</p>
+        </div>
+        <div class="ui-g ui-fluid">
+            <div class="ui-g-6">
+                <button type="button" pButton (click)="onConfirm()" label="Yes" class="ui-button-success"></button>
+            </div>
+            <div class="ui-g-6">
+                <button type="button" pButton (click)="onReject()" label="No" class="ui-button-secondary"></button>
+            </div>
+        </div>
+    </ng-template>
+</p-toast>
+<div class="modal fade" #someModal id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="!submitted">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content modal-sm login-popupwrong">
+        <div class="modal-header">
+         <span class="text-center"> <span class="modal-title" id="exampleModalLabel">Please Read....</span></span>
+          <span type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </span>
+        </div>
+        <div class="modal-body">
+            <p style="font-style:italic">
+                {{modalText}} 
+            </p>
+            <!-- <p style="font-style:italic"> Content uploaded successfully!!</p> -->
+                <!-- <form [formGroup]="userLogin" (keydown)="keyDownFunction($event)">
+       <div id="login-form" class="tab-pane fade in active">
+                    <input type="hidden"  id="uac_activationCode" [(ngModel)]="act">
+                <div class="form-group" [ngClass]="displayFieldCss('login_name')">
+                    <label for="login_name">User Name</label>
+                    <input type="text" [ngModelOptions]="{standalone: true}" (keypress)="clearmsg()" id="login_name" class="form-control input-sm" [(ngModel)]="login_name" placeholder="Username">
+                    <div *ngIf ="usr == true"class="lartsms text-danger alert alert-danger" style="color:red;">{{error}} </div>
+
+                    <a href="#search" data-toggle="modal">forgot username or password?</a>
+                </div>
+                <div class="form-group"  [ngClass]="displayFieldCss('login_name')">
+                    <label for="login_name3">Password</label>
+                    <input type="password" [ngModelOptions]="{standalone: true}" (keypress)="clearmsg()" id="login_name3" class="form-control input-sm" [(ngModel)]="login_password" placeholder="password">
+                    <div *ngIf ="(prwd == true) && (usr ==false)" class="lartsms text-danger alert alert-danger" style="color:red;"> {{error}} </div>
+
+                </div>
+                <div *ngIf ="alertMsgs2 == true"class="lartsms text-danger alert alert-danger" style="color:red;">{{accesdetailwrong2}} </div>
+
+                <button type="submit" class="btn btn-default btn-sm validpopup" (click)="onLogin1()"> Login </button>
+            </div>
+                </form> -->
+            
+   </div>
+   <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+      </div>
+      </div>
+    </div>
+  </div>

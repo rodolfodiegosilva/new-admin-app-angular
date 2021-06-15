@@ -1,0 +1,1216 @@
+<app-sdashheader></app-sdashheader>
+<div class="leftsidemenus">
+   <app-sdahshmenu></app-sdahshmenu>
+</div>
+<div class="loadertable">
+   <ng4-loading-spinner [timeout]="8000" [template]="template" [zIndex]="9999"> </ng4-loading-spinner>
+</div>
+<div id="page-wrapper">
+   <div class="content">
+      <!--verified  Modal start -->
+      <div class="modal fade" id="verified" role="dialog">
+         <div class="modal-dialog vry_modal">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+               </div>
+               <div class="modal-body modal_text">
+                  <p>Do you really want to verify these records? This process cannot be undone</p>
+               </div>
+               <div class="modal-footer modal_foot">
+                  <button type="submit" class="bt btn-warning">verify</button>
+                  <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- verified Modal end-->
+      <!--Blocked  Modal start -->
+      <div class="modal fade" id="block" role="dialog">
+         <div class="modal-dialog vry_modal">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+               </div>
+               <div class="modal-body modal_text">
+                  <p>Do you really want to Block these records? This process cannot be undone</p>
+               </div>
+               <div class="modal-footer modal_foot">
+                  <button type="submit" class="bt btn-warning">Block</button>
+                  <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Blocked Modal end-->
+      <!--Delete  Modal start -->
+      <div class="modal fade" id="delete" role="dialog">
+         <div class="modal-dialog vry_modal">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+               </div>
+               <div class="modal-body modal_text">
+                  <p>Do you really want to Delete these records? This process cannot be undone</p>
+               </div>
+               <div class="modal-footer modal_foot">
+                  <button type="submit" class="bt btn-warning">Delete</button>
+                  <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Delete Modal end-->
+      <!--====Question upload page start====-->
+      <section class="question_search question_sec selt_ht scroll-yes">
+         <div class="container-fluid">
+            <div class="col-md-12">
+               <div class="all_brd">
+                  <div class="question_title" id="pers_inf">
+                     <h3>Create Test Page
+                           <button *ngIf="showUsers==true" (click)="refresh()" class="btn btn-success">Create New Test</button>
+                        </h3>
+                  </div>
+                  <div class="question_sub">
+                     <div class="all_mian"> 
+                        <form autocomplete="off" role="form" #testCrtForm="ngForm" (ngSubmit)="createTest(testCrtForm)" accept-charset="UTF-8" novalidate>
+                        <input type="hidden" #inst_ids="ngModel" name="inst_ids" [(ngModel)]="inst_id">
+                        <input type="hidden" #test_owner_id="ngModel" name="test_owner_id" [(ngModel)]="test_owner_ids">
+                        <input type="hidden" #test_admin_id="ngModel" name="test_admin_id" [(ngModel)]="Check_admin_id">
+                        <input type="hidden" #filesUrls="ngModel" name="filesUrls" [(ngModel)]="filesUrl">
+                         
+                        <div class="row">
+                              <div class="col-md-1" *ngIf="test_id != ''">
+                                    <span class="ui-float-label">                                                
+                                    <label for="float-input">Test Id</label>                                                
+                                    </span>
+                                    <br>
+                                    <p style="background-color: #eee; opacity: 1;">
+                                       {{test_id}}
+                                    </p>
+                                 </div> 
+                           <div class="col-md-5">
+                              <span class="ui-float-label">                                                
+                              <input *ngIf="titleEdit" type="text" id="float-input" size="50" pInputText #test_title="ngModel" name="test_title" [(ngModel)]="title_test" placeholder="" required>
+                              <label for="float-input">Test Title</label>                                                
+                              </span>
+                              <br>
+                              <p *ngIf="!titleEdit" class="form-control" readonly (click)="editTestFields('titleEdit',title_test)" pTooltip="Click to edit Test title" tooltipPosition="top">{{title_test}}</p>
+                              <p *ngIf="titleEdit_show">
+                                 <i class="fa fa-times btn btn-danger" (click)="closeTestEdit('titleEdit','title_test')" aria-hidden="true"></i>
+                                 <i class="fa fa-check btn btn-success" (click)="updateTestSpec(test_id,title_test,'test_title','titleEdit')" aria-hidden="true"></i>
+                              </p>
+                           </div>
+                           <div class="col-md-6">
+                              <span class="ui-float-label"> 
+                              <textarea *ngIf="descEdit" id="float-input" rows="2" cols="50" pInputText [disabled]="butDisabled" #test_desc="ngModel" name="test_desc" [(ngModel)]="desc_test" required></textarea>
+                              <label for="float-input">Description</label>
+                              </span>
+                              <br>
+                              <p *ngIf="!descEdit" class="form-control" readonly (click)="editTestFields('descEdit',desc_test)" pTooltip="Click to edit test Description" tooltipPosition="top">{{desc_test}}</p>
+                              <p *ngIf="descEdit_show">
+                                 <i class="fa fa-times btn btn-danger" (click)="closeTestEdit('descEdit','desc_test')" aria-hidden="true"></i>
+                                 <i class="fa fa-check btn btn-success" (click)="updateTestSpec(test_id,desc_test,'test_desc','descEdit')" aria-hidden="true"></i>
+                              </p>
+                           </div>
+                        </div>
+                        <hr class="hr_bt">
+                        <div class="row">
+                           <div *ngIf="!showClfsNames" class="col-md-6">
+                              <ng-select (change)="getTotalAvailabaleQnsGradewise()" [disabled]="butDisabled" [items]="countrieslist" bindLabel="cntry_name" bindValue="cntry_id" #country="ngModel" name="country" [(ngModel)]="country_id" placeholder="Select country" disabled required>
+                              </ng-select>                              
+                           </div>
+                           <div *ngIf="showClfsNames" class="col-md-6">
+                              <label>Country</label>
+                              <p class="form-control" readonly>{{cntry_name}}</p>
+                           </div>
+                           <div *ngIf="!showClfsNames" class="col-md-4">
+                              <ng-select (change)="getTotalAvailabaleQnsGradewise()" [items]="allCourses" bindLabel="course_fname" bindValue="course_id" #course_ids="ngModel" name="course_ids" [(ngModel)]="course_value" placeholder="Select Course" required>
+                              </ng-select>
+                           </div>
+                           <div *ngIf="showClfsNames" class="col-md-4">
+                                 <label>Course</label>
+                                 <p class="form-control" readonly>{{course_fname}}</p>
+                           </div>
+                        </div>
+                        
+                        <div class="row">
+                           <div *ngIf="!showClfsNames" class="col-md-3">
+                              <ng-select (change)="getTotalAvailabaleQnsGradewise()" [items]="allClasses" bindLabel="class_fname" bindValue="class_id" placeholder="Select Class" #class_ids="ngModel" name="class_ids" [(ngModel)]="class_value" required>
+                              </ng-select>
+                              <!-- <div class="col-md-1" *ngIf="is_class_notavailable==true">
+                                 <br>
+                                 <span class="btn-success btn show-addbtn-course" data-toggle="modal" data-target="#classModel">Add</span>
+                                 </div> -->
+                           </div>
+                           <div *ngIf="showClfsNames" class="col-md-3">
+                                 <label>Class</label>
+                                 <p class="form-control" readonly>{{class_fname}}</p>
+                           </div>
+                           <div *ngIf="!showClfsNames" class="col-md-3">
+                              <ng-select (change)="getTotalAvailabaleQnsGradewise()" [items]="allSubjects" bindLabel="subject_fname" bindValue="subject_id" placeholder="Select Subjects" #subject_ids="ngModel" name="subject_ids" [(ngModel)]="subject_values" (change)="getLessonsonForSubj()" required>
+                              </ng-select>
+                              <!-- <div class="col-md-1">
+                                 <br>
+                                 <p *ngIf="is_subject_notavailable==true" class="bt btn-success btn" data-toggle="modal" data-target="#subjectModel">Add</p>
+                                 </div> -->
+                           </div>
+                           <div *ngIf="showClfsNames" class="col-md-3">
+                                 <label>Subject</label>
+                                 <p class="form-control" readonly>{{subject_fname}}</p>
+                           </div>
+                           <div *ngIf="!showClfsNames" class="col-md-4">
+                              <div class="col-md-12">
+                                 <label>Lesson/Topic</label>
+                                 <br>
+                                 <p-multiSelect (onChange)="getTotalAvailabaleQnsGradewise()" [style]="{'width': '100%'}"  [options]="lessonsList" #selectedLessonIds="ngModel" name="selectedLessonIds" [(ngModel)]="selectedlessonList" [panelStyle]="{minWidth:'12em'}" maxSelectedLabels = "2" required></p-multiSelect>
+                                 <span *ngIf="lessSlct==true" class="error-msg alert-danger">Please select lesson(s)</span>
+                              </div>
+                              <div class="col-md-2" *ngIf="noLessonsmsg">
+                                 <span>Please select subject!</span>
+                              </div>
+                              <!-- <div class="col-md-2" *ngIf="noLessons">
+                                 <p class="btn btn-success" (click)="lessonCreate(lesson_name,'')">Add</p>
+                                 </div> -->
+                           </div>
+                           <div *ngIf="showClfsNames" class="col-md-3">
+                                 <label>Lesson/Topic</label>
+                                 <ng-container *ngIf="lessons_names.length >= '60'">
+                                    <p class="form-control" id="greater"  readonly pTooltip="{{lessons_names}}" tooltipPosition="top">{{lessons_names.slice(0,60)}} ..</p>
+                                 </ng-container>
+                                 <ng-container *ngIf="lessons_names.length <= '60'">
+                                    <p class="form-control" id="lower" readonly pTooltip="{{lessons_names}}" tooltipPosition="top">{{lessons_names}}</p>
+                                 </ng-container>
+                           </div>
+                        </div>
+                        <hr class="hr_bt">
+                        <div *ngIf="showAvailableQns==true">
+                           <div class="col-md-12">
+                              <div class="col-md-3">
+                                 <p>Total Available Qns : {{totalAvailableQns}} </p>
+                              </div>
+                              <div class="col-md-9">
+                                 <div class="col-md-3">
+                                    Grade A : {{alqLabelA}}
+                                 </div>
+                                 <div class="col-md-3">
+                                    Grade B : {{alqLabelB}}
+                                 </div>
+                                 <div class="col-md-3">
+                                    Grade C : {{alqLabelC}}
+                                 </div>
+                                 <div class="col-md-3">
+                                    Grade D : {{alqLabelD}}
+                                 </div>
+                              </div>
+                           </div>              
+                        </div>
+                        <br>
+                        <hr class="hr_bt">
+                        <br>
+                        <div class="row">
+                           <div class="col-md-3">
+                              <span class="ui-float-label">
+                              <input *ngIf="qnsEdit" type="text" id="float-input-question" pInputText (keyup)="numberOnly($event,1);" #test_total_ques="ngModel" name="test_total_ques" [(ngModel)]="total_ques" placeholder="" required>
+                              <label for="float-input">No of questions</label>
+                              </span>
+                              <br>
+                              <p *ngIf="!qnsEdit" class="form-control" readonly>{{total_ques}}</p>
+                              <!-- <p *ngIf="!qnsEdit" class="form-control" (click)="editTestFields('qnsEdit')" pTooltip="Click to edit no. of questions" tooltipPosition="top">{{total_ques}}</p> -->
+                              <p *ngIf="qnsEdit_show">
+                                 <i class="fa fa-times btn btn-danger" (click)="closeTestEdit('qnsEdit')" aria-hidden="true"></i>
+                                 <i class="fa fa-check btn btn-success"  (click)="updateTestSpec(test_id,total_ques,'test_total_ques','qnsEdit')" aria-hidden="true"></i>
+                              </p>
+                              <p *ngIf="mErrMsg_1" class="alert alert-danger">{{mErrMsg_1}}</p>                              
+                           </div>
+                           <div class="col-md-3">
+                              <!-- <label>Start date & Time</label><br> -->
+                              <!-- <input type="text" class="form-control" placeholder="Start date & Time" #test_start_datetime="ngModel" name="test_start_datetime" [(ngModel)]="teststart_datetime"> -->
+                              <span class="ui-float-label">
+                              <p-calendar *ngIf="sdntEdit" id="float-input" [readonlyInput]="true" [minDate]="sminDate" (onSelect)="getDateTime($event,1)" #test_start_datetimes="ngModel" name="test_start_datetimes" 
+                              [(ngModel)]="teststart_datetimes" dateFormat="dd-mm-yy" showTime="true" hourFormat="24" placeholder="" required></p-calendar>
+                              <label for="float-input">Start date & Time</label>
+                              </span>
+                              <input type="hidden" #test_start_datetime="ngModel" name="test_start_datetime" [(ngModel)]="teststart_datetime">
+                              <br>
+                              <p *ngIf="!sdntEdit" class="form-control" readonly>{{teststart_datetime}}</p>
+                              <!-- <p *ngIf="!sdntEdit" class="form-control" (click)="editTestFields('sdntEdit',teststart_datetime)" pTooltip="Click to edit start date & time" tooltipPosition="top">{{teststart_datetime}}</p> -->
+                              <!-- <p *ngIf="sdntEdit_show">
+                                 <i class="fa fa-times btn btn-danger" (click)="closeTestEdit('sdntEdit','teststart_datetime')" aria-hidden="true"></i>
+                                 <i class="fa fa-check btn btn-success" (click)="updateTestSpec(test_id,teststart_datetime,'test_start_datetime','sdntEdit')" aria-hidden="true"></i>
+                                 </p> -->
+                              <!-- <input type="text" [(ngModel)]="tMarks" #marks="ngModel" name="marks" (keypress)="numberOnly($event,1)" class="form-control" placeholder="enter Marks" required>
+                                 <p *ngIf="mErrMsg_1" class="alert alert-danger">{{mErrMsg_1}}</p> -->
+                           </div>
+                           <div class="col-md-3">
+                              <!-- <label>End date & Time</label><br> -->
+                              <!-- <input type="text" class="form-control" #test_end_datetime="ngModel" name="test_end_datetime" [(ngModel)]="testend_datetime" placeholder="End date & Time"> -->
+                              <span class="ui-float-label">
+                              <p-calendar *ngIf="edntEdit" id="float-input"  [minDate]="eminDate" (onSelect)="getDateTime($event,2)" #test_end_datetimes="ngModel" name="test_end_datetimes" [(ngModel)]="testend_datetimes" dateFormat="dd-mm-yy" showTime="true" hourFormat="24" required></p-calendar>
+                              <label for="float-input">End date & Time</label>
+                              </span>
+                              <input type="hidden" #test_end_datetime="ngModel" name="test_end_datetime" [(ngModel)]="testend_datetime">
+                              <br>
+                              <p *ngIf="!edntEdit" class="form-control" readonly>{{testend_datetime}}</p>
+                              <p>
+                                 <button *ngIf="showUsers==true" type="button" class="btn btn-success" (click)="rescheduledatesConfirm()">Re-Schedule</button>
+                              </p>
+                              <!-- <p *ngIf="!edntEdit" class="form-control" (click)="editTestFields('edntEdit',testend_datetime)" pTooltip="Click to edit end date & time" tooltipPosition="top">{{testend_datetime}}</p> -->
+                              <!-- <p *ngIf="edntEdit_show">
+                                 <i class="fa fa-times btn btn-danger" (click)="closeTestEdit('edntEdit','testend_datetime')" aria-hidden="true"></i>
+                                 <i class="fa fa-check btn btn-success" (click)="updateTestSpec(test_id,testend_datetime,'test_end_datetime','edntEdit')" aria-hidden="true"></i>
+                                 </p> -->
+                              <!-- <input type="text" (keypress)="numberOnly($event,2)" #nmarks="ngModel" name="nmarks" [(ngModel)]="nmarkss" class="form-control" placeholder="enter Nagtive Marks" required>
+                                 <p *ngIf="mErrMsg_2" class="alert alert-danger">{{mErrMsg_2}}</p> -->
+                           </div>
+                           <div class="col-md-3">
+                                 <!-- <p-calendar timeOnly=true [(ngModel)]="duration_test"></p-calendar> -->
+                              <span class="ui-float-label">
+                              <!-- <input *ngIf="durtEdit" id="float-input" type="text" #test_duration="ngModel" name="test_duration" [(ngModel)]="duration_test" pInputText>  -->
+                              <p-calendar *ngIf="durtEdit" (onSelect)="getDateTime($event,4)" id="float-input" timeOnly=true #test_durations="ngModel" name="test_durations" [(ngModel)]="duration_tests" pInputText></p-calendar>
+                              <input type="hidden" #test_duration="ngModel" name="test_duration" [(ngModel)]="tests_duration">
+                              <label for="float-input">Test duration</label>
+                              </span>
+                              <p *ngIf="!durtEdit" style="
+                              margin-top:5%;font-size: 15px;" class="form-control" (click)="editTestFields('durtEdit',duration_test)" pTooltip="Click to edit test duration" tooltipPosition="top">
+                                    {{tests_duration}}</p>
+                              <p *ngIf="durtEdit_show">
+                                 <i class="fa fa-times btn btn-danger" (click)="closeTestEdit('durtEdit','duration_test')" aria-hidden="true"></i>
+                                 <i class="fa fa-check btn btn-success" (click)="updateTestSpec(test_id,duration_test,'test_duration','durtEdit')" aria-hidden="true"></i>
+                              </p>
+                           </div>
+                        </div>
+                        <div class="row all_pd">
+                           <div class="col-md-12">
+                              <div class="col-md-3">
+                                 <p-checkbox *ngIf="hasNegEdit" value="1" label="Test has neg.marks?" #test_is_nmarks="ngModel" name="test_is_nmarks" [(ngModel)]="is_test_nmarks"></p-checkbox>
+                                 <p *ngIf="!hasNegEdit" (click)="editTestFields('hasNegEdit',is_test_nmarks)" pTooltip="Click to edit test has neg.marks" tooltipPosition="top">
+                                 {{is_test_nmarks==1?'Test has neg.marks : Yes':'Test has neg.marks : No'}}</p>
+                                 <p *ngIf="hasNegEdit_show">
+                                    <i class="fa fa-times btn btn-danger" (click)="closeTestEdit('hasNegEdit','is_test_nmarks')" aria-hidden="true"></i>
+                                    <i class="fa fa-check btn btn-success" (click)="updateTestSpec(test_id,is_test_nmarks,'test_is_nmarks','hasNegEdit')" aria-hidden="true"></i>
+                                 </p>
+                              </div>
+                              <div class="col-md-3">
+                                 <p-checkbox (onChange)="isResultDeclaredByAdmin($event)" *ngIf="testResEdit" value="1" label="Result declared by Admin?" #test_is_res_declared_admin="ngModel" name="test_is_res_declared_admin" [(ngModel)]="is_test_res_declared_admin"></p-checkbox>
+                                 <p *ngIf="!testResEdit" (click)="editTestFields('testResEdit',is_test_res_declared_admin)" pTooltip="Click to edit test Is Result declared by Admin?" tooltipPosition="top">
+                                       Result declared by Admin? : {{is_test_res_declared_admin==1?'Yes':'No'}}
+                                 </p> 
+                                 <p *ngIf="showUsers==true">
+                                    <button *ngIf="showDecRes==true && is_test_res_declared_admin==1" (click)="declareResult()" type="button" class="btn btn-success">Declare Result</button>
+                                 </p>
+                                 <p *ngIf="showDecRes==false">Actula Test Result Date : {{act_result_date}}</p>
+                              </div>
+                              <div class="col-md-3" *ngIf="showResDecDate">                                 
+                                 <span class="ui-float-label">
+                                 <p-calendar *ngIf="resdecEdit" id="float-input" (onSelect)="getDateTime($event,3)" #test_res_declared_dates="ngModel" name="test_res_declared_dates" 
+                                 [(ngModel)]="testres_declared_date" dateFormat="dd-mm-yy" showTime="true" hourFormat="24" placeholder="" required></p-calendar>
+                                 <label for="float-input">Test Result Declared Date</label>
+                                 </span>
+                                 <input type="hidden" #test_res_declared_date="ngModel" name="test_res_declared_date" [(ngModel)]="testres_declared_dates">
+                                 <p *ngIf="!resdecEdit" class="form-control" (click)="editTestFields('resdecEdit',testres_declared_dates)" pTooltip="Test Result Declared Date?" tooltipPosition="top">{{testres_declared_dates}}</p>
+                                 <p *ngIf="resdecEdit_show">
+                                    <i class="fa fa-times btn btn-danger" (click)="closeTestEdit('resdecEdit','testres_declared_dates')" aria-hidden="true"></i>
+                                    <i class="fa fa-check btn btn-success" (click)="updateTestSpecResAdmin(test_id,testres_declared_date,'test_res_declared_date','resdecEdit')" aria-hidden="true"></i>
+                                 </p>                                
+                              </div>
+                           </div>
+                           <div class="col-md-3">
+                              <label>Test Type</label>
+                              <p *ngIf="showUsers==true">
+                                 <label *ngIf="testtype_id==1">Random Questions-User Spe.</label>
+                                 <label *ngIf="testtype_id==2">Random Questions-Test Spe.</label>
+                                 <label *ngIf="testtype_id==3">Manual Questions-User Spe.</label>
+                                 <label *ngIf="testtype_id==4">Manual Questions-Test Spe.</label>
+                              </p>
+                           </div>
+                           <div class="col-md-12" *ngIf="showUsers==false">
+                              <div class="col-md-3">
+                                 <label></label>
+                                 <div class="i-check">
+                                    <input tabindex="5" (change)="getDataontestType($event.target.checked,1)" type="radio" #test_type_id="ngModel" name="test_type_id" [value]="1" [(ngModel)]="testtype_id">
+                                    <label for="minimal-checkbox-1">Random Questions-User Spe.</label>
+                                    <!-- <p-radioButton #test_type_id="ngModel" name="test_type_id" label="Random Questions-User Spe." value="1" [(ngModel)]="testtype_id"></p-radioButton> -->
+                                 </div>
+                              </div>
+                              <div class="col-md-3">
+                                 <label></label>
+                                 <div class="i-check">
+                                    <input tabindex="5" (change)="getDataontestType($event.target.checked,2)" type="radio" #test_type_id="ngModel" name="test_type_id" [value]="2" [(ngModel)]="testtype_id">
+                                    <label for="minimal-checkbox-1">Random Questions-Test Spe.</label>
+                                 </div>
+                              </div>
+                              <div class="col-md-3">
+                                 <label></label>
+                                 <div class="i-check">
+                                    <input tabindex="5" (change)="getDataontestType($event.target.checked,3)" type="radio" #test_type_id="ngModel" name="test_type_id" [value]="3" [(ngModel)]="testtype_id">
+                                    <label for="minimal-checkbox-1">Manual Questions-User Spe.</label>
+                                 </div>
+                              </div>
+                              <div class="col-md-3">
+                                 <label></label>
+                                 <div class="i-check">
+                                    <input tabindex="5" (change)="getDataontestType($event.target.checked,4)" type="radio" #test_type_id="ngModel" name="test_type_id" [value]="4" [(ngModel)]="testtype_id">
+                                    <label for="minimal-checkbox-1">Manual Questions-Test Spe.</label>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>                      
+                        <div *ngIf="showUsers==false" class="col-md-4">
+                           <br>
+                           <button *ngIf="testCrtForm.valid && creteBtnShow==true" class="btn btn-primary">Create</button>
+                           <button *ngIf="!testCrtForm.valid || creteBtnShow==false"  disabled="{{creteBtn==true}}" class="btn btn-primary">Create</button>
+                        </div>
+                        </form>
+                     </div>
+                  </div>
+                  <!--  -->
+                  <div *ngIf="showUsers==true"  class="content_sub">
+                     <!---Question-1 Owner: *ngIf="test_type_1==true" start-->
+                     <div class="qusn_oner">
+                        <div class="col-md-12 longtext" id="scrollbar_c">
+                           <table class="table table-bordered" style="background-color: #e9e9e9;">
+                              <thead>
+                                 <tr class="main_hed">
+                                    <!-- <th>ID</th> -->
+                                    <th>Username</th>
+                                    <th>User type</th>
+                                    <th>Class</th>
+                                    <!-- <th>Grade</th> -->
+                                    <th>School</th>
+                                    <th>Country</th>
+                                    <th>State</th>
+                                    <th>City</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr>
+                                    <!-- <td></td> -->
+                                    <td>
+                                       <p-multiSelect [options]="userDname" [(ngModel)]="selectedDisplayNames" (onChange)="getAllRegisteredUsers()" [panelStyle]="{minWidth:'12em'}">
+                                       </p-multiSelect>
+                                    </td>
+                                    <td>
+                                       <p-multiSelect [options]="userType" [(ngModel)]="selectedUserType" (onChange)="getAllRegisteredUsers()" [panelStyle]="{minWidth:'12em'}">
+                                       </p-multiSelect>
+                                    </td>
+                                    <td>
+                                       <p-multiSelect [options]="Classname" [(ngModel)]="selectedClasses" (onChange)="getAllRegisteredUsers()" [panelStyle]="{minWidth:'12em'}">
+                                       </p-multiSelect>
+                                    </td>
+                                    <td>
+                                       <p-multiSelect [options]="Schoolname" [(ngModel)]="selectedSchoolNames" (onChange)="getAllRegisteredUsers()" [panelStyle]="{minWidth:'12em'}">
+                                       </p-multiSelect>
+                                    </td>
+                                    <td>
+                                       <p-multiSelect [options]="userCountries" [(ngModel)]="selectedUsercountry" (onChange)="getAllRegisteredUsers()"></p-multiSelect>
+                                    </td>
+                                    <td>
+                                       <p-multiSelect [options]="stateNames" [(ngModel)]="selectedStates" (onChange)="getAllRegisteredUsers()" [panelStyle]="{minWidth:'12em'}">
+                                       </p-multiSelect>
+                                    </td>
+                                    <td>
+                                       <p-multiSelect [options]="cityNames" [(ngModel)]="selectedCities" (onChange)="getAllRegisteredUsers()" [panelStyle]="{minWidth:'12em'}">
+                                       </p-multiSelect>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                           <div class="clear-fix"></div>
+                           <br>
+                           <div>
+                              <button class="btn btn-success" (click)="AssignTesttoUserConfirm()">Assign Users</button>
+                           </div>
+                           <div class="col-md-12 longtext" style="background-color: #e9e9e9;" id="scrollbar_c">
+                                 <div style="text-align: center;">
+                                    Selected Users
+                                 </div>
+                              <table class="table table-bordered">
+                                 <thead>
+                                    <tr class="main_hed">
+                                       <th><p-checkbox *ngIf="allUsers.length>0" value='0' (onChange)="checkedAllUser($event)" [(ngModel)]="selectedUsers"></p-checkbox></th>
+                                       <th>ID</th>
+                                       <th>Username</th>
+                                       <th>User type</th>
+                                       <th>Class</th>
+                                       <!-- <th>Grade</th> -->
+                                       <th>School</th>
+                                       <th>Country</th>
+                                       <th>State</th>
+                                       <th>City</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    <tr *ngFor="let usr of allUsers; let i=index">
+                                       <td>
+                                          <p-checkbox value="{{usr.UserId}}" label="{{i+1}}" [(ngModel)]="selectedUsers"></p-checkbox>
+                                       </td>
+                                       <td>{{usr.UserId}}</td>
+                                       <td>{{usr.user_dname}}</td>
+                                       <td>{{usr.usrtyp_name}}</td>
+                                       <td>{{usr.user_class}}</td>
+                                       <td>{{usr.schoolName}}</td>
+                                       <td>{{usr.cntry_name}}</td>
+                                       <td>{{usr.state_name}}</td>
+                                       <td>{{usr.city_name}}</td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                           <div>
+                              <button class="btn btn-warning" (click)="unAssignTestforUserConfirm()">Unassign Users</button>
+                           </div>
+                           <div class="col-md-12 longtext" style="background-color: #e9e9e9;" id="scrollbar_c">
+                              <div style="text-align: center;">
+                                 Assigned Users
+                              </div>
+                              <table class="table table-bordered">
+                                 <thead>
+                                    <tr class="main_hed">
+                                       <th><p-checkbox  value='0' *ngIf="assignedUsers.length>0" (onChange)="checkedAll($event)" [(ngModel)]="selectedUsersunassign"></p-checkbox></th>
+                                       <th>ID</th>
+                                       <th>Username</th>
+                                       <th>User type</th>
+                                       <th>Class</th>
+                                       <!-- <th>Grade</th> -->
+                                       <th>School</th>
+                                       <th>Country</th>
+                                       <th>State</th>
+                                       <th>City</th>
+                                       <th>Questions Count</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    <tr *ngFor="let usr of assignedUsers; let i=index">
+                                       <td>
+                                          <p-checkbox value="{{usr.UserId}}"  label="{{i+1}}"  (onChange)="checkedUserEvent($event,usr.UserId)" [(ngModel)]="selectedUsersunassign"></p-checkbox>
+                                       </td>
+                                       <td>{{usr.UserId}}</td>
+                                       <td>{{usr.user_dname}}</td>
+                                       <td>{{usr.usrtyp_name}}</td>
+                                       <td>{{usr.user_class}}</td>
+                                       <td>{{usr.schoolName}}</td>
+                                       <td>{{usr.cntry_name}}</td>
+                                       <td>{{usr.state_name}}</td>
+                                       <td>{{usr.city_name}}</td>
+                                       <td>{{usr.qns_count}}</td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                           <!-- <button *ngIf="testtype_id==4" class="btn btn-primary" (click)="AssignQnsforConfirm()">Assign Qns</button> -->
+                           <!--div class="col-md-12 longtext" id="scrollbar_c">
+                              <table class="table table-bordered">
+                                  <thead>
+                                      <tr class="main_hed">                                                    
+                                          <-- <th>Question Id</th> --
+                                          <th>Lesson Topic</th>
+                                          <th>Question Type</th>
+                                          <th>Grade</th>
+                                          <th>Owner</th>
+                                          <th>Marks</th>
+                                          <th>Neg.Marks</th>
+                                          <th>Time</th>
+                                          <th>Rating</th>                                
+                                      </tr>  
+                                  </thead>
+                                  <tbody>
+                                      <tr>
+                                          <-- <td></td> --
+                                          <td>
+                                              <p-multiSelect [options]="lessnsList" [(ngModel)]="assgnedseltdLesList" (onChange)="getAssignedQuestionsforTest()" [panelStyle]="{minWidth:'12em'}">
+                                              </p-multiSelect>
+                                          </td>
+                                          <td>
+                                                  <p-multiSelect [options]="qnsTypeList" [(ngModel)]="assgnedseltdqntList" (onChange)="getAssignedQuestionsforTest()" [panelStyle]="{minWidth:'12em'}">
+                                                  </p-multiSelect>
+                                              </td>
+                                              <td>
+                                                      <p-multiSelect [options]="qnsGrade" [(ngModel)]="assgnedseltdqnGrdList" (onChange)="getAssignedQuestionsforTest()" [panelStyle]="{minWidth:'12em'}">
+                                                      </p-multiSelect>
+                                                  </td>
+                                          <td>
+                                              <p-multiSelect [options]="ownersList" [(ngModel)]="assgnedselectedOwners" (onChange)="getAssignedQuestionsforTest()" [panelStyle]="{minWidth:'12em'}">
+                                              </p-multiSelect>
+                                          </td>
+                                         
+                                          
+                                          <td>
+                                              <p-multiSelect [options]="marksList" [(ngModel)]="assgnedseltdqnMrksList" (onChange)="getAssignedQuestionsforTest()"></p-multiSelect>
+                                          </td>
+                                          <td>
+                                              <p-multiSelect [options]="nmarksList" [(ngModel)]="assgnedseltdqnnMrksList" (onChange)="getAssignedQuestionsforTest()" [panelStyle]="{minWidth:'12em'}">
+                                              </p-multiSelect>
+                                          </td>
+                                          <td>
+                                              <p-calendar [(ngModel)]="assgnedquestion_time" [timeOnly]="true" (onSelect)="getTime($event)"></p-calendar>
+                                              <br>
+                                          </td>
+                                          <td>
+                                              <p-multiSelect [options]="nmarksList" [(ngModel)]="assgnedseltdqnnMrksList" (onChange)="getAssignedQuestionsforTest()" [panelStyle]="{minWidth:'12em'}">
+                                              </p-multiSelect>
+                                          </td>                                                    
+                                          </tr>
+                                  </tbody>                                             
+                              </table>
+                              </div-->
+                              <div *ngIf="type3Show==true">
+                                 <!-- *ngIf="testtype_id==4 || testtype_id==3" -->
+                           <div  class="col-md-12 longtext" style="background-color: #e9e9e9;" id="scrollbar_c">
+                              <p class="btn btn-success">Assigned Questions List</p>
+                              <span>Select Lesson Topic</span>
+                              <p-multiSelect [options]="lessnsList" [(ngModel)]="seltdLesList" (onChange)="getQuestions()" [panelStyle]="{minWidth:'12em'}">                                        
+                              </p-multiSelect>
+                              <br>
+                              <div class="col-md-12">
+                                 <div class="col-md-4">
+                                    <label>All Questions</label>                                
+                                    <p-chart type="pie" [data]="totalQuestions"></p-chart>
+                                    <!-- <p-chart type="doughnut" [data]="totalAssgnedQnsToanyTest"></p-chart>  -->
+                                    <!-- <p class="btn btn-success">{{questionsLength}}</p> -->
+                                 </div>
+                                 <div class="col-md-4">
+                                    <label>Assigned Questions To Any Test</label>                                             
+                                    <p-chart type="pie" [data]="totalAssgnedQnsToAnyTest"></p-chart>
+                                 </div>
+                                 <div class="col-md-4">
+                                    <label>Assigned Questions To this Test</label>                                             
+                                    <p-chart type="pie" [data]="totalAssgnedQnsTothisTest"></p-chart>
+                                 </div>
+                                 <div class="col-md-4">
+                                    <label>Attempted Qns</label>                                             
+                                    <p-chart type="pie" [data]="totalAttemptedQnsToAnyTest"></p-chart>
+                                 </div>
+                                 <div class="col-md-4">
+                                    <label>Correct Answered Qns Count</label>                                             
+                                    <p-chart type="pie" [data]="crrctAnsQnsCount"></p-chart>
+                                 </div>
+                                 <div class="col-md-4">
+                                    <label>InCorrect Answered Qns Count</label>                                             
+                                    <p-chart type="pie" [data]="incrrctAnsQnsCount"></p-chart>
+                                 </div>
+                              </div>
+                              <div  class="col-md-12">
+                                 <table class="table table-bordered">
+                                    <thead>
+                                       <tr class="main_hed">
+                                          <th>Sl.no</th>
+                                          <th>User Id</th>
+                                          <th>Question Id</th>
+                                          <th>Lesson Topic</th>
+                                          <th>Question Type</th>
+                                          <th>Grade</th>
+                                          <th>Owner</th>
+                                          <th>Marks</th>
+                                          <th>Neg.Marks</th>
+                                          <th>Time</th>
+                                          <th>Rating</th>
+                                          <th>Action</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                          <ng-container *ngIf="assignedQuestions.length>0">
+                                                <ng-container>
+                                                      <tr *ngFor="let aqns of assignedQuestions;let i=index">
+                                                            <td>{{i+1}}</td>
+                                                            <td>{{aqns.user_id}}</td>
+                                                            <td>{{aqns.question_id}}</td>
+                                                            <td>{{aqns.lessons}}</td>
+                                                            <td>{{aqns.questntyp_name}}</td>
+                                                            <td>{{aqns.gradtyp_name}}</td>
+                                                            <td>{{(aqns.question_admin)?'Admin':'User'}}</td>
+                                                            <td>{{aqns.question_marks}}</td>
+                                                            <td>{{aqns.question_nmarks}}</td>
+                                                            <td>{{aqns.question_time}}</td>
+                                                            <td>{{aqns.question_total_rating}}</td>
+                                                            <td>
+                                                                  <button *ngIf="testtype_id ==1 || testtype_id ==3" class="btn btn-warning" (click)="removeQuestion(aqns.user_id,aqns.question_id,i)">UnAssign</button>
+                                                                  <button *ngIf="testtype_id ==2 || testtype_id ==4" class="btn btn-warning" (click)="unAssignQnsforConfirm(aqns.question_id)">UnAssign</button>
+                                                            </td>
+                                                         </tr>
+                                                </ng-container>
+                                          </ng-container>
+                                          <ng-container *ngIf="assignedQuestions.length<1">
+                                             <div style="text-align: center;">
+                                                   <span>
+                                                         No question's found!
+                                                      </span>
+                                             </div>
+                                          </ng-container>
+                                    </tbody>
+                                 </table>
+                              </div>
+                           </div>
+                        </div>
+                           <div *ngIf="type3Show==true">
+                              <!-- *ngIf="testtype_id==4 || testtype_id==3" -->
+                           <div  class="col-md-12 longtext" id="scrollbar_c">
+                              <table class="table table-bordered" style="background-color: #e9e9e9;">
+                                 <thead>
+                                    <tr class="main_hed">
+                                       <!-- <th>ID</th> -->
+                                       <th>Lessons/Topics</th>
+                                       <th>Question Type</th>
+                                       <th>Grade</th>
+                                       <th>Owner</th>
+                                       <th>Marks</th>
+                                       <th>Neg.Marks</th>
+                                       <th>Time</th>
+                                       <th>Rating</th>
+                                       <th>Verify</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    <tr>
+                                       <!-- <td></td> -->
+                                       <td>
+                                          <p-multiSelect [options]="lessnsList" [(ngModel)]="seltdLesList" (onChange)="getQuestions()" [panelStyle]="{minWidth:'12em'}">
+                                          </p-multiSelect>
+                                       </td>
+                                       <td>
+                                          <p-multiSelect [options]="qnsTypeList" [(ngModel)]="seltdqntList" (onChange)="getQuestions()" [panelStyle]="{minWidth:'12em'}">
+                                          </p-multiSelect>
+                                       </td>
+                                       <td>
+                                          <p-multiSelect [options]="qnsGrade" [(ngModel)]="seltdqnGrdList" (onChange)="getQuestions()" [panelStyle]="{minWidth:'12em'}">
+                                          </p-multiSelect>
+                                       </td>
+                                       <td>
+                                          <p-multiSelect [options]="ownersList" [(ngModel)]="selectedOwners" (onChange)="getQuestions()" [panelStyle]="{minWidth:'12em'}">
+                                          </p-multiSelect>
+                                       </td>
+                                       <td>
+                                          <p-multiSelect [options]="marksList" [(ngModel)]="seltdqnMrksList" (onChange)="getQuestions()"></p-multiSelect>
+                                       </td>
+                                       <td>
+                                          <p-multiSelect [options]="nmarksList" [(ngModel)]="seltdqnnMrksList" (onChange)="getQuestions()" [panelStyle]="{minWidth:'12em'}">
+                                          </p-multiSelect>
+                                       </td>
+                                       <td>
+                                          <p-calendar [(ngModel)]="question_time" [timeOnly]="true" (onSelect)="getTime($event)"></p-calendar>
+                                          <br>
+                                       </td>
+                                       <td>
+                                          <p-multiSelect [options]="nmarksList" [(ngModel)]="seltdqnnMrksList" (onChange)="getQuestions()" [panelStyle]="{minWidth:'12em'}">
+                                          </p-multiSelect>
+                                       </td>
+                                       <td>
+                                          <p-multiSelect [options]="qnsVerify" [(ngModel)]="seltdqnsvList" (onChange)="getQuestions()" [panelStyle]="{minWidth:'12em'}">
+                                          </p-multiSelect>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                              <div *ngIf="type3Show==true">
+                                 <!-- *ngIf="testtype_id==4 || testtype_id==3" -->
+                                 <div  class="col-md-12 longtext" id="scrollbar_c" >
+                                    <div *ngFor="let qns of questions | angularPaginator: { itemsPerPage: itemsPerPage, currentPage: currentPage }; let i=index" >
+                                       <div class="all_info" style="background-color: #e9e9e9;">
+                                          <div class="table-responsive">
+                                             <table class="table table-responsive">
+                                                <thead>
+                                                   <tr class="adm_tr_bg">
+                                                      <th>Question ID </th>
+                                                      <th>Question Owner Name</th>
+                                                      <th>Date</th>
+                                                      <th>Question Type</th>
+                                                      <th>Question Grade</th>
+                                                      <th>Classify Count</th>
+                                                   </tr>
+                                                </thead>
+                                                <tbody>
+                                                   <tr class="blc_del_bg">
+                                                      <td>{{qns.question_id}}</td>
+                                                      <td>{{(qns.question_admin)?'Admin':qns.question_owner}}</td>
+                                                      <td>{{qns.question_created_date}}</td>
+                                                      <td>{{(qns.questntyp_id==1 || qns.questntyp_id==3)?'Multiple Choice':'True/False'}}</td>
+                                                      <td>{{qns.gradtyp_name}}</td>
+                                                      <td>{{qns.qclsCount}}</td>
+                                                   </tr>
+                                                </tbody>
+                                             </table>
+                                          </div>
+                                       </div>
+                                       <div class="all_info" >
+                                          <div class="table-responsive">
+                                             <table class="table table-responsive" style="background-color: #e9e9e9;">
+                                                <thead>
+                                                   <tr class="adm_tr_bg">
+                                                      <th>Avg. Rating</th>
+                                                      <th>Marks</th>
+                                                      <th>Nagtive Marks</th>
+                                                      <th>Time</th>
+                                                      <th>Verified</th>
+                                                      <th *ngIf="testtype_id==3 || testtype_id==1">Assigned Users List</th>
+                                                      <th *ngIf="testtype_id!=4 && testtype_id!=2">Assign</th>
+                                                      <th *ngIf="testtype_id!=4 && testtype_id!=2">UnAssign</th>
+                                                      <th *ngIf="(testtype_id==4 || testtype_id==2) && assignedQnsIds.indexOf(qns.question_id) == -1">Assign</th>
+                                                      <th *ngIf="(testtype_id==4 || testtype_id==2) && assignedQnsIds.indexOf(qns.question_id) != -1">UnAssign</th>
+                                                   </tr>
+                                                </thead>
+                                                <tbody>
+                                                   <tr class="blc_del_bg">
+                                                      <td>
+                                                         <button type="button" class="btn btn-success btn-xs" aria-label="Left Align">
+                                                         <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                                         </button>
+                                                         <button type="button" class="btn btn-success btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                                         </button>
+                                                         <button type="button" class="btn btn-success btn-xs" aria-label="Left Align"> <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                                         </button>
+                                                         <button type="button" class="btn btn-default btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                                         </button>
+                                                         <button type="button" class="btn btn-default btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                                         </button>
+                                                      </td>
+                                                      <td>{{qns.question_marks}}</td>
+                                                      <td>{{qns.question_nmarks}}</td>
+                                                      <td>{{qns.question_time}}</td>
+                                                      <td>{{(qns.question_is_verified==1)?'Yes':'No'}}</td>
+                                                      <td *ngIf="testtype_id==3  || testtype_id==1">
+                                                         <!-- <button type="button" class="btn btn-success" (click)="getAssignedUserstoThisQns(qns.question_id)" data-toggle="collapse" [attr.data-target]="'#assUsersForQuestion_'+qns.question_id">Users</button> -->
+                                                         <div class="tab-content">
+                                                               <!-- <div class="panel-body">
+                                                                  <div class="row pd-10">
+                                                                        <ul>
+                                                                           <li *ngFor="let usr of assignedUserstoQns">{{usr.user_dname}}</li>
+                                                                        </ul>
+                                                                  </div>
+                                                               </div> -->
+                                                               
+                                                                  <div class="row pd-10">
+                                                                     <!-- <p-multiSelect [options]="selectedAssignedUsers" [(ngModel)]="selectedUsersunassign"  [panelStyle]="{minWidth:'12em'}">
+                                                                     </p-multiSelect> -->
+<!-- 
+                                                                     <ng-select *ngIf="i == 0"
+                                                                        id="assignSelect_{{i}}"
+                                                                        [items]="selectedAssignedUsers"
+                                                                        [multiple]="true"
+                                                                        [clearable] = "false"
+                                                                        [closeOnSelect]="false"
+                                                                        [hideSelected]="true"
+                                                                        bindLabel="user_dname"
+                                                                        bindValue="user_id"
+                                                                        (remove)="removeAssignUser($event.value.user_id,qns.question_id)"
+                                                                        placeholder="Assign user"
+                                                                        [(ngModel)]="selectedQuestionUsers_1">
+                                                                     </ng-select>
+                                                                     <ng-select *ngIf="i == 1"
+                                                                     id="assignSelect_{{i}}"
+                                                                        [items]="selectedAssignedUsers"
+                                                                        [multiple]="true"
+                                                                        [clearable] = "false"
+                                                                        [closeOnSelect]="false"
+                                                                        [hideSelected]="true"
+                                                                        bindLabel="user_dname"
+                                                                        bindValue="user_id"
+                                                                        (remove)="removeAssignUser($event.value.user_id,qns.question_id)"
+                                                                        placeholder="Assign user"
+                                                                        [(ngModel)]="selectedQuestionUsers_2">
+                                                                     </ng-select>
+                                                                     <ng-select *ngIf="i == 2"
+                                                                     id="assignSelect_{{i}}"
+                                                                        [items]="selectedAssignedUsers"
+                                                                        [multiple]="true"
+                                                                        [closeOnSelect]="false"
+                                                                        [clearable] = "false"
+                                                                        [hideSelected]="true"
+                                                                        bindLabel="user_dname"
+                                                                        bindValue="user_id"
+                                                                        (remove)="removeAssignUser($event.value.user_id,qns.question_id)"
+                                                                        placeholder="Assign user"
+                                                                        [(ngModel)]="selectedQuestionUsers_3">
+                                                                     </ng-select>
+                                                                     <ng-select *ngIf="i == 3"
+                                                                     id="assignSelect_{{i}}"
+                                                                        [items]="selectedAssignedUsers"
+                                                                        [multiple]="true"
+                                                                        [closeOnSelect]="false"
+                                                                        [clearable] = "false"
+                                                                        [hideSelected]="true"
+                                                                        bindLabel="user_dname"
+                                                                        bindValue="user_id"
+                                                                        (remove)="removeAssignUser($event.value.user_id,qns.question_id)"
+                                                                        placeholder="Assign user"
+                                                                        [(ngModel)]="selectedQuestionUsers_4">
+                                                                     </ng-select>
+                                                                     <ng-select *ngIf="i == 4"
+                                                                     id="assignSelect_{{i}}"
+                                                                        [items]="selectedAssignedUsers"
+                                                                        [multiple]="true"
+                                                                        [closeOnSelect]="false"
+                                                                        [clearable] = "false"
+                                                                        [hideSelected]="true"
+                                                                        bindLabel="user_dname"
+                                                                        bindValue="user_id"
+                                                                        (remove)="removeAssignUser($event.value.user_id,qns.question_id)"
+                                                                        placeholder="Assign user"
+                                                                        [(ngModel)]="selectedQuestionUsers_5">
+                                                                     </ng-select> -->
+                                                                     <!-- <ul>
+                                                                        <li *ngFor="let usr of selectedAssignedUsers">{{usr.user_id}}</li>
+                                                                     </ul> -->
+                                                                     <div class="dropdown" *ngIf="qns.qustion_assign_user.length>0">
+                                                                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                                                                        <span class="caret"></span></button>
+                                                                        <ul class="dropdown-menu" style="top: 71px !important;">
+                                                                              <li *ngFor="let usr of qns.qustion_assign_user" style="
+                                                                              color: blueviolet;
+                                                                              font-size: 16px;
+                                                                              padding-left: 5%;
+                                                                              display: flex;
+                                                                              align-items: center;" readonly pTooltip="{{usr.user_dname}}" tooltipPosition="top">
+                                                                              <span><i class="pi pi-times check" style="font-size: 20px; cursor: pointer;" (click)="removeAssignUserConf(usr.user_id,qns.question_id)" ></i></span>
+                                                                              <div style="width: 100%;"><ng-container *ngIf="usr.user_dname.toString().trim().length > '20'">{{usr.user_dname.toString().trim().slice(0,19)}} ...
+                                                                              </ng-container>
+                                                                              <ng-container *ngIf="usr.user_dname.toString().trim().length <= '20'">{{usr.user_dname.toString().trim()}}
+                                                                              </ng-container>  </div>  
+                                                                              <hr>   
+                                                                              </li>
+
+                                                                        </ul>
+                                                                     </div>
+                                                                        <span *ngIf="qns.qustion_assign_user.length<1">No user's assign</span>
+                                                                     <!-- <ng-container *ngIf="qns.qustion_assign_user != null">
+                                                                           {{getUserName(qns.qustion_assign_user.user_id,i)}}
+                                                                     </ng-container> -->
+                                                                     
+                                                            </div>
+                                                         </div>
+                                                      </td>
+                                                      <td *ngIf="(testtype_id==4 || testtype_id==2) && assignedQnsIds.indexOf(qns.question_id) == -1">
+                                                         <button class="btn btn-primary"  (click)="AssignQnsforConfirm(qns.question_id)">Assign Qns</button>                                                                
+                                                      </td>
+                                                      <td *ngIf="(testtype_id==4 || testtype_id==2) && assignedQnsIds.indexOf(qns.question_id) != -1">
+                                                         <button class="btn btn-warning" (click)="unAssignQnsforConfirm(qns.question_id)">UnAssign</button>
+                                                      </td>
+                                                      <td *ngIf="testtype_id!=4 && testtype_id!=2">
+                                                         <button class="btn btn-primary"  (click)="AssignQnsforConfirm(qns.question_id)">Assign Qns</button>                                                                
+                                                      </td>
+                                                      <td *ngIf="testtype_id!=4 && testtype_id!=2">
+                                                         <button class="btn btn-warning" (click)="unAssignQnsforConfirm(qns.question_id)">UnAssign</button>
+                                                      </td>
+                                                   </tr>
+                                                </tbody>
+                                             </table>
+                                             <div class="row pd-10">
+                                                <div class="col-md-6">
+                                                   <div class="qution_tab">
+                                                      <div class="row">
+                                                         <div class="col-md-12">
+                                                            <div class="answertab-postion">
+                                                               <p class="question-p">Question</p>
+                                                               <div class="input-group" style="margin-top: 7%; width: 100%; margin-left: 2%;">
+                                                                  <div *ngIf="qns.avtxtqn==1" [innerHtml]="qns.QuestDet | sanitizeHtml"style="margin-top: 50px;min-height: 225px;                                       
+                                                                  overflow: auto; width:100%">
+                                                               </div>
+                                                               <video controls="true" *ngIf="qns.avtxtqn==2" [src]="(filesUrl+'assets/questionsUpload/instNum_'+inst_id+'/'+qns.qns_location+'/'+ qns.QuestDet) | safeurl" width="425" height="220" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen oncontextmenu="return false"></video>
+                                                            </div>
+                                                         </div>
+                                                         <!-- /input-group -->
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                             <div class="col-md-6">
+                                                <div class="qution_tab">
+                                                   <div class="answertab-postion">
+                                                      <p class="question-p">Solution</p>
+                                                   </div>
+                                                   <div class="hoveruseredit">
+                                                      <div class="">
+                                                         <!-- <div [innerHtml]="qns.question_solution | sanitizeHtml" class="form-control" style="min-height: 225px;                                       
+                                                            overflow: auto; width:100%"></div> -->
+                                                         <div *ngIf="qns.avtxtsol==1" [innerHtml]="qns.QuestSol | sanitizeHtml" class="form-control" style="margin-top: 50px;min-height: 225px;                                       
+                                                         overflow: auto; width:100%">
+                                                      </div>
+                                                      <video controls="true" *ngIf="qns.avtxtsol==2" [src]="(filesUrl+'assets/questionsUpload/instNum_'+inst_id+'/'+qns.qns_location+'/'+ qns.QuestSol) | safeurl" width="425" height="220" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen oncontextmenu="return false"></video>
+                                                   </div>
+                                                   <!-- /input-group -->
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                          </div>
+                                       </div>
+                                 <button type="button" (click)="getAnsforQuestion(qns.question_id,qns.qns_location)" class="btn btn-success" data-toggle="collapse" [attr.data-target]="'#ansForQuestion_'+qns.question_id">
+                                 Answers </button>
+                                 <div class="tab-content" *ngIf="qns.question_id === sectdQns">
+                                    <div class="collapse" id="ansForQuestion_{{qns.question_id}}">
+                                       <div class="panel-body">
+                                          <div class="row pd-10">
+                                             <div *ngIf="qns.questntyp_id==1 || qns.questntyp_id==3">
+                                                <div class="col-md-6" *ngFor="let ans of answers; let i = index">
+                                                   <div>
+                                                      <div class="qution_tab" *ngIf="ans.answer_id !== selAnsId">
+                                                         <div class="answertab-postion">
+                                                            <p class="wrong-pansw">{{(ans.answer_type_id==1)?'Correct':'Wrong'}} Answer  </p>
+                                                         </div>
+                                                         <div class="hoveruseredit2">
+                                                            <div class="input-group default-input-group ">
+                                                               <div [innerHtml]="ans.ans_file_text | sanitizeHtml" class="form-control" ></div>
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                             <div *ngIf="qns.questntyp_id==2">
+                                                <div class="col-md-6" *ngFor="let ans of answers; let i = index">
+                                                   <div class="hoveruseredit2">
+                                                      <div class="input-group default-input-group ">
+                                                         <div class="form-control">
+                                                            <p class="font-weight-bold">{{(ans.t_f_crt_ans==1)?'True':'False'}}</p>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <app-angular-paginator (pageChange)="currentPage = $event;setSelectedUsersIds()"></app-angular-paginator>
+                           </div>
+                         </div>
+                           </div>
+                        </div>
+                     <div class="row pd-10">
+                        <!--div class="col-md-4">
+                           <div class="upload_content" id="pers_inf">
+                              <h3 class="Per3_title">Test Creation</h3>
+                              <--edit bar--Start--
+                              <div class="file_name row">
+                                 <div class="col-md-12">
+                                    <div class="input-group">
+                                       <span class="input-group-addon">Test Title</span>
+                                       <input type="text" class="form-control" 
+                                          placeholder="Create Test Page">
+                                    </div>
+                                 </div>
+                                 <div class="col-md-12">
+                                    <div class="input-group comment_npt">
+                                       <span class="input-group-addon">Description</span>
+                                       <textarea rows="6"></textarea>
+                                    </div>
+                                 </div>
+                                 <div class="col-md-12">
+                                    <div class="input-group">
+                                       <span class="input-group-addon">County</span>
+                                       <select class="form-control basic-single">
+                                          <option value="AL">Select County</option>
+                                          <option value="AR">Arkansas</option>
+                                          <option value="IL">Illinois</option>
+                                          <option value="IA">Iowa</option>
+                                          <option value="KS">Kansas</option>
+                                       </select>
+                                    </div>
+                                 </div>
+                                 <div class="col-md-12">
+                                    <div class="input-group">
+                                       <span class="input-group-addon">Course</span>
+                                       <input type="text" class="form-control" placeholder="Course"> 
+                                    </div>
+                                 </div>
+                                 <div class="col-md-12">
+                                    <div class="input-group">
+                                       <span class="input-group-addon">Class</span>
+                                       <input type="text" class="form-control" placeholder="Class"> 
+                                    </div>
+                                 </div>
+                                 <div class="col-md-12">
+                                    <div class="input-group">
+                                       <span class="input-group-addon">Select Subject</span>
+                                       <input type="text" class="form-control" placeholder="Class">
+                                    </div>
+                                 </div>
+                                 <div class="col-md-12">
+                                    <div class="input-group">
+                                       <span class="input-group-addon">Lessons / Topic</span>
+                                       <p-multiSelect [options]="lestopic" [(ngModel)]="lessiontopic" [ngClass]="'selectlesson'"></p-multiSelect>
+                                    </div>
+                                 </div>
+                                 <div class="col-md-12">
+                                    <div class="input-group">
+                                       <span class="input-group-addon">NO Of Questions</span>
+                                       <input type="text" class="form-control" placeholder="Enter NO Of Questions"> 
+                                    </div>
+                                 </div>
+                                 <div class="col-md-12">
+                                    <div class="input-group">
+                                       <span class="input-group-addon">Start Date & Time</span>
+                                       <input type="text"
+                                       class="form-control"
+                                       ngxDaterangepickerMd
+                                       [(ngModel)]="createtestdate"
+                                       [alwaysShowCalendars]="true"
+                                       [singleDatePicker]="true"
+                                       [autoApply]="true"
+                                       placeholder="start Date">
+                                    </div>
+                                 </div>
+                                 <div class="col-md-12">
+                                    <div class="input-group">
+                                       <span class="input-group-addon">End Date & Time</span>
+                                       <input type="text"
+                                       class="form-control"
+                                       ngxDaterangepickerMd
+                                       [(ngModel)]="endcreatetestdate"
+                                       [alwaysShowCalendars]="true"
+                                       [singleDatePicker]="true"
+                                       [autoApply]="true"
+                                       placeholder="End Date">
+                                    </div>
+                                 </div>
+                              </div>
+                              <--edit bar--end->
+                              <div class="all_save">
+                                 <button type="submit" class="bt btn-inverse">Create Test</button>
+                              </div>
+                           </div>
+                           </div-->
+                        <!--left tab--end--->
+                        <!--right strat--->
+                       
+                     </div>
+                        </div>
+               </div>
+            </div>
+         </div>
+   </div>
+</div>
+</section>
+<!--====top profile background End====-->
+</div>
+</div>
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
+<p-toast [style]="{marginTop: '80px'}" position="top-left" key="tl"></p-toast>
+<p-toast [style]="{marginTop: '80px'}" position="top-center" key="tc"></p-toast>
+<p-toast [style]="{marginTop: '80px'}" styleClass="custom-toast" key="custom" position="bottom-center"></p-toast>
+<p-toast position="center" key="c" (onClose)="onReject()" [modal]="true" [baseZIndex]="5000">
+<ng-template let-message pTemplate="message">
+   <div style="text-align: center">
+      <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i>
+      <h3>{{message.summary}}</h3>
+      <p>{{message.detail}}</p>
+   </div>
+   <div class="ui-g ui-fluid">
+      <div class="ui-g-6">
+         <button type="button" pButton (click)="onConfirm()" label="Yes" class="ui-button-success"></button>
+      </div>
+      <div class="ui-g-6">
+         <button type="button" pButton (click)="onReject()" label="No" class="ui-button-secondary"></button>
+      </div>
+   </div>
+</ng-template>
+</p-toast>
+<div class="modal fade" #assignConfirm id="assignConfirm" role="dialog">
+   <div class="modal-dialog vry_modal">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+         </div>
+         <div class="modal-body modal_text">
+            <p>{{textonModel}}</p>
+         </div>
+         <div class="modal-footer modal_foot">
+            <button type="submit" *ngIf="showSubBtn==true" (click)="AssignTesttoUser1()" data-dismiss="modal" class="bt btn-warning">Assign</button>
+            <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="modal fade" #unassignConfirm id="unassignConfirm" role="dialog">
+   <div class="modal-dialog vry_modal">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+         </div>
+         <div class="modal-body modal_text">
+            <p>{{textonModel}}</p>
+         </div>
+         <div class="modal-footer modal_foot">
+            <button type="submit" *ngIf="showSubBtn==true" (click)="unAssignTestforUser()" data-dismiss="modal" class="bt btn-warning">UnAssign</button>
+            <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="modal fade" #assignQnsConfirm id="assignQnsConfirm" role="dialog">
+   <div class="modal-dialog vry_modal">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+         </div>
+         <div class="modal-body modal_text">
+            <p>{{textonModel}}</p>
+         </div>
+         <div class="modal-footer modal_foot">
+            <button type="submit" *ngIf="showSubBtn==true" (click)="AssignQnsforTest()" data-dismiss="modal" class="bt btn-warning">Assign</button>
+            <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="modal fade" #unassignQnsConfirm id="unassignQnsConfirm" role="dialog">
+   <div class="modal-dialog vry_modal">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+         </div>
+         <div class="modal-body modal_text">
+            <p>{{textonModel}}</p>
+         </div>
+         <div class="modal-footer modal_foot">
+            <button type="submit" *ngIf="showSubBtn==true" (click)="unAssignQnsforTest()" data-dismiss="modal" class="bt btn-warning">unAssign</button>
+            <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="modal fade" #rescheduledate id="rescheduledate" role="dialog" data-backdrop="static" data-keyboard="false">
+   <div class="modal-dialog vry_modal">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+         </div>
+         <div class="modal-body modal_text">
+            <div class="col-md-12">
+               <p-calendar class="col-md-5" [minDate]="sminDate" (onSelect)="getDateTime($event,1)" [(ngModel)]="teststart_datetimes" dateFormat="dd-mm-yy" showTime="true" hourFormat="24"></p-calendar>
+               <p class="clear-fix"></p>
+               <p-calendar class="col-md-5" [minDate]="sminDate" (onSelect)="getDateTime($event,2)" [(ngModel)]="testend_datetimes" dateFormat="dd-mm-yy" showTime="true" hourFormat="24"></p-calendar>
+            </div>
+         </div>
+         <div class="modal-footer modal_foot">
+            <button type="submit" *ngIf="showSubBtn==true" (click)="rescheduleTestdates()" data-dismiss="modal" class="bt btn-warning">Assign</button>
+            <button type="submit" class="bt btn-info" data-dismiss="modal" (click)="rescheduleTestdatesConfirmClose()">Close</button>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="modal fade" #unassignUserConfirm id="unassignUserConfirm" role="dialog">
+   <div class="modal-dialog vry_modal">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+         </div>
+         <div class="modal-body modal_text">
+            <p>{{textonModel}}</p>
+         </div>
+         <div class="modal-footer modal_foot">
+            <button type="submit" *ngIf="showSubBtn==true" (click)="removeAssignUser()" data-dismiss="modal" class="bt btn-warning">unAssign</button>
+            <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+         </div>
+      </div>
+   </div>
+</div>

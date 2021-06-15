@@ -1,0 +1,1976 @@
+<app-sdashheader></app-sdashheader>
+<div class="leftsidemenus">
+   <app-sdahshmenu></app-sdahshmenu>
+</div>
+<div id="page-wrapper">
+   <div class="content">
+      <!--verified  Modal start -->
+      <div class="modal fade popup_z" id="regConfirm" role="dialog" style="z-index: 12000;">
+         <div class="modal-dialog vry_modal">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+               </div>
+               <div class="modal-body modal_text">
+                  <p>Do you really want to confirm the registration of this user?</p>
+               </div>
+               <div class="modal-footer modal_foot">
+                  <button type="button" class="bt btn-warning" data-dismiss="modal"
+                     (click)="userRegConfirm(auc_is_reg_confiemed)">Confirm</button>
+                  <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="modal fade" id="userRegBlocked" role="dialog" style="z-index: 12000;">
+         <div class="modal-dialog vry_modal">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+               </div>
+               <div class="modal-body modal_text">
+                  <p *ngIf="ac_is_blocked==0">Do you really want to block this user?</p>
+                  <p *ngIf="ac_is_blocked==1">Do you really want to unblock this user?</p>
+               </div>
+               <div class="modal-footer modal_foot">
+                  <button type="submit" class="bt btn-warning" data-dismiss="modal"
+                     (click)="userRegBlocked(ac_is_blocked)">Yes</button>
+                  <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="modal fade popup_z" id="userRegDeleted" role="dialog" style="z-index: 12000;">
+         <div class="modal-dialog vry_modal">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+               </div>
+               <div class="modal-body modal_text">
+                  <p *ngIf="ac_is_admin_deleted==0">Do you really want to delete this user?</p>
+                  <p *ngIf="ac_is_admin_deleted==1">Do you really want to activate this user?</p>
+               </div>
+               <div class="modal-footer modal_foot">
+                  <button type="submit" class="bt btn-warning" data-dismiss="modal"
+                     (click)="userRegDeleted(ac_is_admin_deleted)">Yes</button>
+                  <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="modal fade" id="verified" role="dialog" style="z-index: 12000;">
+         <div class="modal-dialog vry_modal">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+               </div>
+               <div class="modal-body modal_text">
+                  <p>Do you really want to verify these records? This process cannot be undone</p>
+               </div>
+               <div class="modal-footer modal_foot">
+                  <button type="submit" class="bt btn-warning">verify</button>
+                  <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- verified Modal end-->
+      <!--Blocked  Modal start -->
+      <div class="modal fade" id="block" role="dialog">
+         <div class="modal-dialog vry_modal">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+               </div>
+               <div class="modal-body modal_text">
+                  <p>Do you really want to Block these records? This process cannot be undone</p>
+               </div>
+               <div class="modal-footer modal_foot">
+                  <button type="submit" class="bt btn-warning">Block</button>
+                  <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Blocked Modal end-->
+      <!--Delete  Modal start -->
+      <div class="modal fade" id="delete" role="dialog" style="z-index: 12000;">
+         <div class="modal-dialog vry_modal">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+               </div>
+               <div class="modal-body modal_text">
+                  <p>Do you really want to Delete these records? This process cannot be undone</p>
+               </div>
+               <div class="modal-footer modal_foot">
+                  <button type="submit" class="bt btn-warning">Delete</button>
+                  <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Delete Modal end-->
+      <section class="question_search question_sec selt_ht scroll-yes">
+         <div class="container-fluid">
+            <div class="top_admin">
+               <div class="row">
+                  <div class="col-md-12">
+                     <div class="main_holder instutite_dtl">
+                        <div class="student-bg question_title" id="pers_inf">
+                           <h3>Institute Details</h3>
+                        </div>
+                        <!--details--tabs-->
+                        <div class="all_info2 inst_bg">
+                           <div class="popup_dla2">
+                              <div class="row">
+                                 <form [formGroup]="singleInstitute" (ngSubmit)="instituteUpdateform(singleInstitute)">
+                                    <div class="col-lg-6">
+                                       <p style="color: white">Name And Adress</p>
+                                       <div class="border_instu">
+                                          <p>
+                                             <span class="instutemused">Institute ID </span>
+                                             <span class="instutemused_values">
+                                                <input type="text" class="form-control" formControlName="inst_id"
+                                                   [(ngModel)]="InstId" readonly>
+                                             </span>
+                                          </p>
+                                          <p>
+                                             <span class="instutemused">Institute Name </span>
+                                             <span class="instutemused_values">
+                                                <input type="text" class="form-control" formControlName="inst_name"
+                                                   [(ngModel)]="inst_name" [readonly]="!instituteEdit">
+                                             </span>
+                                          </p>
+                                          <p>
+                                             <span class="instutemused">School User of Institue </span>
+                                             <span class="instutemused_values">
+                                                <input type="text" class="form-control" formControlName="inst_user_id"
+                                                   [(ngModel)]="inst_user_id" readonly>
+                                             </span>
+                                          </p>
+                                          <p>
+                                             <span class="instutemused">Country </span>
+                                             <span class="instutemused_values" *ngIf="!instituteEdit">
+                                                <input type="text" class="form-control" formControlName="cntry_name"
+                                                   [(ngModel)]="cntry_name" [readonly]="!instituteEdit">
+                                             </span>
+                                             <span class="instutemused_values" *ngIf="instituteEdit">
+                                                <!--input type="text" class="form-control" formControlName="cntry_name" [(ngModel)]="user.cntry_name" placeholder="Country" readonly-->
+                                                <select class="form-control" formControlName="cntry_name"
+                                                   [(ngModel)]="countryIds"
+                                                   (ngModelChange)="getStatesoncountry($event)">
+                                                   <option value="">Select Country</option>
+                                                   <option *ngFor="let cnt of country" value="{{cnt.cntry_id}}">
+                                                      {{cnt.cntry_name}}</option>
+                                                </select>
+                                             </span>
+                                          </p>
+                                          <p>
+                                             <span class="instutemused">State </span>
+                                             <span class="instutemused_values" *ngIf="!instituteEdit">
+                                                <input type="text" class="form-control" formControlName="inst_state"
+                                                   [(ngModel)]="inst_state" readonly>
+                                             </span>
+                                             <span class="instutemused_values" *ngIf="instituteEdit">
+                                                <select class="form-control" formControlName="inst_state"
+                                                   [(ngModel)]="inst_state" (ngModelChange)="getCitiesonstates($event)">
+                                                   <option value="">Select State</option>
+                                                   <option *ngFor="let state of states" value="{{state.state_id}}">
+                                                      {{state.state_name}}</option>
+                                                </select>
+                                             </span>
+                                          </p>
+                                          <p>
+                                             <span class="instutemused">City </span>
+                                             <span class="instutemused_values" *ngIf="!instituteEdit">
+                                                <input type="text" class="form-control" formControlName="city_name"
+                                                   [(ngModel)]="city_name" readonly>
+                                             </span>
+                                             <span class="instutemused_values" *ngIf="instituteEdit">
+                                                <select class="form-control" formControlName="city_name"
+                                                   [(ngModel)]="city_name">
+                                                   <option value="">Select City</option>
+                                                   <option *ngFor="let city of cities" value="{{city.city_id}}">
+                                                      {{city.city_name}}</option>
+                                                </select>
+                                             </span>
+                                          </p>
+                                          <p><span class="instutemused add"> Institute Address </span> <span
+                                                class="instutemused_values">
+                                                <textarea class="form-control" rows="4" cols="50"
+                                                   formControlName="inst_address" [(ngModel)]="inst_address"
+                                                   [readonly]="!instituteEdit" style="height: 100px;"></textarea></span>
+                                          </p>
+                                       </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                       <h4 style="color: white"> Communication</h4>
+                                       <div class="border_instu">
+                                             <p><span class="instutemused">Institute Url </span><span
+                                                class="instutemused_values">
+                                                <input type="email" formControlName="inst_url"
+                                                   [(ngModel)]="inst_ac_url" class="form-control"
+                                                   [readonly]="!instituteEdit"></span>
+                                          </p>
+                                          <p><span class="instutemused">Institute Email </span><span
+                                                class="instutemused_values">
+                                                <input type="email" formControlName="inst_email"
+                                                   [(ngModel)]="inst_email" class="form-control"
+                                                   [readonly]="!instituteEdit"></span>
+                                          </p>
+                                          <p><span class="instutemused">Institute Phone </span> <span
+                                                class="instutemused_values">
+                                                <input type="text" formControlName="inst_phone" [(ngModel)]="inst_phone"
+                                                   class="form-control" [readonly]="!instituteEdit"> </span>
+                                          </p>
+                                          <p><span class="instutemused">Institute Phone </span> <span
+                                                class="instutemused_values">
+                                                <input type="text" formControlName="inst_alt_phone"
+                                                   [(ngModel)]="inst_alt_phone" class="form-control"
+                                                   [readonly]="!instituteEdit"> </span>
+                                          </p>
+                                          <p><span class="instutemused">Institute Fax </span> <span
+                                                class="instutemused_values">
+                                                <input type="text" formControlName="inst_fax" [(ngModel)]="inst_fax"
+                                                   class="form-control" [readonly]="!instituteEdit"></span>
+                                          </p>
+                                          <p><span class="instutemused">Contact person </span> <span
+                                                class="instutemused_values">
+                                                <input type="text" formControlName="inst_contact"
+                                                   [(ngModel)]="inst_contact" class="form-control"
+                                                   [readonly]="!instituteEdit"> </span>
+                                          </p>
+                                       </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <br>
+                                    <div class="col-lg-6" style="display:none;">
+                                       <div class="border_instu">
+                                          <p><span class="instutemused">created Date </span> <span
+                                                class="instutemused_values">
+                                                <input type="text" formControlName="inst_created_date"
+                                                   [(ngModel)]="inst_created_date" class="form-control"
+                                                   [readonly]="!instituteEdit"></span>
+                                          </p>
+                                          <p><span class="instutemused">Institute have valid access</span> <span
+                                                class="instutemused_values">
+                                                <input type="text" formControlName="is_inst_validaccess"
+                                                   [(ngModel)]="is_inst_validaccess" class="form-control"
+                                                   [readonly]="!instituteEdit"></span>
+                                          </p>
+                                          <p><span class="instutemused">Access From Date </span> <span
+                                                class="instutemused_values">
+                                                <input type="text" formControlName="instaccess_from_date"
+                                                   [(ngModel)]="instaccess_from_date" class="form-control"
+                                                   [readonly]="!instituteEdit"></span>
+                                          </p>
+                                          <p><span class="instutemused"> Access To Date</span> <span
+                                                class="instutemused_values">
+                                                <input type="text" formControlName="instaccess_to_date"
+                                                   [(ngModel)]="instaccess_to_date" class="form-control"
+                                                   [readonly]="!instituteEdit"></span>
+                                          </p>
+                                          <p><span class="instutemused">Access Updated by Admi</span> <span
+                                                class="instutemused_values">
+                                                <input type="text" formControlName="inst_access_updateadby"
+                                                   [(ngModel)]="inst_access_updateadby" class="form-control"
+                                                   [readonly]="!instituteEdit"></span>
+                                          </p>
+                                          <p><span class="instutemused">Access Update Date </span> <span
+                                                class="instutemused_values">
+                                                <input type="text" formControlName="inst_access_updated_date"
+                                                   [(ngModel)]="inst_access_updated_date" class="form-control"
+                                                   [readonly]="!instituteEdit"></span>
+                                          </p>
+                                       </div>
+                                    </div>
+                                    <div class="editinst text-right custom-width">
+                                       <button class="bt btn-success" (click)="editInstituteDetails($event)"
+                                          *ngIf="instituteEdit==false">
+                                          Edit </button>
+                                       <button type="submit" class="bt btn-success" *ngIf="instituteEdit==true">
+                                          Update </button>
+                                       <a class="bt btn-success" *ngIf="instituteEdit==true"
+                                          (click)="resetInstituteDetails()">
+                                          Cancel </a>
+
+                                    </div>
+                                 </form>
+                                 <div class="col-lg-6 ">
+                                    <form [formGroup]="instsuperAdminEditform" 
+                                       (ngSubmit)="instSAUpdateform(instsuperAdminEditform)" style="display:none;">
+
+                                       <p style="color: white">Name And Adress</p>
+                                       <input type="hidden" class="form-control" formControlName="inst_id"
+                                          [(ngModel)]="InstId">
+                                       <div class="border_instu" style="height: 164px;">
+                                          <p>
+                                             <span class="instutemused">Super Admin Name </span> <span
+                                                class="instutemused_values">
+                                                <input type="text" formControlName="inst_superadmn_nam"
+                                                   [(ngModel)]="inst_superadmn_nam" class="form-control"
+                                                   [readonly]="!instSAEdit"></span>
+                                          </p>
+                                          <p>
+                                             <span class="instutemused">Super Admin Email </span> <span
+                                                class="instutemused_values">
+                                                <input type="text" formControlName="inst_superadmn_eml"
+                                                   [(ngModel)]="inst_superadmn_eml"
+                                                   (keyup)="CheckAdminAvailability($event.target.value,'ac_user_email')"
+                                                   class="form-control" [readonly]="!instSAEdit"></span>
+                                          </p>
+                                          <div *ngIf="instAdminEmail" class="text-danger">{{instAdminEmailErrText}}
+                                          </div>
+                                          <div class="editinst text-right width-new">
+                                             <button class="bt btn-success" (click)="editInstSADetails($event)"
+                                                *ngIf="instSAEdit==false">Edit </button>
+                                             <button type="submit" class="bt btn-success" *ngIf="instSAEdit==true"
+                                                [disabled]="instAdminEmail">Update </button>
+                                             <a (click)="inst_superadmn_nam = superAdminName;inst_superadmn_eml = superAdminEmail; instSAEdit=false"
+                                                class="bt btn-success" *ngIf="instSAEdit==true">Cancel </a>
+                                          </div>
+                                       </div>
+                                    </form>
+                                    <form [formGroup]="instDefaultEditform" (ngSubmit)="instDefaultUpdateform()">
+                                       <h3>Default Values</h3>
+                                       <input type="hidden" formControlName="inst_id" [(ngModel)]="userinst_id">
+                                       <input type="hidden" formControlName="updated_by_admin" [(ngModel)]="inst_id">
+                                       <div class="border_instu" style="height: 264px;">
+                                          <input type="hidden" formControlName="inst_id" [(ngModel)]="userinst_id">
+                                          <p>
+                                             <p-calendar [(ngModel)]="inst_ac_valid_to" [showIcon]="true"
+                                                formControlName="inst_ac_valid_to" dateFormat="d-m-yy"
+                                                [yearNavigator]="true" [monthNavigator]="true" yearRange="1970:9999">
+                                             </p-calendar>
+                                          </p>
+                                          <p><label>Access To Content Upload</label>
+                                             <span
+                                                *ngIf="instituteEdit_3==false">{{inst_ac_contnt_upload==1?'Yes':'No'}}</span>
+                                             <span *ngIf="instituteEdit_3==true"><input type="radio"
+                                                   formControlName="inst_ac_contnt_upload"
+                                                   [(ngModel)]="inst_ac_contnt_upload" value="1">Yes
+                                                <input type="radio" formControlName="inst_ac_contnt_upload"
+                                                   value="0">No</span>
+                                          </p>
+                                          <p><label>Access To Attend Test </label>
+                                             <span
+                                                *ngIf="instituteEdit_3==false">{{inst_ac_testatnd_access==1?'Yes':'No'}}</span>
+                                             <span *ngIf="instituteEdit_3==true"><input type="radio"
+                                                   formControlName="inst_ac_testatnd_access"
+                                                   [(ngModel)]="inst_ac_testatnd_access" value="1">Yes
+                                                <input type="radio" formControlName="inst_ac_testatnd_access"
+                                                   value="0">No</span>
+                                          </p>
+                                          <p *ngIf="false"><label>Ristricted Access </label>
+                                             <span
+                                                *ngIf="instituteEdit_3==false">{{inst_ac_restricted_access==1?'Yes':'No'}}</span>
+                                             <span *ngIf="instituteEdit_3==true"><input type="radio"
+                                                   formControlName="inst_ac_restricted_access"
+                                                   [(ngModel)]="inst_ac_restricted_access" value="1">Yes
+                                                <input type="radio" formControlName="inst_ac_restricted_access"
+                                                   value="0">No</span>
+                                          </p>
+                                          <p>
+                                             <label>Access To Test Create</label>
+                                             <span
+                                                *ngIf="instituteEdit_3==false">{{inst_ac_testcr_access==1?'Yes':'No'}}</span>
+                                             <span *ngIf="instituteEdit_3==true"><input type="radio"
+                                                   formControlName="inst_ac_testcr_access"
+                                                   [(ngModel)]="inst_ac_testcr_access" value="1">Yes
+                                                <input type="radio" formControlName="inst_ac_testcr_access"
+                                                   value="0">No</span>
+                                          </p>
+                                          <p>
+                                             <label>Access To Questions Upload</label>
+                                             <span
+                                                *ngIf="instituteEdit_3==false">{{inst_ac_qns_upload==1?'Yes':'No'}}</span>
+                                             <span *ngIf="instituteEdit_3==true"><input type="radio"
+                                                   formControlName="inst_ac_qns_upload" [(ngModel)]="inst_ac_qns_upload"
+                                                   value="1">Yes
+                                                <input type="radio" formControlName="inst_ac_qns_upload"
+                                                   value="0">No</span>
+                                          </p>
+
+                                          <p>
+                                             <label>Access To Discussion Create</label>
+                                             <span
+                                                *ngIf="instituteEdit_3==false">{{inst_ac_disc_create==1?'Yes':'No'}}</span>
+                                             <span *ngIf="instituteEdit_3==true"><input type="radio"
+                                                   formControlName="inst_ac_disc_create"
+                                                   [(ngModel)]="inst_ac_disc_create" value="1">Yes
+                                                <input type="radio" formControlName="inst_ac_disc_create"
+                                                   value="0">No</span>
+                                          </p>
+                                          <p>
+                                             <label>Access To Group Created</label>
+                                             <span
+                                                *ngIf="instituteEdit_3==false">{{inst_ac_groupcr_access==1?'Yes':'No'}}</span>
+                                             <span *ngIf="instituteEdit_3==true"><input type="radio"
+                                                   formControlName="inst_ac_groupcr_access"
+                                                   [(ngModel)]="inst_ac_groupcr_access" value="1">Yes
+                                                <input type="radio" formControlName="inst_ac_groupcr_access"
+                                                   value="0">No</span>
+                                          </p>
+                                          
+                                       </div>
+                                       <div class="editinst text-right">
+                                          <a class="bt btn-success" (click)="editInstituteAccess(3)"
+                                             *ngIf="instituteEdit_3==false">
+                                             Edit </a>
+                                          <button type="submit" class="bt btn-success" *ngIf="instituteEdit_3==true">
+                                             Update </button>
+                                             <a class="bt btn-success"  *ngIf="instituteEdit_3==true" (click)="instituteEdit_3=false;cancelUpdateDefault()">
+                                             Cancel </a>
+                                       </div>
+                                    </form>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <!--///detailstabs-->
+                     </div>
+                  </div>
+               </div>
+               <div class="min_admin">
+                  <ul class="nav nav-tabs">
+                     <li class="active"><a data-toggle="tab" href="#institute_detail">Institute detail</a></li>
+                     <li><a data-toggle="tab" href="#admin">Admins</a></li>
+                     <li><a data-toggle="tab" href="#branch">Branches</a></li>
+                     <li><a data-toggle="tab" href="#default_value">Default Value</a></li>
+                  </ul>
+                  <div class="tab-content">
+                     <div id="institute_detail" class="tab-pane fade in active">
+                        <div class="admin_add">
+                           <div class="col-md-12">
+                              <div class="all_brd">
+                                 <div class=" student-bg question_title">
+                                    <h4>Institute detail</h4>
+                                 </div>
+                                 <div class="content_sub">
+                                    
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <!--//admin details-->
+                     </div>
+                     <div id="branch" class="tab-pane fade in">
+                        <div class="admin_add">
+                           <div class="col-md-12">
+                              <div class="all_brd">
+                                 <div class=" student-bg question_title">
+                                    <h4> Branch Details
+                                    </h4>
+                                 </div>
+                                 <div class="content_sub">
+                                    <div class="all_mian">
+
+
+                                       <!-- Modal start -->
+                                       <div class="modal fade" id="addbranchmodel" role="dialog">
+                                          <div class="modal-dialog add_branch_width">
+                                             <div class="modal-content">
+                                                <!--<div class="modal-header">
+                                                   <button type="button" class="close" data-dismiss="modal"></button>
+                                                     <h4 class="modal-title">Manage User</h4>
+                                                   </div>-->
+                                                <div class="cls_b cross-button">
+                                                   <button type="button" class="btn btn-default f-size-25"
+                                                      data-dismiss="modal">&times;</button>
+                                                </div>
+                                                <div class="modal-body addbranch">
+                                                   <div>
+                                                      <div class="content">
+                                                         <div id="pers_inf">
+                                                            <div *ngIf="msgSuccLogin==true"
+                                                               class="alert {{alertmsgClass}}">
+                                                               <strong>{{alertmsgSucc}}</strong>
+                                                            </div>
+                                                            <h3>{{branchFormType}}</h3>
+                                                            <div id="status_inf">
+                                                               <div class="popup_dla mar-top-left">
+                                                                  <form [formGroup]="branchAddForm"
+                                                                     (ngSubmit)="createBranch()">
+                                                                     <div class="row hght-define">
+                                                                        <div class="col-lg-12 pad-left-0">
+                                                                           <div>
+                                                                              <div class="col-sm-12">
+                                                                                 <input class="form-control" type="text"
+                                                                                    formControlName="name"
+                                                                                    placeholder="Branch Name">
+                                                                              </div>
+                                                                              <span class="error-message-custom"
+                                                                                 *ngIf="(branchAddForm.controls.name.errors?.required && submitPressed)"
+                                                                                 style="color:#a94442;margin-left: 15px;">This
+                                                                                 field is required
+                                                                              </span>
+                                                                           </div>
+                                                                           <div>
+                                                                              <div class="col-sm-12">
+                                                                                 <input class="form-control" type="text"
+                                                                                    formControlName="email"
+                                                                                    placeholder="Email">
+                                                                              </div>
+                                                                              <span class="error-message"
+                                                                                 *ngIf="(branchAddForm.controls.email.errors?.required && submitPressed)"
+                                                                                 style="color:#a94442;margin-left: 15px;">This
+                                                                                 field is required
+                                                                              </span>
+                                                                              <span class="error-message"
+                                                                                 *ngIf="branchAddForm.controls.email.errors?.email && branchAddForm.controls.email.value && submitPressed"
+                                                                                 style="color:#a94442;">Not
+                                                                                 an email
+                                                                              </span>
+                                                                           </div>
+                                                                           <div>
+                                                                              <div class="col-md-12 mr-b-20">
+                                                                                 <!-- <select
+                                                                                    class="form-control color-filter selectpicker" id="c"
+                                                                                    multiple data-live-search="true" placeholder='Select Admin' formControlName="admins">
+                                                                                    <option
+                                                                                       *ngFor="let adm of instAdmins"
+                                                                                      value="{{adm.admin_id}}">
+                                                                                       {{adm.admin_dname}}
+                                                                                    </option>
+                                                                                 </select> -->
+                                                                                 <p-multiSelect [options]="admins"
+                                                                                    formControlName="admins">
+                                                                                 </p-multiSelect>
+                                                                                 <span class="error-message"
+                                                                                    *ngIf="branchAddForm.controls.admins.errors?.required && submitPressed"
+                                                                                    style="color:#a94442;">This field is
+                                                                                    required*
+                                                                                 </span>
+                                                                              </div>
+                                                                           </div>
+                                                                           <div class=" mar-bot-10">
+                                                                              <div class="col-md-12">
+                                                                                 <input class="form-control" type="text"
+                                                                                    formControlName="phone"
+                                                                                    placeholder="Phone1">
+                                                                                 <span class="error-message"
+                                                                                    *ngIf="branchAddForm.controls.phone.errors?.required && submitPressed"
+                                                                                    style="color:#a94442;">This field is
+                                                                                    required*
+                                                                                 </span>
+                                                                              </div>
+                                                                           </div>
+                                                                           <div class="mar-bot-10">
+                                                                              <div class="col-md-12">
+                                                                                 <input class="form-control" type="text"
+                                                                                    formControlName="alt_phone"
+                                                                                    placeholder="Phone2">
+                                                                                 <span class="error-message"
+                                                                                    *ngIf="branchAddForm.controls.alt_phone.errors?.required && submitPressed"
+                                                                                    style="color:#a94442;">This field is
+                                                                                    required*
+                                                                                 </span>
+                                                                              </div>
+                                                                           </div>
+
+                                                                           <div>
+                                                                              <div class="col-sm-12 mar-bot-10">
+                                                                                 <input class="form-control" type="text"
+                                                                                    formControlName="address"
+                                                                                    placeholder="address">
+                                                                                 <span class="error-message"
+                                                                                    *ngIf="branchAddForm.controls.address.errors?.required && submitPressed"
+                                                                                    style="color:#a94442;">This field is
+                                                                                    required*
+                                                                                 </span>
+                                                                              </div>
+                                                                           </div>
+                                                                           <div>
+                                                                              <div class="col-sm-12 mar-bot-10">
+                                                                                 <input class="form-control" type="text"
+                                                                                    formControlName="fax"
+                                                                                    placeholder="Fax">
+                                                                                 <span class="error-message"
+                                                                                    *ngIf="branchAddForm.controls.fax.errors?.required && submitPressed"
+                                                                                    style="color:#a94442;">This field is
+                                                                                    required*
+                                                                                 </span>
+                                                                              </div>
+                                                                           </div>
+                                                                           <div>
+                                                                              <div class="col-sm-12">
+                                                                                 <input class="form-control" type="text"
+                                                                                    formControlName="contact"
+                                                                                    placeholder="Contact">
+                                                                                 <span class="error-message"
+                                                                                    *ngIf="branchAddForm.controls.contact.errors?.required && submitPressed"
+                                                                                    style="color:#a94442;">This field is
+                                                                                    required*
+                                                                                 </span>
+                                                                              </div>
+                                                                           </div>
+                                                                        </div>
+                                                                        <div class="text-center add-branch-button">
+                                                                           <button type="submit"
+                                                                              class="bt btn-success">{{branchFormType}}</button>
+                                                                        </div>
+                                                                     </div>
+
+                                                                  </form>
+                                                                  <p-toast [style]="{marginTop: '80px'}"></p-toast>
+                                                                  <p-toast [style]="{marginTop: '80px'}"
+                                                                     position="top-left" key="tl"></p-toast>
+                                                                  <p-toast [style]="{marginTop: '80px'}"
+                                                                     position="top-center" key="tc"></p-toast>
+                                                                  <p-toast [style]="{marginTop: '80px'}"
+                                                                     styleClass="custom-toast" key="custom"
+                                                                     position="bottom-center"></p-toast>
+                                                                  <p-toast position="center" key="c"
+                                                                     (onClose)="onReject()" [modal]="true"
+                                                                     [baseZIndex]="5000">
+                                                                     <ng-template let-message pTemplate="message">
+                                                                        <div style="text-align: center">
+                                                                           <i class="pi pi-exclamation-triangle"
+                                                                              style="font-size: 3em"></i>
+                                                                           <h3>{{message.summary}}</h3>
+                                                                           <p>{{message.detail}}</p>
+                                                                        </div>
+                                                                        <div class="ui-g ui-fluid">
+                                                                           <div class="ui-g-6">
+                                                                              <button type="button" pButton
+                                                                                 (click)="onConfirm()" label="Yes"
+                                                                                 class="ui-button-success"></button>
+                                                                           </div>
+                                                                           <div class="ui-g-6">
+                                                                              <button type="button" pButton
+                                                                                 (click)="onReject()" label="No"
+                                                                                 class="ui-button-secondary"></button>
+                                                                           </div>
+                                                                        </div>
+                                                                     </ng-template>
+                                                                  </p-toast>
+                                                               </div>
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                                <div class="modal-body addbranchmodel" *ngIf="branchFormType !== 'Add Branch'">
+                                                   <div class="all_mian">
+                                                      <div class="table-responsive check_all">
+                                                         <table class="table table-bordered">
+                                                            <thead>
+                                                               <tr>
+                                                                  <th>Admin&nbsp;ID</th>
+                                                                  <th>Admin&nbsp;Name</th>
+                                                                  <th>Email</th>
+                                                                  <th>Phone</th>
+                                                                  <th>Fax</th>
+                                                                  <!--th>Contact</th-->
+                                                               </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                               <ng-container *ngFor="let adm of instAdmins">
+                                                                     <tr class="info alt-bg"  *ngIf="adminsArray.indexOf(adm.admin_id) !== -1">
+                                                                           <td>{{adm.admin_id}}</td>
+                                                                           <td data-toggle="modal" style="cursor:pointer">
+                                                                              {{adm.admin_dname}}</td>
+                                                                           <td>{{adm.ac_user_email}}</td>
+                                                                           <td>{{adm.admin_phone}}</td>
+                                                                           <td>{{adm.admin_fax}}</td>
+                                                                           <!--td data-toggle="modal" data-target="#user_detal">{{adm.admin_fax}}</td-->
+                                                                        </tr>
+                                                               </ng-container>
+                                                              
+                                                            </tbody>
+                                                         </table>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                   <button type="button" class="btn btn-default"
+                                                      data-dismiss="modal">Close</button>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <!-- Modal end-->
+
+                                       <div class="row adm_branch">
+                                          <button type="button" class="bt btn btn-success" data-toggle="modal"
+                                             data-target="#addbranchmodel"
+                                             (click)="branchAddForm.reset();branchFormType='Add Branch';addbranchMethod();">Add
+                                             Branch</button>
+                                       </div>
+                                       <div class="table-responsive check_all">
+                                          <table class="table table-bordered">
+                                             <thead>
+                                                <tr>
+                                                   <th>Branch&nbsp;ID</th>
+                                                   <th>Branch&nbsp;Name</th>
+                                                   <th>Email</th>
+                                                   <th>Phone</th>
+                                                   <th>Fax</th>
+                                                   <th>Contact</th>
+                                                </tr>
+
+                                             </thead>
+                                             <tbody>
+                                                <tr *ngFor="let branch of instituteBranches" style="cursor: pointer" class="alt-bg"
+                                                   (click)="branchDetails(branch.branch_id ,branch.branch_type_id);branchFormType='Update Branch'"
+                                                   data-toggle="modal" data-target="#addbranchmodel">
+                                                   <td>{{branch.branch_id}}</td>
+                                                   <td>{{branch.branch_name}}</td>
+                                                   <td>{{branch.barnch_email}}</td>
+                                                   <td>{{branch.branch_phone}}</td>
+                                                   <td>{{branch.branch_fax}}</td>
+                                                   <td>{{branch.branch_contact}}</td>
+                                                </tr>
+                                             </tbody>
+                                          </table>
+                                       </div>
+
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div id="admin" class="tab-pane fade in">
+                        <div class="admin_add">
+                           <div class="col-md-12">
+                              <div class="all_brd">
+                                 <div class=" student-bg question_title">
+                                    <h4> Admin Details </h4>
+                                 </div>
+                                 <div class="content_sub">
+                                    <div class="adm_branch">
+                                       <button type="button" class="bt btn btn-success" data-toggle="modal"
+                                          data-target="#createadmin">Create Admin</button>
+                                       <!-- Modal start -->
+                                       <div class="modal fade" id="createadmin" role="dialog">
+                                          <div class="modal-dialog user_width">
+                                             <div class="modal-content">
+                                                <!--<div class="modal-header">
+                                                   <button type="button" class="close" data-dismiss="modal"></button>
+                                                     <h4 class="modal-title">Manage User</h4>
+                                                   </div>-->
+                                                <div class="cls_b cross-button">
+                                                   <button type="button" class="btn btn-default f-size-25"
+                                                      data-dismiss="modal">&times;</button>
+                                                </div>
+                                                <div class="modal-body createadmin">
+                                                   <div>
+                                                      <div class="content">
+                                                         <div id="pers_inf">
+                                                            <div *ngIf="msgSuccLogin==true"
+                                                               class="alert {{alertmsgClass}}">
+                                                               <strong>{{alertmsgSucc}}</strong>
+                                                            </div>
+                                                            <h3>Create Admin</h3>
+                                                            <div id="status_inf">
+                                                               <div class="popup_dla test-mar-left-top">
+                                                                  <form [formGroup]="createAdmin"
+                                                                     (ngSubmit)="adminCreates(createAdmin)">
+                                                                     <input type="hidden" formControlName="admin_id"
+                                                                        [(ngModel)]="Check_admin_id">
+                                                                     <input type="hidden" formControlName="inst_id"
+                                                                        [(ngModel)]="instId">
+                                                                     <div class="row">
+                                                                        <div class="col-lg-6">
+                                                                           <div class=" row">
+                                                                              <!--div class="col-sm-10">
+                                                                              <input class="form-control" type="text" placeholder="User Id:12115" readonly>
+                                                                              </div-->
+                                                                              <!-- <label for="example-text-input" class="col-sm-3 col-form-label">Text</label>-->
+                                                                              <div class="col-sm-10">
+                                                                                 <input class="form-control" type="text"
+                                                                                    formControlName="admin_dname"
+                                                                                    placeholder="Display Name">
+                                                                              </div>
+                                                                              <div class="col-sm-10">
+                                                                                 <input class="form-control" type="text"
+                                                                                    formControlName="admin_fname"
+                                                                                    placeholder="First Name">
+                                                                              </div>
+                                                                           </div>
+                                                                           <div class="row">
+                                                                              <div class="col-sm-10">
+                                                                                 <input class="form-control" type="text"
+                                                                                    formControlName="admin_mname"
+                                                                                    placeholder="Middle Name">
+                                                                              </div>
+                                                                           </div>
+                                                                           <div class=" row">
+                                                                              <div class="col-sm-10">
+                                                                                 <input class="form-control" type="text"
+                                                                                    formControlName="admin_lname"
+                                                                                    placeholder="Last Name">
+                                                                              </div>
+                                                                           </div>
+                                                                           <div class=" row"
+                                                                              style="margin-bottom: 10px">
+                                                                              <div class="col-sm-10">
+                                                                                 <label class="radio-inline">
+                                                                                    <input type="radio"
+                                                                                       formControlName="admin_gender"
+                                                                                       value="Male">Male
+                                                                                 </label>
+                                                                                 <label class="radio-inline">
+                                                                                    <input type="radio"
+                                                                                       formControlName="admin_gender"
+                                                                                       value="Female">Female
+                                                                                 </label>
+                                                                                 <!-- <select class="language form-control" formControlName="admin_gender">
+                                                                                 <optgroup label="Gender">
+                                                                                    <option value="Male">Male</option>
+                                                                                    <option value="Female">Female</option>
+                                                                                 </optgroup>
+                                                                                 </select> -->
+                                                                              </div>
+                                                                           </div>
+                                                                           <div class=" row">
+                                                                              <div class="col-sm-10">
+                                                                                 <!-- <input type="text"                                                                                      class="form-control"
+                                                                                 ngxDaterangepickerMd
+                                                                                 [autoApply]="true"
+                                                                                 [linkedCalendars]="options.linkedCalendars"
+                                                                                 [singleDatePicker]="true"
+                                                                                 applyLabel="Okay"
+                                                                                 [showDropdowns]="true"
+                                                                                 [(ngModel)]="dateselect"
+                                                                                 
+                                                                                 placeholder="date of birth"
+                                                                                 formControlName="admin_dob"
+                                                                                 > -->
+                                                                                 <input class="form-control" type="date"
+                                                                                    placeholder="date birth"
+                                                                                    formControlName="admin_dob">
+                                                                              </div>
+                                                                           </div>
+                                                                        </div>
+                                                                        <div class="col-lg-6">
+                                                                           <div class=" row">
+                                                                           </div>
+                                                                           <div class=" row">
+                                                                           </div>
+                                                                           <div class=" row">
+                                                                              <div class="col-md-10">
+                                                                                 <input class="form-control" type="text"
+                                                                                    formControlName="admin_email"
+                                                                                    placeholder="Email">
+                                                                                 <div
+                                                                                    *ngIf="createAdmin.controls.admin_email.hasError('pattern')"
+                                                                                    class="text-danger "
+                                                                                    style="color:#a94442;">enter valid
+                                                                                    email
+                                                                                 </div>
+                                                                              </div>
+                                                                           </div>
+                                                                           <div class=" row">
+                                                                              <div class="col-md-10">
+                                                                                 <input class="form-control" type="text"
+                                                                                    formControlName="admin_alt_email"
+                                                                                    placeholder="Email-2">
+                                                                                 <div
+                                                                                    *ngIf="createAdmin.controls.admin_alt_email.hasError('pattern')"
+                                                                                    class="text-danger "
+                                                                                    style="color:#a94442;">enter valid
+                                                                                    email
+                                                                                 </div>
+                                                                              </div>
+                                                                           </div>
+                                                                           <div class=" row">
+                                                                              <div class="col-md-3">
+                                                                                 <!--input class="form-control" type="text" formControlName="admin_phone_cont_code" placeholder="+91"-->
+                                                                                 <select
+                                                                                    class="form-control color-filter"
+                                                                                    formControlName="admin_phone_cont_code"
+                                                                                    (change)="enablePhone($event.target.value,'1')">
+                                                                                    <!--<option [ngValue]="userInst.cntry_id" [selected]="userInst.cntry_id">{{userInst.cntry_name}}</option>-->
+                                                                                    <option value="">Code</option>
+                                                                                    <option *ngFor="let cnt of country"
+                                                                                       value="{{cnt.cntry_id}}">
+                                                                                       {{cnt.cntry_isdcode+'&nbsp; '}}
+                                                                                       {{'&nbsp;&nbsp;&nbsp; '+cnt.cntry_name}}
+                                                                                    </option>
+                                                                                 </select>
+                                                                              </div>
+                                                                              <div class="col-md-7">
+                                                                                 <input class="form-control"
+                                                                                    (keypress)="numberOnly($event)"
+                                                                                    type="text"
+                                                                                    formControlName="admin_phone"
+                                                                                    placeholder="phone"
+                                                                                    [readonly]="!phoneEnable_1">
+                                                                                 <div
+                                                                                    *ngIf="createAdmin.controls.admin_phone.hasError('minlength')"
+                                                                                    class="text-danger "
+                                                                                    style="color:#a94442;">enter valid
+                                                                                    phone
+                                                                                    no </div>
+                                                                              </div>
+                                                                           </div>
+                                                                           <div class=" row">
+                                                                              <div class="col-md-3">
+                                                                                 <!--input class="form-control" type="text" formControlName="admin_alt_phone_cont_code" placeholder="+91"-->
+                                                                                 <select
+                                                                                    class="form-control color-filter"
+                                                                                    formControlName="admin_alt_phone_cont_code"
+                                                                                    (change)="enablePhone($event.target.value,'2')">
+                                                                                    <!--<option [ngValue]="userInst.cntry_id" [selected]="userInst.cntry_id">{{userInst.cntry_name}}</option>-->
+                                                                                    <option value="">Code</option>
+                                                                                    <option *ngFor="let cnt of country"
+                                                                                       value="{{cnt.cntry_id}}">
+                                                                                       {{cnt.cntry_isdcode+'&nbsp; '}}
+                                                                                       {{'&nbsp;&nbsp;&nbsp; '+cnt.cntry_name}}
+                                                                                    </option>
+                                                                                 </select>
+                                                                              </div>
+                                                                              <div class="col-md-7">
+                                                                                 <input class="form-control"
+                                                                                    (keypress)="numberOnly($event)"
+                                                                                    type="text"
+                                                                                    formControlName="admin_alt_phone"
+                                                                                    placeholder="phone"
+                                                                                    [readonly]="!phoneEnable_2">
+                                                                                 <div
+                                                                                    *ngIf="createAdmin.controls.admin_alt_phone.hasError('minlength')"
+                                                                                    class="text-danger "
+                                                                                    style="color:#a94442;">enter valid
+                                                                                    phone
+                                                                                    no </div>
+                                                                              </div>
+                                                                           </div>
+                                                                           <div class=" row">
+                                                                              <div class="col-md-3">
+                                                                                 <!--input class="form-control" type="text" formControlName="admin_fax_cnt_code" placeholder="+91"-->
+                                                                                 <select
+                                                                                    class="form-control color-filter"
+                                                                                    formControlName="admin_fax_cnt_code"
+                                                                                    (change)="enablePhone($event.target.value,'3')">
+                                                                                    <!--<option [ngValue]="userInst.cntry_id" [selected]="userInst.cntry_id">{{userInst.cntry_name}}</option>-->
+                                                                                    <option value="">Code</option>
+                                                                                    <option *ngFor="let cnt of country"
+                                                                                       value="{{cnt.cntry_id}}">
+                                                                                       {{cnt.cntry_isdcode+'&nbsp; '}}
+                                                                                       {{'&nbsp;&nbsp;&nbsp; '+cnt.cntry_name}}
+                                                                                    </option>
+                                                                                 </select>
+                                                                              </div>
+                                                                              <div class="col-md-7">
+                                                                                 <input class="form-control" type="text"
+                                                                                    formControlName="admin_fax"
+                                                                                    placeholder="Fax"
+                                                                                    [readonly]="!phoneEnable_3">
+                                                                              </div>
+                                                                           </div>
+                                                                           <!-- <div class=" row">
+                                                                              <div class="col-md-10"
+                                                                                 *ngIf="instituteBranches.length>0">
+                                                                                 <select
+                                                                                    class="form-control color-filter">
+                                                                                    <option value=""disabled>Branch</option>
+                                                                                    <option
+                                                                                       *ngFor="let branch of instituteBranches"
+                                                                                       value="{{branch.branch_id}}">
+                                                                                       {{branch.branch_name}}</option>
+                                                                                 </select>
+                                                                              </div>
+                                                                              <div class="col-md-12"
+                                                                                 *ngIf="instituteBranches.length<1">
+                                                                                 <select
+                                                                                    class="form-control color-filter">
+                                                                                    <option value="">No Branches
+                                                                                    </option>
+                                                                                 </select>
+                                                                              </div>
+                                                                           </div> -->
+                                                                        </div>
+                                                                        <!-- <div class="col-lg-4">
+                                                                        <div class=" row">
+                                                                           <div class="col-sm-11">
+                                                                              <select class="form-control color-filter" formControlName="admin_country" (ngModelChange)="getStatesoncountry($event)">
+                                                                                 <option value="">Select Country</option>
+                                                                                 <option *ngFor="let cnt of country" value="{{cnt.cntry_id}}" >{{cnt.cntry_name}}</option>
+                                                                              </select>
+                                                                           </div>
+                                                                        </div>
+                                                                        <div class=" row">
+                                                                           <div class="col-sm-11">
+                                                                              <select class="form-control" formControlName="admin_state" (ngModelChange)="getCitiesonstates($event)">
+                                                                                 <option value="">Select State</option>
+                                                                                 <option *ngFor="let state of states" value="{{state.state_id}}">{{state.state_name}}</option>
+                                                                              </select>
+                                                                           </div>
+                                                                        </div>
+                                                                        <div class=" row">
+                                                                           <div class="col-sm-11">
+                                                                              <select class="form-control" formControlName="admin_city">
+                                                                                 <option value="">Select City</option>
+                                                                                 <option *ngFor="let city of cities" value="{{city.city_id}}">{{city.city_name}}</option>
+                                                                              </select>
+                                                                           </div>
+                                                                        </div>
+                                                                        <div class=" row">
+                                                                           <div class="col-md-11">
+                                                                              <textarea class="form-control" formControlName="admin_address" placeholder="address" style=" height:150px;"></textarea>
+                                                                           </div>
+                                                                        </div>
+                                                                     </div> -->
+                                                                     </div>
+                                                                     <div class="row usertype-createprofile mar-l">
+                                                                        <div class="col-md-2 dis-none">
+                                                                           <input type="hidden"
+                                                                              formControlName="admintype_id"
+                                                                              class="form-control"
+                                                                              [(ngModel)]="createadminType">
+                                                                        </div>
+                                                                        <div class="col-sm-5 pad-l-r-0">
+                                                                           <input class="form-control" type="text"
+                                                                              (keyup)="CheckAdminAvailability($event.target.value,'ac_user_email')"
+                                                                              formControlName="ac_user_email"
+                                                                              placeholder="Register Email">
+                                                                           <span *ngIf="instAdminEmail==true"
+                                                                              style="color:#a94442;">{{instAdminEmailErrText}}</span>
+                                                                           <div
+                                                                              *ngIf="createAdmin.controls.ac_user_email.hasError('pattern')"
+                                                                              class="text-danger "
+                                                                              style="color:#a94442;">
+                                                                              Enter valid email</div>
+                                                                        </div>
+                                                                        <div class="col-md-2">
+                                                                           <input class="form-control" type="hidden"
+                                                                              formControlName="ac_user_phone"
+                                                                              [(ngModel)]="acuserphone"
+                                                                              placeholder="Register Phone">
+                                                                        </div>
+                                                                     </div>
+                                                                     <div class="text-center fl-right">
+                                                                        <button type="submit"
+                                                                           class="bt btn-success">Create Admin</button>
+                                                                     </div>
+                                                                  </form>
+                                                                  <p-toast [style]="{marginTop: '80px'}"></p-toast>
+                                                                  <p-toast [style]="{marginTop: '80px'}"
+                                                                     position="top-left" key="tl"></p-toast>
+                                                                  <p-toast [style]="{marginTop: '80px'}"
+                                                                     position="top-center" key="tc"></p-toast>
+                                                                  <p-toast [style]="{marginTop: '80px'}"
+                                                                     styleClass="custom-toast" key="custom"
+                                                                     position="bottom-center"></p-toast>
+                                                                  <p-toast position="center" key="c"
+                                                                     (onClose)="onReject()" [modal]="true"
+                                                                     [baseZIndex]="5000">
+                                                                     <ng-template let-message pTemplate="message">
+                                                                        <div style="text-align: center">
+                                                                           <i class="pi pi-exclamation-triangle"
+                                                                              style="font-size: 3em"></i>
+                                                                           <h3>{{message.summary}}</h3>
+                                                                           <p>{{message.detail}}</p>
+                                                                        </div>
+                                                                        <div class="ui-g ui-fluid">
+                                                                           <div class="ui-g-6">
+                                                                              <button type="button" pButton
+                                                                                 (click)="onConfirm()" label="Yes"
+                                                                                 class="ui-button-success"></button>
+                                                                           </div>
+                                                                           <div class="ui-g-6">
+                                                                              <button type="button" pButton
+                                                                                 (click)="onReject()" label="No"
+                                                                                 class="ui-button-secondary"></button>
+                                                                           </div>
+                                                                        </div>
+                                                                     </ng-template>
+                                                                  </p-toast>
+                                                               </div>
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                   <button type="button" class="btn btn-default"
+                                                      data-dismiss="modal">Close</button>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <!-- Modal end-->
+                                    </div>
+                                    <div class="all_mian">
+                                       <div class="table-responsive check_all">
+                                          <table class="table table-bordered">
+                                             <thead>
+                                                <tr>
+                                                   <th>Admin&nbsp;ID</th>
+                                                   <th>Admin&nbsp;Name</th>
+                                                   <th>Email</th>
+                                                   <th>Phone</th>
+                                                   <th>Fax</th>
+                                                   <!--th>Contact</th-->
+                                                </tr>
+                                             </thead>
+                                             <tbody>
+                                                <tr class="info alt-bg" *ngFor="let adm of instAdmins">
+                                                   <td>{{adm.admin_id}}</td>
+                                                   <td data-toggle="modal" style="cursor:pointer"
+                                                      data-target="#user_detal" (click)="showAdmin(adm.admin_id)">
+                                                      {{adm.admin_dname}}</td>
+                                                   <td>{{adm.ac_user_email}}</td>
+                                                   <td>{{adm.admin_phone}}</td>
+                                                   <td>{{adm.admin_fax}}</td>
+                                                </tr>
+                                             </tbody>
+                                          </table>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <!--//admin details-->
+                     </div>
+                     <div id="default_value" class="tab-pane fade in">
+                        <div class="admin_add">
+                           <div class="col-md-12">
+                              <div class="all_brd">
+                                 <div class=" student-bg question_title">
+                                    <h4>Default Value</h4>
+                                 </div>
+                                 <div class="content_sub">
+                                    
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <!--//admin details-->
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+   </div>
+</div>
+<!--Modal Pop Up for admin details-->
+<div class="modal fade" id="user_detal" role="dialog">
+   <div class="modal-dialog user_width custom-width-modal">
+      <div class="modal-content">
+         <!--<div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"></button>
+              <h4 class="modal-title">Manage User</h4>
+            </div>-->
+         <div class="cls_b cross-button1">
+            <button type="button" class="btn btn-default f-size-25" data-dismiss="modal">&times;</button>
+         </div>
+         <div class="modal-body user_mdl">
+            <div class="row">
+               <div class="col-md-12">
+                  <section class="content">
+                     <div id="pers_inf">
+                        <!--<a href="#" id="edit_profil">Edit</a>-->
+                        <div id="pers_int_cont" class="mrg-t-50">
+                           <div id="pers_intitule">
+                              <img [src]="modelPic" alt="" />
+                              <h4 pers_inf>{{admin_dname}}</h4>
+                              <p>User id : {{admin_id}}</p>
+                           </div>
+                        </div>
+                        <!--<div class="shadow sh1"></div><div class="shadow sh2"></div>-->
+                        <h3> Admin Information</h3>
+                        <div id="status_inf">
+                           <div class="popup_dla mr-l-200">
+                              <form [formGroup]="updateUser">
+                                 <div class="row">
+                                    <div class="col-lg-4">
+                                       <div class=" row">
+                                          <div class="col-sm-10 mar-bot-10">
+                                             <div class="hoveruseredit hhh">
+                                                <div class="input-group">
+                                                   <input type="hidden" class="form-control" formControlName="admin_id"
+                                                      [(ngModel)]="admin_id">
+                                                   <input class="form-control" type="text" placeholder="Display Name"
+                                                      formControlName="admin_dname" [(ngModel)]="admin_dname"
+                                                      [readonly]="!profileEdit_1">
+                                                   <div class="edit-button input-group-btn">
+                                                      <button *ngIf="profileEdit_1==false" (click)="profilefieldEdit(1)"
+                                                         class="btn btn-sm btn-primary edithoveredit"><i
+                                                            class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
+                                                      </button>
+                                                      <button *ngIf="profileEdit_1==true"
+                                                         (click)="profilefieldUpdate(admin_dname,'admin_dname',1,admin_id)"
+                                                         class="btn btn-sm btn-success edithoversav"><i
+                                                            class="fa fa-floppy-o" aria-hidden="true"></i> Save
+                                                      </button>
+                                                      <button *ngIf="profileEdit_1==true"
+                                                         (click)="admin_dname = singleAdmin.admin_dname;profileEdit_1=false"
+                                                         class="btn btn-sm btn-success edithoversav"><i
+                                                            class="fa fa-floppy-o" aria-hidden="true"></i> Cancel
+                                                      </button>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="col-sm-10 mar-bot-10">
+                                             <div class="hoveruseredit">
+                                                <div class="input-group">
+                                                   <input class="form-control" type="text" placeholder="First Name"
+                                                      formControlName="admin_fname" [(ngModel)]="admin_fname"
+                                                      [readonly]="!profileEdit_2">
+                                                   <div class="edit-button input-group-btn">
+                                                      <button *ngIf="profileEdit_2==false" (click)="profilefieldEdit(2)"
+                                                         class="btn btn-sm btn-primary edithoveredit"><i
+                                                            class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
+                                                      </button>
+                                                      <button *ngIf="profileEdit_2==true"
+                                                         (click)="profilefieldUpdate(admin_fname,'admin_fname',2,admin_id)"
+                                                         class="btn btn-sm btn-success edithoversav"><i
+                                                            class="fa fa-floppy-o" aria-hidden="true"></i> Save
+                                                      </button>
+                                                      <button *ngIf="profileEdit_2==true"
+                                                         (click)="admin_fname = singleAdmin.admin_fname;profileEdit_2=false"
+                                                         class="btn btn-sm btn-success edithoversav"><i
+                                                            class="fa fa-floppy-o" aria-hidden="true"></i> Cancel
+                                                      </button>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="row">
+                                          <div class="col-sm-10 mar-bot-10">
+                                             <div class="hoveruseredit">
+                                                <div class="input-group">
+                                                   <input class="form-control" type="text" placeholder="Middle Name"
+                                                      formControlName="admin_mname" [(ngModel)]="admin_mname"
+                                                      [readonly]="!profileEdit_3">
+                                                   <div class="edit-button input-group-btn">
+                                                      <button *ngIf="profileEdit_3==false" (click)="profilefieldEdit(3)"
+                                                         class="btn btn-sm btn-primary edithoveredit"><i
+                                                            class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
+                                                      </button>
+                                                      <button *ngIf="profileEdit_3==true"
+                                                         (click)="profilefieldUpdate(admin_mname,'admin_mname',3,admin_id)"
+                                                         class="btn btn-sm btn-success edithoversav"><i
+                                                            class="fa fa-floppy-o" aria-hidden="true"></i> Save
+                                                      </button>
+                                                      <button *ngIf="profileEdit_3==true"
+                                                         (click)="admin_mname = singleAdmin.admin_mname;profileEdit_3=false"
+                                                         class="btn btn-sm btn-success edithoversav"><i
+                                                            class="fa fa-floppy-o" aria-hidden="true"></i> Cancel
+                                                      </button>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class=" row">
+                                          <div class="col-sm-10 mar-bot-10">
+                                             <div class="hoveruseredit">
+                                                <div class="input-group">
+                                                   <input class="form-control" type="text" placeholder="Last Name"
+                                                      formControlName="admin_lname" [(ngModel)]="admin_lname"
+                                                      [readonly]="!profileEdit_4">
+                                                   <div class="edit-button input-group-btn">
+                                                      <button *ngIf="profileEdit_4==false" (click)="profilefieldEdit(4)"
+                                                         class="btn btn-sm btn-primary edithoveredit"><i
+                                                            class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
+                                                      </button>
+                                                      <button *ngIf="profileEdit_4==true"
+                                                         (click)="profilefieldUpdate(admin_lname,'admin_lname',4,admin_id)"
+                                                         class="btn btn-sm btn-success edithoversav"><i
+                                                            class="fa fa-floppy-o" aria-hidden="true"></i> Save
+                                                      </button>
+                                                      <button *ngIf="profileEdit_4==true"
+                                                         (click)="admin_lname = singleAdmin.admin_lname;profileEdit_4=false;"
+                                                         class="btn btn-sm btn-success edithoversav"><i
+                                                            class="fa fa-floppy-o" aria-hidden="true"></i> Cancel
+                                                      </button>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class=" row">
+                                          <div class="col-sm-12 mar-bot-10">
+                                             <div class="hoveruseredit">
+                                                <div class="input-group">
+                                                   <!--select class="gender-mangeu form-control" formContrlName="user_gender" [disabled]="!profileEdit_5">
+                                                      <optgroup label="user_gender">
+                                                         <option [value]="Male">Male</option>
+                                                         <option [value]="Female">Female</option>
+                                                      </optgroup>
+                                                      </select-->
+                                                   <!--select class="form-control color-filter" formControlName="user_gender" [(ngModel)]="user_gender" [disabled]="!profileEdit_5">
+                                                      <--option [ngValue]="uPro.cntry_id" >{{uPro.cntry_name}}</option-->
+                                                   <!--option *ngFor="let cnt of country" [ngValue]="cnt.cntry_id">{{cnt.cntry_name}}</option->
+                                                      <option [value]="Male">Male</option>
+                                                          <option [value]="Female">Female</option>
+                                                      </select-->
+                                                   <label class="radio-inline">
+                                                      <input type="radio" formControlName="admin_gender"
+                                                         [(ngModel)]="admin_gender" (change)="profilefieldEdit(5)"
+                                                         [disabled]="!profileEdit_5" value="Male">Male
+                                                   </label>
+                                                   <label class="radio-inline">
+                                                      <input type="radio" formControlName="admin_gender"
+                                                         [(ngModel)]="admin_gender" (change)="profilefieldEdit(5)"
+                                                         [disabled]="!profileEdit_5" value="Female">Female
+                                                   </label>
+                                                   <div class="edit-button input-group-btn">
+                                                      <!-- <button *ngIf="profileEdit_5==false" (click)="profilefieldEdit(5)"  class="btn btn-sm btn-primary edithoveredit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit </button>  -->
+                                                      <button *ngIf="profileEdit_5==true"
+                                                         (click)="profilefieldUpdate(admin_gender,'admin_gender',5,admin_id)"
+                                                         class="btn btn-sm btn-success edithoversav"><i
+                                                            class="fa fa-floppy-o" aria-hidden="true"></i> Save
+                                                      </button>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class=" row">
+                                          <div class="col-sm-10 mar-bot-10">
+                                             <div class="hoveruseredit">
+                                                <div class="input-group">
+                                                   <!-- <input type="text"
+                                                      class="form-control"
+                                                      ngxDaterangepickerMd
+                                                      [autoApply]="true"
+                                                      [linkedCalendars]="options.linkedCalendars"
+                                                      [singleDatePicker]="true"
+                                                      applyLabel="Okay"
+                                                      [showDropdowns]="true"
+                                                      [(ngModel)]="admin_dob"
+                                                      placeholder="Date of birth"
+                                                      formControlName="admin_dob"
+                                                      [readonly]="!profileEdit_6"> -->
+                                                   <input class="form-control" type="date" formControlName="admin_dob"
+                                                      [(ngModel)]="admin_dob" placeholder="date birth"
+                                                      [readonly]="!profileEdit_6">
+                                                   <div class="edit-button input-group-btn">
+                                                      <button *ngIf="profileEdit_6==false" (click)="profilefieldEdit(6)"
+                                                         class="btn btn-sm btn-primary edithoveredit"><i
+                                                            class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
+                                                      </button>
+                                                      <button *ngIf="profileEdit_6==true"
+                                                         (click)="profilefieldUpdate(admin_dob,'admin_dob',6,admin_id)"
+                                                         class="btn btn-sm btn-success edithoversav"><i
+                                                            class="fa fa-floppy-o" aria-hidden="true"></i> Save
+                                                      </button>
+                                                      <button *ngIf="profileEdit_6==true"
+                                                         (click)="admin_dob = singleAdmin.admin_dob;profileEdit_6=false"
+                                                         class="btn btn-sm btn-success edithoversav"><i
+                                                            class="fa fa-floppy-o" aria-hidden="true"></i> Cancel
+                                                      </button>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                       <div class=" row">
+                                          <div class="col-md-10 mar-bot-10">
+                                             <div class="hoveruseredit">
+                                                <div class="input-group">
+                                                   <input class="form-control" type="text" placeholder="Email"
+                                                      formControlName="admin_email" [(ngModel)]="admin_email"
+                                                      [readonly]="!profileEdit_9">
+                                                   <div class="edit-button input-group-btn">
+                                                      <button *ngIf="profileEdit_9==false" (click)="profilefieldEdit(9)"
+                                                         class="btn btn-sm btn-primary edithoveredit"><i
+                                                            class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
+                                                      </button>
+                                                      <button *ngIf="profileEdit_9==true"
+                                                         (click)="profilefieldUpdate(admin_email,'admin_email',9,admin_id)"
+                                                         class="btn btn-sm btn-success edithoversav"><i
+                                                            class="fa fa-floppy-o" aria-hidden="true"></i> Save
+                                                      </button>
+                                                      <button *ngIf="profileEdit_9==true"
+                                                         (click)="admin_email = singleAdmin.admin_email;profileEdit_9=false"
+                                                         class="btn btn-sm btn-success edithoversav"><i
+                                                            class="fa fa-floppy-o" aria-hidden="true"></i> Cancel
+                                                      </button>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class=" row">
+                                          <div class="col-md-10 mar-bot-10">
+                                             <div class="hoveruseredit">
+                                                <div class="input-group">
+                                                   <input class="form-control" type="text" placeholder="Email-2"
+                                                      formControlName="admin_alt_email" [(ngModel)]="admin_alt_email"
+                                                      [readonly]="!profileEdit_10">
+                                                   <div class="edit-button input-group-btn">
+                                                      <button *ngIf="profileEdit_10==false"
+                                                         (click)="profilefieldEdit(10)"
+                                                         class="btn btn-sm btn-primary edithoveredit"><i
+                                                            class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
+                                                      </button>
+                                                      <button *ngIf="profileEdit_10==true"
+                                                         (click)="profilefieldUpdate(admin_alt_email,'admin_alt_email',10,admin_id)"
+                                                         class="btn btn-sm btn-success edithoversav"><i
+                                                            class="fa fa-floppy-o" aria-hidden="true"></i> Save
+                                                      </button>
+                                                      <button *ngIf="profileEdit_10==true"
+                                                         (click)="admin_alt_email = singleAdmin.admin_alt_email"
+                                                         class="btn btn-sm btn-success edithoversav"><i
+                                                            class="fa fa-floppy-o" aria-hidden="true"></i> Cancel
+                                                      </button>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class=" row">
+                                          <div class="col-md-3">
+                                             <input *ngIf="profileEdit_12==false" type="text" class="form-control"
+                                                formControlName="admin_phone_cont_code"
+                                                [(ngModel)]="admin_phone_cont_code" readonly>
+                                             <select *ngIf="profileEdit_12==true" class="form-control phonecode_manageu"
+                                                formControlName="admin_phone_cont_code"
+                                                [(ngModel)]="admin_phone_cont_code"
+                                                (change)="enablePhone($event.target.value,'12')">
+                                                <!--option [ngValue]="userInst.cntry_id" [selected]="userInst.cntry_id">{{userInst.cntry_name}}</option-->
+                                                <option value="">Code</option>
+                                                <option *ngFor="let country of country"
+                                                   value="{{country.cntry_isdcode}}">{{country.cntry_isdcode}}
+                                                   {{country.cntry_name}}</option>
+                                             </select>
+                                          </div>
+                                          <div class="hoveruseredit">
+                                             <div class="input-group">
+                                                <input class="form-control" type="text" placeholder="phone"
+                                                   formControlName="admin_phone" [(ngModel)]="admin_phone"
+                                                   [readonly]="!phoneEnable_12">
+                                                <div class="edit-button input-group-btn">
+                                                   <button *ngIf="profileEdit_12==false" (click)="profilefieldEdit(12)"
+                                                      class="btn btn-sm btn-primary edithoveredit"><i
+                                                         class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
+                                                   </button>
+                                                   <button *ngIf="profileEdit_12==true"
+                                                      (click)="profilephonefieldUpdate(admin_phone_cont_code,'admin_phone_cont_code',admin_phone,'admin_phone',12,admin_id)"
+                                                      class="btn btn-sm btn-success edithoversav"><i
+                                                         class="fa fa-floppy-o" aria-hidden="true"></i> Save </button>
+                                                   <button *ngIf="profileEdit_12==true"
+                                                      (click)="admin_phone = singleAdmin.admin_phone;profileEdit_12=false;"
+                                                      class="btn btn-sm btn-success edithoversav"><i
+                                                         class="fa fa-floppy-o" aria-hidden="true"></i> Cancel </button>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class=" row">
+                                          <div class="col-md-3">
+                                             <input *ngIf="profileEdit_13==false" type="text" class="form-control"
+                                                formControlName="admin_alt_phone_cont_code"
+                                                [(ngModel)]="admin_alt_phone_cont_code" readonly>
+                                             <select *ngIf="profileEdit_13==true" class="form-control phonecode_manageu"
+                                                formControlName="admin_alt_phone_cont_code"
+                                                [(ngModel)]="admin_alt_phone_cont_code"
+                                                (change)="enablePhone($event.target.value,'13')">
+                                                <!--option [ngValue]="userInst.cntry_id" [selected]="userInst.cntry_id">{{userInst.cntry_name}}</option-->
+                                                <option value="">Code</option>
+                                                <option *ngFor="let country of country"
+                                                   value="{{country.cntry_isdcode}}">{{country.cntry_isdcode}}
+                                                   {{country.cntry_name}}</option>
+                                             </select>
+                                          </div>
+                                          <div class="hoveruseredit">
+                                             <div class="input-group">
+                                                <input class="form-control" type="text" placeholder="phone-1"
+                                                   formControlName="admin_alt_phone" [(ngModel)]="admin_alt_phone"
+                                                   [readonly]="!phoneEnable_13">
+                                                <div class="edit-button input-group-btn">
+                                                   <button *ngIf="profileEdit_13==false" (click)="profilefieldEdit(13)"
+                                                      class="btn btn-sm btn-primary edithoveredit"><i
+                                                         class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
+                                                   </button>
+                                                   <button *ngIf="profileEdit_13==true"
+                                                      (click)="profilephonefieldUpdate(admin_alt_phone_cont_code,'admin_alt_phone_cont_code',admin_alt_phone,'admin_alt_phone',13,admin_id)"
+                                                      class="btn btn-sm btn-success edithoversav"><i
+                                                         class="fa fa-floppy-o" aria-hidden="true"></i> Save </button>
+                                                   <button *ngIf="profileEdit_13==true"
+                                                      (click)="admin_alt_phone = singleAdmin.admin_alt_phone;profileEdit_13=false;"
+                                                      class="btn btn-sm btn-success edithoversav"><i
+                                                         class="fa fa-floppy-o" aria-hidden="true"></i> Cancel </button>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class=" row">
+                                          <div class="col-md-3">
+                                             <input *ngIf="profileEdit_14==false" type="text" class="form-control"
+                                                formControlName="admin_fax_cnt_code" [(ngModel)]="admin_fax_cnt_code"
+                                                readonly>
+                                             <select *ngIf="profileEdit_14==true" class="form-control phonecode_manageu"
+                                                formControlName="admin_fax_cnt_code" [(ngModel)]="admin_fax_cnt_code"
+                                                (change)="enablePhone($event.target.value,'14')">
+                                                <!--option [ngValue]="userInst.cntry_id" [selected]="userInst.cntry_id">{{userInst.cntry_name}}</option-->
+                                                <option value="">Code</option>
+                                                <option *ngFor="let country of country"
+                                                   value="{{country.cntry_isdcode}}">{{country.cntry_isdcode}}
+                                                   {{country.cntry_name}}</option>
+                                             </select>
+                                          </div>
+                                          <div class="hoveruseredit">
+                                             <div class="input-group">
+                                                <input class="form-control" type="text" placeholder="phone"
+                                                   formControlName="admin_fax" [(ngModel)]="admin_fax"
+                                                   [readonly]="!phoneEnable_14">
+                                                <div class="edit-button input-group-btn">
+                                                   <button *ngIf="profileEdit_14==false" (click)="profilefieldEdit(14)"
+                                                      class="btn btn-sm btn-primary edithoveredit"><i
+                                                         class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
+                                                   </button>
+                                                   <button *ngIf="profileEdit_14==true"
+                                                      (click)="profilephonefieldUpdate(admin_fax_cnt_code,'admin_fax_cnt_code',admin_fax,'admin_fax',14,admin_id)"
+                                                      class="btn btn-sm btn-success edithoversav"><i
+                                                         class="fa fa-floppy-o" aria-hidden="true"></i> Save </button>
+                                                   <button *ngIf="profileEdit_14==true"
+                                                      (click)="admin_fax = singleAdmin.admin_fax;profileEdit_14=false;"
+                                                      class="btn btn-sm btn-success edithoversav"><i
+                                                         class="fa fa-floppy-o" aria-hidden="true"></i> Cancel </button>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <!--div class=" row">
+                                          <div class="col-md-3">
+                                               <select class="form-control color-filter" formControlName="user_fax_code" ([ngModel])="user_fax_code">
+                                                       <option [ngValue]="userInst.cntry_id" [selected]="userInst.cntry_id">{{userInst.cntry_name}}</option>
+                                                       <option *ngFor="let country of countries" [ngValue]="country.cntry_id">{{country.cntry_name}}</option>
+                                               </select>
+                                          </div>
+                                          <div class="col-md-7">
+                                             <input class="form-control" type="text"placeholder="Fax" formControlName="user_fax" [(ngModel)]="user_fax">
+                                          </div>
+                                          </div-->
+                                    </div>
+                                    <div class="col-lg-4">
+                                       <div class="addressfields">
+                                          <div class="col-md-12 mrb_10">
+                                             <!--label class="col-sm-4 col-form-label">Country</label-->
+                                             <div class="col-sm-10">
+                                                <span *ngIf="profileEdit_11==false">
+                                                   <input type="text" class="form-control"
+                                                      formControlName="admin_country" [(ngModel)]="adminCountry"
+                                                      readonly>
+                                                </span>
+                                                <span *ngIf="profileEdit_11==true">
+                                                   <select class="form-control color-filter managefield"
+                                                      formControlName="admin_country" [(ngModel)]="admin_country"
+                                                      (ngModelChange)="getStatesoncountry($event)">
+                                                      <!--option [ngValue]="uPro.cntry_id" >{{uPro.cntry_name}}</option-->
+                                                      <option value="">Select Country</option>
+                                                      <option *ngFor="let cnt of country" value="{{cnt.cntry_id}}">
+                                                         {{cnt.cntry_name}}</option>
+                                                   </select>
+                                                </span>
+                                             </div>
+                                          </div>
+                                          <div class="col-md-12 mrb_10">
+                                             <!--label class="col-sm-4 col-form-label">State</label!-->
+                                             <div class="col-sm-10">
+                                                <span *ngIf="profileEdit_11==false">
+                                                   <input type="text" class="form-control "
+                                                      formControlName="admin_state" [(ngModel)]="adminState" readonly>
+                                                </span>
+                                                <span *ngIf="profileEdit_11==true">
+                                                   <select class="form-control managefield"
+                                                      formControlName="admin_state" [(ngModel)]="admin_state"
+                                                      (ngModelChange)="getCitiesonstates($event)">
+                                                      <!--option [ngValue]="userInst.state_id" [selected]="userInst.state_id">{{userInst.state_name}}</option-->
+                                                      <option value="">Select State</option>
+                                                      <option *ngFor="let state of states" value="{{state.state_id}}">
+                                                         {{state.state_name}}</option>
+                                                   </select>
+                                                </span>
+                                             </div>
+                                          </div>
+                                          <div class="col-md-12 mrb_10">
+                                             <!--label class="col-sm-4 col-form-label">City</label-->
+                                             <div class="col-sm-10">
+                                                <span *ngIf="profileEdit_11==false">
+                                                   <input type="text" class="form-control" formControlName="admin_city"
+                                                      [(ngModel)]="adminCity" readonly>
+                                                </span>
+                                                <span *ngIf="profileEdit_11==true">
+                                                   <select class="form-control managefield" formControlName="admin_city"
+                                                      [(ngModel)]="admin_city"
+                                                      (ngModelChange)="getCitiesoncity($event)">
+                                                      <!--option [ngValue]="admpr.city_id" [selected]="admpr.city_id">{{admpr.city_name}} </option-->
+                                                      <option value="">Select City</option>
+                                                      <option *ngFor="let city of cities" value="{{city.city_id}}">
+                                                         {{city.city_name}}</option>
+                                                   </select>
+                                                </span>
+                                             </div>
+                                          </div>
+                                          <div class="col-md-12 mrb_10">
+                                             <!--label class="col-sm-4 col-form-label">Address</label-->
+                                             <div class="col-sm-10">
+                                                <textarea class="form-control" placeholder="address"
+                                                   style=" height:100px;" formControlName="admin_address"
+                                                   [(ngModel)]="admin_address" [readonly]="!profileEdit_11"></textarea>
+                                             </div>
+                                          </div>
+                                          <div class="clearfix"></div>
+                                          <div class="edit-button input-group-btn">
+                                             <button *ngIf="profileEdit_11==false" (click)="profilefieldEdit(11)"
+                                                class="btn btn-sm btn-primary edithoveredit"><i
+                                                   class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit </button>
+                                             <button *ngIf="profileEdit_11==true"
+                                                (click)="profilefieldUpdate_11(admin_address,admin_city,admin_state,admin_country,admin_id)"
+                                                class="btn btn-sm btn-primary edithoversav"><i class="fa fa-floppy-o"
+                                                   aria-hidden="true"></i> Save </button>
+                                             <button *ngIf="profileEdit_11==true"
+                                                (click)="admin_address = singleAdmin.admin_address;admin_city = singleAdmin.admin_city;admin_state = singleAdmin.admin_state;admin_country = singleAdmin.admin_country;profileEdit_11=false;"
+                                                class="btn btn-sm btn-success edithoversav"><i class="fa fa-floppy-o"
+                                                   aria-hidden="true"></i> Cancel </button>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="row usertype-createprofile">
+                                    <div class="col-md-2 dis-none" *ngIf="profileEdit_102==false">
+                                       <input type="hidden" class="form-control" formControlName="admintype_id"
+                                          [(ngModel)]="admintype_id" readonly>
+                                    </div>
+                                    <!--div class="col-md-2" *ngIf="loginsEdit_2==true">
+                                       <select class="language form-control" formControlName="admintype_id" [(ngModel)]="usertype_id" [disabled]="!loginsEdit_2" (ngModelChange)="changeUsertype($event)">
+                                       <option *ngFor="let usrtyp of userTypes" [value]="usrtyp.usrtyp_id">{{usrtyp.usrtyp_name}}</option>
+                                       </select>
+                                       </div-->
+                                    <div class="col-lg-4">
+                                       <div class="hoveruseredit ttttt">
+                                          <div class="input-group">
+                                             <input class="form-control" type="text" placeholder="Register Email"
+                                                formControlName="ac_user_email"
+                                                (keyup)="CheckAdminAvailability($event.target.value,'ac_user_email')"
+                                                [(ngModel)]="ac_user_email" [readonly]="!profileEdit_102">
+                                             <span *ngIf="instAdminEmail==true"
+                                                style="color:#a94442">{{instAdminEmailErrText}}</span>
+                                             <div class="edit-button input-group-btn">
+                                                <button *ngIf="profileEdit_102==false" (click)="profilefieldEdit(102)"
+                                                   class="btn btn-sm btn-primary edithoveredit"><i
+                                                      class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
+                                                </button>
+                                                <button *ngIf="profileEdit_102==false"
+                                                   class="btn btn-sm btn-primary edithoveredit"><i
+                                                      class="fa fa-pencil-square-o" aria-hidden="true"></i> Resent
+                                                   Activation
+                                                </button>
+                                                <button *ngIf="profileEdit_102==true"
+                                                   (click)="loginsfieldUpdate_2(ac_user_email,'ac_user_email',102,admin_id)"
+                                                   class="btn btn-sm btn-primary edithoversav"><i class="fa fa-floppy-o"
+                                                      aria-hidden="true"></i> Save </button>
+                                                <button *ngIf="profileEdit_102==true"
+                                                   (click)="ac_user_email = singleAdmin.ac_user_email;profileEdit_102=false;"
+                                                   class="btn btn-sm btn-success edithoversav"><i class="fa fa-floppy-o"
+                                                      aria-hidden="true"></i> Cancel </button>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <!--div class="col-md-2">
+                                       <input class="form-control" type="text"  placeholder="Register Phone" formControlName="uac_phone" [(ngModel)]="uac_phone">          
+                                       </div-->
+                                 </div>
+                                 <!--div class="text-center">
+                                    <button type="submit" class="bt btn-success">Create User</button>
+                                    </div-->
+                              </form>
+                              <p-toast [style]="{marginTop: '80px'}"></p-toast>
+                              <p-toast [style]="{marginTop: '80px'}" position="top-left" key="tl"></p-toast>
+                              <p-toast [style]="{marginTop: '80px'}" position="top-center" key="tc"></p-toast>
+                              <p-toast [style]="{marginTop: '80px'}" styleClass="custom-toast" key="custom"
+                                 position="bottom-center"></p-toast>
+                              <p-toast position="center" key="c" (onClose)="onReject()" [modal]="true"
+                                 [baseZIndex]="5000">
+                                 <ng-template let-message pTemplate="message">
+                                    <div style="text-align: center">
+                                       <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i>
+                                       <h3>{{message.summary}}</h3>
+                                       <p>{{message.detail}}</p>
+                                    </div>
+                                    <div class="ui-g ui-fluid">
+                                       <div class="ui-g-6">
+                                          <button type="button" pButton (click)="onConfirm()" label="Yes"
+                                             class="ui-button-success"></button>
+                                       </div>
+                                       <div class="ui-g-6">
+                                          <button type="button" pButton (click)="onReject()" label="No"
+                                             class="ui-button-secondary"></button>
+                                       </div>
+                                    </div>
+                                 </ng-template>
+                              </p-toast>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="all_brd">
+                        <div class="content_sub">
+                           <div class="all_mian">
+                              <div class="hold_name">
+                                    <div >
+                                          <div class="input-group hoveruseredit">
+                                             <p-multiSelect [options]="adminAddedBranches" [(ngModel)]="selectedAdminBranches"
+                                                 [disabled]="!profileEdit_20" [maxSelectedLabels]='2'>
+                                             </p-multiSelect >
+                                             <div class="edit-button input-group-btn">
+                                                <button *ngIf="profileEdit_20==false"
+                                                   (click)="profilefieldEdit(20)"
+                                                   class="btn btn-sm btn-primary edithoveredit"><i
+                                                      class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
+                                                </button>
+                                                <button *ngIf="profileEdit_20==true"
+                                                   (click)="updateAdminBranch()"
+                                                   class="btn btn-sm btn-success edithoversav"><i
+                                                      class="fa fa-floppy-o" aria-hidden="true"></i> Save
+                                                </button>
+                                                <button *ngIf="profileEdit_20==true"
+                                                   (click)="selectedAdminBranches = selectedAdminBranchesOld;profileEdit_20=false;"
+                                                   class="btn btn-sm btn-success edithoversav"><i
+                                                      class="fa fa-floppy-o" aria-hidden="true"></i> Cancel
+                                                </button>
+                                             </div>
+                                          </div>
+                                          <h3 class="colo_1"><i class="fa fa-info-circle"></i> Branch Details</h3>
+                                       </div>
+                              </div>
+                              <!--details tabs-->
+                              <div class="all_info">
+                                 <div class="table-responsive">
+                                    <table class="table table-responsive">
+                                       <thead>
+                                          <tr class="adm_tr_bg">
+                                             <th>Barnch Name</th>
+                                             <th>Branch ID</th>
+                                             <th>Email</th>
+                                             <th>Phone</th>
+                                             <th>Phone</th>
+                                             <!--th>Deleted</th-->
+                                          </tr>
+                                       </thead>
+                                       <tbody>
+                                          <ng-container *ngIf="adminBranches.length>0">
+                                             <tr class="blc_del_bg" *ngFor="let branch of adminBranches;">
+                                                <td>{{branch.branch_name}}</td>
+                                                <td>{{branch.branch_id}}</td>
+                                                <td>{{branch.barnch_email}}</td>
+                                                <td>{{branch.branch_phone}}</td>
+                                                <td>{{branch.branch_alt_phone}}</td>
+                                             </tr>
+                                          </ng-container>
+                                          <ng-container *ngIf="adminBranches.length<1">
+                                             <span>No branches Available</span>
+                                          </ng-container>
+                                       </tbody>
+                                    </table>
+                                    <!--table class="table">
+                                       <thead>
+                                           <tr class="adm_tr_bg1">
+                                               <th>Access</th>
+                                               <th>Blocked</th>
+                                               <th>Valid From</th>
+                                               <th>Valid To</th>
+                                               <th>Test Title</th>
+                                               <th>Test Title</th>
+                                           </tr>
+                                       </thead>
+                                       <tbody>
+                                           <tr class="blc_del_bg1">
+                                               <td><div data-toggle="modal" data-target="#verified">
+                                           	<input type="checkbox" checked data-toggle="toggle" 
+                                           	data-on="Access" data-off="Cancel" data-onstyle="success"
+                                           	data-offstyle="success">
+                                       		</div></td>
+                                               <td><div data-toggle="modal" data-target="#verified">
+                                               <input type="checkbox" checked data-toggle="toggle" 
+                                               data-on="Blocked" data-off="Cancel" data-onstyle="warning"
+                                               data-offstyle="success">
+                                           	</div></td>
+                                               <td>05-11-18</td>
+                                               <td>05-12-18</td>
+                                               <td>Maths</td>
+                                               <td>Maths</td>
+                                       
+                                           </tr>
+                                       </tbody>
+                                       </table-->
+                                 </div>
+                              </div>
+                              <!---///details-tabs-->
+                           </div>
+                        </div>
+                     </div>
+                     <div class="main_holder table-responsive">
+                        <table class="table  table-responsive">
+                           <thead>
+                              <tr class="adm_tr_bg">
+                                 <th>Sing Up </th>
+                                 <th>Reg&nbsp;Conform</th>
+                                 <!--th> verified </th-->
+                                 <th>Blokced</th>
+                                 <th>Deleted</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr class="blc_del_bg">
+                                 <td>
+                                    <!--span><strong> Action </strong></span-->
+                                    <div data-toggle="modal" data-target="#verified">
+                                       <!--div class="toggle btn btn-info off" data-toggle="toggle" style="width: 0px; height: 0px;">
+                                          <input type="checkbox" data-toggle="toggle" data-on="Blokced" data-off="Cancel" data-onstyle="success" data-offstyle="info">
+                                          <div class="toggle-group">
+                                             <label class="btn btn-success toggle-on">Blokced</label>
+                                             <label class="btn btn-info active toggle-off">Cancel</label><span class="toggle-handle btn btn-default"></span>
+                                          </div>
+                                          </div-->
+                                    </div>
+                                    <p>
+                                       <Label>Date</Label> <span class="actin_dat">: {{admin_created_date}}</span>
+                                    </p>
+                                    <p> <label>Person</label> <span class="person">: {{inst_superadmn_nam}}</span> </p>
+                                 </td>
+                                 <td>
+                                    <div class=" brd_r">
+                                       <div *ngIf="dataTarget==false" data-toggle="modal" data-target="#regConfirm">
+                                          <div class="toggle btn btn-info off" data-toggle="toggle"
+                                             style="width: 0px; height: 0px;">
+                                             <!--input type="checkbox" data-toggle="toggle" data-on="Blokced" data-off="Cancel" data-onstyle="success" data-offstyle="info"-->
+                                             <div class="toggle-group">
+                                                <label class="btn  btn btn-info toggle-off">Confirm</label>
+                                                <span class="toggle-handle btn btn-default"></span>
+                                             </div>
+                                          </div>
+                                          <p>
+                                             <Label>Date</Label> <span class="actin_dat">: -- </span>
+                                          </p>
+                                          <p> <label>Person</label> <span class="person">: -- </span> </p>
+                                       </div>
+                                       <div *ngIf="dataTarget==true">
+                                          <div class="toggle btn btn btn-success off" data-toggle="toggle"
+                                             style="width: 0px; height: 0px;">
+                                             <!--input type="checkbox" data-toggle="toggle" data-on="Blokced" data-off="Cancel" data-onstyle="success" data-offstyle="info"-->
+                                             <div class="toggle-group">
+                                                <label class="btn  btn-success toggle-off">Confirmed</label>
+                                                <span class="toggle-handle btn btn-default"></span>
+                                             </div>
+                                          </div>
+                                          <p>
+                                             <Label>Dates</Label> <span class="actin_dat">: {{ac_reg_cnf_date}}</span>
+                                          </p>
+                                          <p> <label>Person</label> <span class="person">:
+                                                {{(ac_reg_cnf_by==2)?'Self':''}}</span> </p>
+                                       </div>
+                                    </div>
+                                 </td>
+                                 <!--td>
+                                    <div *ngIf="verifyTarget==false" data-toggle="modal" data-target="#userVerified">
+                                       <div class="toggle btn btn-info off" data-toggle="toggle" style="width: 0px; height: 0px;">
+                                          <input type="checkbox" data-toggle="toggle" data-on="Blokced" data-off="Cancel" data-onstyle="success" data-offstyle="info">
+                                          <div class="toggle-group">                                                     
+                                             <label class="btn btn-info active toggle-off">Verify</label><span class="toggle-handle btn btn-default"></span>
+                                          </div>
+                                       </div>
+                                       <p> <Label>Date</Label> <span class="actin_dat">: --</span> </p>
+                                       <p> <label>Person</label> <span class="person">: --</span> </p>
+                                    </div>
+                                    <div *ngIf="verifyTarget==true">
+                                        <div class="toggle btn btn-success off" data-toggle="toggle" style="width: 0px; height: 0px;">
+                                           <input type="checkbox" data-toggle="toggle" data-on="Blokced" data-off="Cancel" data-onstyle="success" data-offstyle="info">
+                                           <div class="toggle-group">                                                     
+                                              <label class="btn btn-success active toggle-off">Verified</label><span class="toggle-handle btn btn-default"></span>
+                                           </div>
+                                        </div>
+                                        <p> <Label>Date</Label> <span class="actin_dat">: {{user_verified_date}}</span> </p>
+                                        <p> <label>Person</label> <span class="person">: {{user_verified_by}}</span> </p>
+                                     </div>
+                                    
+                                    </td-->
+                                 <td>
+                                    <div class=" brd_r">
+                                       <div data-toggle="modal" data-target="#userRegBlocked">
+                                          <div class="toggle btn {{btnClass}} off" data-toggle="toggle"
+                                             style="width: 0px; height: 0px;">
+                                             <input type="checkbox" data-toggle="toggle" data-on="Blokced"
+                                                data-off="Cancel" data-onstyle="success" data-offstyle="info">
+                                             <div class="toggle-group">
+                                                <label
+                                                   class="btn {{btnClass}} active toggle-off">{{btnText}}</label><span
+                                                   class="toggle-handle btn btn-default"></span>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <p>
+                                          <Label>Date</Label> <span class="actin_dat">: {{ac_blocked_date}}</span>
+                                       </p>
+                                       <p> <label>Person</label> <span class="person">: {{inst_superadmn_nam}}</span>
+                                       </p>
+                                    </div>
+                                 </td>
+                                 <td>
+                                    <div class=" brd_r">
+                                       <div data-toggle="modal" data-target="#userRegDeleted">
+                                          <div class="toggle btn {{btnClassd}} off" data-toggle="toggle"
+                                             style="width: 0px; height: 0px;">
+                                             <input type="checkbox" data-toggle="toggle" data-on="Blokced"
+                                                data-off="Cancel" data-onstyle="success" data-offstyle="info">
+                                             <div class="toggle-group">
+                                                <label
+                                                   class="btn {{btnClassd}} active toggle-off">{{btnTextd}}</label><span
+                                                   class="toggle-handle btn btn-default"></span>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <p>
+                                          <Label>Date</Label> <span class="actin_dat">: {{ac_deleted_date}}</span>
+                                       </p>
+                                       <p> <label>Person</label> <span class="person">: {{inst_superadmn_nam}}</span>
+                                       </p>
+                                    </div>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                  </section>
+               </div>
+            </div>
+            <!--test holder end-->
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+         </div>
+      </div>
+   </div>
+</div>
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
+<p-toast [style]="{marginTop: '80px'}" position="top-left" key="tl"></p-toast>
+<p-toast [style]="{marginTop: '80px'}" position="top-center" key="tc"></p-toast>
+<p-toast [style]="{marginTop: '80px'}" styleClass="custom-toast" key="custom" position="bottom-center"></p-toast>
+<p-toast position="center" key="c" (onClose)="onReject()" [modal]="true" [baseZIndex]="5000">
+   <ng-template let-message pTemplate="message">
+      <div style="text-align: center">
+         <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i>
+         <h3>{{message.summary}}</h3>
+         <p>{{message.detail}}</p>
+      </div>
+      <div class="ui-g ui-fluid">
+         <div class="ui-g-6">
+            <button type="button" pButton (click)="onConfirm()" label="Yes" class="ui-button-success"></button>
+         </div>
+         <div class="ui-g-6">
+            <button type="button" pButton (click)="onReject()" label="No" class="ui-button-secondary"></button>
+         </div>
+      </div>
+   </ng-template>
+</p-toast>

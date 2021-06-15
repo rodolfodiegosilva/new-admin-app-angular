@@ -1,0 +1,321 @@
+public function excelSheets(){
+    $this->load->library('PHPExcel');
+   // require_once 'PHPExcel.php';
+//require_once 'PHPExcel/IOFactory.php';
+
+// Create new PHPExcel object
+$objPHPExcel = new PHPExcel();
+
+// Create a first sheet, representing sales data
+$objPHPExcel->setActiveSheetIndex(0);
+
+
+$bi = $this->User_model->getAllbi('');
+
+
+$columnarray = array('A','B','C','D','E','F','G','H','I','J','K','L','M');
+$valuearray = array('resoursename','sdrnumber','taskname','business','tasktype','description','accomplishment','assignedby','aractice','status','pstdate','pcmpltdate','acmpltdate');
+$objPHPExcel->getActiveSheet()->setCellValue('A1', 'Resoursename');
+$objPHPExcel->getActiveSheet()->setCellValue('B1', 'Sdrnumber');
+$objPHPExcel->getActiveSheet()->setCellValue('C1', 'Taskname');
+$objPHPExcel->getActiveSheet()->setCellValue('D1', 'Business');
+$objPHPExcel->getActiveSheet()->setCellValue('E1', 'Tasktype');
+$objPHPExcel->getActiveSheet()->setCellValue('F1', 'Description');
+$objPHPExcel->getActiveSheet()->setCellValue('G1', 'Accomplishment');
+$objPHPExcel->getActiveSheet()->setCellValue('H1', 'assignedby');
+$objPHPExcel->getActiveSheet()->setCellValue('I1', 'Aractice');
+$objPHPExcel->getActiveSheet()->setCellValue('J1', 'Status');
+$objPHPExcel->getActiveSheet()->setCellValue('K1', 'Pstdate');
+$objPHPExcel->getActiveSheet()->setCellValue('L1', 'Pcmpltdate');
+$objPHPExcel->getActiveSheet()->setCellValue('M1', 'Acmpltdate');
+$i=2;
+
+foreach($bi as $val) {
+    $coli=0;
+    for($ib=0;$ib<13;$ib++){
+        $objPHPExcel->getActiveSheet()->setCellValue($columnarray[$coli].$i, $val->$valuearray[$ib]);
+    $coli++;    
+    }
+$i++;
+
+}
+
+
+// Rename sheet
+$objPHPExcel->getActiveSheet()->setTitle('BI');
+
+// Create a new worksheet, after the default sheet
+$objPHPExcel->createSheet();
+$dba = $this->User_model->getAlldba('');
+// Add some data to the second sheet, resembling some different data types
+$objPHPExcel->setActiveSheetIndex(1);
+//$objPHPExcel->getActiveSheet()->setCellValue('A1', 'More data');
+$columnarray2 = array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');
+$valuearray2 = array('resoursename','sdrnumber','taskname','business','tasktype','description','accomplishment','assignedby','practice','status','pstdate','pcmpltdate','astdate','acmpltdate','unit','autotesting','comments');
+$objPHPExcel->getActiveSheet()->setCellValue('A1', 'Resoursename');
+$objPHPExcel->getActiveSheet()->setCellValue('B1', 'Sdrnumber');
+$objPHPExcel->getActiveSheet()->setCellValue('C1', 'Taskname');
+$objPHPExcel->getActiveSheet()->setCellValue('D1', 'Business');
+$objPHPExcel->getActiveSheet()->setCellValue('E1', 'Tasktype');
+$objPHPExcel->getActiveSheet()->setCellValue('F1', 'Description');
+$objPHPExcel->getActiveSheet()->setCellValue('G1', 'Accomplishment');
+$objPHPExcel->getActiveSheet()->setCellValue('H1', 'assignedby');
+$objPHPExcel->getActiveSheet()->setCellValue('I1', 'Practice');
+$objPHPExcel->getActiveSheet()->setCellValue('J1', 'Status');
+$objPHPExcel->getActiveSheet()->setCellValue('K1', 'Pstdate');
+$objPHPExcel->getActiveSheet()->setCellValue('L1', 'Pcmpltdate');
+$objPHPExcel->getActiveSheet()->setCellValue('M1', 'astdate');
+$objPHPExcel->getActiveSheet()->setCellValue('N1', 'Acmpltdate');
+$objPHPExcel->getActiveSheet()->setCellValue('O1', 'Unit');
+$objPHPExcel->getActiveSheet()->setCellValue('P1', 'Autotesting');
+$objPHPExcel->getActiveSheet()->setCellValue('Q1', 'Comments');
+
+// Rename 2nd sheet
+$j=2;
+foreach($dba as $val) {
+    $coli2=0;
+    for($abd=0;$abd<17;$abd++){
+        $objPHPExcel->getActiveSheet()->setCellValue($columnarray2[$coli2].$j, $val->$valuearray2[$abd]);
+    $coli2++;    
+    }
+$j++;
+}
+$objPHPExcel->getActiveSheet()->setTitle('DBA');
+
+// Redirect output to a client’s web browser (Excel5)
+
+/ CREATE EBS SHEET STARTS /
+// Create a new worksheet, after the default sheet
+$objPHPExcel->createSheet();
+$ebs = $this->User_model->getAllebs('');
+// Add some data to the second sheet, resembling some different data types
+$objPHPExcel->setActiveSheetIndex(2);
+$valuearray3 = array('resourcename','sdrnumber','taskname','business','tasktype','description','accomplishment','assignedby','practice','status','pstdate','pcmpltdate','astdate','acmpltdate');
+$objPHPExcel->getActiveSheet()->setCellValue('A1', 'Resoursename');
+$objPHPExcel->getActiveSheet()->setCellValue('B1', 'Sdrnumber');
+$objPHPExcel->getActiveSheet()->setCellValue('C1', 'Taskname');
+$objPHPExcel->getActiveSheet()->setCellValue('D1', 'Business');
+$objPHPExcel->getActiveSheet()->setCellValue('E1', 'Tasktype');
+$objPHPExcel->getActiveSheet()->setCellValue('F1', 'Description');
+$objPHPExcel->getActiveSheet()->setCellValue('G1', 'Accomplishment');
+$objPHPExcel->getActiveSheet()->setCellValue('H1', 'assignedby');
+$objPHPExcel->getActiveSheet()->setCellValue('I1', 'Practice');
+$objPHPExcel->getActiveSheet()->setCellValue('J1', 'Status');
+$objPHPExcel->getActiveSheet()->setCellValue('K1', 'Pstdate');
+$objPHPExcel->getActiveSheet()->setCellValue('L1', 'Pcmpltdate');
+$objPHPExcel->getActiveSheet()->setCellValue('M1', 'astdate');
+$objPHPExcel->getActiveSheet()->setCellValue('N1', 'Acmpltdate');
+// Rename 2nd sheet
+$k=2;
+foreach($ebs as $val) {
+    $coli3=0;
+    for($sbe=0;$sbe<14;$sbe++){
+        $objPHPExcel->getActiveSheet()->setCellValue($columnarray2[$coli3].$k, $val->$valuearray3[$sbe]);
+    $coli3++;    
+    }
+$k++;
+}
+$objPHPExcel->getActiveSheet()->setTitle('EBS');
+// Redirect output to a client’s web browser (Excel5)
+/ CREATE EBS SHEET ENDS /
+
+/ CREATE EDI SHEET STARTS /
+// Create a new worksheet, after the default sheet
+$objPHPExcel->createSheet();
+$edi = $this->User_model->getAlledi('');
+// Add some data to the second sheet, resembling some different data types
+$objPHPExcel->setActiveSheetIndex(3);
+$valuearray4 = array('resourcename','sdrnumber','taskname','business','tasktype','description','accomplishment','assignedby','practice','status','pstdate','pcmpltdate','astdate','acmpltdate','unit','autotesting','noftestcasemanual','noftestcaseregression','rework','comments');
+$objPHPExcel->getActiveSheet()->setCellValue('A1', 'Resoursename');
+$objPHPExcel->getActiveSheet()->setCellValue('B1', 'Sdrnumber');
+$objPHPExcel->getActiveSheet()->setCellValue('C1', 'Taskname');
+$objPHPExcel->getActiveSheet()->setCellValue('D1', 'Business');
+$objPHPExcel->getActiveSheet()->setCellValue('E1', 'Tasktype');
+$objPHPExcel->getActiveSheet()->setCellValue('F1', 'Description');
+$objPHPExcel->getActiveSheet()->setCellValue('G1', 'Accomplishment');
+$objPHPExcel->getActiveSheet()->setCellValue('H1', 'assignedby');
+$objPHPExcel->getActiveSheet()->setCellValue('I1', 'Practice');
+$objPHPExcel->getActiveSheet()->setCellValue('J1', 'Status');
+$objPHPExcel->getActiveSheet()->setCellValue('K1', 'Pstdate');
+$objPHPExcel->getActiveSheet()->setCellValue('L1', 'Pcmpltdate');
+$objPHPExcel->getActiveSheet()->setCellValue('M1', 'Astdate');
+$objPHPExcel->getActiveSheet()->setCellValue('N1', 'Acmpltdate');
+$objPHPExcel->getActiveSheet()->setCellValue('O1', 'Unit');
+$objPHPExcel->getActiveSheet()->setCellValue('P1', 'Autotesting');
+$objPHPExcel->getActiveSheet()->setCellValue('Q1', 'Noftestcasemanual');
+$objPHPExcel->getActiveSheet()->setCellValue('R1', 'Noftestcaseregression');
+$objPHPExcel->getActiveSheet()->setCellValue('S1', 'Rework');
+$objPHPExcel->getActiveSheet()->setCellValue('T1', 'Comments');
+
+// Rename 2nd sheet
+$l=2;
+foreach($edi as $val) {
+    $coli4=0;
+    for($ide=0;$ide<20;$ide++){
+        $objPHPExcel->getActiveSheet()->setCellValue($columnarray2[$coli4].$l, $val->$valuearray4[$ide]);
+    $coli4++;    
+    }
+$l++;
+}
+$objPHPExcel->getActiveSheet()->setTitle('EDI');
+// Redirect output to a client’s web browser (Excel5)
+/ CREATE EDI SHEET ENDS /
+
+/ CREATE JDEF SHEET STARTS /
+// Create a new worksheet, after the default sheet
+$objPHPExcel->createSheet();
+$jdef = $this->User_model->getAlljdef('');
+// Add some data to the second sheet, resembling some different data types
+$objPHPExcel->setActiveSheetIndex(4);
+$valuearray5 = array('resourcename','sdrnumber','taskname','business','tasktype','description','accomplishment','assignedby','practice','status','pstdate','pcmpltdate','astdate','acmpltdate');
+$objPHPExcel->getActiveSheet()->setCellValue('A1', 'Resoursename');
+$objPHPExcel->getActiveSheet()->setCellValue('B1', 'Sdrnumber');
+$objPHPExcel->getActiveSheet()->setCellValue('C1', 'Taskname');
+$objPHPExcel->getActiveSheet()->setCellValue('D1', 'Business');
+$objPHPExcel->getActiveSheet()->setCellValue('E1', 'Tasktype');
+$objPHPExcel->getActiveSheet()->setCellValue('F1', 'Description');
+$objPHPExcel->getActiveSheet()->setCellValue('G1', 'Accomplishment');
+$objPHPExcel->getActiveSheet()->setCellValue('H1', 'assignedby');
+$objPHPExcel->getActiveSheet()->setCellValue('I1', 'Practice');
+$objPHPExcel->getActiveSheet()->setCellValue('J1', 'Status');
+$objPHPExcel->getActiveSheet()->setCellValue('K1', 'Pstdate');
+$objPHPExcel->getActiveSheet()->setCellValue('L1', 'Pcmpltdate');
+$objPHPExcel->getActiveSheet()->setCellValue('M1', 'astdate');
+$objPHPExcel->getActiveSheet()->setCellValue('N1', 'Acmpltdate');
+
+
+// Rename 2nd sheet
+$m=2;
+foreach($jdef as $val) {
+    $coli5=0;
+    for($fedj=0;$fedj<14;$fedj++){
+        $objPHPExcel->getActiveSheet()->setCellValue($columnarray2[$coli5].$m, $val->$valuearray5[$fedj]);
+    $coli5++;    
+    }
+$m++;
+}
+$objPHPExcel->getActiveSheet()->setTitle('JDEF');
+// Redirect output to a client’s web browser (Excel5)
+/ CREATE JDEF SHEET ENDS /
+/ CREATE JDET SHEET STARTS /
+// Create a new worksheet, after the default sheet
+$objPHPExcel->createSheet();
+$jdet = $this->User_model->getAlljdet('');
+// Add some data to the second sheet, resembling some different data types
+$objPHPExcel->setActiveSheetIndex(5);
+$valuearray6 = array('resourcename','sdrnumber','taskname','business','tasktype','description','accomplishment','assignedby','practice','status','pstdate','pcmpltdate','astdate','acmpltdate');
+$objPHPExcel->getActiveSheet()->setCellValue('A1', 'Resoursename');
+$objPHPExcel->getActiveSheet()->setCellValue('B1', 'Sdrnumber');
+$objPHPExcel->getActiveSheet()->setCellValue('C1', 'Taskname');
+$objPHPExcel->getActiveSheet()->setCellValue('D1', 'Business');
+$objPHPExcel->getActiveSheet()->setCellValue('E1', 'Tasktype');
+$objPHPExcel->getActiveSheet()->setCellValue('F1', 'Description');
+$objPHPExcel->getActiveSheet()->setCellValue('G1', 'Accomplishment');
+$objPHPExcel->getActiveSheet()->setCellValue('H1', 'assignedby');
+$objPHPExcel->getActiveSheet()->setCellValue('I1', 'Practice');
+$objPHPExcel->getActiveSheet()->setCellValue('J1', 'Status');
+$objPHPExcel->getActiveSheet()->setCellValue('K1', 'Pstdate');
+$objPHPExcel->getActiveSheet()->setCellValue('L1', 'Pcmpltdate');
+$objPHPExcel->getActiveSheet()->setCellValue('M1', 'astdate');
+$objPHPExcel->getActiveSheet()->setCellValue('N1', 'Acmpltdate');
+
+
+// Rename 2nd sheet
+$n=2;
+foreach($jdet as $val) {
+    $coli6=0;
+    for($tedj=0;$tedj<14;$tedj++){
+        $objPHPExcel->getActiveSheet()->setCellValue($columnarray2[$coli6].$n, $val->$valuearray6[$tedj]);
+    $coli6++;    
+    }
+$n++;
+}
+$objPHPExcel->getActiveSheet()->setTitle('JDET');
+// Redirect output to a client’s web browser (Excel5)
+/ CREATE JDET SHEET ENDS /
+
+/ CREATE MIDDLEWARE SHEET STARTS /
+// Create a new worksheet, after the default sheet
+$objPHPExcel->createSheet();
+$mdw = $this->User_model->getAllmdw('');
+// Add some data to the second sheet, resembling some different data types
+$objPHPExcel->setActiveSheetIndex(6);
+$valuearray7 = array('resourcename','sdrnumber','taskname','business','tasktype','description','accomplishment','assignedby','practice','status','pstdate','pcmpltdate','astdate','acmpltdate','unit','autotesting','noftestcasemanual','noftestcaseregression','rework','comments');
+$objPHPExcel->getActiveSheet()->setCellValue('A1', 'Resoursename');
+$objPHPExcel->getActiveSheet()->setCellValue('B1', 'Sdrnumber');
+$objPHPExcel->getActiveSheet()->setCellValue('C1', 'Taskname');
+$objPHPExcel->getActiveSheet()->setCellValue('D1', 'Business');
+$objPHPExcel->getActiveSheet()->setCellValue('E1', 'Tasktype');
+$objPHPExcel->getActiveSheet()->setCellValue('F1', 'Description');
+$objPHPExcel->getActiveSheet()->setCellValue('G1', 'Accomplishment');
+$objPHPExcel->getActiveSheet()->setCellValue('H1', 'Assignedby');
+$objPHPExcel->getActiveSheet()->setCellValue('I1', 'Practice');
+$objPHPExcel->getActiveSheet()->setCellValue('J1', 'Status');
+$objPHPExcel->getActiveSheet()->setCellValue('K1', 'Pstdate');
+$objPHPExcel->getActiveSheet()->setCellValue('L1', 'Pcmpltdate');
+$objPHPExcel->getActiveSheet()->setCellValue('M1', 'Astdate');
+$objPHPExcel->getActiveSheet()->setCellValue('N1', 'Acmpltdate');
+$objPHPExcel->getActiveSheet()->setCellValue('O1', 'Unit');
+$objPHPExcel->getActiveSheet()->setCellValue('P1', 'Autotesting');
+$objPHPExcel->getActiveSheet()->setCellValue('Q1', 'Noftestcasemanual');
+$objPHPExcel->getActiveSheet()->setCellValue('R1', 'Noftestcaseregression');
+$objPHPExcel->getActiveSheet()->setCellValue('S1', 'Rework');
+$objPHPExcel->getActiveSheet()->setCellValue('T1', 'Comments');
+
+
+// Rename 2nd sheet
+$o=2;
+foreach($mdw as $val) {
+    $coli7=0;
+    for($wdm=0;$wdm<20;$wdm++){
+        $objPHPExcel->getActiveSheet()->setCellValue($columnarray2[$coli7].$o, $val->$valuearray7[$wdm]);
+    $coli7++;    } $o++;
+}
+$objPHPExcel->getActiveSheet()->setTitle('MIDDLEWARE');
+// Redirect output to a client’s web browser (Excel5)
+/ CREATE MIDDLEWARE SHEET ENDS /
+
+/ CREATE QA SHEET STARTS /
+// Create a new worksheet, after the default sheet
+$objPHPExcel->createSheet();
+$qa = $this->User_model->getAllqa('');
+// Add some data to the second sheet, resembling some different data types
+$objPHPExcel->setActiveSheetIndex(7);
+$valuearray8 = array('resourcename','sdrnumber','business','description','accomplishment','assignedby','integration','status','pstdate','pcmpltdate','testcasescount','noftestcasemanual','noftestcaseregression','rework','comments');
+$objPHPExcel->getActiveSheet()->setCellValue('A1', 'Resoursename');
+$objPHPExcel->getActiveSheet()->setCellValue('B1', 'Sdrnumber');
+$objPHPExcel->getActiveSheet()->setCellValue('C1', 'Business');
+$objPHPExcel->getActiveSheet()->setCellValue('D1', 'Description');
+$objPHPExcel->getActiveSheet()->setCellValue('E1', 'Accomplishment');
+$objPHPExcel->getActiveSheet()->setCellValue('F1', 'Assignedby');
+$objPHPExcel->getActiveSheet()->setCellValue('G1', 'Integration');
+$objPHPExcel->getActiveSheet()->setCellValue('H1', 'Status');
+$objPHPExcel->getActiveSheet()->setCellValue('I1', 'Pstdate');
+$objPHPExcel->getActiveSheet()->setCellValue('J1', 'Pcmpltdate');
+$objPHPExcel->getActiveSheet()->setCellValue('K1', 'Testcasescount');
+$objPHPExcel->getActiveSheet()->setCellValue('L1', 'Noftestcasemanual');
+$objPHPExcel->getActiveSheet()->setCellValue('M1', 'Noftestcaseregression');
+$objPHPExcel->getActiveSheet()->setCellValue('N1', 'Rework');
+$objPHPExcel->getActiveSheet()->setCellValue('O1', 'Comments');
+$p=2;
+foreach($qa as $val) {
+    $coli8=0;
+    for($aq=0;$aq<15;$aq++){
+        $objPHPExcel->getActiveSheet()->setCellValue($columnarray2[$coli8].$p, $val->$valuearray8[$aq]);
+    $coli8++;    } $p++;
+}
+$objPHPExcel->getActiveSheet()->setTitle('QA');
+// Redirect output to a client’s web browser (Excel5)
+/ CREATE QA SHEET ENDS /
+
+
+
+
+header('Content-Type: application/vnd.ms-excel');
+header('Content-Disposition: attachment;filename="strsiall.xls"');
+header('Cache-Control: max-age=0');
+$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+$objWriter->save('php://output');
+
+redirect('/Consolidate');
+}

@@ -1,0 +1,506 @@
+<!--verified  Modal start -->
+<div class="modal fade" id="verified" role="dialog">
+        <div class="modal-dialog vry_modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+                </div>
+                <div class="modal-body modal_text" *ngIf="isQnsChecked==true">
+                    <p>Do you really want to verify these records? This process cannot be undone</p>
+                </div>
+                <div class="modal-body modal_text" *ngIf="isQnsChecked==false">
+                    <p>Please select any questions..</p>
+                </div>
+                <div class="modal-footer modal_foot">
+                    <button type="submit" *ngIf="isQnsChecked==true" (click)="verifyQuestion()" data-dismiss="modal" class="bt btn-warning">Verify</button>
+                    <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- verified Modal end-->
+    
+    <!--Blocked  Modal start -->
+    <div class="modal fade" id="block" role="dialog">
+        <div class="modal-dialog vry_modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+                </div>
+                <div class="modal-body modal_text">
+                    <p>Do you really want to Block these records? This process cannot be undone</p>
+                </div>
+                <div class="modal-footer modal_foot">
+                    <button type="submit" class="bt btn-warning">Block</button>
+                    <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Blocked Modal end-->
+    
+    <!--Delete  Modal start -->
+    <div class="modal fade" id="delete" role="dialog">
+        <div class="modal-dialog vry_modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+                </div>
+                <div class="modal-body modal_text">
+                    <p>Do you really want to Delete these records? This process cannot be undone</p>
+                </div>
+                <div class="modal-footer modal_foot">
+                    <button type="submit" class="bt btn-warning">Delete</button>
+                    <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Delete Modal end-->
+    
+    <app-sdashheader></app-sdashheader>
+    <div class="leftsidemenus">
+        <app-sdahshmenu></app-sdahshmenu>
+    </div>
+    <div id="page-wrapper">
+        <div class="content">
+                <div class="modal fade" #questionVerifyModal id="questionVerifyModal" role="dialog">
+                        <div class="modal-dialog vry_modal">
+                           <div class="modal-content">
+                              <div class="modal-header">
+                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                 <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+                              </div>
+                              <div class="modal-body modal_text">
+                                 <p *ngIf="verify==1">Do you really want to unverify this question?</p>
+                                 <p *ngIf="verify==0">Do you really want to verify this question?</p>
+                              </div>
+                              <div class="modal-footer modal_foot">
+                                 <button *ngIf="verify==0" (click)="verifyQuestion()" data-dismiss="modal" type="submit" class="bt btn-warning">Verify</button>
+                                 <button *ngIf="verify==1" (click)="verifyQuestion()" data-dismiss="modal" type="submit" class="bt btn-warning">Cancel</button>
+                                 <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="modal fade" #questionBlockModal id="questionBlockModal" role="dialog">
+                            <div class="modal-dialog vry_modal">
+                               <div class="modal-content">
+                                  <div class="modal-header">
+                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                     <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+                                  </div>
+                                  <div class="modal-body modal_text">
+                                     <p *ngIf="block==1">Do you really want to unblock this question?</p>
+                                     <p *ngIf="block==0">Do you really want to block this question?</p>
+                                  </div>
+                                  <div class="modal-footer modal_foot">
+                                     <button *ngIf="block==0" (click)="blockQuestion()" data-dismiss="modal" type="submit" class="bt btn-warning">Block</button>
+                                     <button *ngIf="block==1" (click)="blockQuestion()" data-dismiss="modal" type="submit" class="bt btn-warning">Unblock</button>
+                                     <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+                                  </div>
+                               </div>
+                            </div>
+                         </div>
+                         <div class="modal fade" #questionDeleteModal id="questionDeleteModal" role="dialog">
+                                <div class="modal-dialog vry_modal">
+                                   <div class="modal-content">
+                                      <div class="modal-header">
+                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                         <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+                                      </div>
+                                      <div class="modal-body modal_text">
+                                         <p *ngIf="delete==1">Do you really want to activate this question?</p>
+                                         <p *ngIf="delete==0">Do you really want to delete this question?</p>
+                                      </div>
+                                      <div class="modal-footer modal_foot">
+                                         <button *ngIf="delete==0" (click)="deleteQuestion()" data-dismiss="modal" type="submit" class="bt btn-warning">Delete</button>
+                                         <button *ngIf="delete==1" (click)="deleteQuestion()" data-dismiss="modal" type="submit" class="bt btn-warning">Activate</button>
+                                         <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+                                      </div>
+                                   </div>
+                                </div>
+                             </div>
+            <!--====Question upload page start====-->
+            <section class="question_search question_sec selt_ht scroll-yes">
+                <div class="container-fluid">
+                    <div class="col-md-12">
+                        <div class="all_brd">
+                            <div class="question_title" id="pers_inf">
+                                <h3>Question Search  List</h3>
+                            </div>
+                            <div class="top_btn"> 
+                                <button type="submit" data-toggle="modal" data-target="#verified" class="bt btn-info">Verify</button>
+                                <a  class="bt btn-info"(click)="resetFilter();">Reset</a>
+                                <!-- <button type="submit" class="bt btn-warning">Block</button>
+                                <button type="submit" class="bt btn-danger">Delete</button> -->
+                            </div>
+                            <div class="content_sub">
+                                <!--<div class="question_bg">
+                                       <h4>Upload QA Database</h4>
+                                    </div>-->
+                                <!--div class="top_btn">
+                                       <button type="submit" class="bt btn-warning">verified</button>
+                                       <button type="submit" class="bt btn-info">Block</button>
+                                       <button type="submit" class="bt btn-danger">Delete</button>
+                                     </div-->
+                                <div class="all_mian">
+                                    <div class="table-responsive check_all "style="height:454px;overflow-x: auto;">
+                                        <table class="table table-bordered table-striped fixed_header">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        <label for="fruit1">Lable</label>
+                                                    </th>
+                                                    <th>ID</th>
+                                                    <th>Country</th>
+                                                    <th>Course</th>
+                                                    <th>Class</th>
+                                                    <th>Subject</th>
+                                                    <th>Lesson/Topics</th>
+                                                    <th>Qustion/Type</th>
+                                                    <th>Owner</th>
+                                                    <th>Created/Date</th>
+                                                    <th>Verified</th>
+                                                    <th>Verify/Date</th>
+                                                    <th>Verify/By</th>
+                                                    <th>Blocked</th>
+                                                    <th>Blocked/Date</th>
+                                                    <th>Delete</th>
+                                                    <th>Delete/Date</th>
+                                                    <th>Avg/Rating</th>
+                                                    <th>Marks</th>
+                                                    <th>Nagt.Marks</th>
+                                                    <th>Date/Time</th>
+                                                </tr>
+                                                <tr class="info" style="color: black">
+                                                    <td>Default/Value</td>
+                                                    <td>
+                                                        <p-multiSelect [options]="qnsidsList" (onChange)="setFilter()" [(ngModel)]="seltdqnsidsList" [panelStyle]="{minWidth:'12em'}" maxSelectedLabels='0'></p-multiSelect>
+                                                    </td>
+                                                    <td>
+                                                        <p-multiSelect [options]="countryList" (onChange)="setFilter()" [(ngModel)]="seltdCntryList" maxSelectedLabels='0'></p-multiSelect>
+    
+                                                    </td>
+                                                    <td>
+                                                        <p-multiSelect [options]="courseList" (onChange)="setFilter()" [(ngModel)]="seltdCrsList" maxSelectedLabels='0'></p-multiSelect>
+    
+                                                    </td>
+                                                    <td>
+                                                        <p-multiSelect [options]="classList" (onChange)="setFilter()" [(ngModel)]="seltdClsList" maxSelectedLabels='0'></p-multiSelect>
+    
+                                                    </td>
+                                                    <td>
+                                                        <p-multiSelect [options]="subjectList" (onChange)="setFilter()" [(ngModel)]="seltdSubjList" maxSelectedLabels='0'></p-multiSelect>
+    
+                                                    </td>
+                                                    <td>
+                                                        <p-multiSelect [options]="lessonsList" (onChange)="setFilter()" [(ngModel)]="selectedLssnList" maxSelectedLabels='0'></p-multiSelect>
+    
+                                                    </td>
+                                                    <td>
+                                                            <p-multiSelect [options]="qnsTypeList" (onChange)="setFilter()" [(ngModel)]="seltdqntList" maxSelectedLabels='0'></p-multiSelect>
+                                                            <!-- <p-multiSelect [options]="qnsGradeList" (onChange)="setFilter()" [(ngModel)]="seltdqnGrdList"></p-multiSelect> -->
+    
+                                                    </td>
+                                                    <td>
+                                                            <p-multiSelect [options]="ownersList" (onChange)="setFilter()" [(ngModel)]="selectedOwners" maxSelectedLabels='0'></p-multiSelect>
+    
+                                                    </td>
+                                                    <td class="date_pic">
+                                                            <input type="text" 
+                                                            (change)="getDate($event,'question_created_date')" 
+                                                            ngxDaterangepickerMd 
+                                                            [(ngModel)]="createdDate" 
+                                                            [showCustomRangeLabel]="true" 
+                                                            [alwaysShowCalendars]="true" 
+                                                            [ranges]="ranges" 
+                                                            [linkedCalendars]="true" 
+                                                            [showClearButton]="true" 
+                                                            [locale]="{applyLabel: 'ok', format: 'DD-MM-YYYY'}"                                                            
+                                                            placeholder="Select please...">
+                                                    </td>
+                                                    <td>
+                                                            <p-multiSelect [options]="qnsVerify" (onChange)="setFilter()" [(ngModel)]="seltdqnsvList" maxSelectedLabels='0'></p-multiSelect>
+    
+                                                    </td>
+                                                    <td>
+                                                            <input type="text" (change)="getDate($event,'question_is_verified')" 
+                                                            ngxDaterangepickerMd 
+                                                            [(ngModel)]="verifiedDate" 
+                                                            [showCustomRangeLabel]="true" 
+                                                            [alwaysShowCalendars]="true" 
+                                                            [ranges]="ranges" 
+                                                            [linkedCalendars]="true" 
+                                                            [showClearButton]="true" 
+                                                            [locale]="{applyLabel: 'ok', format: 'DD-MM-YYYY'}"
+                                                            placeholder="Select please...">
+                                                    </td>
+                                                    <td>
+                                                            <p-multiSelect [options]="qnsVerify" (onChange)="setFilter()" [(ngModel)]="seltdqnsvList" maxSelectedLabels='0'></p-multiSelect>
+    
+                                                    </td>
+                                                    <td>
+                                                            <p-multiSelect [options]="qnsBlock" (onChange)="setFilter()" [(ngModel)]="seltdqnsbList" maxSelectedLabels='0'></p-multiSelect>
+    
+                                                    </td>
+                                                    <td>
+                                                            <input type="text" (change)="getDate($event,'question_blocked_date')" 
+                                                            ngxDaterangepickerMd [(ngModel)]="blockedDate" 
+                                                            [showCustomRangeLabel]="true" 
+                                                            [alwaysShowCalendars]="true" 
+                                                            [ranges]="ranges" 
+                                                            [linkedCalendars]="true" 
+                                                            [showClearButton]="true" 
+                                                            [locale]="{applyLabel: 'ok', format: 'DD-MM-YYYY'}"
+                                                            placeholder="Select please...">
+    
+                                                    </td>
+                                                    <td>
+                                                            <p-multiSelect [options]="qnsDelete" (onChange)="setFilter()" [(ngModel)]="seltdqnsdList" maxSelectedLabels='0'></p-multiSelect>
+    
+                                                    </td>
+                                                    <td>
+                                                            <input type="text" (change)="getDate($event,'question_deleted_date')" 
+                                                            ngxDaterangepickerMd 
+                                                            [(ngModel)]="deletedDate" 
+                                                            [showCustomRangeLabel]="true" 
+                                                            [alwaysShowCalendars]="true" 
+                                                            [ranges]="ranges" 
+                                                            [linkedCalendars]="true" 
+                                                            [showClearButton]="true" 
+                                                            [locale]="{applyLabel: 'ok', format: 'DD-MM-YYYY'}"
+                                                            placeholder="Select please...">
+                                                    </td>
+                                                    <td>
+                                                        <p-multiSelect [options]="cities1" [(ngModel)]="selectedCities1" maxSelectedLabels='0'></p-multiSelect>
+    
+                                                    </td>
+                                                    <td>
+                                                        <p-multiSelect [options]="marksList" (onChange)="setFilter()" [(ngModel)]="seltdqnMrksList" maxSelectedLabels='0'></p-multiSelect>
+    
+                                                    </td>
+                                                    <td>
+                                                        <p-multiSelect [options]="nmarksList" (onChange)="setFilter()" [(ngModel)]="seltdqnnMrksList" maxSelectedLabels='0'></p-multiSelect>
+    
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control rangedatepic" 
+                                                        ngxDaterangepickerMd 
+                                                        [(ngModel)]="selectedaterange" 
+                                                        [showCustomRangeLabel]="true" 
+                                                        [alwaysShowCalendars]="true" 
+                                                        [ranges]="ranges" 
+                                                        [linkedCalendars]="true" 
+                                                        [isInvalidDate]="isInvalidDate" 
+                                                        [showClearButton]="true"
+                                                        [locale]="{applyLabel: 'ok', format: 'DD-MM-YYYY'}"
+                                                        placeholder="Select Date...">
+                                                    </td>
+                                                </tr>
+                                            </thead>
+                                            <tbody style="height: 361px;">
+                                                <div class="loadertable">
+                                                        <ng4-loading-spinner [timeout]="8000" [template]="template" [zIndex]="9999"> </ng4-loading-spinner>
+                                                    </div>
+                                                <!--tr-1-->
+                                                <ng-container *ngFor="let qSr of searchLlist; let i = index;">
+                                                    
+                                                <tr  *ngIf="qSr.question_is_blocked =='1'"[style.background-color]="qSr.question_is_blocked  == '1'?'#c9c5c5':''" [style.font-weight]="qSr.question_is_verified == 1?normal:600">
+                                                        <td>
+                                                            <input type="checkbox" *ngIf="qSr.question_is_verified == 0" id="check_{{i+1}}" name="checkbox" value="{{qSr.question_id}}" (change)="getCheckedQuensValues(qSr.question_id,$event.target.checked)"/>
+                                                            <label for="check_{{i+1}}">{{i+1}}</label>
+                                                        </td>
+                                                        <td><a routerLink="/questiondetailedview/{{qSr.question_id}}" routerActive="active"  target="__blank">{{qSr.question_id}}</a></td>
+                                                        <td><a routerLink="/questiondetailedview/{{qSr.question_id}}" routerActive="active"  target="__blank">{{qSr.cntry_name}}</a></td>
+                                                        <td  pTooltip="{{qSr.course_fname}}" tooltipPosition="top">
+                                                            <ng-container *ngIf="qSr.course_fname !==null">
+                                                                {{qSr.course_fname.substr(0,12)}}
+                                                                <ng-container *ngIf="qSr.course_fname.length>12">...</ng-container>
+                                                                </ng-container>
+                                                          </td>
+                                                        <td  pTooltip="{{qSr.class_fname}}" tooltipPosition="top">
+                                                                <ng-container *ngIf="qSr.class_fname !==null">
+                                                                    {{qSr.class_fname.substr(0,12)}}
+                                                                    <ng-container *ngIf="qSr.class_fname.length>12">...</ng-container>
+                                                                    </ng-container>
+                                                              </td>
+                                                        <td  pTooltip="{{qSr.subject_fname}}" tooltipPosition="top">
+                                                                <ng-container *ngIf="qSr.subject_fname !==null">
+                                                                    {{qSr.subject_fname.substr(0,12)}}
+                                                                    <ng-container *ngIf="qSr.subject_fname.length>12">...</ng-container>
+                                                                    </ng-container>
+                                                              </td>
+                                                              <ng-container *ngIf="qSr.lessons.length>0">
+                                                        <td pTooltip="{{qSr.lessons}}" tooltipPosition="top">{{qSr.lessons[0].substr(0,12)}}<ng-container *ngIf="qSr.lessons[0].length>12">...</ng-container></td></ng-container>
+
+                                                        <ng-container *ngIf="qSr.lessons.length<1">
+                                                            <td></td>
+                                                        </ng-container>
+                                                        <!-- <td>{{qSr.gradtyp_name}}</td> -->
+                                                        <td>{{qSr.questntyp_name}}</td>
+                                                        <td>{{(qSr.question_admin)?'Admin':'User'}}</td>
+                                                        <td>{{qSr.question_created_date}}</td>
+                                                        <td>
+                                                            <!--verified start-->
+                                                            <!-- <div data-toggle="modal" data-target="#verified">
+                                                                <div class="toggle btn btn-success off" data-toggle="toggle" style="width: 81px; height: 23px;">
+                                                                    <input type="checkbox" checked="" data-toggle="toggle" data-on="Verify" data-off="Verified" data-onstyle="warning" data-offstyle="success">
+                                                                    <div class="toggle-group">
+                                                                        <label class="btn btn-warning toggle-on">Verify</label>
+                                                                        <label class="btn btn-success active toggle-off">Verified</label><span class="toggle-handle btn btn-default"></span></div>
+                                                                </div>
+                                                            </div> -->
+                                                            <button (click)="verifyQnsModal(qSr.question_id,qSr.question_is_verified)" class="{{(qSr.question_is_verified==1)?'bt btn-success':'bt btn-danger'}}">{{(qSr.question_is_verified==1)?'Verified':'Verify'}}</button>
+                                                 <!-- <p> {{qSr.question_verified_date}} </p> -->
+                                                        </td>
+                                                        <!--verified end-->
+                                                        <td>{{qSr.question_verified_date}}</td>
+                                                        <td>{{(qSr.question_verified_by)?'Admin':'-'}}</td>
+                                                        <td>
+                                                            <!--block start-->
+                                                            <!-- <div class="toggle btn btn-info off" data-toggle="toggle" disabled="disabled" style="width: 81px; height: 23px;">
+                                                                <input type="checkbox" disabled="" data-toggle="toggle" data-on="Blocked" data-off="Blocked" data-onstyle="success" data-offstyle="info">
+                                                                <div class="toggle-group">
+                                                                    <label class="btn btn-success toggle-on">Blocked</label>
+                                                                    <label class="btn btn-info active toggle-off">Blocked</label><span class="toggle-handle btn btn-default"></span></div>
+                                                            </div> -->
+                                                            <button (click)="blockQnsModal(qSr.question_id,qSr.question_is_blocked)" class="{{(qSr.question_is_blocked==1)?'bt btn-danger':'bt btn-success'}}">{{(qSr.question_is_blocked==1)?'Blocked':'Block'}}</button>
+                                                        </td>
+                                                        <!--block end-->
+                                                        <td>{{qSr.question_blocked_date}}</td>
+                                                        <td>
+                                                            <!--delete start-->
+                                                            <button (click)="deleteQnsModal(qSr.question_id,qSr.question_is_deleted)" class="{{(qSr.question_is_deleted==1)?'bt btn-danger':'bt btn-success'}}">{{(qSr.question_is_deleted==1)?'Deleted':'Delete'}}</button>
+                                                        </td>
+                                                        <!--delete end-->
+                                                        <td>{{qSr.question_deleted_date}}</td>
+        
+                                                        <td>Rating</td>
+                                                        <td>{{qSr.question_marks}}</td>
+                                                        <td>{{qSr.question_nmarks}}</td>
+                                                        <td>{{qSr.question_time}}</td>
+                                                </tr>
+                                                <tr  *ngIf="qSr.question_is_blocked == '0'"  [style.font-weight]="qSr.question_is_verified == 1?normal:600"[style.background-color]="qSr.question_is_deleted != 0?'#ffc8bf':''">
+                                                        <td>
+                                                            <input *ngIf="qSr.question_is_verified == 0" type="checkbox" id="check_{{i+1}}" name="checkbox" value="{{qSr.question_id}}" (change)="getCheckedQuensValues(qSr.question_id,$event.target.checked)"/>
+                                                            <label for="check_{{i+1}}">{{i+1}}</label>
+                                                        </td>
+                                                        <td><a routerLink="/questiondetailedview/{{qSr.question_id}}" routerActive="active"  target="__blank">{{qSr.question_id}}</a></td>
+                                                        <td><a routerLink="/questiondetailedview/{{qSr.question_id}}" routerActive="active"  target="__blank">{{qSr.cntry_name}}</a></td>
+                                                        <td  pTooltip="{{qSr.course_fname}}" tooltipPosition="top">
+                                                            <ng-container *ngIf="qSr.course_fname !==null">
+                                                                {{qSr.course_fname.substr(0,12)}}
+                                                                <ng-container *ngIf="qSr.course_fname.length>12">...</ng-container>
+                                                                </ng-container>
+                                                          </td>
+                                                        <td  pTooltip="{{qSr.class_fname}}" tooltipPosition="top">
+                                                                <ng-container *ngIf="qSr.class_fname !==null">
+                                                                    {{qSr.class_fname.substr(0,12)}}
+                                                                    <ng-container *ngIf="qSr.class_fname.length>12">...</ng-container>
+                                                                    </ng-container>
+                                                              </td>
+                                                        <td  pTooltip="{{qSr.subject_fname}}" tooltipPosition="top">
+                                                                <ng-container *ngIf="qSr.subject_fname !==null">
+                                                                    {{qSr.subject_fname.substr(0,12)}}
+                                                                    <ng-container *ngIf="qSr.subject_fname.length>12">...</ng-container>
+                                                                    </ng-container>
+                                                              </td>
+                                                        <ng-container *ngIf="qSr.lessons.length>0">
+                                                            <td pTooltip="{{qSr.lessons}}" tooltipPosition="top">{{qSr.lessons[0].substr(0,12)}}<ng-container *ngIf="qSr.lessons[0].length>12">...</ng-container></td>
+                                                        </ng-container>
+                                                        <ng-container *ngIf="qSr.lessons.length<1">
+                                                            <td></td>
+                                                        </ng-container>
+                                                        <!-- <td>{{qSr.gradtyp_name}}</td> -->
+                                                        <td>{{qSr.questntyp_name}}</td>
+                                                        <td>{{(qSr.question_admin)?'Admin':'User'}}</td>
+                                                        <td>{{qSr.question_created_date}}</td>
+                                                        <td>
+                                                            <!--verified start-->
+                                                            <!-- <div data-toggle="modal" data-target="#verified">
+                                                                <div class="toggle btn btn-success off" data-toggle="toggle" style="width: 81px; height: 23px;">
+                                                                    <input type="checkbox" checked="" data-toggle="toggle" data-on="Verify" data-off="Verified" data-onstyle="warning" data-offstyle="success">
+                                                                    <div class="toggle-group">
+                                                                        <label class="btn btn-warning toggle-on">Verify</label>
+                                                                        <label class="btn btn-success active toggle-off">Verified</label><span class="toggle-handle btn btn-default"></span></div>
+                                                                </div>
+                                                            </div> -->
+                                                            <button (click)="verifyQnsModal(qSr.question_id,qSr.question_is_verified)" class="{{(qSr.question_is_verified==1)?'bt btn-success':'bt btn-danger'}}">{{(qSr.question_is_verified==1)?'Verified':'Verify'}}</button>
+                                                 <!-- <p> {{qSr.question_verified_date}} </p> -->
+                                                        </td>
+                                                        <!--verified end-->
+                                                        <td>{{qSr.question_verified_date}}</td>
+                                                        <td>{{(qSr.question_verified_by)?'Admin':'-'}}</td>
+                                                        <td>
+                                                            <!--block start-->
+                                                            <!-- <div class="toggle btn btn-info off" data-toggle="toggle" disabled="disabled" style="width: 81px; height: 23px;">
+                                                                <input type="checkbox" disabled="" data-toggle="toggle" data-on="Blocked" data-off="Blocked" data-onstyle="success" data-offstyle="info">
+                                                                <div class="toggle-group">
+                                                                    <label class="btn btn-success toggle-on">Blocked</label>
+                                                                    <label class="btn btn-info active toggle-off">Blocked</label><span class="toggle-handle btn btn-default"></span></div>
+                                                            </div> -->
+                                                            <button (click)="blockQnsModal(qSr.question_id,qSr.question_is_blocked)" class="{{(qSr.question_is_blocked==1)?'bt btn-danger':'bt btn-success'}}">{{(qSr.question_is_blocked==1)?'Blocked':'Block'}}</button>
+                                                        </td>
+                                                        <!--block end-->
+                                                        <td>{{qSr.question_blocked_date}}</td>
+                                                        <td>
+                                                            <!--delete start-->
+                                                            <button (click)="deleteQnsModal(qSr.question_id,qSr.question_is_deleted)" class="{{(qSr.question_is_deleted==1)?'bt btn-danger':'bt btn-success'}}">{{(qSr.question_is_deleted==1)?'Deleted':'Delete'}}</button>
+                                                        </td>
+                                                        <!--delete end-->
+                                                        <td>{{qSr.question_deleted_date}}</td>
+        
+                                                        <td>Rating</td>
+                                                        <td>{{qSr.question_marks}}</td>
+                                                        <td>{{qSr.question_nmarks}}</td>
+                                                        <td>{{qSr.question_time}}</td>
+                                                </tr>
+                                                </ng-container>
+                                                <tr *ngIf="showData==false" >
+                                                    <td colspan="21" class="alert alert-danger">No data found!</td>
+                                                </tr>
+                                                <!--tr-2 end-->
+                                                <!--tr-2-->
+    
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="pages_but">
+                                            <div class="badge-inner">
+                                                <p-paginator [rows]="10" [totalRecords]="totalQuestions" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" (onPageChange)="currentPage = $event.page; onPageChange($event) " #paginator></p-paginator>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--====top profile background End====-->
+        </div>
+    </div>
+    <p-toast [style]="{marginTop: '80px'}"></p-toast>
+<p-toast [style]="{marginTop: '80px'}" position="top-left" key="tl"></p-toast>
+<p-toast [style]="{marginTop: '80px'}" position="top-center" key="tc"></p-toast>
+<p-toast [style]="{marginTop: '80px'}" styleClass="custom-toast" key="custom" position="bottom-center"></p-toast>
+<p-toast position="center" key="c" (onClose)="onReject()" [modal]="true" [baseZIndex]="5000">
+    <ng-template let-message pTemplate="message">
+        <div style="text-align: center">
+            <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i>
+            <h3>{{message.summary}}</h3>
+            <p>{{message.detail}}</p>
+        </div>
+        <div class="ui-g ui-fluid">
+            <div class="ui-g-6">
+                <button type="button" pButton (click)="onConfirm()" label="Yes" class="ui-button-success"></button>
+            </div>
+            <div class="ui-g-6">
+                <button type="button" pButton (click)="onReject()" label="No" class="ui-button-secondary"></button>
+            </div>
+        </div>
+    </ng-template>
+</p-toast>

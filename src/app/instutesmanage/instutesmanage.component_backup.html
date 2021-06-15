@@ -1,0 +1,1335 @@
+<app-sdashheader></app-sdashheader>
+<div class="leftsidemenus">
+   <app-sdahshmenu></app-sdahshmenu>
+</div>
+<!--verified  Modal start -->
+<div id="page-wrapper">
+   <div class="content">
+      <div class="modal fade" id="verified" role="dialog">
+         <div class="modal-dialog vry_modal">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+               </div>
+               <div class="modal-body modal_text">
+                  <p>Do you really wish to verify these records? This process cannot be undone</p>
+               </div>
+               <div class="modal-footer modal_foot">
+                  <button type="submit" class="bt btn-warning">verify</button>
+                  <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- verified Modal end-->
+      <!--Blocked  Modal start -->
+      <div class="modal fade" id="block" role="dialog">
+         <div class="modal-dialog vry_modal">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+               </div>
+               <div class="modal-body modal_text">
+                  <p>Do you really want to Block these records? This process cannot be undone</p>
+               </div>
+               <div class="modal-footer modal_foot">
+                  <button type="submit" class="bt btn-warning">Block</button>
+                  <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Blocked Modal end-->
+      <!--Delete  Modal start -->
+      <div class="modal fade" id="delete" role="dialog">
+         <div class="modal-dialog vry_modal">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+               </div>
+               <div class="modal-body modal_text">
+                  <p>Do you really want to Delete these records? This process cannot be undone</p>
+               </div>
+               <div class="modal-footer modal_foot">
+                  <button type="submit" class="bt btn-warning">Delete</button>
+                  <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Delete Modal end-->
+      <!--====Question upload page start====-->
+      <section class="question_search mange question_sec selt_ht scroll-yes">
+         <div class="col-md-12">
+            <div class="all_brd">
+               <div class="content_sub">
+                  <div class="all_mian">
+                     <div class="table-responsive check_all" style="height: 350px;overflow-x: auto;">
+                        <table class="table table-bordered">
+                           <thead>
+                              <tr class="first-thead-tr">
+                                 <th>Public&nbsp;User&nbsp;ID</th>
+                                 <th>User&nbsp;Name</th>
+                                 <th>Istute&nbsp;ID</th>
+                                 <th>Istute&nbsp;Name</th>
+                                 <th>Contact&nbsp;person</th>
+                                 <th>Country</th>
+                                 <th>State</th>
+                                 <th>City</th>
+                              </tr>
+
+                              <tr class="success tr-mt-28 second--thead-tr">
+                                 <th>
+                                    <p-multiSelect [options]="InstUserIds" [(ngModel)]="selectedUserIds"
+                                       (onChange)="manageUserFilter('user_id')" [panelStyle]="{minWidth:'12em'}">
+                                       <ng-template let-selectedCars pTemplate="selectedItems">
+                                          <span *ngFor="let car of selectedCars" value="car.label">{{car.label}}</span>
+                                       </ng-template>
+                                    </p-multiSelect>
+                                 </th>
+                                 <th>
+                                    <p-multiSelect [options]="userName" [(ngModel)]="selectedUserName"
+                                       (onChange)="manageUserFilter('user_dname')" [panelStyle]="{minWidth:'12em'}">
+                                       <ng-template let-selectedCars pTemplate="selectedItems">
+                                          <span *ngFor="let car of selectedCars" value="car.label">{{car.label}}</span>
+                                       </ng-template>
+                                    </p-multiSelect>
+                                 </th>
+                                 <th>
+                                    <p-multiSelect [options]="Instsds" [(ngModel)]="selectedInstsds"
+                                       (onChange)="manageUserFilter('inst_id')" [panelStyle]="{minWidth:'12em'}">
+                                       <ng-template let-selectedCars pTemplate="selectedItems">
+                                          <span *ngFor="let car of selectedCars" value="car.label">{{car.label}}</span>
+                                       </ng-template>
+                                    </p-multiSelect>
+                                 </th>
+                                 <th>
+                                    <p-multiSelect [options]="InstNames" [(ngModel)]="selectedInstNames"
+                                       (onChange)="manageUserFilter('inst_name')" [panelStyle]="{minWidth:'12em'}">
+                                       <ng-template let-selectedCars pTemplate="selectedItems">
+                                          <span *ngFor="let car of selectedCars" value="car.label">{{car.label}}</span>
+                                       </ng-template>
+                                    </p-multiSelect>
+                                 </th>
+                                 <th>
+                                    <p-multiSelect [options]="ContactNames" [(ngModel)]="selectedContactNames"
+                                       (onChange)="manageUserFilter('inst_contact')" [panelStyle]="{minWidth:'12em'}">
+                                       <ng-template let-selectedCars pTemplate="selectedItems">
+                                          <div *ngFor="let car of selectedCars" value="car.label"
+                                             style="font-size:14px;float:right;margin-top:4px">{{car.label}}</div>
+                                       </ng-template>
+                                    </p-multiSelect>
+                                 </th>
+                                 <th>
+                                    <p-multiSelect [options]="CountryNames" [(ngModel)]="selectedCountryNames"
+                                       (onChange)="manageUserFilter('user_country')" [panelStyle]="{minWidth:'12em'}">
+                                       <ng-template let-selectedCars pTemplate="selectedItems">
+                                          <div *ngFor="let car of selectedCars" value="car.label"
+                                             style="font-size:14px;float:right;margin-top:4px">{{car.label}}</div>
+                                       </ng-template>
+                                    </p-multiSelect>
+                                 </th>
+                                 <th>
+                                    <p-multiSelect [options]="StateNames" [(ngModel)]="selectedStateNames"
+                                       (onChange)="manageUserFilter('user_state')" [panelStyle]="{minWidth:'12em'}">
+                                       <ng-template let-selectedCars pTemplate="selectedItems">
+                                          <div *ngFor="let car of selectedCars" value="car.label"
+                                             style="font-size:14px;float:right;margin-top:4px">{{car.label}}</div>
+                                       </ng-template>
+                                    </p-multiSelect>
+                                 </th>
+                                 <th>
+                                    <p-multiSelect [options]="CityNames" [(ngModel)]="selectedCityNames"
+                                       (onChange)="manageUserFilter('user_city')" [panelStyle]="{minWidth:'12em'}">
+                                       <ng-template let-selectedCars pTemplate="selectedItems">
+                                          <div *ngFor="let car of selectedCars" value="car.label"
+                                             style="font-size:14px;float:right;margin-top:4px">{{car.label}}</div>
+                                       </ng-template>
+                                    </p-multiSelect>
+                                 </th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <!--tr-1-->
+                              <ng-container *ngIf="allInstitutes.length>0">
+                                 <tr class="info" *ngFor="let inst of allInstitutes; let i=index"
+                                    style="cursor: pointer;">
+                                    <ng-container (click)="activeRow(i,allInstitutes.length)">
+                                       <td (click)="showUser(inst.user_id);activeRow(i,allInstitutes.length)"
+                                          class="instrow{{i}}"
+                                          [ngStyle]="i % 2 == 0 ? { 'background-color': '#ffffff' }:{ 'background-color': '#d9edf7' }">
+                                          {{inst.user_id}}</td>
+                                       <td (click)="showUser(inst.user_id);activeRow(i,allInstitutes.length)"
+                                          class="instrow{{i}} tooltip-hover" pTooltip="{{inst.user_dname}}"
+                                          tooltipPosition="top"
+                                          [ngStyle]="i % 2 == 0 ? { 'background-color':'#ffffff' }:{ 'background-color': '#d9edf7'  }">
+                                          {{inst.user_dname.substr(0,15)}} <ng-container
+                                             *ngIf="inst.user_dname.length>15">...</ng-container>
+                                       </td>
+                                       <td (click)="showUser(inst.user_id);activeRow(i,allInstitutes.length)"
+                                          class="instrow{{i}}"
+                                          [ngStyle]="i % 2 == 0 ? { 'background-color': '#ffffff' }:{ 'background-color': '#d9edf7' }">
+                                          {{inst.inst_id}}</td>
+                                       <td (click)="showUser(inst.user_id);activeRow(i,allInstitutes.length)"
+                                          class="instrow{{i}}" pTooltip="{{inst.inst_name}}" tooltipPosition="top"
+                                          [ngStyle]="i % 2 == 0 ? { 'background-color': '#ffffff' }:{ 'background-color': '#d9edf7'}">
+                                          <ng-container *ngIf="inst.inst_name">
+                                             <ng-container *ngIf="inst.inst_name !==null">
+                                                {{inst.inst_name.substr(0,15)}}<ng-container
+                                                   *ngIf="inst.inst_name.length>15">...</ng-container>
+                                             </ng-container>
+                                          </ng-container>
+                                       </td>
+                                       <td (click)="showUser(inst.user_id);activeRow(i,allInstitutes.length)"
+                                          class="instrow{{i}}" pTooltip="{{inst.inst_contact}}" tooltipPosition="top"
+                                          [ngStyle]="i % 2 == 0 ? { 'background-color': '#ffffff' }:{ 'background-color': '#d9edf7'  }">
+                                          <ng-container *ngIf="inst.inst_contact">
+                                             <ng-container *ngIf="inst.inst_contact !==null">
+                                                {{inst.inst_contact.substr(0,15)}}<ng-container
+                                                   *ngIf="inst.inst_contact.length>15">...</ng-container>
+                                             </ng-container>
+                                          </ng-container>
+                                       </td>
+                                       <td (click)="showUser(inst.user_id);activeRow(i,allInstitutes.length)"
+                                          class="instrow{{i}}"
+                                          [ngStyle]="i % 2 == 0 ? { 'background-color': '#ffffff' }:{ 'background-color': '#d9edf7'  }">
+                                          {{inst.country}}</td>
+                                       <td (click)="showUser(inst.user_id);activeRow(i)" class="instrow{{i}}"
+                                          [ngStyle]="i % 2 == 0 ? { 'background-color': '#ffffff' }:{ 'background-color': '#d9edf7'  }">
+                                          {{inst.state}}</td>
+                                       <td (click)="showUser(inst.user_id);activeRow(i)" class="instrow{{i}}"
+                                          [ngStyle]="i % 2 == 0 ? { 'background-color': '#ffffff' }:{ 'background-color': '#d9edf7'  }">
+                                          {{inst.city}}</td>
+                                    </ng-container>
+                                 </tr>
+                              </ng-container>
+                              <ng-container *ngIf="allInstitutes.length<1">
+                                 <tr style="height: 242px;">
+                                    <div class="loader"></div>
+                                 </tr>
+                              </ng-container>
+                           </tbody>
+                        </table>
+                        <p-paginator *ngIf="showPaginator==true && allInstitutes.length >0" [rows]="rowsPerPage"
+                           [totalRecords]="pageNum" (onPageChange)="paginate($event)"></p-paginator>
+                        <select [(ngModel)]="rowsPerPage" (ngModelChange)="selectRowsperPage($event)"
+                           class="form-control nofrowspagenation">
+                           <option value="1">1</option>
+                           <option value="10">10</option>
+                           <option value="15">15</option>
+                           <option value="50">50</option>
+                           <option [ngValue]="pageNum">All</option>
+                        </select>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="row insheading">
+            <div class="col-md-6"><span><strong> Search By User</strong></span></div>
+            <div class="col-md-6"><span><strong> Search By Instute</strong></span></div>
+         </div>
+         <div class="row searchfielduser">
+            <form [formGroup]="searchforInstitute">
+               <div class="userins">
+                  <div class="col-md-2  userfm">
+                     <div class="form-group">
+                        <span>Enter User ID</span>
+                        <input type="text" placeholder="Search user ID" formControlName="userid"
+                           (keyup)="getUserid($event.target.value)" [(ngModel)]="userid" class="form-control">
+                        <ul class="searchfm" *ngIf="allSchoolid==true">
+                           <li *ngFor="let id of userIds" (click)="showUser(id.user_id,id.user_dname,1)">
+                              {{id.user_dname}}</li>
+                        </ul>
+                        <ul class="searchfm" *ngIf="noDataid==true">
+                           <li>No data found!..</li>
+                        </ul>
+                     </div>
+                  </div>
+                  <div class="col-md-4  userfm userfm2">
+                     <div class="form-group">
+                        <span>Enter User Name</span>
+                        <br>
+                        <input type="text" formControlName="user_dname" [(ngModel)]="user_dname"
+                           (keyup)="getUsername($event.target.value)" placeholder="Search user name"
+                           class="form-control">
+                        <ul class="searchfm" *ngIf="allSchoolusers==true">
+                           <li *ngFor="let user of userData" (click)="showUser(user.user_id,user.user_dname,2)">
+                              {{user.user_dname}}</li>
+                        </ul>
+                        <ul class="searchfm" *ngIf="noData==true">
+                           <li>No data found!..</li>
+                        </ul>
+                        <!-- <p-autoComplete [(ngModel)]="userData.user_dname"  [suggestions]="userData" (completeMethod)="search($event)" ></p-autoComplete> -->
+                        <!--p-autoComplete  [suggestions]="userData12" (completeMethod)="search12($event)" field="user_dname" (click)="showUser($event.user_id)"></p-autoComplete-->
+                        <!--p-autoComplete [(ngModel)]="user_dname" [suggestions]="userData12" (completeMethod)="search12($event)">
+                           <ng-template let-value pTemplate="selectedItem">
+                               <span style="font-size:18px">>{{value}}<</span>
+                           </ng-template>
+                           </p-autoComplete-->
+                     </div>
+                  </div>
+               </div>
+               <div class="Institueins">
+                  <div class="col-md-2 form-group insfm">
+                     <span> Enter Instute ID</span>
+                     <input type="text" placeholder="Search Instute ID" formControlName="insId" [(ngModel)]="insId"
+                        (keyup)="getInstid($event.target.value,'inst_id')" class="form-control">
+                     <ul class="searchfm" *ngIf="allinstid==true">
+                        <li *ngFor="let insId of instId" (click)="showUser(insId.inst_user_id,insId.inst_name,3)">
+                           {{insId.inst_name}}</li>
+                     </ul>
+                     <ul class="searchfm" *ngIf="noDatainsid==true">
+                        <li>No data found!..</li>
+                     </ul>
+                  </div>
+                  <div class="col-md-4 form-group insfm insfm2">
+                     <span> Enter Instute Name</span>
+                     <input type="text" placeholder="Search Instute Name" formControlName="InstName"
+                        [(ngModel)]="InstName" (keyup)="getInstname($event.target.value,'inst_name')"
+                        class="form-control">
+                     <ul class="searchfm" *ngIf="allinstname==true">
+                        <li *ngFor="let insId of instId" (click)="showUser(insId.inst_user_id,insId.inst_name,4)">
+                           {{insId.inst_name}}</li>
+                     </ul>
+                     <ul class="searchfm" *ngIf="noDatainsname==true">
+                        <li>No data found!..</li>
+                     </ul>
+                  </div>
+               </div>
+            </form>
+         </div>
+         <div class="row m-t">
+            <div class="clearfix"></div>
+            <div class=" col-md-12">
+               <div class="drop_serch">
+                  <ul>
+                     <li class="text-center"> <strong> User Details </strong> </li>
+                     <div id="demo" class="collapse1 ">
+                        <!--====My-profile start====-->
+                        <div role="tabpanel" class="tab-pane fade in active" id="tab_4">
+                           <div class="panel">
+                              <div class="panel-body">
+                                 <div class="all_info">
+                                    <div class="">
+                                       <div class="popup_dla2">
+                                          <div class="row" *ngFor="let user of userShows">
+                                             <p-accordion>
+                                                <p-accordionTab header="User Details" [selected]="true">
+                                                   <div class="row">
+                                                      <div class="col-lg-6">
+                                                         <div class="border_instu card">
+                                                            <p>
+                                                               <span class="instutemused">User ID
+                                                               </span>
+                                                               <span class="instutemused_values">
+                                                                  <!--app-inline-edit [(ngModel)]="name" [required]="true" type="text"-->
+                                                                  <input type="text" class="form-control"
+                                                                     [(ngModel)]="user.user_id" readonly>
+                                                                  <!--/app-inline-edit-->
+                                                               </span>
+                                                            </p>
+                                                            <p><span class="instutemused">Display
+                                                                  Name </span>
+                                                               <span class="instutemused_values">
+                                                                  <input type="text" class="form-control"
+                                                                     [(ngModel)]="user.user_dname" readonly>
+                                                               </span>
+                                                            </p>
+                                                            <p><span class="instutemused">First
+                                                                  Name </span>
+                                                               <span class="instutemused_values">
+                                                                  <input type="text" class="form-control"
+                                                                     [(ngModel)]="user.user_fname" readonly>
+                                                               </span>
+                                                            </p>
+                                                            <p><span class="instutemused">Middle
+                                                                  Name </span>
+                                                               <span class="instutemused_values">
+                                                                  <input type="text" class="form-control"
+                                                                     [(ngModel)]="user.user_mname" readonly>
+                                                               </span>
+                                                            </p>
+                                                            <p><span class="instutemused">Last Name
+                                                               </span>
+                                                               <span class="instutemused_values">
+                                                                  <input type="text" class="form-control"
+                                                                     [(ngModel)]="user.user_lname" readonly>
+                                                               </span>
+                                                            </p>
+                                                         </div>
+                                                      </div>
+                                                      <div class="col-lg-6">
+                                                         <div class="border_instu card">
+                                                            <p><span class="instutemused">Gender
+                                                               </span>
+                                                               <span class="instutemused_values">
+                                                                  <input type="text" class="form-control"
+                                                                     [(ngModel)]="user.user_gender" readonly>
+                                                               </span>
+                                                            </p>
+                                                            <p><span class="instutemused">Date of
+                                                                  birth </span>
+                                                               <span class="instutemused_values">
+                                                                  <input type="text" class="form-control"
+                                                                     [(ngModel)]="user.user_dob" readonly>
+                                                               </span>
+                                                            </p>
+                                                            <p><span class="instutemused">Email
+                                                               </span>
+                                                               <span class="instutemused_values">
+                                                                  <input type="email" class="form-control"
+                                                                     [(ngModel)]="user.user_email" readonly>
+                                                               </span>
+                                                            </p>
+                                                            <p><span class="instutemused">Phone-1
+                                                               </span>
+                                                               <span class="instutemused_values">
+                                                                  <input (keypress)="numberOnly($event)" type="text"
+                                                                     class="form-control" [(ngModel)]="user.user_phone"
+                                                                     readonly>
+                                                               </span>
+                                                            </p>
+                                                            <p><span class="instutemused">Phone-2
+                                                               </span>
+                                                               <span class="instutemused_values">
+                                                                  <input (keypress)="numberOnly($event)" type="text"
+                                                                     class="form-control"
+                                                                     [(ngModel)]="user.user_alt_phone" readonly>
+                                                               </span>
+                                                            </p>
+                                                            <p><span class="instutemused">Fax
+                                                               </span>
+                                                               <span class="instutemused_values">
+                                                                  <input type="text" class="form-control"
+                                                                     [(ngModel)]="user.user_fax" readonly>
+                                                               </span>
+                                                            </p>
+                                                         </div>
+                                                      </div>
+                                                      <div class="clearfix"></div>
+                                                      <br>
+                                                      <!--div class="col-lg-6">
+                                                         <div class="border_instu card">
+                                                             <p><span class="instutemused">School </span>
+                                                                 <span class="instutemused_values"> 
+                                                                     <input type="text" class="form-control" [(ngModel)]="user.user_gender" placeholder="Brillent" readonly>
+                                                                 </span>
+                                                             </p>
+                                                             <p><span class="instutemused">Class </span>
+                                                                 <span class="instutemused_values"> 
+                                                                     <input type="text" class="form-control" [(ngModel)]="user.user_gender" placeholder="6 th" readonly>
+                                                                 </span>
+                                                             </p>
+                                                         </div>
+                                                         </div-->
+                                                      <div class="col-lg-6 ">
+                                                         <div class="border_instu card">
+                                                            <p><span class="instutemused">Country</span>
+                                                               <span class="instutemused_values">
+                                                                  <input type="text" class="form-control"
+                                                                     [(ngModel)]="user.cntry_name" readonly>
+                                                               </span>
+                                                            </p>
+                                                            <p><span class="instutemused">City
+                                                               </span>
+                                                               <span class="instutemused_values">
+                                                                  <input type="text" class="form-control"
+                                                                     [(ngModel)]="user.city_name" readonly>
+                                                               </span>
+                                                            </p>
+                                                            <p><span class="instutemused add">
+                                                                  Address </span>
+                                                               <span class="instutemused_values">
+                                                                  <textarea class="form-control" rows="4" cols="50"
+                                                                     readonly style="height: 100px;">
+                                                               </textarea>
+                                                               </span>
+                                                            </p>
+                                                         </div>
+                                                         <!--div class="editinst text-right">
+                                                            <button type="submit" class="bt btn-success"> Create Institute </button>
+                                                            </div-->
+                                                      </div>
+                                                   </div>
+                                                </p-accordionTab>
+
+                                                <p-accordionTab header="Institue Details">
+                                                   <div
+                                                      *ngIf="(user.inst_user_id==user.user_id);then content else other_content">
+                                                      here is ignored</div>
+                                                   <ng-template #content>
+                                                      <h4>View Institue</h4>
+                                                      <div class="all_info2 inst_bg">
+                                                         <div class="popup_dla2">
+                                                            <div class="row">
+                                                               <form [formGroup]="instituteEditform"
+                                                                  (ngSubmit)="instituteUpdateform(instituteEditform)">
+                                                                  <div class="col-lg-6">
+                                                                     <h4>Name And Address</h4>
+                                                                     <div class="border_instu">
+                                                                        <p><span class="instutemused">School User of
+                                                                              Institue </span>
+                                                                           <span class="instutemused_values">
+                                                                              <input type="text" class="form-control"
+                                                                                 formControlName="inst_user_id"
+                                                                                 [(ngModel)]="inst_user_id" readonly>
+                                                                           </span>
+                                                                        </p>
+                                                                        <p><span class="instutemused">Institute ID
+                                                                           </span>
+                                                                           <span class="instutemused_values">
+                                                                              <input type="text" class="form-control"
+                                                                                 formControlName="inst_id"
+                                                                                 [(ngModel)]="userinst_id" readonly>
+                                                                           </span>
+                                                                        </p>
+                                                                        <p><span class="instutemused">Institute Name
+                                                                           </span>
+                                                                           <span class="instutemused_values">
+                                                                              <input type="text" class="form-control"
+                                                                                 formControlName="inst_name"
+                                                                                 [(ngModel)]="inst_name"
+                                                                                 [readonly]="!instituteEdit">
+                                                                           </span>
+                                                                        </p>
+                                                                        <p>
+                                                                           <span class="instutemused">Country</span>
+                                                                           <span class="instutemused_values"
+                                                                              *ngIf="instituteEdit==false">
+                                                                              <input type="text" class="form-control"
+                                                                                 formControlName="cntry_name"
+                                                                                 [(ngModel)]="cntry_name" readonly>
+                                                                              <input type="hidden"
+                                                                                 formControlName="cntry_id"
+                                                                                 [(ngModel)]="cntry_id">
+                                                                           </span>
+                                                                           <span class="instutemused_values"
+                                                                              *ngIf="instituteEdit==true">
+                                                                              <!--input type="text" class="form-control" formControlName="cntry_name" [(ngModel)]="user.cntry_name" placeholder="Country" readonly-->
+                                                                              <select class="form-control"
+                                                                                 formControlName="cntry_name"
+                                                                                 [ngModel]="countryIds"
+                                                                                 (ngModelChange)="getStatesoncountry($event)">
+                                                                                 <option [ngValue]="cntry_id"
+                                                                                    [selected]="cntry_id">{{cntry_name}}
+                                                                                 </option>
+                                                                                 <option *ngFor="let cnt of country"
+                                                                                    [ngValue]="cnt.cntry_id">
+                                                                                    {{cnt.cntry_name}}</option>
+                                                                              </select>
+                                                                           </span>
+                                                                        </p>
+                                                                        <p><span class="instutemused">State
+                                                                           </span>
+                                                                           <span class="instutemused_values"
+                                                                              *ngIf="instituteEdit==false">
+                                                                              <input type="text" class="form-control"
+                                                                                 formControlName="inst_state"
+                                                                                 [(ngModel)]="state_name" readonly>
+                                                                           </span>
+                                                                           <span class="instutemused_values"
+                                                                              *ngIf="instituteEdit==true">
+                                                                              <select class="form-control"
+                                                                                 formControlName="inst_state"
+                                                                                 [(ngModel)]="stateIds"
+                                                                                 (ngModelChange)="getCitiesonstates($event)">
+                                                                                 <option [ngValue]="state_id"
+                                                                                    [selected]="state_id">{{state_name}}
+                                                                                 </option>
+                                                                                 <option *ngFor="let state of states"
+                                                                                    [ngValue]="state.state_id">
+                                                                                    {{state.state_name}}</option>
+                                                                              </select>
+                                                                           </span>
+                                                                        </p>
+                                                                        <p><span class="instutemused">City</span>
+                                                                           <span class="instutemused_values"
+                                                                              *ngIf="instituteEdit==false">
+                                                                              <input type="text" class="form-control"
+                                                                                 formControlName="city_name"
+                                                                                 [(ngModel)]="city_name" readonly>
+                                                                           </span>
+                                                                           <span class="instutemused_values"
+                                                                              *ngIf="instituteEdit==true">
+                                                                              <select class="form-control"
+                                                                                 formControlName="city_name" [(ngModel)]="cityIds">
+                                                                                 <option [ngValue]="city_id"
+                                                                                    [selected]="city_id">{{city_name}}
+                                                                                 </option>
+                                                                                 <option *ngFor="let city of cities"
+                                                                                    [ngValue]="city.city_id">
+                                                                                    {{city.city_name}}</option>
+                                                                              </select>
+                                                                           </span>
+                                                                        </p>
+                                                                        <p><span class="instutemused add">
+                                                                              Institute
+                                                                              Address </span>
+                                                                           <span class="instutemused_values">
+                                                                              <textarea class="form-control" rows="4"
+                                                                                 cols="50"
+                                                                                 formControlName="inst_address"
+                                                                                 [(ngModel)]="inst_address"
+                                                                                 [readonly]="!instituteEdit"
+                                                                                 style="height: 100px;"></textarea>
+                                                                           </span>
+                                                                        </p>
+                                                                     </div>
+                                                                  </div>
+                                                                  <div class="col-lg-6">
+                                                                     <h4>Communication</h4>
+                                                                     <div class="border_instu">
+                                                                           <p>
+                                                                                 <span class="instutemused">Institute
+                                                                                    Url</span>
+                                                                                 <span class="instutemused_values">
+                                                                                    <input [readonly]="!instituteEdit"
+                                                                                       type="text" class="form-control"
+                                                                                       formControlName="inst_url"
+                                                                                       [(ngModel)]="inst_url"  [readonly]="!instituteEdit" [ngClass]="{ 'is-invalid': instituteEditFormSubmitted && instituteEditForm.inst_url.errors}">
+                                                                                 </span>
+                                                                                 <span *ngIf="instituteEditFormSubmitted && instituteEditForm.inst_url.errors">
+                                                                                    <span *ngIf="instituteEditForm.inst_url.errors.required" class="text-danger"> Institute Url is required. </span>
+                                                                                 </span>
+                                                                              </p>
+                                                                           <p>
+                                                                                 <span class="instutemused">Admin
+                                                                                    Url</span>
+                                                                                 <span class="instutemused_values">
+                                                                                    <input [readonly]="!instituteEdit"
+                                                                                       type="text" class="form-control"
+                                                                                       formControlName="inst_admn_url"
+                                                                                       [(ngModel)]="inst_admn_url"   [readonly]="!instituteEdit" [ngClass]="{ 'is-invalid': instituteEditFormSubmitted && instituteEditForm.inst_admn_url.errors}">
+                                                                                 </span>
+                                                                                 <span *ngIf="instituteEditFormSubmitted && instituteEditForm.inst_admn_url.errors" >
+                                                                                    <span *ngIf="instituteEditForm.inst_admn_url.errors.required" class="text-danger"> Admin Url is required. </span>
+                                                                                 </span>
+                                                                              </p>
+                                                                        <p><span class="instutemused">Institute Email
+                                                                           </span>
+                                                                           <span class="instutemused_values">
+                                                                              <input type="email" class="form-control"
+                                                                                 formControlName="inst_email"
+                                                                                 [(ngModel)]="inst_email"
+                                                                                 [readonly]="!instituteEdit">
+                                                                           </span>
+                                                                        </p>
+                                                                        <p><span class="instutemused">Institute
+                                                                              Phone-1 </span>
+                                                                           <span class="instutemused_values">
+                                                                              <input type="text" class="form-control"
+                                                                                 formControlName="inst_phone"
+                                                                                 [(ngModel)]="inst_phone"
+                                                                                 [readonly]="!instituteEdit">
+                                                                           </span>
+                                                                        </p>
+                                                                        <p><span class="instutemused">Institute
+                                                                              Phone-2 </span>
+                                                                           <span class="instutemused_values">
+                                                                              <input type="text" class="form-control"
+                                                                                 formControlName="inst_alt_phone"
+                                                                                 [(ngModel)]="inst_alt_phone"
+                                                                                 [readonly]="!instituteEdit">
+                                                                           </span>
+                                                                        </p>
+                                                                        <p><span class="instutemused">Institute
+                                                                              Fax </span>
+                                                                           <span class="instutemused_values">
+                                                                              <input type="text" class="form-control"
+                                                                                 formControlName="inst_fax"
+                                                                                 [(ngModel)]="inst_fax"
+                                                                                 [readonly]="!instituteEdit">
+                                                                           </span>
+                                                                        </p>
+                                                                        <p><span class="instutemused">Contact test
+                                                                              person </span>
+                                                                           <span class="instutemused_values">
+                                                                              <input type="text" class="form-control"
+                                                                                 formControlName="inst_contact"
+                                                                                 [(ngModel)]="inst_contact"
+                                                                                 [readonly]="!instituteEdit">
+                                                                           </span>
+                                                                        </p>
+                                                                     </div>
+                                                                     <div class="editinst text-right">
+                                                                        <a class="bt btn-success"
+                                                                           (click)="editInstituteDetails(2)"
+                                                                           *ngIf="!instituteEdit">
+                                                                           Edit </a>
+                                                                        <button type="submit" class="bt btn-success"
+                                                                           *ngIf="instituteEdit">
+                                                                           Update </button>
+                                                                           <a class="bt btn-success"
+                                                                           (click)="resetInstituteEditform();instituteEdit=false;"
+                                                                           *ngIf="instituteEdit">
+                                                                           Cancel </a>
+                                                                     </div>
+                                                                  </div>
+                                                                  <div class="clearfix"></div>
+                                                                  <br>
+                                                               </form>
+                                                               <form [formGroup]="instituteAccessEditform"
+                                                                  (ngSubmit)="instituteAccessUpdateform()"
+                                                                  *ngIf="inst_id<=2">
+                                                                  <input type="hidden" [(ngModel)]="userinst_id"
+                                                                     formControlName="inst_id">
+                                                                  <div class="col-lg-6">
+                                                                     <h4>Access Control</h4>
+                                                                     <div class="border_instu">
+                                                                        <p>
+                                                                           <span class="instutemused">created Date
+                                                                           </span>
+                                                                           <span class="instutemused_values">
+                                                                              <input type="text" class="form-control"
+                                                                                 formControlName="inst_created_date"
+                                                                                 [(ngModel)]="inst_created_date"
+                                                                                 readonly>
+                                                                           </span>
+                                                                        </p>
+                                                                        <p>
+                                                                           <span class="instutemused">Instute have valid
+                                                                              access</span>
+                                                                           <span class="instutemused_values">
+                                                                              <span
+                                                                                 *ngIf="instituteEdit_1!=true">{{is_inst_validaccess==1?'Yes':'No'}}</span>
+                                                                              <!-- <input type="text" class="form-control" formControlName="is_inst_validaccess"
+                                                                                    [(ngModel)]="is_inst_validaccess" [readonly]="!instituteEdit_1"> -->
+                                                                              <span *ngIf="instituteEdit_1==true">
+                                                                                 <input type="radio"
+                                                                                    formControlName="is_inst_validaccess"
+                                                                                    [(ngModel)]="is_inst_validaccess"
+                                                                                    value="1">Yes
+                                                                                 <input type="radio"
+                                                                                    formControlName="is_inst_validaccess"
+                                                                                    value="0">No
+                                                                              </span>
+                                                                           </span>
+                                                                        </p>
+                                                                        <p>
+                                                                           <span class="instutemused">Access From
+                                                                              Date</span>
+                                                                           <span class="instutemused_values">
+                                                                              <p-calendar [readonly]="!instituteEdit_1"
+                                                                                 [(ngModel)]="instaccess_from_date"
+                                                                                 formControlName="instaccess_from_date"
+                                                                                 dateFormat="dd-mm-yy"
+                                                                                 [yearNavigator]="true"
+                                                                                 [monthNavigator]="true"
+                                                                                 yearRange="1970:9999"
+                                                                                 (onSelect)="selectDate($event,'from')" [showIcon]="true">
+                                                                              </p-calendar>
+                                                                           </span>
+                                                                        </p>
+                                                                        <p>
+                                                                           <span class="instutemused">Access To
+                                                                              Date</span>
+                                                                           <span class="instutemused_values">
+                                                                              <p-calendar [readonly]="!instituteEdit_1"
+                                                                                 [(ngModel)]="instaccess_to_date"
+                                                                                 formControlName="instaccess_to_date"
+                                                                                 dateFormat="dd-mm-yy"
+                                                                                 [yearNavigator]="true"
+                                                                                 [monthNavigator]="true"
+                                                                                 yearRange="1970:9999"
+                                                                                 (onSelect)="selectDate($event,'to')" [showIcon]="true">
+                                                                              </p-calendar>
+                                                                           </span>
+                                                                        </p>
+                                                                        <p>
+                                                                           <span class="instutemused">Access Updated by
+                                                                              Admin</span>
+                                                                           <span class="instutemused_values">
+                                                                              <input type="text" class="form-control"
+                                                                                 formControlName="inst_access_updateadby"
+                                                                                 [(ngModel)]="inst_access_updateadby"
+                                                                                 readonly>
+                                                                           </span>
+                                                                        </p>
+                                                                        <p>
+                                                                           <span class="instutemused">Access Update
+                                                                              Date</span>
+                                                                           <span class="instutemused_values">
+                                                                              <input type="text" class="form-control"
+                                                                                 formControlName="inst_access_updated_date"
+                                                                                 [(ngModel)]="inst_access_updated_date"
+                                                                                 readonly>
+                                                                           </span>
+                                                                        </p>
+                                                                     </div>
+                                                                     <div class="editinst text-right">
+                                                                        <a class="bt btn-success"
+                                                                           (click)="editInstituteDetails(1)"
+                                                                           *ngIf="!instituteEdit_1">
+                                                                           Edit </a>
+                                                                        <button type="submit" class="bt btn-success"
+                                                                           *ngIf="instituteEdit_1">
+                                                                           Update </button>
+                                                                           <a class="bt btn-success"
+                                                                           (click)="instituteEdit_1=false;resetAccess()"
+                                                                           *ngIf="instituteEdit_1">
+                                                                           Cancel </a>
+                                                                     </div>
+                                                                  </div>
+                                                               </form>
+                                                               <div class="row">
+                                                                  <div class="col-lg-6 ">
+                                                                     <form [formGroup]="instsuperAdminEditform"
+                                                                        (ngSubmit)="instSAUpdateform(instsuperAdminEditform)">
+                                                                        <input type="hidden" formControlName="inst_id"
+                                                                           [(ngModel)]="userinst_id">
+                                                                           <h4>SuperAdmin</h4>
+                                                                        <div class="border_instu">
+                                                                           <p><span class="instutemused">Super Admin
+                                                                                 Name
+                                                                              </span>
+                                                                              <span class="instutemused_values">
+                                                                                 <input type="text" class="form-control"
+                                                                                    formControlName="inst_superadmn_nam"
+                                                                                    [value]="inst_superadmn_nam"
+                                                                                    [readonly]="!instSAEdit">
+                                                                              </span>
+                                                                           </p>
+                                                                           <p><span class="instutemused">Super Admin
+                                                                                 Email
+                                                                              </span>
+                                                                              <span class="instutemused_values">
+                                                                                 <input type="text" class="form-control"
+                                                                                    formControlName="inst_superadmn_eml"
+                                                                                    [value]="inst_superadmn_eml"
+                                                                                    (keyup)="CheckAdminAvailability($event.target.value,'ac_user_email')"
+                                                                                    [readonly]="!instSAEdit">
+                                                                              </span>
+                                                                           </p>
+                                                                           <div *ngIf="instAdminEmail==true"
+                                                                              class="text-danger">
+                                                                              {{instAdminEmailErrText}}</div>
+                                                                           <span *ngIf="instAdminEmail==false">
+                                                                              <div
+                                                                                 *ngIf="instsuperAdminEditform.controls.inst_superadmn_eml.hasError('pattern')"
+                                                                                 class="text-danger "
+                                                                                 style="color:red;">Enter valid email
+                                                                              </div>
+                                                                           </span>
+                                                                        </div>
+                                                                        <div class="editinst text-right">
+                                                                           <a class="bt btn-success"
+                                                                              (click)="editInstSADetails($event)"
+                                                                              *ngIf="instSAEdit==false">
+                                                                              Edit </a>
+                                                                           <a class="bt btn-success"
+                                                                              (click)="resendActivation();"
+                                                                              *ngIf="instSAEdit==false">
+                                                                              Sent Activation Email</a>
+                                                                           <button type="submit" class="bt btn-success"
+                                                                              *ngIf="instSAEdit==true">
+                                                                              Update </button>
+                                                                           <a class="bt btn-success"
+                                                                              *ngIf="instSAEdit==true"
+                                                                              (click)="instsuperAdminEditform.controls.inst_superadmn_nam.setValue(instituteShow.inst_superadmn_nam);instsuperAdminEditform.controls.inst_superadmn_eml.setValue(instituteShow.inst_superadmn_eml);instSAEdit=false">
+                                                                              Cancel </a>
+                                                                        </div>
+                                                                     </form>
+                                                                     <form [formGroup]="instDefaultEditform"
+                                                                        (ngSubmit)="instDefaultUpdateform()"
+                                                                        *ngIf="false">
+                                                                        <h3>Default Values</h3>
+                                                                        <input type="hidden" formControlName="inst_id"
+                                                                           [(ngModel)]="userinst_id">
+                                                                        <input type="hidden"
+                                                                           formControlName="updated_by_admin"
+                                                                           [(ngModel)]="inst_id">
+                                                                        <div class="border_instu">
+                                                                           <input type="hidden"
+                                                                              formControlName="inst_id"
+                                                                              [(ngModel)]="userinst_id">
+                                                                           <p>
+                                                                              <p-calendar [(ngModel)]="inst_ac_valid_to"
+                                                                                 [showIcon]="true"
+                                                                                 formControlName="inst_ac_valid_to"
+                                                                                 dateFormat="dd-mm-yy"
+                                                                                 [yearNavigator]="true"
+                                                                                 [monthNavigator]="true"
+                                                                                 yearRange="1970:9999"
+                                                                                 (onSelect)="selectDate($event)" >
+                                                                              </p-calendar>
+                                                                           </p>
+                                                                           <p><label>Access To Content Upload</label>
+                                                                              <span
+                                                                                 *ngIf="instituteEdit_3==false">{{inst_ac_contnt_upload==1?'Yes':'No'}}</span>
+                                                                              <span *ngIf="instituteEdit_3==true"><input
+                                                                                    type="radio"
+                                                                                    formControlName="inst_ac_contnt_upload"
+                                                                                    [(ngModel)]="inst_ac_contnt_upload"
+                                                                                    value="1">Yes
+                                                                                 <input type="radio"
+                                                                                    formControlName="inst_ac_contnt_upload"
+                                                                                    value="0">No</span>
+                                                                           </p>
+                                                                           <p *ngIf="false"><label>Ristricted Access </label>
+                                                                              <span
+                                                                                 *ngIf="instituteEdit_3==false">{{inst_ac_restricted_access==1?'Yes':'No'}}</span>
+                                                                              <span *ngIf="instituteEdit_3==true"><input
+                                                                                    type="radio"
+                                                                                    formControlName="inst_ac_restricted_access"
+                                                                                    [(ngModel)]="inst_ac_restricted_access"
+                                                                                    value="1">Yes
+                                                                                 <input type="radio"
+                                                                                    formControlName="inst_ac_restricted_access"
+                                                                                    value="0">No</span>
+                                                                           </p>
+                                                                           <p>
+                                                                              <label>Access To Test Create</label>
+                                                                              <span
+                                                                                 *ngIf="instituteEdit_3==false">{{inst_ac_testcr_access==1?'Yes':'No'}}</span>
+                                                                              <span *ngIf="instituteEdit_3==true"><input
+                                                                                    type="radio"
+                                                                                    formControlName="inst_ac_testcr_access"
+                                                                                    [(ngModel)]="inst_ac_testcr_access"
+                                                                                    value="1">Yes
+                                                                                 <input type="radio"
+                                                                                    formControlName="inst_ac_testcr_access"
+                                                                                    value="0">No</span>
+                                                                           </p>
+                                                                           <p>
+                                                                              <label>Access To Questions Upload</label>
+                                                                              <span
+                                                                                 *ngIf="instituteEdit_3==false">{{inst_ac_qns_upload==1?'Yes':'No'}}</span>
+                                                                              <span *ngIf="instituteEdit_3==true"><input
+                                                                                    type="radio"
+                                                                                    formControlName="inst_ac_qns_upload"
+                                                                                    [(ngModel)]="inst_ac_qns_upload"
+                                                                                    value="1">Yes
+                                                                                 <input type="radio"
+                                                                                    formControlName="inst_ac_qns_upload"
+                                                                                    value="0">No</span>
+                                                                           </p>
+                                                                           <p>
+                                                                              <label>Access To Discussion Create</label>
+                                                                              <span
+                                                                                 *ngIf="instituteEdit_3==false">{{inst_ac_disc_create==1?'Yes':'No'}}</span>
+                                                                              <span *ngIf="instituteEdit_3==true"><input
+                                                                                    type="radio"
+                                                                                    formControlName="inst_ac_disc_create"
+                                                                                    [(ngModel)]="inst_ac_disc_create"
+                                                                                    value="1">Yes
+                                                                                 <input type="radio"
+                                                                                    formControlName="inst_ac_disc_create"
+                                                                                    value="0">No</span>
+                                                                           </p>
+                                                                           <p>
+                                                                              <label>Access To Group Created</label>
+                                                                              <span
+                                                                                 *ngIf="instituteEdit_3==false">{{inst_ac_groupcr_access==1?'Yes':'No'}}</span>
+                                                                              <span *ngIf="instituteEdit_3==true"><input
+                                                                                    type="radio"
+                                                                                    formControlName="inst_ac_groupcr_access"
+                                                                                    [(ngModel)]="inst_ac_groupcr_access"
+                                                                                    value="1">Yes
+                                                                                 <input type="radio"
+                                                                                    formControlName="inst_ac_groupcr_access"
+                                                                                    value="0">No</span>
+                                                                           </p>
+                                                                           
+                                                                           
+                                                                        </div>
+                                                                        <div class="editinst text-right">
+                                                                           <button class="bt btn-success"
+                                                                              (click)="editInstituteDetails(3)"
+                                                                              *ngIf="instituteEdit_3==false">
+                                                                              Edit </button>
+                                                                           <button type="submit" class="bt btn-success"
+                                                                              *ngIf="instituteEdit_3==true">
+                                                                              Update </button>
+                                                                        </div>
+                                                                     </form>
+                                                                  </div>
+                                                               </div>
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </ng-template>
+                                                   <ng-template #other_content>
+                                                      <!--h2>Create Institue</h2-->
+                                                      <div class="all_info2 inst_bg">
+                                                         <div class="popup_dla2">
+                                                            <form [formGroup]="createInstitute"
+                                                               (ngSubmit)="createSuperadmin(createInstitute)">
+                                                               <input type="hidden" [(ngModel)]="inst_id"
+                                                                  formControlName="inst_created_by">
+                                                               <div class="row">
+                                                                  <div class="col-lg-6">
+                                                                     <div class="border_instu">
+                                                                           <p><span class="instutemused">School User of
+                                                                                 Institue </span>
+                                                                              <span class="instutemused_values">
+                                                                                 <input type="text" class="form-control"
+                                                                                    formControlName="inst_user_id"
+                                                                                    [(ngModel)]="user.user_id" readonly>
+                                                                              </span>
+                                                                           </p>
+                                                                        <p><span class="instutemused">Institute
+                                                                              Name </span>
+                                                                           <span class="instutemused_values">
+                                                                              <input type="text" class="form-control"
+                                                                                 formControlName="inst_name"
+                                                                                 [(ngModel)]="user.user_dname" readonly>
+                                                                           </span>
+                                                                        </p>
+                                                                        <p>
+                                                                           <span class="instutemused">Country
+                                                                           </span>
+                                                                           <span class="instutemused_values">
+                                                                              <!--input type="text" [ngModel]="countryIds" class="form-control" formControlName="country" [(ngModel)]="user.cntry_name" placeholder="Country"-->
+                                                                              <select class="form-control"
+                                                                                 formControlName="inst_country"
+                                                                                 (ngModelChange)="getStatesoncountry($event)">
+                                                                                 <!-- <option
+                                                                                 [ngValue]="user.cntry_id"
+                                                                                 [selected]="user.cntry_id">{{user.cntry_name}}</option> -->
+                                                                                 <option value="">Select Country
+                                                                                 </option>
+                                                                                 <option *ngFor="let cnt of country"
+                                                                                    value="{{cnt.cntry_id}}">
+                                                                                    {{cnt.cntry_name}}</option>
+                                                                              </select>
+                                                                           </span>
+                                                                        </p>
+                                                                        <p>
+                                                                           <span class="instutemused">State
+                                                                           </span>
+                                                                           <span class="instutemused_values">
+                                                                              <select class="form-control"
+                                                                                 formControlName="inst_state"
+                                                                                 (ngModelChange)="getCitiesonstates($event)">
+                                                                                 <!--option [ngModel]="stateIds" [ngValue]="user.state_id" [selected]="user.state_id">{{user.state_name}}</option-->
+                                                                                 <option value="">Select State</option>
+                                                                                 <option *ngFor="let state of states"
+                                                                                    value="{{state.state_id}}">
+                                                                                    {{state.state_name}}</option>
+                                                                              </select>
+                                                                           </span>
+                                                                        </p>
+                                                                        <p>
+                                                                           <span class="instutemused">City
+                                                                           </span>
+                                                                           <span class="instutemused_values">
+                                                                              <select class="form-control"
+                                                                                 formControlName="inst_city">
+                                                                                 <option value="">Select City</option>
+                                                                                 <option *ngFor="let city of cities"
+                                                                                    value="{{city.city_id}}">
+                                                                                    {{city.city_name}}</option>
+                                                                              </select>
+                                                                           </span>
+                                                                        </p>
+                                                                        <p><span class="instutemused add">Institute
+                                                                              Address </span>
+                                                                           <span class="instutemused_values">
+                                                                              <textarea class="form-control" rows="4"
+                                                                                 cols="50"
+                                                                                 formControlName="inst_address"
+                                                                                 [(ngModel)]="user.user_address"
+                                                                                 style="height: 100px;"></textarea>
+                                                                           </span>
+                                                                        </p>
+                                                                     </div>
+                                                                  </div>
+                                                                  <div class="col-lg-6">
+                                                                     <div class="border_instu">
+                                                                           <p>
+                                                                              <span class="instutemused">Institute Url</span>
+                                                                              <span class="instutemused_values">
+                                                                                 <input  type="text" class="form-control"
+                                                                                 formControlName="inst_url" [ngClass]="{ 'is-invalid': createInstituteFormSubmitted && createInstituteForm.inst_url.errors }">
+                                                                                 <span *ngIf="createInstituteFormSubmitted && createInstituteForm.inst_url.errors">
+                                                                                    <span *ngIf="createInstituteForm.inst_url.errors.required" class="text-danger"> Institute Url is required. </span>
+                                                                                 </span>
+                                                                              </span>
+
+                                                                           </p>
+
+                                                                           <p>
+                                                                              <span class="instutemused">Admin Url</span>
+                                                                              <span class="instutemused_values">
+                                                                                 <input type="text" class="form-control"
+                                                                                 formControlName="inst_admn_url" [ngClass]="{ 'is-invalid': createInstituteFormSubmitted && createInstituteForm.inst_admn_url.errors }">
+                                                                                 <span *ngIf="createInstituteFormSubmitted && createInstituteForm.inst_admn_url.errors" >
+                                                                                    <span *ngIf="createInstituteForm.inst_admn_url.errors.required" class="text-danger"> Admin Url is required. </span>
+                                                                                    </span>
+                                                                              </span>
+
+                                                                           </p>
+                                                                        <p><span class="instutemused">Institute Email
+                                                                           </span>
+                                                                           <span class="instutemused_values">
+                                                                              <input type="email" class="form-control"
+                                                                                 formControlName="inst_email"
+                                                                                 [(ngModel)]="user.user_email">
+                                                                           </span>
+                                                                        </p>
+                                                                        <p><span class="instutemused">Institute
+                                                                              Phone-1 </span>
+                                                                           <span class="instutemused_values">
+                                                                              <input type="text" class="form-control"
+                                                                                 formControlName="inst_phone"
+                                                                                 [(ngModel)]="user.user_phone">
+                                                                           </span>
+                                                                        </p>
+                                                                        <p><span class="instutemused">Institute
+                                                                              Phone-2 </span>
+                                                                           <span class="instutemused_values">
+                                                                              <input type="text" class="form-control"
+                                                                                 formControlName="inst_alt_phone"
+                                                                                 [(ngModel)]="user.user_alt_phone">
+                                                                           </span>
+                                                                        </p>
+                                                                        <p><span class="instutemused">Institute Fax
+                                                                           </span>
+                                                                           <span class="instutemused_values">
+                                                                              <input type="text" class="form-control"
+                                                                                 formControlName="inst_fax"
+                                                                                 [(ngModel)]="user.user_fax">
+                                                                           </span>
+                                                                        </p>
+                                                                        <p><span class="instutemused">Contact person
+                                                                           </span>
+                                                                           <span class="instutemused_values">
+                                                                              <input type="text" class="form-control"
+                                                                                 formControlName="inst_contact"
+                                                                                 [(ngModel)]="user.user_dname">
+                                                                           </span>
+                                                                        </p>
+                                                                     </div>
+                                                                  </div>
+                                                                  <div class="clearfix"></div>
+                                                                  <br>
+                                                                  <div class="col-lg-6">
+                                                                     <div class="border_instu">
+                                                                        <p><span class="instutemused">Instute have valid
+                                                                              access</span>
+                                                                           <span class="instutemused_values">
+                                                                              <!-- <input type="text" class="form-control" > -->
+                                                                              <input type="radio"
+                                                                                 formControlName="is_inst_validaccess"
+                                                                                 value="1">Yes
+                                                                              <input type="radio"
+                                                                                 formControlName="is_inst_validaccess"
+                                                                                 value="0">No
+                                                                           </span>
+                                                                        </p>
+                                                                        <p><span class="instutemused">Access From
+                                                                              Date</span>
+                                                                           <span class="instutemused_values">
+                                                                              <p-calendar
+                                                                                 [(ngModel)]="inst_ac_valid_from"
+                                                                                 [showIcon]="true"
+                                                                                 formControlName="instaccess_from_date"
+                                                                                 dateFormat="dd-mm-yy"
+                                                                                 [yearNavigator]="true"
+                                                                                 [monthNavigator]="true"
+                                                                                 yearRange="1970:9999"
+                                                                                 (onSelect)="selectDate($event,'from')" >
+                                                                              </p-calendar>
+                                                                           </span>
+                                                                        </p>
+                                                                        <p><span class="instutemused">Access To
+                                                                              Date</span>
+                                                                           <span class="instutemused_values">
+                                                                              <p-calendar [(ngModel)]="inst_ac_valid_to"
+                                                                                 [showIcon]="true"
+                                                                                 formControlName="instaccess_to_date"
+                                                                                 dateFormat="dd-mm-yy"
+                                                                                 [yearNavigator]="true"
+                                                                                 [monthNavigator]="true"
+                                                                                 yearRange="1970:9999"
+                                                                                 (onSelect)="selectDate($event,'to')">
+                                                                              </p-calendar>
+                                                                           </span>
+                                                                        </p>
+                                                                        <!-- <p><span class="instutemused">Access Updated by Admin</span>
+                                                                        <span class="instutemused_values">
+                                                                        <input type="text" class="form-control"   readonly>
+                                                                        </span>
+                                                                     </p> -->
+                                                                        <!-- <p><span class="instutemused">Access Update Date</span>
+                                                                        <span class="instutemused_values">
+                                                                        <input type="text"                class="form-control"
+                                                                           readonly>
+                                                                        </span>
+                                                                     </p> -->
+                                                                     </div>
+                                                                  </div>
+                                                                  <div class="col-lg-6" *ngIf="false">
+                                                                     <div class="border_instu">
+                                                                        <p><span class="instutemused">Access From
+                                                                              Date</span>
+                                                                           <span class="instutemused_values">
+                                                                              <p-calendar
+                                                                                 [(ngModel)]="inst_ac_valid_from"
+                                                                                 [showIcon]="true"
+                                                                                 formControlName="inst_ac_valid_from"
+                                                                                 dateFormat="dd-mm-yy"
+                                                                                 [yearNavigator]="true"
+                                                                                 [monthNavigator]="true"
+                                                                                 yearRange="1970:9999"
+                                                                                 (onSelect)="selectDate($event,'from')">
+                                                                              </p-calendar>
+                                                                           </span>
+                                                                           <span
+                                                                              style="width:92%; float:right; text-align:center;color:#a94442;"
+                                                                              *ngIf="inst_ac_valid_from === undefined && institute_date_invalid">This
+                                                                              field is required*</span>
+                                                                        </p>
+                                                                        <p><span class="instutemused">Access To
+                                                                              Date</span>
+                                                                           <span class="instutemused_values">
+                                                                              <p-calendar [(ngModel)]="inst_ac_valid_to"
+                                                                                 [showIcon]="true"
+                                                                                 formControlName="inst_ac_valid_to"
+                                                                                 dateFormat="dd-mm-yy"
+                                                                                 [yearNavigator]="true"
+                                                                                 [monthNavigator]="true"
+                                                                                 yearRange="1970:9999"
+                                                                                 (onSelect)="selectDate($event,'to')">
+                                                                              </p-calendar>
+                                                                           </span>
+                                                                           <span
+                                                                              style="width:92%; float:right; text-align:center; color:#a94442;"
+                                                                              *ngIf="inst_ac_valid_to === undefined && institute_date_invalid">This
+                                                                              field is required*</span>
+                                                                        </p>
+                                                                        <p><label>Access To Content Upload</label>
+                                                                           <input type="radio"
+                                                                              formControlName="inst_ac_contnt_upload"
+                                                                              value="1">Yes
+                                                                           <input type="radio"
+                                                                              formControlName="inst_ac_contnt_upload"
+                                                                              value="0">No
+                                                                        </p>
+                                                                        <p><label>Ristricted Access </label>
+                                                                           <input type="radio"
+                                                                              formControlName="inst_ac_restricted_access"
+                                                                              value="1">Yes
+                                                                           <input type="radio"
+                                                                              formControlName="inst_ac_restricted_access"
+                                                                              value="0">No
+                                                                        </p>
+                                                                        <p>
+                                                                           <label>Access To Test Create</label>
+                                                                           <input type="radio"
+                                                                              formControlName="inst_ac_testcr_access"
+                                                                              value="1">Yes
+                                                                           <input type="radio"
+                                                                              formControlName="inst_ac_testcr_access"
+                                                                              value="0">No
+                                                                        </p>
+                                                                        <p>
+                                                                           <label>Access To Group Created</label>
+                                                                           <input type="radio"
+                                                                              formControlName="inst_ac_groupcr_access"
+                                                                              value="1">Yes
+                                                                           <input type="radio"
+                                                                              formControlName="inst_ac_groupcr_access"
+                                                                              value="0">No
+                                                                        </p>
+                                                                        <p>
+                                                                           <label>Access To Questions Upload</label>
+                                                                           <input type="radio"
+                                                                              formControlName="inst_ac_qns_upload"
+                                                                              value="1">Yes
+                                                                           <input type="radio"
+                                                                              formControlName="inst_ac_qns_upload"
+                                                                              value="0">No
+                                                                        </p>
+                                                                        <p>
+                                                                           <label>Access To Discussion Create</label>
+
+                                                                           <input type="radio"
+                                                                              formControlName="inst_ac_disc_create"
+                                                                              value="1">Yes
+                                                                           <input type="radio"
+                                                                              formControlName="inst_ac_disc_create"
+                                                                              value="0">No
+                                                                        </p>
+
+                                                                     </div>
+                                                                  </div>
+                                                                  <div class="col-lg-6 ">
+                                                                     <div class="border_instu">
+                                                                        <p><span class="instutemused">Super Admin
+                                                                              Name</span>
+                                                                           <span class="instutemused_values">
+                                                                              <input type="text" class="form-control"
+                                                                                 formControlName="inst_superadmn_nam">
+                                                                           </span>
+                                                                        </p>
+                                                                        <p><span class="instutemused">Super Admin
+                                                                              Email</span>
+                                                                           <span class="instutemused_values">
+                                                                              <input type="text" class="form-control"
+                                                                                 formControlName="inst_superadmn_eml"
+                                                                                 (keyup)="CheckAdminAvailability($event.target.value,'ac_user_email')">
+                                                                           </span>
+                                                                        </p>
+                                                                        <span *ngIf="instAdminEmail==true"
+                                                                           class="text-danger">{{instAdminEmailErrText}}</span>
+                                                                        <span *ngIf="instAdminEmail==false">
+                                                                           <div
+                                                                              *ngIf="createInstitute.controls.inst_superadmn_eml.hasError('pattern')"
+                                                                              class="text-danger " style="color:red;">
+                                                                              Enter valid email</div>
+                                                                        </span>
+                                                                     </div>
+                                                                     <div class="editinst text-right">
+                                                                        <button type="submit" class="bt btn-success">
+                                                                           Create </button>
+                                                                     </div>
+                                                                  </div>
+                                                               </div>
+                                                            </form>
+                                                         </div>
+                                                      </div>
+                                                   </ng-template>
+                                                </p-accordionTab>
+                                             </p-accordion>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <!--====My-profile start====-->
+                     </div>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </section>
+   </div>
+</div>
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
+<p-toast [style]="{marginTop: '80px'}" position="top-left" key="tl"></p-toast>
+<p-toast [style]="{marginTop: '80px'}" position="top-center" key="tc"></p-toast>
+<p-toast [style]="{marginTop: '80px'}" styleClass="custom-toast" key="custom" position="bottom-center"></p-toast>
+<p-toast position="center" key="c" (onClose)="onReject()" [modal]="true" [baseZIndex]="5000">
+   <ng-template let-message pTemplate="message">
+      <div style="text-align: center">
+         <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i>
+         <h3>{{message.summary}}</h3>
+         <p>{{message.detail}}</p>
+      </div>
+      <div class="ui-g ui-fluid">
+         <div class="ui-g-6">
+            <button type="button" pButton (click)="onConfirm()" label="Yes" class="ui-button-success"></button>
+         </div>
+         <div class="ui-g-6">
+            <button type="button" pButton (click)="onReject()" label="No" class="ui-button-secondary"></button>
+         </div>
+      </div>
+   </ng-template>
+</p-toast>

@@ -1,0 +1,374 @@
+<!--Delete  Modal start -->
+<div class="modal fade" id="delete" role="dialog">
+    <div class="modal-dialog vry_modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+            </div>
+            <div class="modal-body modal_text">
+                <p>Do you really want to Delete these records? This process cannot be undone</p>
+            </div>
+            <div class="modal-footer modal_foot">
+                <button type="submit" class="bt btn-warning">Delete</button>
+                <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" #blockModel id="contentblock" role="dialog">
+    <div class="modal-dialog vry_modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+            </div>
+            <div class="modal-body modal_text">                                                                                
+                <p *ngIf="is_content_blocked==0">Do you really want to block this content?</p>
+                <p *ngIf="is_content_blocked==1">Blocked with reason "{{reasonsblvalue}}". Do you really want to unblock this content?</p>
+            </div>
+            <div *ngIf="is_content_blocked==0" style="text-align: center;">
+                <select [(ngModel)]="block_reason">
+                    <option value="" disabled>Select Reason</option>
+                    <option *ngFor="let rsn of reasons" value="{{rsn.reasontyp_id}}">{{rsn.block_reason}}</option>
+                </select>
+            </div>
+            <ng-container *ngIf="is_content_blocked==0" >
+                <div *ngIf="block_reason==''&&blockSubmit" style="text-align: center;color: red ">
+                Please select a reason
+                </div>
+            </ng-container>
+            <div class="modal-footer modal_foot">                                                                                
+                <button type="submit" class="bt btn-warning"  (click)="is_ContentVerifications(is_content_blocked,'is_content_blocked','content_blocked_by','content_blocked_date',block_reason,'bl_reasontyp_id ')">{{blockBtn}}</button>
+                <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" #deleteModel id="contentDelete" role="dialog">
+    <div class="modal-dialog vry_modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+            </div>
+            <div class="modal-body modal_text">
+                    <p *ngIf="deleted_by_admin==null">Do you really want to delete this content?{{is_content_deleted_by_owner}}   sss {{deleted_by_admin}} </p>
+                    <p *ngIf="deleted_by_admin !=null">Deleted with reason "{{reasonsdlvalue}}". Do you really want to activate this content?</p>
+            </div>
+            <div *ngIf="deleted_by_admin==null" style="text-align: center;">
+                <select [(ngModel)]="delete_reason">
+                    <option value="" disabled>Select Reason</option>
+                    <option *ngFor="let rsn of reasons" value="{{rsn.reasontyp_id}}">{{rsn.block_reason}}</option>
+                </select>
+            </div>
+            <ng-container *ngIf="deleted_by_admin==null" >
+                <div *ngIf="delete_reason==''&&deleteSubmit" style="text-align: center;color: red">
+                Please select a reason
+                </div>
+            </ng-container>
+            <div class="modal-footer modal_foot">                                                                                
+                <button type="submit" class="bt btn-warning" (click)="deleteContent()">{{deleteBtn}}</button>
+                <a  class="bt btn-info" data-dismiss="modal">Close</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Delete Modal end-->
+
+<!--====Question upload page start====-->
+<app-sdashheader></app-sdashheader>
+<section class="question_search question_sec selt_ht scroll-yes">
+
+    <div class="col-md-12">
+        <div class="col-md-offset-1 col-md-10">
+            <div class="all_brd">
+                <div class="question_title" id="pers_inf">
+                    <h3>{{content_title}}</h3>
+                </div>
+
+                <div class="content_sub">
+                    <div class="row pd-10">
+                        <!--left--start--bar-->
+                        <div class="col-md-8">
+                                {{mediatyp_extnsn}} {{mediatypes_id}} {{mediatyp_id}}
+                            <div class="qution_tab">
+                                <div class="pdf_view" *ngIf="mediatypes_id==4">
+                                    <!-- <iframe  is="x-frame-bypass" [src]='mediaFullpath' id="iframe" width="100%" height="360" frameborder="0"
+                                    webkitallowfullscreen mozallowfullscreen allowfullscreen oncontextmenu="return false">
+                            </iframe>    -->
+                            <!-- <iframe class="doc" width="100%" height="560" frameborder="0"
+                            webkitallowfullscreen mozallowfullscreen allowfullscreen oncontextmenu="return false" [src]='mediaFullpath'></iframe> -->
+                                <img style="width: 100%;height: 100%;" [src]="url | safeurl" (contextmenu)="disableContextmenu($event)" class="img-responsive" alt="{{content_path}}">
+                                <!-- <img src="http://157.230.1.22:83/assets/User/profilePics/user_69/adult-attractive-beard-1080243.jpg" (contextmenu)="disableContextmenu($event)" class="img-responsive" alt="{{content_path}}"> -->
+                                <!-- <img src="https://www.gemstudent.com/gemsadmin/assets/contentFiles/{{content_path}}" (contextmenu)="disableContextmenu($event)" class="img-responsive" alt="{{content_path}}"> -->
+                              </div>
+                              <div class="pdf_view" *ngIf="mediatypes_id==1">                                    
+                                    <iframe [src]='mediaFullpath' id="iframe" width="100%" height="560" frameborder="0"
+                                        webkitallowfullscreen mozallowfullscreen allowfullscreen oncontextmenu="return false">
+                                </iframe>   
+                                    <!-- <iframe *ngIf="mediatype_id==8" src="../" id="iframe" width="640" height="360" frameborder="0"
+                                        webkitallowfullscreen mozallowfullscreen allowfullscreen oncontextmenu="return false">
+                                    </iframe>                                     
+                                        <<object [data]="mediaFullpath" width="300" height="200">
+                                            Not supported
+                                            </object>  -->
+                                </div>
+                                <div class="pdf_view" *ngIf="mediatypes_id==3">
+                                        <!-- <iframe [src]='mediaFullpath' id="iframe" width="100%" height="360" frameborder="0"
+                                        webkitallowfullscreen mozallowfullscreen allowfullscreen oncontextmenu="return false">
+                                    </iframe>-->
+                                    <video controls style="width: 100%;">
+                                        <source [src]="mediaFullpath" type="video/mp4">
+                                      </video>
+                                </div>
+                                <div class="pdf_view" *ngIf="mediatypes_id==2">
+                                        <!-- <iframe [src]='mediaFullpath' id="iframe" width="100%" height="360" frameborder="0"
+                                        webkitallowfullscreen mozallowfullscreen allowfullscreen oncontextmenu="return false">
+                                    </iframe> -->
+                                    <audio controls style="width: 100%;">
+                                        <source [src]='mediaFullpath'  type="audio/ogg">
+                                      </audio>                                                 
+                                </div>
+                            <!-- <div id = "viewer">
+                                <div id = "titlebar">
+                                    <div id = "documentName"></div>
+                                    <div id = "titlebarRight">
+                                        <button id = "presentation" class = "toolbarButton presentation" title = "Presentation"></button>
+                                        <button id = "fullscreen" class = "toolbarButton fullscreen" title = "Fullscreen"></button>
+                                        <button id = "download" class = "toolbarButton download" title = "Download"></button>
+                                    </div>
+                                </div>
+                                <div id = "toolbarContainer">
+                                    <div id = "toolbar">
+                                        <div id = "toolbarLeft">
+                                            <div id = "navButtons" class = "splitToolbarButton">
+                                                <button id = "previous" class = "toolbarButton pageUp" title = "Previous Page"></button>
+                                                <div class="splitToolbarButtonSeparator"></div>
+                                                <button id = "next" class = "toolbarButton pageDown" title = "Next Page"></button>
+                                            </div>
+                                            <label id = "pageNumberLabel" class = "toolbarLabel" for = "pageNumber">Page:</label>
+                                            <input type = "number" id = "pageNumber" class = "toolbarField pageNumber"/>
+                                            <span id = "numPages" class = "toolbarLabel"></span>
+                                        </div>
+                                        <div id = "toolbarMiddleContainer" class = "outerCenter">
+                                            <div id = "toolbarMiddle" class = "innerCenter">
+                                                <div id = 'zoomButtons' class = "splitToolbarButton">
+                                                    <button id = "zoomOut" class = "toolbarButton zoomOut" title = "Zoom Out"></button>
+                                                    <div class="splitToolbarButtonSeparator"></div>
+                                                    <button id = "zoomIn" class = "toolbarButton zoomIn" title = "Zoom In"></button>
+                                                </div>
+                                                <span id="scaleSelectContainer" class="dropdownToolbarButton">
+                                                    <select id="scaleSelect" title="Zoom" oncontextmenu="return false;">
+                                                        <option id="pageAutoOption" value="auto" selected>Automatic</option>
+                                                        <option id="pageActualOption" value="page-actual">Actual Size</option>
+                                                        <option id="pageWidthOption" value="page-width">Full Width</option>
+                                                        <option id="customScaleOption" value="custom"> </option>
+                                                        <option value="0.5">50%</option>
+                                                        <option value="0.75">75%</option>
+                                                        <option value="1">100%</option>
+                                                        <option value="1.25">125%</option>
+                                                        <option value="1.5">150%</option>
+                                                        <option value="2">200%</option>
+                                                    </select>
+                                                </span>
+                                                <div id = "sliderContainer">
+                                                    <div id = "slider"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id = "toolbarRight">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id = "canvasContainer">
+                                    <div id = "canvas"></div>
+                                </div>
+                                <div id = "overlayNavigator">
+                                    <div id = "previousPage"></div>
+                                    <div id = "nextPage"></div>
+                                </div>
+                                <div id = "overlayCloseButton">
+                                &#10006;
+                                </div>
+                                <div id = "dialogOverlay"></div>
+                                <div id = "blanked"></div>
+                            </div> -->
+                                <!-- <div class="pdf_view">
+                                <iframe id="iframeodt" onmousedown="disableRightclick(); return false;" src="viewerjs/#../../assets/contentFiles/php_tutorial.pdf" width="700" height="500" allowfullscreen="" webkitallowfullscreen=""></iframe>
+                            </div> -->
+                                <div class="coment-content">
+                                    <div class="comment_npt">
+                                        <h3>Write a Review</h3>
+                                        <div class="form-group">
+                                            <textarea rows="6"></textarea>
+                                        </div>
+                                        <button type="submit" class="bt btn-danger pull-right">Post Review</button>
+                                    </div>
+                                    <div class="clearfix"></div>
+
+                                    <div class="comm-text">
+                                        <h3>Reviews</h3>
+                                        <h4>02Reviews</h4>
+                                    </div>
+                                    <div class="inbox-avatar">
+                                        <img src="../../assets/img/avatar.png" class="hidden-xs hidden-sm" alt="">
+                                        <div class="inbox-avatar-text">
+                                            <div class="avatar-name">Amgoth Sandeep</div>
+                                            <small>April 20,2018 at 11:36 AM</small>
+                                        </div>
+                                        <div class="m-l-58">
+                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since</p>
+                                            <!--replay css start-->
+                                            <div class="reply">
+                                                <button type="button" class="repl-btn" data-toggle="collapse" data-target="#reply">
+                                                    <i class="fa fa-mail-reply"></i> Reply
+                                                </button>
+                                            </div>
+                                            <!--replay css End-->
+
+                                            <!--Report & delete css Start-->
+                                            <div class="del_rep">
+                                                <div data-toggle="modal" class="delt-color" data-target="#delete">
+                                                    <button type="submit">
+                                                        <i class="fa fa-trash-o"></i> Delete</button>
+                                                </div>
+                                                <div class="rpt-color">
+                                                    <button type="button" class="repl-btn" data-toggle="collapse" data-target="#report"><i class="fa fa-file-o"></i> Report
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <!--Report & delete css end-->
+                                            <div class="clearfix"></div>
+
+                                            <!--replay collapse  css start-->
+                                            <div id="reply" class="collapse">
+                                                <div class="re-drop">
+                                                    <div class="comment_npt">
+                                                        <h3>Write a Review</h3>
+                                                        <div class="form-group">
+                                                            <textarea rows="6"></textarea>
+                                                        </div>
+                                                        <button type="submit" class="bt btn-danger pull-right">Post Review
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--replay collapse  css End-->
+
+                                            <!--Report collapse  css start-->
+                                            <div id="report" class="collapse">
+                                                <div class="re-drop">
+                                                    <div class="comment_npt">
+                                                        <h3>Write a Report</h3>
+                                                        <div class="form-group">
+                                                            <textarea rows="6"></textarea>
+                                                        </div>
+                                                        <button type="submit" class="bt btn-danger pull-right">Post Report
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--Report collapse  css End-->
+                                        </div>
+                                    </div>
+                                    <!--first reply end-->
+                                </div>
+                            </div>
+                        </div>
+                        <!--left--end--bar-->
+
+                        <!--right--start--bar-->
+                        <div class="col-md-4">
+                            <div class="pdf_text">
+                                <div class="top_logo">
+                                    <img src="../../assets/img/logo.png" alt="">                                    
+                                </div>
+                                <div class="user_dtl">
+                                    <ul>
+                                        <li><i class="fa fa-inbox"></i> <b>Title :</b> {{content_title}}</li>
+                                        <li><i class="fa fa-file-text-o"></i> <b>Discrption :</b> {{content_desc}}</li>                                        
+                                        <li><i class="fa fa-send"></i> <b>Submitted by :</b> {{content_owner_admin}}{{content_owner_user}}</li>
+                                        <li><i class="fa fa-calendar"></i> <b>Date :</b> {{content_created_date}}</li>
+                                        <li><i class="fa fa-graduation-cap"></i> <b>Board :</b> {{course_fname}}</li>
+                                        <li><i class="fa fa-users"></i> <b>Class :</b> {{class_fname}}</li>
+                                        <li><i class="fa fa-book"></i> <b>Subject :</b> {{subject_fname}}</li>
+                                        <li><i class="fa fa-book"></i> <b>Lessons :</b> {{lesson_name}}</li>                      
+                                        
+                                    </ul>
+                                    <div class="">                                        
+                                        <!-- <button type="submit" class="btn btn-defoult">Manage</button> -->
+                                        <button class="btn btn-default"><a routerLink='/contentupload/{{selectedcontent_id}}' [queryParams]="{debug: true}"  routerActive='active' target="__blank"><i class="ti-user"></i>Manage</a></button>
+                                        <button type="submit" class="btn btn-{{blockCls}}" (click)="getBlockReasons(1)"  data-toggle="modal" class="delt-color" data-target="#contentblock">{{blockBtn}}</button>
+                                        <button  class="btn btn-{{deleteCls}}" data-toggle="modal" class="delt-color" data-target="#contentDelete" (click)="getBlockReasons(2)">{{deleteBtn}}</button>
+                                    </div>
+                                    <div class="panel-body">
+                                        <!-- <div class="table-title">
+                                   <h3>Earned</h3>
+                                 </div>-->
+                                        <div class="table-responsive clasify_br">
+                                            <!-- <p class="cl-con">Classificaiton Count : <span>3025</span> </p> -->
+                                            <!-- <table class="table" border="1">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Views</th>
+                                                        <th>Refers</th>
+                                                        <th>Bookmarks</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="count-number">30</td>
+                                                        <td class="count-number">50</td>
+                                                        <td class="count-number">100</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table> -->
+                                        </div>
+                                        <div class="table-responsive clasify_br">
+                                            <!-- <table class="table" border="1">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Ratings</th>
+                                                        <th>Avg.Rating</th>
+                                                        <th>Reviews</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="count-number">5650</td>
+                                                        <td class="count-number">50</td>
+                                                        <td class="count-number">100</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table> -->
+                                        </div>
+                                        <div class="comment_npt">
+                                            <h3><strong>Avg.Rating</strong> All Time</h3>
+                                            <div class="review-block-rate">
+                                                <span><strong class="font_25">3.5</strong></span>
+                                                <button type="button" class="btn btn-success btn-xs" aria-label="Left Align">
+                                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                                </button>
+                                                <button type="button" class="btn btn-success btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                                </button>
+                                                <button type="button" class="btn btn-success btn-xs" aria-label="Left Align"> <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                                </button>
+                                                <button type="button" class="btn btn-default btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                                </button>
+                                                <button type="button" class="btn btn-default btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--right--End--bar-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--====top profile background End====-->

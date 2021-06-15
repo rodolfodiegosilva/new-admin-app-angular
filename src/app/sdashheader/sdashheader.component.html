@@ -1,0 +1,94 @@
+<!--====top nav bar End====-->
+<nav class="navbar navbar-fixed-top">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <i class="material-icons">apps</i>
+        </button>
+        <a class="navbar-brand" routerLink='/' routerActive='active'>
+            <img class="main-logo" src="../../assets/superadmin/gems-img/logo.png" id="bg" alt="">
+        </a>
+    </div>
+    <div class="nav-container">
+        <!-- /.navbar-header -->
+        <ul class="nav navbar-nav hidden-xs">
+            <li><a id="fullscreen" href="javascript:void(0)"><i class="material-icons">fullscreen</i> </a></li>
+            <!--<li><a id="menu-toggle" href="#"><i class="material-icons">apps</i></a></li>-->
+            <!-- /.Sidebar menu toggle icon -->
+        </ul>
+
+        <!--====alarm-dropdowns start====-->
+        <ul class="nav navbar-top-links navbar-right dis-flex">
+            <li class="mar-custom">{{profileName}}</li>
+            <!--====profile-dropdowns start====-->
+            <li class="dropdown">
+                <a class="btn btn-secondary dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="material-icons"><img [src]="profileImage" width="28" height="28"></i>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li><a routerLink='/adminprofile' routerActive='active' target="_blank"><i class="ti-user"></i>&nbsp;
+                            Profile</a></li>
+
+                    <li (click)="profileLogout()"><a><i class="ti-layout-sidebar-left"></i>&nbsp; Logout</a></li>
+                </ul>
+            </li>
+            <!--====alarm-dropdown start====-->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="material-icons alerticon">add_alert</i>
+                    <div class="notify"> <span class="heartbit"></span>
+                        <span class="label label-danger">9</span>
+                    </div>
+                </a>
+                <ul class="dropdown-menu dropdown-alerts">
+                    <!--<li class="ui_popover_tooltip"></li>-->
+                    <li class="rad-dropmenu-header"><a href="#">Your Notifications</a></li>
+                    <li>
+                        <a class="rad-content" href="#">
+                            <div class="pull-left"><i class="material-icons">add_alert</i>
+                            </div>
+                            <div class="rad-notification-body">
+                                <div class="lg-text">alarm-1</div>
+                                <div class="sm-text">time</div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="rad-content" href="#">
+                            <div class="pull-left"><i class="material-icons">add_alert</i>
+                            </div>
+                            <div class="rad-notification-body">
+                                <div class="lg-text">alarm-1</div>
+                                <div class="sm-text">time</div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="rad-content" href="#">
+                            <div class="pull-left"><i class="material-icons">add_alert</i>
+                            </div>
+                            <div class="rad-notification-body">
+                                <div class="lg-text">alarm-1</div>
+                                <div class="sm-text">time</div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="rad-content" href="#">
+                            <div class="pull-left"><i class="material-icons">add_alert</i>
+                            </div>
+                            <div class="rad-notification-body">
+                                <div class="lg-text">alarm-1</div>
+                                <div class="sm-text">time</div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="rad-dropmenu-footer"><a href="#">See all notifications</a></li>
+                </ul>
+            </li>
+            <!--====alarm-dropdownsEnd====-->
+
+        </ul>
+    </div>
+</nav>
+<!--====top nav bar End====-->

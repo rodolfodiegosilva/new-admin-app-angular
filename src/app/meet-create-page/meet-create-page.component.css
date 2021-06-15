@@ -1,0 +1,28 @@
+.table-responsive{
+    overflow-x: hidden;
+}
+.dropdown-menu {
+    overflow-y: auto !important;
+    max-height: 261px !important;
+    overflow-x: hidden !important;
+    width: 100% !important;
+}
+.dropdown>ul>li:nth-of-type(odd) {
+    background-color: #d9edf7 !important;
+}
+
+.test1_createmeet{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}
+
+.ng-select .ng-select-container .ng-value-container {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding-left: 10px;
+}
