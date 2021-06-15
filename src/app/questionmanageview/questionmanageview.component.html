@@ -1,0 +1,778 @@
+ 
+		 	<!--verified  Modal start -->
+       <div class="modal fade" id="verified" role="dialog">
+          <div class="modal-dialog vry_modal">
+             <div class="modal-content">
+              <div class="modal-header">
+                       <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+                     </div>
+                    <div class="modal-body modal_text">
+                        <p>Do you really want to verify these records? This process cannot be undone</p>
+                    </div>
+                     <div class="modal-footer modal_foot">
+                      <button type="submit" class="bt btn-warning">verify</button>
+                        <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+           </div>
+       </div>
+  <!-- verified Modal end-->
+        
+        <!--Blocked  Modal start -->
+        <div class="modal fade" id="block" role="dialog">
+          <div class="modal-dialog vry_modal">
+             <div class="modal-content">
+              <div class="modal-header">
+                       <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+                     </div>
+                    <div class="modal-body modal_text">
+                        <p>Do you really want to Block these records? This process cannot be undone</p>
+                    </div>
+                     <div class="modal-footer modal_foot">
+                      <button type="submit" class="bt btn-warning">Block</button>
+                        <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+           </div>
+       </div>
+  <!-- Blocked Modal end-->
+        
+        <!--Delete  Modal start -->
+        <div class="modal fade" id="delete" role="dialog">
+          <div class="modal-dialog vry_modal">
+             <div class="modal-content">
+              <div class="modal-header">
+                       <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+                     </div>
+                    <div class="modal-body modal_text">
+                        <p>Do you really want to Delete these records? This process cannot be undone</p>
+                    </div>
+                     <div class="modal-footer modal_foot">
+                      <button type="submit" class="bt btn-warning">Delete</button>
+                        <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+           </div>
+       </div>
+  <!-- Delete Modal end-->
+        
+        
+
+<app-sdashheader></app-sdashheader>
+  <div class="leftsidemenus">
+     <app-sdahshmenu></app-sdahshmenu>
+  </div>
+  <div id="page-wrapper">
+     <div class="content">
+
+  <!--====Question upload page start====-->
+  <section class="question_search question_sec selt_ht scroll-yes">
+      <div class="container-fluid">
+               <div class="col-md-12"> 
+                    <div class="all_brd">
+                         <div class="question_title" id="pers_inf">
+                            <h3>Question View & Manage Class</h3>
+                          </div>
+                          <div class="top_btn">
+                                <button type="submit" class="bt btn-info">verify</button>
+                                <button type="submit" class="bt btn-warning">Block</button>
+                                <button type="submit" class="bt btn-danger">Delete</button>
+                              </div>
+                         <div class="content_sub"> 
+                           <div class="all_mian">     	 
+                              <div class="table-responsive check_all">
+                                 <table class="table table-bordered">
+                                         <thead>
+                                             <tr>
+                                                 <th> <input type="checkbox" id="" name="checkbox" >
+                                                    Lable</th>
+                                                 <th>ID</th>
+                                                 <th>Country</th>
+                                                 <th>Course</th>
+                                                 <th>Class</th>
+                                                 <th>Subject</th>
+                                                 <th>Lesson/Topics</th>
+                                                 <th>Qustion/Type</th>
+                                                 <th>Owner</th>
+                                                 <th>Created/Date</th>
+                                                 <th>Verified</th>
+                                                 <th>Verify/Date</th>
+                                                 <th>Verify/By</th>
+                                                 <th>Blocked</th>
+                                                 <th>Blocked/Date</th>
+                                                 <th>Delete</th>
+                                                 <th>Delete/Date</th>
+                                                 <th>Grade</th>
+                                                 <th>Avg/Rating</th>
+                                                 <th>Marks</th>
+                                                 <th>Nagt.Marks</th>
+                                                 <th>Date/Time</th>
+                                             </tr>
+                                         </thead>
+                                        <tbody>
+                                             <tr class="success"> 
+                                               <td>Default/Value</td>
+                                                 <td>2531</td>
+                                                 <td>
+                                                        <p-multiSelect [options]="cities1" [(ngModel)]="selectedCities1"></p-multiSelect>
+
+                                             </td>
+                                                 <td>
+                                                        <p-multiSelect [options]="cities1" [(ngModel)]="selectedCities1"></p-multiSelect>
+
+                                             </td>
+                                                   <td>
+                                                        <p-multiSelect [options]="cities1" [(ngModel)]="selectedCities1"></p-multiSelect>
+
+                                             </td>
+                                                 <td>
+                                                        <p-multiSelect [options]="cities1" [(ngModel)]="selectedCities1"></p-multiSelect>
+
+                                             </td>
+                                                  <td>
+                                                        <p-multiSelect [options]="cities1" [(ngModel)]="selectedCities1"></p-multiSelect>
+
+                                             </td>
+                                                  <td>
+                                                        <p-multiSelect [options]="cities1" [(ngModel)]="selectedCities1"></p-multiSelect>
+
+                                             </td>
+                                                  <td>
+                                                        <p-multiSelect [options]="cities1" [(ngModel)]="selectedCities1"></p-multiSelect>
+
+                                             </td>
+                                                 <td class="date_pic">
+                                                 <input class="e2" id="" name="e2">
+                                                 </td>
+                                                 <td>
+                                                        <p-multiSelect [options]="cities1" [(ngModel)]="selectedCities1"></p-multiSelect>
+
+                                             </td>
+                                                 <td><input class="e2" name="e2"></td>
+                                                  <td>
+                                                        <p-multiSelect [options]="cities1" [(ngModel)]="selectedCities1"></p-multiSelect>
+
+                                             </td>
+                                                  <td>
+                                                        <p-multiSelect [options]="cities1" [(ngModel)]="selectedCities1"></p-multiSelect>
+
+                                             </td>
+                                                 <td><input class="e2" name="e2"></td>
+                                                  <td>
+                                                        <p-multiSelect [options]="cities1" [(ngModel)]="selectedCities1"></p-multiSelect>
+
+                                             </td>
+                                                 <td><input class="e2" name="e2"></td>
+                                                  <td>
+                                                        <p-multiSelect [options]="cities1" [(ngModel)]="selectedCities1"></p-multiSelect>
+
+                                             </td>
+                                                 <td>
+                                                        <p-multiSelect [options]="cities1" [(ngModel)]="selectedCities1"></p-multiSelect>
+
+                                             </td>
+                                                  <td>
+                                                        <p-multiSelect [options]="cities1" [(ngModel)]="selectedCities1"></p-multiSelect>
+
+                                             </td>
+                                                 <td>
+                                                        <p-multiSelect [options]="cities1" [(ngModel)]="selectedCities1"></p-multiSelect>
+
+                                             </td>
+                                                 <td><input class="e2" name="e2"></td>
+                                             </tr>
+                                         </tbody>
+                                     </table>
+                                     <div class="pages_but">
+                                       <div class="badge-inner">
+                                           <!--<a href="#" class="next_bt">prev</a>
+                                             <a href="#"><span class="badge">1</span></a>
+                                             <a href="#"><span class="badge">2</span></a>
+                                             <a href="#"><span class="badge">3</span></a>
+                                             <a href="#"><span class="badge">4</span></a>
+                                             <a href="#"><span class="badge">5</span></a>
+                                             <a href="#" class="next_bt">next</a>-->
+                                         </div>
+                                     </div>
+                                 </div>   
+                             </div>
+                             <!---top table end-->
+                             
+                             <!---Question-1 Owner: start-->
+                             <div class="qusn_oner">
+                               <!--details--tabs-->
+                                 <div class="all_info">
+                                      <div class="table-responsive">
+                                         <table class="table table-responsive">
+                                             <thead>
+                                                 <tr class="adm_tr_bg">
+                                                     <th>Instute</th>
+                                                     <th>ID</th>
+                                                     <th>Question ID</th>
+                                                     <th>Question ID</th>
+                                                     <th>Question ID</th>
+                                                     <th>Date</th>
+                                                     <th>Rating</th>
+                                                 </tr>
+                                             </thead>
+                                             <tbody>
+                                                 <tr class="blc_del_bg">
+                                                     <td>Av college</td>
+                                                     <td>ushan jone</td>
+                                                     <td>25140</td>
+                                                     <td>2546</td>
+                                                     <td>gemsstudent</td>
+                                                     <td>02/05/18</td>
+                                                     <td>4.3</td>
+                                                 </tr>
+                                             </tbody>
+                                         </table>
+                                 </div>
+                             </div>
+             <!---///details--tabs----->
+                                 <div class="row pd-10">
+                                   <div class="col-md-4">
+                                       <div class="qution_tab">
+                                             <!--details--tabs-->
+                                             <div class="all_info">
+                                                  <div class="table-responsive">
+                                                     <table class="table">
+                                                         <thead>
+                                                             <tr class="student-bg bg_sdw">
+                                                                 <th>Owner</th>
+                                                                 <th>Name</th>
+                                                                 <th>Date</th>
+                                                             </tr>
+                                                         </thead>
+                                                         <tbody>
+                                                             <tr class="student-bg-1">
+                                                                 <td>sandeep</td>
+                                                                 <td>sandeep</td>
+                                                                 <td>05-11-18</td>
+                                                             </tr>
+                                                         </tbody>
+                                                     </table>
+                                                     
+                                                     <table class="table">
+                                                         <thead>
+                                                             <tr class="faculty-bg bg_sdw">
+                                                                 <th>Classif.Count</th>
+                                                                 <th>Ratings</th>
+                                                             </tr>
+                                                         </thead>
+                                                         <tbody>
+                                                             <tr class="faculty-bg-1">
+                                                                 <td>201</td>
+                                                                 <td>4.5</td>
+                                                             </tr>
+                                                         </tbody>
+                                                     </table>
+                                                     
+                                                     <table class="table">
+                                                         <thead>
+                                                             <tr class="suggested-bg bg_sdw">
+                                                                 <th>Avg. Rating</th>
+                                                                 <th>Reviws</th>
+                                                             </tr>
+                                                         </thead>
+                                                         <tbody>
+                                                             <tr class="suggested-bg-1">
+                                                                 <td><div class="review-block-rate">
+                                                         <button type="button" class="btn btn-success btn-xs"
+                                                          aria-label="Left Align">
+                                                             <span class="glyphicon glyphicon-star" 
+                                                             aria-hidden="true"></span>
+                                                         </button>
+                                                         <button type="button" class="btn btn-success btn-xs"
+                                                          aria-label="Left Align">
+                                                             <span class="glyphicon glyphicon-star" 
+                                                             aria-hidden="true"></span>
+                                                         </button>
+                                                         <button type="button" class="btn btn-success btn-xs" 
+                                                         aria-label="Left Align">
+                                                             <span class="glyphicon glyphicon-star" 
+                                                             aria-hidden="true"></span>
+                                                         </button>
+                                                         <button type="button" class="btn btn-default btn-xs"
+                                                          aria-label="Left Align">
+                                                             <span class="glyphicon glyphicon-star" 
+                                                             aria-hidden="true"></span>
+                                                         </button>
+                                                         <button type="button" class="btn btn-default btn-xs"
+                                                          aria-label="Left Align">
+                                                             <span class="glyphicon glyphicon-star" 
+                                                             aria-hidden="true"></span>
+                                                         </button>
+                                             </div></td>
+                                                          <td>2302</td>
+                                                     </tr>
+                                                 </tbody>
+                                           </table>
+                                             
+                                             <table class="table">
+                                                <thead>
+                                                  <tr class="feedbacks-bg bg_sdw">
+                                                     <th>Blocked</th>
+                                                        <th>Admin</th>
+                                                         <th>Time</th>
+                                                      </tr>
+                                                </thead>
+                                                 <tbody>
+                                                   <tr class="feedbacks-bg-1">
+                                                       <td>Blocked</td>
+                                                       <td>Admin</td>
+                                                         <td>05-11-18</td>
+                                                   </tr>
+                                               </tbody>
+                                     </table>
+                                             
+                                             <table class="table">
+                                                <thead>
+                                                  <tr class="request-bg bg_sdw">
+                                                     <th>Verified</th>
+                                                        <th>Admin</th>
+                                                         <th>Time</th>
+                                                      </tr>
+                                                </thead>
+                                                 <tbody>
+                                                   <tr class="request-bg-1">
+                                                       <td>Verified</td>
+                                                       <td>Admin</td>
+                                                         <td>05-11-18</td>
+                                                   </tr>
+                                               </tbody>
+                                     </table>
+                                             
+                                              <table class="table">
+                                                <thead>
+                                                  <tr class="my-alarms-bg bg_sdw">
+                                                     <th>Deleted</th>
+                                                        <th>Admin</th>
+                                                         <th>Time</th>
+                                                      </tr>
+                                                </thead>
+                                                 <tbody>
+                                                   <tr class=" my-alarms-bg-1">
+                                                       <td>Deleted</td>
+                                                       <td>Admin</td>
+                                                         <td>05-11-18</td>
+                                                   </tr>
+                                               </tbody>
+                                     </table>
+                                        </div>
+                                   </div>
+                 <!---///details--tabs----->
+                                    <!--table-5-->
+                                 </div>
+                          </div>
+            <!--left tab--end--->
+         
+         <!--verifed  Modal start -->
+         <div class="modal fade" id="verifed" role="dialog">
+           <div class="modal-dialog vry_modal">
+              <div class="modal-content">
+               <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                       <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+                      </div>
+                     <div class="modal-body modal_text">
+                         <p>Do you really want to verified these records? This process cannot be undone</p>
+                     </div>
+                      <div class="modal-footer modal_foot">
+                       <button type="submit" class="bt btn-warning">verified</button>
+                         <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+                     </div>
+                 </div>
+            </div>
+        </div>
+   <!-- verifed Modal end-->
+                                     
+         <!--Delete  Modal start -->
+         <div class="modal fade" id="delete" role="dialog">
+           <div class="modal-dialog vry_modal">
+              <div class="modal-content">
+               <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                       <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+                      </div>
+                     <div class="modal-body modal_text">
+                         <p>Do you really want to Delete these records? This process cannot be undone</p>
+                     </div>
+                      <div class="modal-footer modal_foot">
+                       <button type="submit" class="bt btn-warning">Delete</button>
+                         <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+                     </div>
+                 </div>
+            </div>
+        </div>
+   <!-- Delete Modal end-->
+                                     <div class="col-md-8">
+                                       <div class="qution_tab table-responsive clfy_tbl">
+                                            <div class=" student-bg question_title">
+                                      <h4>Classificaiton</h4>
+                                    </div>
+                                             <table class="table table-bordered">
+                                              <tr>
+                                                <td>
+                                                        <p-multiSelect [options]="cities1" [(ngModel)]="selectedCities1"></p-multiSelect>
+
+
+                                                </td>
+                                                    <td>
+                                                            <p-multiSelect [options]="cities1" [(ngModel)]="selectedCities1"></p-multiSelect>
+                                                        </td>
+                                                 <td><p-multiSelect [options]="cities1" [(ngModel)]="selectedCities1"></p-multiSelect>
+                                                 </td>
+                                                 <td><p-multiSelect [options]="cities1" [(ngModel)]="selectedCities1"></p-multiSelect>
+                                                 </td>
+                                                 <td><p-multiSelect [options]="cities1" [(ngModel)]="selectedCities1"></p-multiSelect>
+                                                 </td>
+                                                 <td> <button class="pading_4 bt btn-success pull-right">Adnew</button></td>
+                                                 </tr> 
+                                                 </table>
+                                             <div class="longtext" id="scrollbar_c">
+                                              
+                                             <table class="table table-bordered">
+                                                 <thead> 
+                                                     <tr class="main_hed">
+                                                         <th>Class ID</th>
+                                                         <th>Country</th>
+                                                         <th>Course</th>
+                                                         <th>Class</th>
+                                                         <th>Subject</th>
+                                                         <th>Less/Top</th>
+                                                         <th>Created By</th>
+                                                         <th>Created Date</th>
+                                                         <th>Verifed</th>
+                                                         <th>Verf Admin</th>
+                                                         <th>Verf Date</th>
+                                                         <th>Add/Delete</th>
+                                                     </tr>
+                                                 </thead>
+                                                 <tbody>
+                                                     <tr>
+                                                       <td>5246</td>
+                                                         <td>India</td>
+                                                         <td>Course_1</td>
+                                                         <td>6th</td>
+                                                         <td>Science</td>
+                                                         <td>Less</td>
+                                                         <td>sunbeem</td>
+                                                         <td>15-06-18</td>
+                                                         <td>
+                                                         <div data-toggle="modal" data-target="#delete">
+                                                         <button type="submit" class="bt btn-warning">Verifed
+                                                         </button>
+                                                         </div>
+                                                         </td>
+                                                         <td>Admin</td>
+                                                         <td>15-06-18</td>
+                                                         <td>
+                                                         <div data-toggle="modal" data-target="#delete">
+                                                         <button type="submit" class="bt btn-danger">Delete</button>
+                                                         </div>
+                                                         </td>
+                                                     </tr>
+                                                      <tr>
+                                                       <td>5246</td>
+                                                         <td>India</td>
+                                                         <td>Course_1</td>
+                                                         <td>6th</td>
+                                                         <td>Science</td>
+                                                         <td>Less</td>
+                                                         <td>sunbeem</td>
+                                                         <td>15-06-18</td>
+                                                         <td>
+                                                         <div data-toggle="modal" data-target="#delete">
+                                                         <button type="submit" class="bt btn-warning">Verifed
+                                                         </button>
+                                                         </div>
+                                                         </td>
+                                                         <td>Admin</td>
+                                                         <td>15-06-18</td>
+                                                         <td>
+                                                         <div data-toggle="modal" data-target="#delete">
+                                                         <button type="submit" class="bt btn-danger">Delete</button>
+                                                         </div>
+                                                         </td>
+                                                     </tr>
+                                                      <tr>
+                                                       <td>5246</td>
+                                                         <td>India</td>
+                                                         <td>Course_1</td>
+                                                         <td>6th</td>
+                                                         <td>Science</td>
+                                                         <td>Less</td>
+                                                         <td>sunbeem</td>
+                                                         <td>15-06-18</td>
+                                                         <td>
+                                                         <div data-toggle="modal" data-target="#delete">
+                                                         <button type="submit" class="bt btn-warning">Verifed
+                                                         </button>
+                                                         </div>
+                                                         </td>
+                                                         <td>Admin</td>
+                                                         <td>15-06-18</td>
+                                                         <td>
+                                                         <div data-toggle="modal" data-target="#delete">
+                                                         <button type="submit" class="bt btn-danger">Delete</button>
+                                                         </div>
+                                                         </td>
+                                                     </tr>
+                                               </tbody>
+                                           </table>
+                                             </div>
+                                             
+                                             <div class="longtext" id="scrollbar_c">
+                                             <div class="question_title">
+                                      <h4>Feedbacks(Reported Items)</h4>
+                                    </div>
+                                             <table class="table table-bordered">
+                                                 <thead> 
+                                                     <tr class="main_hed">
+                                                         <th>Class ID</th>
+                                                         <th>Country</th>
+                                                         <th>Course</th>
+                                                         <th>Class</th>
+                                                         <th>Subject</th>
+                                                         <th>Less/Top</th>
+                                                         <th>Created By</th>
+                                                         <th>Created Date</th>
+                                                         <th>Verifed</th>
+                                                         <th>Verf Admin</th>
+                                                         <th>Verf Date</th>
+                                                         <th>Add/Delete</th>
+                                                     </tr>
+                                                 </thead>
+                                                 <tbody>
+                                                     <tr>
+                                                       <td>5246</td>
+                                                         <td>India</td>
+                                                         <td>Course_1</td>
+                                                         <td>6th</td>
+                                                         <td>Science</td>
+                                                         <td>Less</td>
+                                                         <td>sunbeem</td>
+                                                         <td>15-06-18</td>
+                                                          <td>
+                                                         <div data-toggle="modal" data-target="#delete">
+                                                         <button type="submit" class="bt btn-warning">Verifed
+                                                         </button>
+                                                         </div>
+                                                         </td>
+                                                         <td>Admin</td>
+                                                         <td>15-06-18</td>
+                                                          <td>
+                                                         <div data-toggle="modal" data-target="#delete">
+                                                         <button type="submit" class="bt btn-danger">Delete</button>
+                                                         </div>
+                                                         </td>
+                                                     </tr>
+                                                      <tr>
+                                                       <td>5246</td>
+                                                         <td>India</td>
+                                                         <td>Course_1</td>
+                                                         <td>6th</td>
+                                                         <td>Science</td>
+                                                         <td>Less</td>
+                                                         <td>sunbeem</td>
+                                                         <td>15-06-18</td>
+                                                         <td>
+                                                         <div data-toggle="modal" data-target="#delete">
+                                                         <button type="submit" class="bt btn-warning">Verifed
+                                                         </button>
+                                                         </div>
+                                                         </td>
+                                                         <td>Admin</td>
+                                                         <td>15-06-18</td>
+                                                          <td>
+                                                         <div data-toggle="modal" data-target="#delete">
+                                                         <button type="submit" class="bt btn-danger">Delete</button>
+                                                         </div>
+                                                         </td>
+                                                     </tr>
+                                                      <tr>
+                                                       <td>5246</td>
+                                                         <td>India</td>
+                                                         <td>Course_1</td>
+                                                         <td>6th</td>
+                                                         <td>Science</td>
+                                                         <td>Less</td>
+                                                         <td>sunbeem</td>
+                                                         <td>15-06-18</td>
+                                                         <td>
+                                                         <div data-toggle="modal" data-target="#delete">
+                                                         <button type="submit" class="bt btn-warning">Verifed
+                                                         </button>
+                                                         </div>
+                                                         </td>
+                                                       <td>admin</td>
+                                                         <td>15-06-18</td>
+                                                          <td>
+                                                         <div data-toggle="modal" data-target="#delete">
+                                                         <button type="submit" class="bt btn-danger">Delete</button>
+                                                         </div>
+                                                         </td>
+                                                     </tr>
+                                                      <tr>
+                                                       <td>5246</td>
+                                                         <td>India</td>
+                                                         <td>Course_1</td>
+                                                         <td>6th</td>
+                                                         <td>Science</td>
+                                                         <td>Less</td>
+                                                         <td>sunbeem</td>
+                                                         <td>15-06-18</td>
+                                                          <td>
+                                                         <div data-toggle="modal" data-target="#delete">
+                                                         <button type="submit" class="bt btn-warning">Verifed
+                                                         </button>
+                                                         </div>
+                                                         </td>
+                                                         <td>Admin</td>
+                                                         <td>15-06-18</td>
+                                                         <td>
+                                                         <div data-toggle="modal" data-target="#delete">
+                                                         <button type="submit" class="bt btn-danger">Delete</button>
+                                                         </div>
+                                                         </td>
+                                                     </tr>
+                                               </tbody>
+                                           </table>
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </div>
+                                 
+                                 <!--answer block start-->
+                                 <div class="row pd-10">
+                                   <div class="col-md-6">
+                                       <div class="qution_tab">
+                                           <p>Question</p>
+                                           <div class="hoveruseredit">
+                                   <div class="input-group default-input-group ">
+                                          <textarea type="text" class="form-control" placeholder="Write Your Question Here" readonly></textarea>
+                                          <div class="edit-button input-group-btn">
+                                            <button class="btn btn-default question-btn1" type="button">Edit</button>
+                                          </div>
+                                        </div><!-- /input-group -->
+                                        </div>
+                                         </div>
+                                     </div>
+                                     <div class="col-md-6">
+                                       <div class="qution_tab">
+                                           <p>Solution</p>
+                                           <div class="hoveruseredit">
+                                                <div class="input-group default-input-group ">
+                                                       <textarea type="text" class="form-control" placeholder="Write Your Solution Here" readonly></textarea>
+                                                       <div class="edit-button input-group-btn">
+                                                         <button class="btn btn-default question-btn1" type="button">Edit</button>
+                                                       </div>
+                                                     </div><!-- /input-group -->
+                                                     </div>
+                                         </div>
+                                     </div>
+                                 </div>
+                                 
+                                 <div class="row pd-10">
+                                   <div class="col-md-6">
+                                       <div class="qution_tab">
+                                           <p>Wrong Answer 1</p>
+                                           <div class="hoveruseredit">
+                                                <div class="input-group default-input-group ">
+                                                        <input type="text" class="form-control" placeholder="Write Your answer Here" readonly>
+
+                                                       <div class="edit-button input-group-btn">
+                                                         <button class="btn btn-default question-btn1" type="button">Edit</button>
+                                                       </div>
+                                                     </div><!-- /input-group -->
+                                                     </div>
+                                         </div>
+                                     </div>
+                                     <div class="col-md-6">
+                                       <div class="qution_tab">
+                                           <p>Correct Answer 1</p>
+                                           <div class="hoveruseredit">
+                                                <div class="input-group default-input-group ">
+                                                        <input type="text" class="form-control" placeholder="Write Your answer Here" readonly>
+
+                                                       <div class="edit-button input-group-btn">
+                                                         <button class="btn btn-default question-btn1" type="button">Edit</button>
+                                                       </div>
+                                                     </div><!-- /input-group -->
+                                                     </div>
+                                         </div>
+                                     </div>
+                                 </div>
+                                 
+                                 <div class="row pd-10">
+                                   <div class="col-md-6">
+                                       <div class="qution_tab">
+                                           <p>Wrong Answer 2</p>
+                                           <div class="hoveruseredit">
+                                                <div class="input-group default-input-group ">
+                                                        <input type="text" class="form-control" placeholder="Write Your answer Here" readonly>
+
+                                                       <div class="edit-button input-group-btn">
+                                                         <button class="btn btn-default question-btn1" type="button">Edit</button>
+                                                       </div>
+                                                     </div><!-- /input-group -->
+                                                     </div>
+                                         </div>
+                                     </div>
+                                     <div class="col-md-6">
+                                       <div class="qution_tab">
+                                           <p>Correct Answer 2</p>
+                                           <div class="hoveruseredit">
+                                                <div class="input-group default-input-group ">
+                                                        <input type="text" class="form-control" placeholder="Write Your answer Here" readonly>
+
+                                                       <div class="edit-button input-group-btn">
+                                                         <button class="btn btn-default question-btn1" type="button">Edit</button>
+                                                       </div>
+                                                     </div><!-- /input-group -->
+                                                     </div>
+                                         </div>
+                                     </div>
+                                 </div>
+                                 
+                                 <div class="row pd-10">
+                                   <div class="col-md-6">
+                                       <div class="qution_tab">
+                                           <p>Wrong Answer 3</p>
+                                           <div class="hoveruseredit">
+                                                <div class="input-group default-input-group ">
+                                                        <input type="text" class="form-control" placeholder="Write Your answer Here" readonly>
+                                                       <div class="edit-button input-group-btn">
+                                                         <button class="btn btn-default question-btn1" type="button">Edit</button>
+                                                       </div>
+                                                     </div><!-- /input-group -->
+                                                     </div>
+                                         </div>
+                                     </div>
+                                     <div class="col-md-6">
+                                       <div class="qution_tab">
+                                           <p>Correct Answer 4</p>
+                                           <div class="hoveruseredit">
+                                                <div class="input-group default-input-group ">
+                                                       <input type="text" class="form-control" placeholder="Write Your answer Here" readonly>
+                                                       <div class="edit-button input-group-btn">
+                                                         <button class="btn btn-default question-btn1" type="button">Edit</button>
+                                                       </div>
+                                                     </div><!-- /input-group -->
+                                                     </div>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+
+                         </div>
+                   </div>
+               </div>
+             </div>
+         </section>
+      </div>
+      </div>

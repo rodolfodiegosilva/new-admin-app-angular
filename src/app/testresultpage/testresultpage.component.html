@@ -1,0 +1,587 @@
+<app-sdashheader></app-sdashheader>
+<div class="leftsidemenus">
+   <app-sdahshmenu></app-sdahshmenu>
+</div>
+
+
+<!--verified  Modal start -->
+<div class="modal fade" id="verified" role="dialog">
+    <div class="modal-dialog vry_modal">
+       <div class="modal-content">
+          <div class="modal-header">
+             <button type="button" class="close" data-dismiss="modal">&times;</button>
+             <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+          </div>
+          <div class="modal-body modal_text">
+             <p>Do you really want to verify these records? This process cannot be undone</p>
+          </div>
+          <div class="modal-footer modal_foot">
+             <button type="submit" class="bt btn-warning">verify</button>
+             <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+          </div>
+       </div>
+    </div>
+ </div>
+ <!-- verified Modal end-->
+ <!--Blocked  Modal start -->
+ <div class="modal fade" id="block" role="dialog">
+    <div class="modal-dialog vry_modal">
+       <div class="modal-content">
+          <div class="modal-header">
+             <button type="button" class="close" data-dismiss="modal">&times;</button>
+             <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+          </div>
+          <div class="modal-body modal_text">
+             <p>Do you really want to Block these records? This process cannot be undone</p>
+          </div>
+          <div class="modal-footer modal_foot">
+             <button type="submit" class="bt btn-warning">Block</button>
+             <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+          </div>
+       </div>
+    </div>
+ </div>
+ <!-- Blocked Modal end-->
+ <!--Delete  Modal start -->
+ <div class="modal fade" id="delete" role="dialog">
+    <div class="modal-dialog vry_modal">
+       <div class="modal-content">
+          <div class="modal-header">
+             <button type="button" class="close" data-dismiss="modal">&times;</button>
+             <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+          </div>
+          <div class="modal-body modal_text">
+             <p>Do you really want to Delete these records? This process cannot be undone</p>
+          </div>
+          <div class="modal-footer modal_foot">
+             <button type="submit" class="bt btn-warning">Delete</button>
+             <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+          </div>
+       </div>
+    </div>
+ </div>
+ <!-- Delete Modal end-->
+ <!--====Question upload page start====-->
+  
+ <div id="page-wrapper">
+    <!--====top nav bar End====-->
+    
+     <!--====top nav bar End====-->
+    
+  <div class="content">  
+   <!--====Question upload page start====-->
+     <section class="question_search question_sec selt_ht scroll-yes">
+       <div class="container-fluid"> 
+          <div class="all_brd">
+            <div class="question_title" id="pers_inf">
+              <h3>Test Result</h3>
+            </div>
+              
+            <div class="content_sub"> 
+              
+              <div class="row pd-10 m-0">
+                   <!-- <div class="col-md-12">
+                
+                           <div class="hold_name">
+                            <h3 class="colo_1"><i class="fa fa-info-circle"></i> Test Holder</h3>
+                        </div> -->
+                         <!-- <table class="table table-responsive">
+                            <thead>
+                               <tr class="adm_tr_bg2">
+                                  <th>Name</th>
+                                  <th>School</th>
+                                  <th>Class</th>
+                                  <th>Course</th>                                       
+                               </tr>
+                            </thead>
+                            <tbody>
+                               <tr class="blc_del_bg2">
+                                  <td>{{user_dname}}</td>
+                                  <td>sri sri</td>
+                                  <td>8</td>
+                                  <td>CBSE</td>                                       
+                               </tr>
+                               <tr>
+                                  <th width="60">Class</th>
+                                  <td>GemsStudent8</td>
+                               </tr>
+                               <tr>
+                                  <th width="60">Course</th>
+                                  <td>GemsStudent8</td>
+                               </tr>
+                            </table> -->
+                         <!-- </div>  -->
+                      <!-- </div>
+                   </div> -->
+                   <br>
+                   <!-- <div class=" col-md-4">
+                      <div class="main_holder">
+                         <div style="display: block">
+                            <canvas baseChart
+                            [data]="pieChartData"
+                            [labels]="pieChartLabels"
+                            [chartType]="pieChartType"
+                            (chartHover)="chartHovered($event)"
+                            (chartClick)="chartClicked($event)"></canvas>
+                         </div>
+                      </div>
+                   </div> -->
+                   <div class="clearfix"></div>
+                   <!--details--tabs-->
+                   <div class="all_info">
+                      <div class="row">
+                         <div class="col-md-3 col-sm-6">
+                            <div class="panel-bd lobipanel">
+                               <div class="hold_name" >
+                                  <h3 class="colo_1">Test Holder</h3>
+                                  <span>{{user_dname}}</span>
+                                  <a href="javascript:void(0)" title="Show Details" (click)="showDetails('test_holder')"></a>
+                               </div>
+                            </div>
+                         </div>
+                         <div class="col-md-3 col-sm-6">
+                            <div class="panel-bd lobipanel">
+                               <div class="hold_name">
+                                  <h3 class="colo_1">Test Id</h3>
+                                  <span>{{test_id}}</span>
+                                  <a href="javascript:void(0)" title="Show Details" (click)="showDetails('test_details')"></a>
+                               </div>
+                            </div>
+                         </div>
+                         <div class="col-md-3 col-sm-6">
+                            <div class="panel-bd lobipanel">
+                               <div class="hold_name">
+                                  <h3 class="colo_1">Subject</h3>
+                                  <div class="subject_name">
+                                     <span *ngFor="let td of testDetails">{{td.subject_fname}} <a href="javascript:void(0)" title="Show Details" (click)="showDetails('subject_details')"></a></span>
+                                  </div>
+                               </div>
+                            </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6">
+                               <div class="panel-bd lobipanel">
+                                  <div class="hold_name">
+                                     <h3 class="colo_1">Result & Marks</h3>
+                                     <span>{{totalMarksSc}}</span>
+                                     <a href="javascript:void(0)" title="Show Details" (click)="showDetails('marks_details')"></a>
+                                 </div>
+                               </div>
+                            </div>
+                      </div>
+                      <div class="details-tab" *ngIf="test_holder">
+                         <a href="javascript:void(0)" class="close-icon" (click)="hideDetails('test_holder')"><i class="fa fa-times"></i></a>
+                         <table class="table table-responsive">
+                            <thead>
+                               <tr class="adm_tr_bg2">
+                                  <th>Name</th>
+                                  <th>School</th>
+                                  <th>Class</th>
+                                  <th>Course</th>                                       
+                               </tr>
+                            </thead>
+                            <tbody>
+                               <tr class="blc_del_bg2">
+                                  <td>{{user_dname}}</td>
+                                  <td>{{inst_name}}</td>
+                                  <td>{{class_sname}}</td>
+                                  <td>{{course_sname}}</td>                                       
+                               </tr>
+                            </tbody>
+                         </table>
+                      </div>
+                      <div class="details-tab" *ngIf="test_details">
+                         <a href="javascript:void(0)" class="close-icon" (click)="hideDetails('test_details')"><i class="fa fa-times"></i></a>
+                         <table class="table table-responsive">
+                            <thead>
+                               <tr class="adm_tr_bg2">
+                                  <th>Test Id</th>
+                                  <th>Test Title</th>
+                                  <th>Test Start Date & Time</th>
+                                  <th> Test End Date & Time </th>
+                                  <th>Duartion</th>
+                                  <th> Total No Questions </th>
+                                  <th>Total Marks</th>
+                                  <th>Students Attended</th>
+                               </tr>
+                            </thead>
+                            <tbody>
+                               <tr class="blc_del_bg2">
+                                  <td>{{test_id}}</td>
+                                  <td>{{testTitle}}</td>
+                                  <td>{{test_start_datetime}}</td>
+                                  <td>{{test_end_datetime}}</td>
+                                  <td>{{test_duration}} min</td>
+                                  <td> {{test_total_ques}} </td>
+                                  <td> {{question_marks}} </td>
+                                  <td (mouseover)="showAttendedStudents()"> {{totalTestUsersLength}}</td>
+                               </tr>
+                               <tr *ngIf="attendedTestUser.length > 0" colspan="7" style="text-align: right;">
+                                  <td colspan="8">
+                                     <select class='form-control' >
+                                        <option [value]="users" *ngFor="let users of attendedTestUser">{{users}}</option>
+                                     </select>
+                                  </td>
+                               </tr>
+                            </tbody>
+                         </table>
+                      </div>
+                      <div class="details-tab" *ngIf="subject_details">
+                         <a href="javascript:void(0)" class="close-icon" (click)="hideDetails('subject_details')"><i class="fa fa-times"></i></a>
+                         <table class="table table-responsive">
+                            <thead>
+                               <tr class="adm_tr_bg1">
+                                  <th>COUNTRY</th>
+                                  <th> COURSE </th>
+                                  <th> CLASS </th>
+                                  <th> SUBJECT </th>
+                                  <th>LESSION/TOPIC(s)</th>
+                            </thead>
+                            <tbody>
+                               <tr class="blc_del_bg1" *ngFor="let td of testDetails">
+                                  <td>{{td.cntry_name}}</td>
+                                  <td> {{td.course_fname}} </td>
+                                  <td> {{td.class_fname}} </td>
+                                  <td> {{td.subject_fname}} </td>
+                                  <td>{{td.lessons}}</td>
+                               </tr>
+                            </tbody>
+                         </table>
+                      </div>
+                      <div class="details-tab" *ngIf="marks_details">
+                         <a href="javascript:void(0)" class="close-icon" (click)="hideDetails('marks_details')"><i class="fa fa-times"></i></a>
+                         <table class="table table-responsive">
+                            <thead>
+                               <tr class="adm_tr_bg">
+                                  <th>Total Questions  Attempted</th>
+                                  <th>Total Marks Scored</th>
+                                  <th>Duration Taken </th>
+                                  <th>Total Duration</th>
+                                  <th>Rank Scored</th>
+                               </tr>
+                            </thead>
+                            <tbody>
+                               <tr class="blc_del_bg">
+                                  <td>{{atmQnsCnt}}</td>
+                                  <td>{{totalMarksSc}}</td>
+                                  <td> {{timeTaken}} min</td>
+                                  <td>{{test_duration}} min</td>
+                                  <td>-</td>
+                               </tr>
+                            </tbody>
+                         </table>
+                      </div>
+                   </div>
+              </div>
+                     <!--details--tabs-->
+              <div class="row pd-10">
+                  
+              </div>
+              <div class="row pd-10">
+                  <div class="col-md-12">
+                     <div class=" col-sm-4 text-center">                                            
+                        <label>Attempted Qns</label>                                             
+                        <p-chart type="pie" [data]="totalAssgnedQnsTothisTest"></p-chart>                                                
+                     </div>
+                     <div class=" col-sm-4 text-center">                                            
+                        <label>Correct Answered</label>                                             
+                        <p-chart type="pie" [data]="crrctAnsQnsCount"></p-chart>                                                
+                     </div>
+                     <div class=" col-sm-4 text-center">   
+                        <label>Wrong Answered</label>                                             
+                        <p-chart type="pie" [data]="incrrctAnsQnsCount"></p-chart>                                                
+                     </div>                                     
+                  </div>
+              </div>
+                     <!--Result & Marks End-->
+              <div class="row pd-10">
+                    <div class="col-md-12">
+                      <div class="qution_tab table-responsive clfy_tbl">
+                      <!----Quesion list Start----->
+                         <div class="all_quesin qus_ans">
+                            <h5>Title : {{testTitle}} &nbsp; &nbsp; Description : {{testDesc}}</h5>
+                            
+                            <ul>
+
+                             <li *ngFor="let qns of qnsDetails; let i = index">
+                                <div class="ques-rating-block">
+                                   <ul class="ul_list">
+                                      <li title="Average Rating" class="cursor-class hidden-xs">
+                                         <div class="text-center">Average Rating</div>
+                                            <rating [ngModel]="ratingAvg(qns.question_id)" [attr.id]="'avgrate_'+qns.question_id" fullIcon="★" emptyIcon="★" [readonly]="true"></rating>
+                                      </li>
+                                      <li title="Rating" class="cursor-class">
+                                         <div class="text-center">Give Rating</div>
+                                            <rating [ngModel]="rating(qns.question_id)" [attr.id]="'ratval_'+qns.question_id" title="Rating" fullIcon="★" emptyIcon="★" (click)="rateForObject($event,qns.question_id,'','question_id')"></rating>
+                                      </li>
+                                      <li class="cursor-class">
+                                        <a class="text-center" title="Report" (click)="colExpand('#discReport_'+qns.question_id,'question_id',qns.question_id,'','Question');discFeedbacks=[]; discFeedbackstypes=[];" style="display: block;cursor: pointer;">
+                                         <div class="text-center" style="display: flex;align-items: center;justify-content: center;"><span>Report</span>
+                                            
+                                                <i class="hvr-buzz-out fa fa-file-text"></i>
+                                           
+                                          </div>  
+                                           </a>
+                                      </li>
+                                   </ul>
+                               </div>
+                               <div class="tab-content">
+                                   <div class="collapse" id="discReport_{{qns.question_id}}" >
+                                         <div class="panel-body" style="max-width: 100% !important;">
+                                            <form autocomplete="off" role="form" #reportDisc="ngForm"
+                                               (ngSubmit)="reportOnObject(reportDisc,'question_id','Question')" accept-charset="UTF-8"
+                                               novalidate *ngIf="discFeedbackstypes.length > 0">
+                                               <input type="hidden" #report_disc_id="ngModel" name="report_disc_id"
+                                                     [(ngModel)]="disc_id_report">
+                                               <ul class="list-resp">
+                                                     <li class="list-li" *ngFor="let dr of discFeedbackstypes;">
+                                                        <input type="radio"  #fdbaktyp_id="ngModel" name="fdbaktyp_id"
+                                                           [value]="dr.fdbaktyp_id" [(ngModel)]="id_fdbaktyp_desc">
+                                                        {{dr.fdbacktyp_name}}
+                                                     </li>
+                                               </ul>
+                                               <textarea class="form-control" rows="3" #feedback_desc="ngModel"
+                                                  id="desc_feedback"  name="feedback_desc" [(ngModel)]="desc_feedback" [required]="id_fdbaktyp_desc === 'Others'" placeholder="*Enter Report Reason comments"></textarea>
+                                               <div *ngIf="reportDisc.submitted && reportDisc.invalid">
+                                                  <span class="error_field" *ngIf="feedback_desc?.errors?.required">Reason is requied!</span>
+                                               </div>
+                                               <div class="re-sub">
+                                                     <button type="submit" class="btn btn-primary"> Submit
+                                                        Report </button>
+                                               </div>
+                                            </form>
+                                            <!-- <div *ngIf="discFeedbackstypes.length < 1" style="color: red;">You have already reported all type's.</div> -->
+                                            <ul class="chat_list" *ngIf="false">
+                                               <li class="clearfix" *ngFor="let df of discFeedbacks;let d = index;">
+                                                     <div *ngIf="d%2==0" style="display: flex;">
+                                                        <div class="chat-avatar">
+                                                           <img *ngIf="df.user_pic!=''" src="{{baseAPiUrl}}Asset_Api/getSecureFile/?user_id={{df.user_id}}&user_pic={{df.user_pic}}" alt={{df.user_dname}}>
+                                                           <!-- <img *ngIf="df.user_pic!=''" src="{{baseAPiUrl}}assets/User/profilePics/user_{{df.user_id}}/{{df.user_pic}}" alt={{df.user_dname}}> -->
+                                                           <img *ngIf="df.user_pic==''" src="../../assets/superadmin/dist/img/avatar.png"
+                                                                 alt={{df.user_dname}}>
+                                                           <i style="font-size: 10px;">{{df.feedback_date}}</i>
+                                                        </div>
+                                                        <div class="conversation-text">
+                                                           <div class=ctext-wrap>
+                                                                 <i>Review</i>
+                                                                 <p>{{df.feedback_desc}}</p>
+                                                           </div>
+                                                        </div>
+                                                     </div>
+                                                     <div *ngIf="d%2!=0" style="display: flex;">
+                                                        <div class="chat-avatar pull-right">
+                                                           <img *ngIf="df.user_pic!=''" src="{{baseAPiUrl}}Asset_Api/getSecureFile/?user_id={{df.user_id}}&user_pic={{df.user_pic}}" alt={{df.user_dname}}>
+                                                           <!-- <img *ngIf="df.user_pic!=''" src="{{baseAPiUrl}}assets/User/profilePics/user_{{df.user_id}}/{{df.user_pic}}" alt={{df.user_dname}}> -->
+                                                           <img *ngIf="df.user_pic==''" src="../../assets/superadmin/dist/img/avatar.png"
+                                                                 alt={{fldt.user_dname}}>
+                                                           <i  style="font-size: 10px;">{{df.feedback_date}}</i>
+                                                        </div>
+                                                        <div class="conversation-text">
+                                                           <div class="ctext-wrap-right">
+                                                                 <i>Review</i>
+                                                                 <p>{{df.feedback_desc}}
+                                                                 </p>
+                                                           </div>
+                                                        </div>
+                                                     </div>
+                                               </li>
+                                            </ul>
+                                            <table class="table table-bordered table-striped" *ngIf="discFeedbacks.length >0">
+                                               <thead>
+                                                     <tr>
+                                                           <th style="text-align: center;">Date</th>
+                                                           <th style="text-align: center;">Report</th>
+                                                           <th style="text-align: center;">Remark</th>
+                                                           <th style="text-align: center;">Delete</th>
+                                                     </tr>
+                                               </thead>
+                                               <tbody>
+                                                     <tr  *ngFor="let df of discFeedbacks;let d = index;">
+                                                        <td>
+                                                                 {{df.feedback_date}}
+                                                        </td>
+                                                        <td>
+                                                                 {{df.feedbacktype_name}}
+                                                        </td>
+                                                        <td>
+                                                                 {{df.feedback_desc}}
+                                                        </td>
+                                                        <td>
+                                                           <button class="btn btn-danger" type="submit"
+                                                              (click)="deleteReport(df.feedback_id,df.question_id)"><i class="fa fa-trash-o"></i> Delete
+                                                           </button>
+                                                        </td>
+                                                     </tr>
+                                               </tbody>
+                                            </table>
+                                         </div>
+                                   </div>
+                                   <div class="row">
+                                      <div class="col-md-12 result-questions">
+                                         <span *ngIf="qns.question_attempted==1 && qns.question_reslt==1" class="res_answe currt"><i class="glyphicon glyphicon-ok-sign"></i></span>
+                                         <span *ngIf="qns.question_attempted==1 && qns.question_reslt==0" class="res_answe worn"><i class="glyphicon glyphicon-remove-sign"></i></span>
+                                         <span *ngIf="qns.question_attempted==0" class="res_answe skip"><i class="glyphicon glyphicon-minus-sign"></i></span>
+                                         <div class="question-number">
+                                            <b>Question  {{i+1}}</b>
+                                         </div>
+                                         <div class="question_block">
+                                            <!-- <span class="questionno"> {{i+1}}   </span> -->
+                                            <span  class="" *ngIf="qns.avtxtqn==1" [innerHtml]="qns.QuestDet" [style]="{width: '100%', height: '200px'}"></span>
+                                            <video controls="true" *ngIf="qns.avtxtsol==2" [src]="(filesUrl+'Asset_Api/getSecureFile/?user_id='+Check_user_id+'&inst_id='+inst_id+'&qns_location='+qns.qns_location+'&QuestDet='+qns.QuestSol) | safeurl" width="425" height="220" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen oncontextmenu="return false"></video>
+                                            <!-- <video controls="true" *ngIf="qns.avtxtsol==2" [src]="(filesUrl+'/assets/questionsUpload/instNum_'+inst_id+'/'+qns.qns_location+'/'+ qns.QuestSol) | safeurl" width="425" height="220" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen oncontextmenu="return false"></video> -->
+                                            <input type="hidden" #question_id="ngModel" name="question_id" [(ngModel)]="qns.question_id">
+                                            
+                                            <!-- <span   *ngIf="qns.avtxtqn==1">{{qns.QuestDet}}</span> -->
+                                         </div>
+                                      </div>
+                                   </div>
+                                </div>
+                                <div class="row pd-10 m-t-20">
+                                   <div class="col-md-12 answ check_all">
+                                      <ol type="A" *ngIf="qns.question_type_id==1 || qns.question_type_id==3">
+                                         <li>
+                                            <span *ngIf="qns.question_attempted==1 && qns.chopt_a==1 && qns.answer_type_id_a==1" class="res_answe currt"><i  class="glyphicon glyphicon-ok-sign"></i></span>
+                                            <span *ngIf="qns.question_attempted==1 && qns.chopt_a==1 && qns.answer_type_id_a==2" class="res_answe worn"><i  class="glyphicon glyphicon-remove-sign"></i></span>
+                                            <b>A. </b> 
+                                            <input disabled="true" *ngIf="!isPaused" value="{{qns.chopt_a}}" checked="{{(qns.chopt_a==1)?'true':''}}" type="checkbox" id="check_{{qns.test_paper_id}}_{{qns.question_id}}_{{qns.ansopt_a_id}}">
+                                            <!-- <p-checkbox value="{{qns.chopt_a}}" label="A" [(ngModel)]="selectedAnswers" inputId="{{qns.chopt_a}}"></p-checkbox> -->
+                                            <label for="check_{{qns.test_paper_id}}_{{qns.question_id}}_{{qns.ansopt_a_id}}" [innerHtml]="qns.ansopt_a | sanitizeHtml">
+                                               {{qns.ansopt_a}}
+                                            </label> 
+                                         </li>
+                                         <li>
+                                            <span *ngIf="qns.question_attempted==1 && qns.chopt_b==1 && qns.answer_type_id_b==1" class="res_answe currt"><i class="glyphicon glyphicon-ok-sign"></i></span>
+                                            <span *ngIf="qns.question_attempted==1 && qns.chopt_b==1 && qns.answer_type_id_b==2" class="res_answe worn"><i class="glyphicon glyphicon-remove-sign"></i></span>
+                                            <b>B.</b> 
+                                            <input disabled="true" *ngIf="!isPaused" value="{{qns.chopt_b}}" checked="{{(qns.chopt_b==1)?'true':''}}" type="checkbox" id="check_{{qns.test_paper_id}}_{{qns.question_id}}_{{qns.ansopt_b_id}}">
+                                            <!-- <p-checkbox value="{{qns.chopt_b}}" label="B" [(ngModel)]="selectedAnswers" inputId="qns.chopt_b"></p-checkbox> -->
+                                            <label for="check_{{qns.test_paper_id}}_{{qns.question_id}}_{{qns.ansopt_b_id}}" [innerHtml]="qns.ansopt_b | sanitizeHtml"></label>                                
+                                         </li>
+                                         <li>
+                                            <span *ngIf="qns.question_attempted==1 && qns.chopt_c==1 && qns.answer_type_id_c==1" class="res_answe currt"><i  class="glyphicon glyphicon-ok-sign"></i></span>
+                                            <span *ngIf="qns.question_attempted==1 && qns.chopt_c==1 && qns.answer_type_id_c==2" class="res_answe worn"><i  class="glyphicon glyphicon-remove-sign"></i></span><b>C.</b> 
+                                            <input disabled="true" *ngIf="!isPaused" value="qns.chopt_c" checked="{{(qns.chopt_c==1)?'true':''}}" type="checkbox" id="check_{{qns.test_paper_id}}_{{qns.question_id}}_{{qns.ansopt_c_id}}">
+                                            <!-- <p-checkbox value="{{qns.chopt_c}}" label="C" [(ngModel)]="selectedAnswers" inputId="{{qns.chopt_c}}"></p-checkbox> -->
+                                            <label for="check_{{qns.test_paper_id}}_{{qns.question_id}}_{{qns.ansopt_c_id}}" [innerHtml]="qns.ansopt_c | sanitizeHtml"></label>
+                                        
+                                         </li>
+                                         <li>
+                                            <span *ngIf="qns.question_attempted==1 && qns.chopt_d==1 && qns.answer_type_id_d==1" class="res_answe currt"><i  class="glyphicon glyphicon-ok-sign"></i></span>
+                                            <span *ngIf="qns.question_attempted==1 && qns.chopt_d==1 && qns.answer_type_id_d==2" class="res_answe worn"><i  class="glyphicon glyphicon-remove-sign"></i></span>
+                                            <b>D.</b> 
+                                            <input disabled="true" *ngIf="!isPaused" value="{{qns.chopt_d}}" checked="{{(qns.chopt_d==1)?'true':''}}" type="checkbox" id="check_{{qns.test_paper_id}}_{{qns.question_id}}_{{qns.ansopt_d_id}}">
+                                            <!-- <p-checkbox value="{{qns.chopt_d}}" label="D" [(ngModel)]="selectedAnswers" inputId="{{qns.chopt_d}}"></p-checkbox> -->
+                                            <label [innerHtml]="qns.ansopt_d | sanitizeHtml"></label>
+                                            <!-- <label for="check_{{qns.test_paper_id}}_{{qns.question_id}}_{{qns.ansopt_d_id}}" [innerHtml]="qns.ansopt_d | sanitizeHtml"></label> -->
+                                           
+                                         </li>
+                                         <li *ngIf="qns.ansopt_e_id>0">
+                                            <span *ngIf="qns.question_attempted==1 && qns.chopt_e==1 && qns.question_reslt==1" class="res_answe currt"><i  class="glyphicon glyphicon-ok-sign"></i></span>
+                                            <span *ngIf="qns.question_attempted==1 && qns.chopt_e==1 && qns.question_reslt==0" class="res_answe worn"><i  class="glyphicon glyphicon-remove-sign"></i></span>
+                                            <b>E. </b>
+                                            <input disabled="true" *ngIf="!isPaused" value="{{qns.chopt_e}}" checked="{{(qns.chopt_e==1)?'True':''}}" type="checkbox" id="check_{{qns.test_paper_id}}_{{qns.question_id}}_{{qns.ansopt_e_id}}">
+                                            <label for="check_{{qns.test_paper_id}}_{{qns.question_id}}_{{qns.ansopt_e_id}}">All of the Above</label>
+                                           
+                                        </li>
+                                        <span><b>Solution :</b> <label [innerHtml]="qns.QuestSol | sanitizeHtml"></label> </span>
+                                      </ol>
+                                      <ol type="A" *ngIf="qns.question_type_id==2 && qns.ansopt_a==1">
+                                         <li>
+                                            <span *ngIf="qns.question_attempted==1 && qns.chopt_a==1 && qns.answer_type_id_a==1" class="res_answe currt"><i class="glyphicon glyphicon-ok-sign"></i></span>
+                                            <span *ngIf="qns.question_attempted==1 && qns.chopt_a==1 && qns.answer_type_id_a==2" class="res_answe worn"><i class="glyphicon glyphicon-remove-sign"></i></span>
+                                            <b>A.</b> 
+                                            <input *ngIf="!isPaused" value="{{qns.chopt_a}}" checked="{{(qns.chopt_a==1)?'true':''}}" type="checkbox" id="check_{{qns.test_paper_id}}_{{qns.question_id}}_{{qns.ansopt_a_id}}" (click)="getAttemptedOrnot($event.target.checked,'chopt_a',qns.question_id)">                                                    
+                                           
+                                            <label for="check_{{qns.test_paper_id}}_{{qns.question_id}}_{{qns.ansopt_a_id}}">
+                                               True                           
+                                            </label>
+                                         </li>
+                                         <li>
+                                            <span *ngIf="qns.question_attempted==1 && qns.chopt_b==1 && qns.answer_type_id_b==1" class="res_answe currt"><i  class="glyphicon glyphicon-ok-sign"></i></span>
+                                            <span *ngIf="qns.question_attempted==1 && qns.chopt_b==1 && qns.answer_type_id_b==2" class="res_answe worn"><i  class="glyphicon glyphicon-remove-sign"></i></span>
+                                            <b>B.</b> 
+                                            <input disabled="true" *ngIf="!isPaused" value="{{qns.chopt_b}}" checked="{{(qns.chopt_b==1)?'true':''}}" type="checkbox" id="check_{{qns.test_paper_id}}_{{qns.question_id}}_{{qns.ansopt_b_id}}" (click)="getAttemptedOrnot($event.target.checked,'chopt_b',qns.question_id)">                                                        
+                                            <label for="check_{{qns.test_paper_id}}_{{qns.question_id}}_{{qns.ansopt_b_id}}">
+                                               False          
+                                            </label>
+                                         </li>
+                                         <span>Solution :<label [innerHtml]="qns.QuestSol | sanitizeHtml"></label> </span>
+                                      </ol>
+                                      <ol type="A" *ngIf="qns.question_type_id==2 && qns.ansopt_b==1">
+                                         <li> 
+                                            <span *ngIf="qns.question_attempted==1 && qns.chopt_b==1 && qns.answer_type_id_b==1" class="res_answe currt"><i  class="glyphicon glyphicon-ok-sign"></i></span>
+                                            <span *ngIf="qns.question_attempted==1 && qns.chopt_b==1 && qns.answer_type_id_b==2" class="res_answe worn"><i  class="glyphicon glyphicon-remove-sign"></i></span>
+                                            <b>A.</b> 
+                                             <input disabled="true" *ngIf="!isPaused" value="{{qns.chopt_b}}" checked="{{(qns.chopt_b==1)?'true':''}}" type="checkbox" id="check_{{qns.test_paper_id}}_{{qns.question_id}}_{{qns.ansopt_b_id}}" (click)="getAttemptedOrnot($event.target.checked,'chopt_b',qns.question_id,qns.test_paper_id)">                                                        
+                                             <label for="check_{{qns.test_paper_id}}_{{qns.question_id}}_{{qns.ansopt_b_id}}">True</label>
+                                         </li>
+                                         <li> 
+                                            <span *ngIf="qns.question_attempted==1 && qns.chopt_a==1 && qns.answer_type_id_a==1" class="res_answe currt"><i  class="glyphicon glyphicon-ok-sign"></i></span>
+                                            <span *ngIf="qns.question_attempted==1 && qns.chopt_a==1 && qns.answer_type_id_a==2" class="res_answe worn"><i  class="glyphicon glyphicon-remove-sign"></i></span>
+                                            <b>B.</b> 
+                                             <input disabled="true" *ngIf="!isPaused" value="{{qns.chopt_a}}" checked="{{(qns.chopt_a==1)?'true':''}}" type="checkbox" id="check_{{qns.test_paper_id}}_{{qns.question_id}}_{{qns.ansopt_a_id}}" (click)="getAttemptedOrnot($event.target.checked,'chopt_a',qns.question_id,qns.test_paper_id)">                                                    
+                                             <label for="check_{{qns.test_paper_id}}_{{qns.question_id}}_{{qns.ansopt_a_id}}">False</label> 
+                                         </li>                                    
+                                     </ol>
+                                     <!-- below 2 <ol></ol> added by milan -->
+                                      <ol type="A" *ngIf="qns.question_type_id==2 && qns.ansopt_a==2">
+                                         <li>
+                                            <span *ngIf="qns.question_attempted==1 && qns.chopt_a==1 && qns.answer_type_id_a==1" class="res_answe currt"><i  class="glyphicon glyphicon-ok-sign"></i></span>
+                                            <span *ngIf="qns.question_attempted==1 && qns.chopt_a==1 && qns.answer_type_id_a==2" class="res_answe worn"><i  class="glyphicon glyphicon-remove-sign"></i></span>
+                                            
+                                            <b>A.</b> 
+                                            <input *ngIf="!isPaused" value="{{qns.chopt_a}}" checked="{{(qns.chopt_a==1)?'true':''}}" type="checkbox" id="check_{{qns.test_paper_id}}_{{qns.question_id}}_{{qns.ansopt_a_id}}" (click)="getAttemptedOrnot($event.target.checked,'chopt_a',qns.question_id)">                                                    
+                                         
+                                            <label for="check_{{qns.test_paper_id}}_{{qns.question_id}}_{{qns.ansopt_a_id}}">
+                                               True                           
+                                            </label>
+                                         </li>
+                                         <li>
+                                            <span *ngIf="qns.question_attempted==1 && qns.chopt_b==1 && qns.answer_type_id_b==1" class="res_answe currt"><i  class="glyphicon glyphicon-ok-sign"></i></span>
+                                            <span *ngIf="qns.question_attempted==1 && qns.chopt_b==1 && qns.answer_type_id_b==2" class="res_answe worn"><i  class="glyphicon glyphicon-remove-sign"></i></span>
+                                            <b>B.</b> 
+                                            <input disabled="true" *ngIf="!isPaused" value="{{qns.chopt_b}}" checked="{{(qns.chopt_b==1)?'true':''}}" type="checkbox" id="check_{{qns.test_paper_id}}_{{qns.question_id}}_{{qns.ansopt_b_id}}" (click)="getAttemptedOrnot($event.target.checked,'chopt_b',qns.question_id)">                                                        
+                                            <label for="check_{{qns.test_paper_id}}_{{qns.question_id}}_{{qns.ansopt_b_id}}">
+                                               False          
+                                            </label>
+                                         </li>
+                                         <span>Solution :<label [innerHtml]="qns.QuestSol | sanitizeHtml"></label> </span>
+                                      </ol>
+                                      <ol type="A" *ngIf="qns.question_type_id==2 && qns.ansopt_b==2">
+                                         <li> 
+                                            <span *ngIf="qns.question_attempted==1 && qns.chopt_b==1 && qns.answer_type_id_b==1" class="res_answe currt"><i  class="glyphicon glyphicon-ok-sign"></i></span>
+                                            <span *ngIf="qns.question_attempted==1 && qns.chopt_b==1 && qns.answer_type_id_b==2" class="res_answe worn"><i  class="glyphicon glyphicon-remove-sign"></i></span>
+                                            <b>A.</b> 
+                                            <input disabled="true" *ngIf="!isPaused" value="{{qns.chopt_b}}" checked="{{(qns.chopt_b==1)?'true':''}}" type="checkbox" id="check_{{qns.test_paper_id}}_{{qns.question_id}}_{{qns.ansopt_b_id}}" (click)="getAttemptedOrnot($event.target.checked,'chopt_b',qns.question_id,qns.test_paper_id)">                                                        
+                                            <label for="check_{{qns.test_paper_id}}_{{qns.question_id}}_{{qns.ansopt_b_id}}">True</label>
+                                         </li>
+                                         <li> 
+                                            <span *ngIf="qns.question_attempted==1 && qns.chopt_a==1 && qns.answer_type_id_a==1" class="res_answe currt"><i  class="glyphicon glyphicon-ok-sign"></i></span>
+                                            <span *ngIf="qns.question_attempted==1 && qns.chopt_a==1 && qns.answer_type_id_a==2" class="res_answe worn"><i  class="glyphicon glyphicon-remove-sign"></i></span>
+                                            <b>B.</b> 
+                                            <input disabled="true" *ngIf="!isPaused" value="{{qns.chopt_a}}" checked="{{(qns.chopt_a==1)?'true':''}}" type="checkbox" id="check_{{qns.test_paper_id}}_{{qns.question_id}}_{{qns.ansopt_a_id}}" (click)="getAttemptedOrnot($event.target.checked,'chopt_a',qns.question_id,qns.test_paper_id)">                                                    
+                                            <label for="check_{{qns.test_paper_id}}_{{qns.question_id}}_{{qns.ansopt_a_id}}">False</label> 
+                                         </li>                                    
+                                      </ol>
+                                   </div>
+                                </div>
+                             </li>
+
+                            </ul>
+
+                          </div> 
+                       </div>
+                    </div>
+              </div>
+
+            </div>
+
+          </div>  
+        </div>  
+     </section>  
+  </div>
+
+</div>              <!----Quesion list Start----->
+             
+ 
+ 
+ <!--====top profile background End====-->

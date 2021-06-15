@@ -1,0 +1,355 @@
+<app-sdashheader></app-sdashheader>
+<div class="leftsidemenus">
+   <app-sdahshmenu></app-sdahshmenu>
+</div>
+<div id="page-wrapper">
+   <div class="content">
+<!--verified  Modal start -->
+<div class="modal fade" id="VerifyModel" role="dialog">
+    <div class="modal-dialog vry_modal">
+       <div class="modal-content">
+        <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+               </div>
+              <div class="modal-body modal_text">
+                  <p>{{textonModel}}</p>
+              </div>
+               <div class="modal-footer modal_foot">
+                <button *ngIf="showSubBtn==true" type="submit" class="bt btn-warning" (click)="VerifyTest()" data-dismiss="modal">Verify</button>
+                <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+              </div>
+          </div>
+     </div>
+ </div>
+<!-- verified Modal end-->
+  
+  <!--Blocked  Modal start -->
+  <div class="modal fade" id="cancel" role="dialog">
+    <div class="modal-dialog vry_modal">
+       <div class="modal-content">
+        <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+               </div>
+              <div class="modal-body modal_text">
+                <p>{{textonModel}}</p>
+              </div>
+               <div class="modal-footer modal_foot">
+                <button *ngIf="selectedTestid && selectedTestid.length>0" type="submit" (click)="cancelTest();" class="bt btn-warning">Submit</button>
+                  <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+              </div>
+          </div>
+     </div>
+ </div>
+<!-- Blocked Modal end-->
+  
+  <!--Delete  Modal start -->
+  <div class="modal fade" id="delete" role="dialog">
+    <div class="modal-dialog vry_modal">
+       <div class="modal-content">
+        <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+               </div>
+              <div class="modal-body modal_text">
+                <p>{{textonModel}}</p>
+              </div>
+               <div class="modal-footer modal_foot">
+                <button  *ngIf="selectedTestid && selectedTestid.length>0" type="submit" (click)="deleteTest();" class="bt btn-warning">Submit</button>
+                  <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+              </div>
+          </div>
+     </div>
+ </div>
+<!-- Delete Modal end-->
+  <!--====Question upload page start====-->
+  <section class="question_search question_sec selt_ht scroll-yes">
+      <div class="container-fluid">
+               <div class="col-md-12"> 
+                    <div class="all_brd">
+                         <div class="question_title" id="pers_inf">
+                            <h3>Test Serch & List View</h3>
+                          </div>
+                          
+                         <div class="content_sub"> 
+                            <!--<div class="question_bg">
+                               <h4>Upload QA Database</h4>
+                            </div>-->
+                            <div class="top_btn">
+                                    <button type="submit" (click)="VerifyTestConfirm()" class="bt btn-info" data-toggle="modal" data-target="#VerifyModel">Verify</button>
+                                    <button type="submit" class="bt btn-warning"  data-toggle="modal" data-target="#cancel" (click)="cancelTestConfirm()">Cancel</button>
+                                    <button type="submit" class="bt btn-danger"  data-toggle="modal" data-target="#delete" (click)="deleteTestConfirm()">Delete</button>
+                                    <div class="top_btn" style="text-align: right;margin-right: 5%;margin-bottom: 0px;">
+                                        <a  class="bt btn-info"  (click)="resetFilter() ">Reset</a>
+                                  </div>
+                                  </div>
+                           <div class="all_mian">     	 
+                              <div class="table-responsive check_all " style="min-height: 343px;">
+                                 <table class="table table-bordered table-striped">
+                                         <thead>
+                                             <tr>
+                                                 <th>
+                                                   Check
+                                                    <!-- <input type="checkbox" id="fruit1" name="checkbox">  
+                                                    <label for="fruit1">Lable</label> -->
+                                                  </th>
+                                                 <th>User Name</th>
+                                                 <th>ID</th>
+                                                 <th>Country</th>
+                                                 <th>Course</th>
+                                                 <th>Class</th>
+                                                 <th>Subject</th>
+                                                 <th>Lesson/Topics</th>
+                                                 <th>Test&nbsp;Type</th>
+                                                 <th>Test Created By</th>
+                                                 <th>Test&nbsp;Title</th>
+                                                 <th>Test Verified</th>
+                                                 <th>Cancelled</th>
+                                                 <!-- <th>Cancelled/By</th> -->
+                                                 <th>Delete</th>
+                                                 <!-- <th>Delete/By</th> -->                                             
+                                                 <th>Test have Negt,Marks</th>                                                 
+                                                 <th>Start Date</th>
+                                                 <th>End Date</th>                                                 
+                                                 <th>Assigned&nbsp;Users</th>
+                                                 <th>Attended&nbsp;Users</th>
+                                                 <th>Rescheduled</th>
+                                                 <th>Rescheduled date</th>
+                                                 <th>Test&nbsp;Duration</th>
+                                                 <th>Test Completed</th>
+                                                 <th>Res.Decl.By</th>
+                                                 <th>Res.Act.Decl.Date</th>
+                                             </tr>
+                                         </thead>
+                                        <tbody>
+                                             <tr class="info"> 
+                                                <td></td>
+                                                <td> 
+                                                  <p-multiSelect [options]="userDname" (onChange)="setFilter()" [(ngModel)]="selectedUsersName" [panelStyle]="{minWidth:'12em'}"></p-multiSelect> 
+                                                </td>
+                                                <td> 
+                                                  <p-multiSelect [options]="testIdsList" (onChange)="setFilter()" [(ngModel)]="seltdtestIdsList" [panelStyle]="{minWidth:'12em'}"></p-multiSelect> 
+                                                </td>
+                                                <td>
+                                                    <p-multiSelect [options]="countryList" (onChange)="setFilter()" [(ngModel)]="seltdCntryList"></p-multiSelect>
+                                                </td>
+                                                <td>
+                                                  <p-multiSelect [options]="courseList" (onChange)="setFilter()" [(ngModel)]="seltdCrsList"></p-multiSelect>
+                                                </td>
+                                                <td>
+                                                  <p-multiSelect [options]="classList" (onChange)="setFilter()" [(ngModel)]="seltdClsList"></p-multiSelect>
+                                                </td>
+                                                <td>
+                                                  <p-multiSelect [options]="subjectList" (onChange)="setFilter();getLessonsonForSubj(seltdSubjList)" [(ngModel)]="seltdSubjList"></p-multiSelect>
+                                                </td>
+                                                <td>
+                                                  <p-multiSelect [options]="lessonsList" (onChange)="setFilter()" [(ngModel)]="seltdLesList"></p-multiSelect>
+                                                </td>
+                                                 <td>
+                                                  <p-multiSelect [options]="testTypeList" (onChange)="setFilter()" [(ngModel)]="seltdtestTypeList"></p-multiSelect>
+                                                </td>
+                                                <td>
+                                                  <p-multiSelect [options]="ownerList" (onChange)="setFilter()" [(ngModel)]="seltdownerList"></p-multiSelect>
+                                                </td>
+                                                 <td><span>&nbsp;&nbsp;&nbsp;</span></td>
+                                                  <td>
+                                                    <p-multiSelect [options]="verify" (onChange)="setFilter()" [(ngModel)]="seltdverifyList"></p-multiSelect>
+                                                   </td>
+                                                 <td>
+                                                  <p-multiSelect [options]="verify" (onChange)="setFilter()" [(ngModel)]="seltdCancelList"></p-multiSelect>
+                                             </td>
+                                                 <!-- <td>
+                                                  <p-multiSelect [options]="ownerList" (onChange)="setFilter()" [(ngModel)]="seltdblockbyList" [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
+
+                                             </td> -->
+                                             <td>
+                                              <p-multiSelect [options]="verify" [(ngModel)]="seltddltList" (onChange)="setFilter()" [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
+
+                                       </td> 
+                                                 
+                                                 <!-- <td>
+                                                  <p-multiSelect [options]="ownerList" (onChange)="setFilter()" [(ngModel)]="seltddeletebyList" [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
+
+                                             </td> -->
+                                                 <!-- <td>
+                                                  <p-multiSelect [options]="marksList" (onChange)="getQuestions()" [(ngModel)]="seltdqnMrksList"></p-multiSelect>
+
+                                             </td> -->
+                                                 <td> 
+                                                    <p-multiSelect [options]="verify" (onChange)="setFilter()" [(ngModel)]="seltdnqnMrksList"></p-multiSelect>
+                                                </td>                                                  
+                                                  <td>                                                    
+                                                    <input type="text" id="teststart_datetime"
+                                                  (change)="getDate($event,'teststart_datetime')" 
+                                                  ngxDaterangepickerMd 
+                                                  [(ngModel)]="teststart_datetime" 
+                                                  [showCustomRangeLabel]="true" 
+                                                  [alwaysShowCalendars]="true" 
+                                                  [ranges]="ranges" 
+                                                  [linkedCalendars]="true" 
+                                                  [showClearButton]="true" 
+                                                  [locale]="{applyLabel: 'ok', format: 'DD-MM-YYYY'}"                                                            
+                                                  placeholder="Select please...">
+                                                  </td>
+                                                  <td>                                                    
+                                                    <input type="text"   id="testend_datetime"
+                                                  (change)="getDate($event,'testend_datetime')" 
+                                                  ngxDaterangepickerMd 
+                                                  [(ngModel)]="testend_datetime" 
+                                                  [showCustomRangeLabel]="true" 
+                                                  [alwaysShowCalendars]="true" 
+                                                  [ranges]="ranges" 
+                                                  [linkedCalendars]="true" 
+                                                  [showClearButton]="true" 
+                                                  [locale]="{applyLabel: 'ok', format: 'DD-MM-YYYY'}"                                                            
+                                                  placeholder="Select please...">
+                                                  </td>
+                                                  <td><span>&nbsp;&nbsp;&nbsp;</span></td>
+                                                  <td></td>
+                                                  <td>Yes/No</td>
+                                                  <td><input type="text"   id="test_rescheduled_date"
+                                                    (change)="getDate($event,'test_rescheduled_date')" 
+                                                    ngxDaterangepickerMd 
+                                                    [(ngModel)]="test_rescheduled_date" 
+                                                    [showCustomRangeLabel]="true" 
+                                                    [alwaysShowCalendars]="true" 
+                                                    [ranges]="ranges" 
+                                                    [linkedCalendars]="true" 
+                                                    [showClearButton]="true" 
+                                                    [locale]="{applyLabel: 'ok', format: 'DD-MM-YYYY'}"                                                            
+                                                    placeholder="Select please..."></td>
+                                                  <td></td>
+                                                  <td>
+                                                    <p-multiSelect [options]="testStatus" (onChange)="setFilter()" [(ngModel)]="is_test_cmpltd"></p-multiSelect>
+                                                  </td>
+                                                  <td>
+                                                    <p-multiSelect [options]="resDeclBy" (onChange)="setFilter()" [(ngModel)]="test_is_res_declared_admin"></p-multiSelect>
+                                                  </td>
+                                                  <td>                                                    
+                                                    <input type="text"   id="test_act_res_declared_date"
+                                                    (change)="getDate($event,'test_act_res_declared_date')" 
+                                                    ngxDaterangepickerMd 
+                                                    [(ngModel)]="test_res_declared_date" 
+                                                    [showCustomRangeLabel]="true" 
+                                                    [alwaysShowCalendars]="true" 
+                                                    [ranges]="ranges" 
+                                                    [linkedCalendars]="true" 
+                                                    [showClearButton]="true" 
+                                                    [locale]="{applyLabel: 'ok', format: 'DD-MM-YYYY'}"                                                            
+                                                    placeholder="Select please...">
+                                                  </td>
+                                             </tr>
+                                             
+                                             <!--tr-1-->
+                                             <ng-container *ngIf="!searchLoader &&searchList.length>0">
+                                              <ng-container *ngFor="let sl of searchList; let i=index">
+                                                <tr  [style.font-weight]="sl.test_is_verified == 1?normal:600"[style.background-color]="sl.is_delete != 0?'#ffc8bf':''">
+                                                  <td>
+                                                    <p-checkbox value="{{sl.test_id}}" label="{{i+1}}" [(ngModel)]="selectedTestid"></p-checkbox>
+                                                  </td>
+                                                   <td  pTooltip="{{sl.users}}" tooltipPosition="top"> <ng-container *ngIf="sl.users.toString().trim().length > 17">
+                                                    {{sl.users.toString().trim().slice(0,17)}}...
+                                                   </ng-container><ng-container *ngIf="sl.users.toString().trim().length <= 17">
+                                                    {{sl.users}}
+                                                   </ng-container> </td>                                              
+                                                   <td><a routerLink="/manageTest/{{sl.test_id}}" routerActive="active">{{sl.test_id}}</a></td>
+                                                   <td><a routerLink="/manageTest/{{sl.test_id}}" routerActive="active">{{sl.cntry_name}}</a></td>
+                                                   <td  pTooltip="{{sl.course_fname}}" tooltipPosition="top"> <ng-container *ngIf="sl.course_fname.length > 14">
+                                                    {{sl.course_fname.slice(0,14)}}...
+                                                   </ng-container><ng-container *ngIf="sl.course_fname.length <= 14">
+                                                    {{sl.course_fname}}
+                                                   </ng-container> </td>
+                                                   <td  pTooltip="{{sl.class_fname}}" tooltipPosition="top"> <ng-container *ngIf="sl.course_fname.length > 17">
+                                                    {{sl.class_fname.slice(0,17)}}...
+                                                   </ng-container><ng-container *ngIf="sl.course_fname.length <= 17">
+                                                    {{sl.class_fname}}
+                                                   </ng-container></td>
+                                                   <td  pTooltip="{{sl.subject_fname}}" tooltipPosition="top"> <ng-container *ngIf="sl.course_fname.length > 17">
+                                                    {{sl.subject_fname.slice(0,17)}}..
+                                                   </ng-container> <ng-container *ngIf="sl.course_fname.length <= 17">
+                                                    {{sl.subject_fname}}
+                                                   </ng-container></td>
+                                                   <td  pTooltip="{{sl.lessons}}" tooltipPosition="top"> <ng-container *ngIf="sl.lessons.toString().length > 17">
+                                                    {{sl.lessons.toString().slice(0,17)}}...
+                                                   </ng-container><ng-container *ngIf="sl.lessons.toString().length <= 17">
+                                                    {{sl.lessons}}
+                                                   </ng-container> </td>
+                                                   <td  pTooltip="{{sl.test_type}}" tooltipPosition="top"> <ng-container *ngIf="sl.test_type.length > 13">
+                                                    {{sl.test_type.slice(0,13)}}..
+                                                   </ng-container><ng-container *ngIf="sl.test_type.length <= 13">
+                                                    {{sl.test_type}}
+                                                   </ng-container> </td>
+                                                   <td>{{(sl.test_admin_id)?'Admin':'User'}}</td>
+                                                   <td  pTooltip="{{sl.test_title}}" tooltipPosition="top"> <ng-container *ngIf="sl.test_title.trim().length > 17">
+                                                    <span>{{sl.test_title.toString().trim().slice(0,17)}}...</span>
+                                                   </ng-container><ng-container *ngIf="sl.test_title.trim().length <= 17">
+                                                    <span></span>{{sl.test_title.toString().trim()}}
+                                                   </ng-container></td>
+                                                   <td>{{(sl.test_is_verified==1)?'Yes':'No'}}</td>
+                                                   <td>{{(sl.is_cancel==1)?'Yes':'No'}}</td>
+                                                   <!-- <td></td> -->
+                                                   <td>{{(sl.is_delete==1)?'Yes':'No'}}</td>
+                                                   <!-- <td>-</td> -->                                              
+                                                   <td>{{(sl.test_is_nmarks==1)?'Yes':'No'}}</td>
+                                                   <td>{{sl.test_start_datetime}}</td>
+                                                   <td>{{sl.test_end_datetime}}</td>
+                                                   <td>{{sl.test_assigned_users_cnt}}</td>
+                                                   <td>{{sl.test_attended_users_cnt}}</td>
+                                                   <td>{{(sl.is_test_rescheduled==1)?'Yes':'No'}}</td>
+                                                   <td>{{sl.test_rescheduled_date}}</td>
+                                                   <td>{{sl.test_duration}} min. </td>
+                                                   <td>{{(sl.testStatus==1)?'Completed':'Not Completed'}}</td>
+                                                   <td>{{(sl.test_is_res_declared_admin==1)?'Admin':'Auto'}}</td>
+                                                   <td>{{sl.act_result_date}}</td>                                                 
+                                               </tr> 
+                                              </ng-container> 
+                                             </ng-container>
+                                         </tbody>
+                                     </table>
+                                     <div style="
+                                  text-align: center;
+                                  margin-top: 8%;" *ngIf="searchLoader">
+                                        <p-progressSpinner></p-progressSpinner>
+                                    </div>
+                                    <div style="
+                                  text-align: center;
+                                  margin-top: 8%;" *ngIf="!searchLoader&&searchList.length<1">
+                                        <h3>No records found!</h3>
+                                    </div>
+                                 </div>
+                                  <div class="pages_but">
+                                    <div class="badge-inner">
+                                        <p-paginator [rows]="10" [totalRecords]="totalTests" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" (onPageChange)="currentPage = $event.page; onPageChange($event) " #paginator></p-paginator>
+                                    </div>
+                                 </div>
+                             </div>
+                         </div>
+                   </div>
+               </div>
+             </div> 
+         </section>
+         <!--====top profile background End====-->
+    </div>
+    </div>
+    <p-toast [style]="{marginTop: '80px'}"></p-toast>
+<p-toast [style]="{marginTop: '80px'}" position="top-left" key="tl"></p-toast>
+<p-toast [style]="{marginTop: '80px'}" position="top-center" key="tc"></p-toast>
+<p-toast [style]="{marginTop: '80px'}" styleClass="custom-toast" key="custom" position="bottom-center"></p-toast>
+<p-toast position="center" key="c" (onClose)="onReject()" [modal]="true" [baseZIndex]="5000">
+    <ng-template let-message pTemplate="message">
+        <div style="text-align: center">
+            <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i>
+            <h3>{{message.summary}}</h3>
+            <p>{{message.detail}}</p>
+        </div>
+        <div class="ui-g ui-fluid">
+            <div class="ui-g-6">
+                <button type="button" pButton (click)="onConfirm()" label="Yes" class="ui-button-success"></button>
+            </div>
+            <div class="ui-g-6">
+                <button type="button" pButton (click)="onReject()" label="No" class="ui-button-secondary"></button>
+            </div>
+        </div>
+    </ng-template>
+</p-toast>

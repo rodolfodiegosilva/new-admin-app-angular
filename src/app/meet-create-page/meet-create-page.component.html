@@ -1,0 +1,885 @@
+<app-sdashheader></app-sdashheader>
+<div class="leftsidemenus">
+   <app-sdahshmenu></app-sdahshmenu>
+</div>
+<div class="loadertable">
+   <ng4-loading-spinner [timeout]="8000" [template]="template" [zIndex]="9999"> </ng4-loading-spinner>
+</div>
+<div id="page-wrapper">
+   <div class="content">
+      <!--verified  Modal start -->
+      <div class="modal fade" id="verified" role="dialog">
+         <div class="modal-dialog vry_modal">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+               </div>
+               <div class="modal-body modal_text">
+                  <p>Do you really want to verify these records? This process cannot be undone</p>
+               </div>
+               <div class="modal-footer modal_foot">
+                  <button type="submit" class="bt btn-warning">verify</button>
+                  <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- verified Modal end-->
+      <!--Blocked  Modal start -->
+      <div class="modal fade" id="block" role="dialog">
+         <div class="modal-dialog vry_modal">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+               </div>
+               <div class="modal-body modal_text">
+                  <p>Do you really want to Block these records? This process cannot be undone</p>
+               </div>
+               <div class="modal-footer modal_foot">
+                  <button type="submit" class="bt btn-warning">Block</button>
+                  <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Blocked Modal end-->
+      <!--Delete  Modal start -->
+      <div class="modal fade" id="delete" role="dialog">
+         <div class="modal-dialog vry_modal">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+               </div>
+               <div class="modal-body modal_text">
+                  <p>Do you really want to Delete these records? This process cannot be undone</p>
+               </div>
+               <div class="modal-footer modal_foot">
+                  <button type="submit" class="bt btn-warning">Delete</button>
+                  <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Delete Modal end-->
+      <!--====Question upload page start====-->
+      <section class="question_search question_sec selt_ht scroll-yes">
+
+         <div class="admin_add">
+            <div class="col-md-12">
+               <div class="all_brd_createmeet">
+                  <div class="question_title_createmeet" id="pers_inf_createmeet">
+                     <div class="row" style="margin-right: 0px;margin-left: 0px;">
+                        <h3> Create Meeting Page
+                           <button *ngIf="showUsers==true" (click)="refresh()" class="btn btn-success">Create New Meeting</button>
+                        </h3>
+                     </div>
+                  </div>
+
+                  <div class="row test1_createmeet">
+                  </div>
+                  <div class="question_sub_createmeet">
+                     <form class="form_createmeet" autocomplete="off" role="form" #testCrtForm="ngForm" (ngSubmit)="createMeet(testCrtForm)" accept-charset="UTF-8" novalidate>
+                        <input type="hidden" #inst_ids="ngModel" name="inst_ids" [(ngModel)]="inst_id">
+                        <input type="hidden" #test_owner_id="ngModel" name="test_owner_id" [(ngModel)]="test_owner_ids">
+                        <input type="hidden" #test_admin_id="ngModel" name="test_admin_id" [(ngModel)]="Check_admin_id">
+                        <input type="hidden" #filesUrls="ngModel" name="filesUrls" [(ngModel)]="filesUrl">
+                        <div class="all_mian_createmeet" style="margin: 10px 10px">
+
+                           <!--OK-->
+                           <div class="row inline-form-fields_createmeet" style="margin-right: 0px;margin-left: 0px;" *ngIf="meeting_id != ''">
+                              <div class="col-md-4">
+                                 <div class="inline-form-fields-cnt_createmeet" style="border: none;">
+                                    <label for="float-input" style="border-radius: 5px; width: 50%;">Meeting
+                                       ID:{{meeting_id}}</label>
+                                 </div>
+                              </div>
+                           </div>
+
+
+                           <div class="row inline-form-fields_createmeet" >
+                              <div class="col-md-6 col-xs-12 col-sm-12">
+                                 <div class="inline-form-fields-cnt_createmeet">
+                                    <label for="float-input"><span *ngIf="titleEdit"
+                                          class="required-field-indicator_createmeet">*</span>Class Title</label>
+                                    <input *ngIf="titleEdit" type="text" id="float-input" size="50" pInputText
+                                       #test_title="ngModel" name="test_title" [(ngModel)]="title_test" required
+                                       style="height: 34px;width: 100%;">
+                                    <p *ngIf="!titleEdit" class="form-control" readonly
+                                       (click)="editTestFields('titleEdit',title_test)"
+                                       pTooltip="Click to edit Test title" tooltipPosition="top">{{title_test}}</p>
+                                 </div>
+                                 <br *ngIf="titleEdit_show">
+                                 <p *ngIf="titleEdit_show">
+                                    <i class="fa fa-times btn btn-danger" aria-hidden="true"
+                                       (click)="closeTestEdit('titleEdit','title_test')"></i>
+                                    <i class="fa fa-check btn btn-success" aria-hidden="true"
+                                       (click)="updateTestSpec(meeting_id,title_test,'test_title','titleEdit')"></i>
+                                 </p>
+                              </div>
+
+                              <div class="col-md-6 col-xs-12 col-sm-12">
+                                 <div class="inline-form-fields-cnt_createmeet">
+                                    <label for="float-input"><span
+                                          class="required-field-indicator_createmeet">*</span>Description</label>
+                                    <textarea *ngIf="descEdit" id="float-input" rows="2" cols="50" pInputText
+                                       [disabled]="butDisabled" #test_desc="ngModel" name="test_desc"
+                                       [(ngModel)]="desc_test" required style="height: 34px;width:100%;"></textarea>
+                                    <p *ngIf="!descEdit" class="form-control" readonly
+                                       (click)="editTestFields('descEdit',desc_test)"
+                                       pTooltip="Click to edit test Description" tooltipPosition="top">{{desc_test}}</p>
+                                 </div>
+                                 <br *ngIf="titleEdit_show">
+                                 <p *ngIf="descEdit_show">
+                                    <i class="fa fa-times btn btn-danger" aria-hidden="true"
+                                       (click)="closeTestEdit('descEdit','desc_test')"></i>
+                                    <i class="fa fa-check btn btn-success" aria-hidden="true"
+                                       (click)="updateTestSpec(test_id,desc_test,'test_desc','descEdit')"></i>
+                                 </p>
+                              </div>
+                           </div>
+
+                           <div class="row inline-form-fields_createmeet " >
+                              <div class="col-md-6 col-xs-12 col-sm-12 ng-star-inserted" *ngIf="!showClfsNames">
+                                 <div class="inline-form-fields-cnt_createmeet">
+                                    <label><span class="required-field-indicator_createmeet">*</span>Country</label>
+                                    <ng-select (change)="getTotalAvailabaleQnsGradewise()" [disabled]="butDisabled"
+                                       [items]="countrieslist" bindLabel="cntry_name" bindValue="cntry_id"
+                                       #country="ngModel" name="country" [(ngModel)]="country_id"
+                                       placeholder="Select country" disabled required>
+                                       <div class="ng-select-container">
+                                          <div class="ng-value-container"
+                                             style="align-items: center;padding-left: 10px;">
+                                             <div class="ng-placeholder">Select country</div>
+                                             <div class="ng-input">
+                                                <input role="combobox" type="text" autocomplete="a1ad1f8afcd8" id=""
+                                                   aria-expanded="false">
+                                             </div>
+                                          </div>
+                                          <span class="ng-arrow-wrapper">
+                                             <span class="ng-arrow"></span>
+                                          </span>
+                                       </div>
+                                    </ng-select>
+                                 </div>
+                              </div>
+
+                              <div class="col-md-6 col-xs-12 col-sm-12 " *ngIf="showClfsNames">
+                                 <div class="inline-form-fields-cnt_createmeet">
+                                    <label>Country</label>
+                                    <p class="form-control" readonly>{{cntry_name}} rodolfo diego</p>
+                                 </div>
+                              </div>
+
+
+                              <div class="col-md-6 col-xs-12 col-sm-12 ng-star-inserted" *ngIf="!showClfsNames">
+                                 <div class="inline-form-fields-cnt_createmeet">
+                                    <label><span class="required-field-indicator_createmeet">*</span>Course</label>
+                                    <ng-select (change)="getTotalAvailabaleQnsGradewise()" [items]="allCourses"
+                                       bindLabel="course_fname" bindValue="course_id" #course_ids="ngModel"
+                                       name="course_ids" [(ngModel)]="course_value" placeholder="Select Course"
+                                       required>
+                                       <div class="ng-select-container">
+                                          <div class="ng-value-container"
+                                             style="align-items: center;padding-left: 10px;">
+                                             <div class="ng-placeholder">Select Course</div>
+                                             <div class="ng-input">
+                                                <input role="combobox" type="text" autocomplete="aaf4d042daaf" id=""
+                                                   aria-expanded="false">
+                                             </div>
+                                          </div>
+                                          <span class="ng-arrow-wrapper">
+                                             <span class="ng-arrow"></span>
+                                          </span>
+                                       </div>
+                                    </ng-select>
+                                 </div>
+                              </div>
+                              <div class="col-md-6 col-xs-12 col-sm-12 " *ngIf="showClfsNames">
+                                 <div class="inline-form-fields-cnt_createmeet">
+                                    <label>Course</label>
+                                    <p class="form-control" readonly>{{course_fname}}</p>
+                                 </div>
+                              </div>
+
+                           </div>
+
+                           <div class="row inline-form-fields_createmeet " >
+                              <div class="col-md-6 col-xs-12 col-sm-12 ng-star-inserted" *ngIf="!showClfsNames">
+                                 <div class="inline-form-fields-cnt_createmeet">
+                                    <label><span class="required-field-indicator_createmeet">*</span>Class</label>
+                                    <ng-select (change)="getTotalAvailabaleQnsGradewise()" [items]="allClasses"
+                                       bindLabel="class_fname" bindValue="class_id" placeholder="Select Class"
+                                       #class_ids="ngModel" name="class_ids" [(ngModel)]="class_value" required>
+                                       <div class="ng-select-container">
+                                          <div class="ng-value-container"
+                                             style="align-items: center;padding-left: 10px;">
+                                             <div class="ng-placeholder">Select Class</div>
+                                             <div class="ng-input">
+                                                <input role="combobox" type="text" autocomplete="a5865c2004fe" id=""
+                                                   aria-expanded="false">
+                                             </div>
+                                          </div>
+                                          <span class="ng-arrow-wrapper">
+                                             <span class="ng-arrow"></span>
+                                          </span>
+                                       </div>
+                                    </ng-select>
+                                 </div>
+                              </div>
+
+                              <div class="col-md-6 col-xs-12 col-sm-12 " *ngIf="showClfsNames">
+                                 <div class="inline-form-fields-cnt_createmeet">
+                                    <label>Class</label>
+                                    <p class="form-control" readonly>{{class_fname}}</p>
+                                 </div>
+                              </div>
+
+                              <div class="col-md-6 col-xs-12 col-sm-12 ng-star-inserted" *ngIf="!showClfsNames">
+                                 <div class="inline-form-fields-cnt_createmeet">
+                                    <label><span class="required-field-indicator_createmeet">*</span>Subject</label>
+                                    <ng-select (change)="getTotalAvailabaleQnsGradewise()" [items]="allSubjects"
+                                       bindLabel="subject_fname" bindValue="subject_id" placeholder="Select Subjects"
+                                       #subject_ids="ngModel" name="subject_ids" [(ngModel)]="subject_values"
+                                       (change)="getLessonsonForSubj()" required>
+                                       <div class="ng-select-container">
+                                          <div class="ng-value-container">
+                                             <div class="ng-placeholder">Subjects</div>
+                                             <div class="ng-input">
+                                                <input role="combobox" type="text" autocomplete="ac9524dfded4" id=""
+                                                   aria-expanded="false">
+                                             </div>
+                                          </div>
+                                          <span class="ng-arrow-wrapper">
+                                             <span class="ng-arrow"></span>
+                                          </span>
+                                       </div>
+                                    </ng-select>
+                                 </div>
+                              </div>
+                              <div class="col-md-6 col-xs-12 col-sm-12 " *ngIf="showClfsNames">
+                                 <div class="inline-form-fields-cnt_createmeet">
+                                    <label>Subject</label>
+                                    <p class="form-control" readonly>{{subject_fname}}</p>
+                                 </div>
+                              </div>
+                           </div>
+
+                           <div class="row inline-form-fields_createmeet "  *ngIf="!showClfsNames">
+                              <div class="col-md-6 col-xs-12 col-sm-12 ng-star-inserted">
+                                 <div class="inline-form-fields-cnt_createmeet">
+                                    <label><span
+                                          class="required-field-indicator_createmeet">*</span>Lesson/Topic</label>
+                                    <br>
+                                    <p-multiselect (onChange)="getTotalAvailabaleQnsGradewise()" >
+                                       <div class="ng-tns-c5-8 ui-multiselect ui-widget ui-state-default ui-corner-all" style="width: 100%;height: 100%;">
+                                          <div class="ui-helper-hidden-accessible">
+                                             <input class="ng-tns-c5-8" readonly="readonly" type="text"  name="selectedLessonIds">
+                                          </div>
+                                          <div class="ui-multiselect-label-container" title="Choose">
+                                             <label class="ui-multiselect-label ui-corner-all">
+                                                Choose
+                                             </label>
+                                          </div>
+                                          <div class="ng-tns-c5-8 ui-multiselect-trigger ui-state-default ui-corner-right">
+                                             <span class="ui-multiselect-trigger-icon ui-clickable pi pi-caret-down"></span>
+                                          </div>
+                                       </div>
+                                    </p-multiselect>
+                                 </div>
+                              </div>
+                           </div>   
+
+                           <div *ngIf="showClfsNames" class="col-md-4">
+                              <div class="col-md-12">
+                                 <label>Lesson/Topic</label>
+                                 <br>
+                                 <p-multiSelect (onChange)="getTotalAvailabaleQnsGradewise()"
+                                    [style]="{'width': '100%'}" [options]="lessonsList" #selectedLessonIds="ngModel"
+                                    name="selectedLessonIds" [(ngModel)]="selectedlessonList"
+                                    [panelStyle]="{minWidth:'12em'}" maxSelectedLabels="2" required>
+                                 </p-multiSelect>
+                                 <span *ngIf="lessSlct==true" class="error-msg alert-danger">Please select
+                                    lesson(s)</span>
+                              </div>
+
+                              <div class="col-md-2" *ngIf="noLessonsmsg">
+                                 <span>Please select subject!</span>
+                              </div>
+                              <!-- <div class="col-md-2" *ngIf="noLessons">
+                              <p class="btn btn-success" (click)="lessonCreate(lesson_name,'')">Add</p>
+                              </div> -->
+                           </div>
+                          
+
+                           <div class="col-md-6 col-xs-12 col-sm-12 " *ngIf="showClfsNames">
+                              <div class="inline-form-fields-cnt_createmeet">
+                                 <label>Lesson/Topic</label>
+                                 <ng-container *ngIf="lessons_names.length >= '60'">
+                                    <p class="form-control" id="greater" readonly pTooltip="{{lessons_names}}"
+                                       tooltipPosition="top">{{lessons_names.slice(0,60)}} ..</p>
+                                 </ng-container>
+                                 <ng-container *ngIf="lessons_names.length <= '60'">
+                                    <p class="form-control" id="lower" readonly pTooltip="{{lessons_names}}"
+                                       tooltipPosition="top">{{lessons_names}}</p>
+                                 </ng-container>
+                              </div>
+                           </div>
+                           <hr>
+                           <div class="ng-star-inserted">
+                              <div class="row btm-block">
+                                 <div class="test-start-date col-md-3" >
+                                    <span style="display: inline-block;width: 100%;" >
+                                       <label for="float-input"><span class="required-field-indicator_createmeet">*</span>
+                                          Start date &amp;Time
+                                       </label>                                       
+                                       <br>                                      
+                                       <p-calendar *ngIf="false"  [(ngModel)]="date3" [showIcon]="true" inputId="icon"></p-calendar>
+                                       <p-calendar *ngIf="sdntEdit" id="float-input" [readonlyInput]="true" [minDate]="sminDate" (onSelect)="getDateTime($event,1)" #test_start_datetimes="ngModel" name="test_start_datetimes" 
+                                       [(ngModel)]="teststart_datetimes" dateFormat="dd-mm-yy" showTime="true" hourFormat="24" placeholder="" required></p-calendar>
+                                    </span>
+                                    <input type="hidden" #test_start_datetime="ngModel" name="test_start_datetime" [(ngModel)]="teststart_datetime">
+                                    <br>
+                                    <p *ngIf="!sdntEdit" class="form-control" readonly>{{teststart_datetime}}</p>
+                                    <!-- <p *ngIf="!sdntEdit" class="form-control" (click)="editTestFields('sdntEdit',teststart_datetime)" pTooltip="Click to edit start date & time" tooltipPosition="top">{{teststart_datetime}}</p> -->
+                                    <!-- <p *ngIf="sdntEdit_show">
+                                    <i class="fa fa-times btn btn-danger" (click)="closeTestEdit('sdntEdit','teststart_datetime')" aria-hidden="true"></i>
+                                    <i class="fa fa-check btn btn-success" (click)="updateTestSpec(test_id,teststart_datetime,'test_start_datetime','sdntEdit')" aria-hidden="true"></i>
+                                    </p> -->
+                                    <!-- <input type="text" [(ngModel)]="tMarks" #marks="ngModel" name="marks" (keypress)="numberOnly($event,1)" class="form-control" placeholder="enter Marks" required>
+                                    <p *ngIf="mErrMsg_1" class="alert alert-danger">{{mErrMsg_1}}</p> -->
+                                 </div>
+
+                                 <div class="test-end-date col-md-3">
+                                    <div class="test-end-date-inner">
+                                       <span style="display: inline-block;width: 100%;" >
+                                          <label for="float-input"><span class="required-field-indicator_createmeet">*</span>
+                                             End date &amp; Time
+                                          </label>
+                                          <br>
+                                          <p-calendar *ngIf="false"  [(ngModel)]="date3" [showIcon]="true" inputId="icon"></p-calendar>
+                                          <p-calendar *ngIf="edntEdit" id="float-input"  [minDate]="eminDate" (onSelect)="getDateTime($event,2)" #test_end_datetimes="ngModel" name="test_end_datetimes" [(ngModel)]="testend_datetimes" dateFormat="dd-mm-yy" showTime="true" hourFormat="24" required></p-calendar>                                                                                
+                                       </span>
+                                       <input type="hidden" #test_end_datetime="ngModel" name="test_end_datetime"  [(ngModel)]="testend_datetime">                              
+                                    </div>
+                                 </div>
+
+                                 <div class="test-duration meeting-duration col-md-3">
+                                    <span>
+                                       <label for="float-input"><span class="required-field-indicator_createmeet">*</span>Meeting duration</label>
+                                       <br>
+                                       <p-calendar *ngIf="durtEdit" (onSelect)="getDateTime($event,4)" id="float-input" timeOnly=true #test_durations="ngModel" name="test_durations" [(ngModel)]="duration_tests" pInputText></p-calendar>
+                                       
+                                       <input type="hidden" #test_duration="ngModel" name="test_duration" [(ngModel)]="tests_duration">
+                                       
+                                    </span>
+
+                                    <p *ngIf="!durtEdit" style="margin-top:5%;font-size: 15px;" class="form-control"
+                                    (click)="editTestFields('durtEdit',duration_test)"
+                                    pTooltip="Click to edit test duration" tooltipPosition="top">
+                                    {{tests_duration}}</p>
+                                    <p *ngIf="durtEdit_show">
+                                    <i class="fas fa-times btn btn-danger"
+                                       (click)="closeTestEdit('durtEdit','duration_test')" aria-hidden="true"></i>
+                                    <i class="fas fa-check btn btn-success"
+                                       (click)="updateTestSpec(test_id,duration_test,'test_duration','durtEdit')"
+                                       aria-hidden="true"></i>
+                                    </p>
+                                 </div>
+
+                              </div>
+                           </div>
+                        </div>
+
+                        <div class="flex">
+                           <div class="text-center ng-star-inserted">
+                              <br>
+                              <button *ngIf="testCrtForm.valid && creteBtnShow==true" 
+                                 class="btn btn-primary">Create</button>
+                              <button *ngIf="!testCrtForm.valid || creteBtnShow==false" disabled="{{creteBtn==true}}" 
+                                 class="btn btn-primary">Create</button>
+                           </div>
+                        </div>
+                     </form>
+                  </div>
+                  
+                  
+                  
+                  
+                  <!--  -->
+                  <div *ngIf="showUsers==true" class="content_sub">
+                     <!---Question-1 Owner: *ngIf="test_type_1==true" start-->
+                     <div class="qusn_oner">
+                        <div class="col-md-12 longtext" id="scrollbar_c">
+                           <table class="table table-bordered" style="background-color: #e9e9e9;">
+                              <thead>
+                                 <tr class="main_hed">
+                                    <!-- <th>ID</th> -->
+                                    <th>Username</th>
+                                    <th>User type</th>
+                                    <th>Class</th>
+                                    <!-- <th>Grade</th> -->
+                                    <th>School</th>
+                                    <th>Country</th>
+                                    <th>State</th>
+                                    <th>City</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr>
+                                    <!-- <td></td> -->
+                                    <td>
+                                       <p-multiSelect [options]="userDname" [(ngModel)]="selectedDisplayNames"
+                                          (onChange)="getAllRegisteredUsers()" [panelStyle]="{minWidth:'12em'}">
+                                       </p-multiSelect>
+                                    </td>
+                                    <td>
+                                       <p-multiSelect [options]="userType" [(ngModel)]="selectedUserType"
+                                          (onChange)="getAllRegisteredUsers()" [panelStyle]="{minWidth:'12em'}">
+                                       </p-multiSelect>
+                                    </td>
+                                    <td>
+                                       <p-multiSelect [options]="Classname" [(ngModel)]="selectedClasses"
+                                          (onChange)="getAllRegisteredUsers()" [panelStyle]="{minWidth:'12em'}">
+                                       </p-multiSelect>
+                                    </td>
+                                    <td>
+                                       <p-multiSelect [options]="Schoolname" [(ngModel)]="selectedSchoolNames"
+                                          (onChange)="getAllRegisteredUsers()" [panelStyle]="{minWidth:'12em'}">
+                                       </p-multiSelect>
+                                    </td>
+                                    <td>
+                                       <p-multiSelect [options]="userCountries" [(ngModel)]="selectedUsercountry"
+                                          (onChange)="getAllRegisteredUsers()"></p-multiSelect>
+                                    </td>
+                                    <td>
+                                       <p-multiSelect [options]="stateNames" [(ngModel)]="selectedStates"
+                                          (onChange)="getAllRegisteredUsers()" [panelStyle]="{minWidth:'12em'}">
+                                       </p-multiSelect>
+                                    </td>
+                                    <td>
+                                       <p-multiSelect [options]="cityNames" [(ngModel)]="selectedCities"
+                                          (onChange)="getAllRegisteredUsers()" [panelStyle]="{minWidth:'12em'}">
+                                       </p-multiSelect>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                           <div class="clear-fix"></div>
+                           <br>
+                           <div>
+                              <button *ngIf="assignBtnShow==true" class="btn btn-success"
+                                 (click)="AssignMeettoUserConfirm()">Assign Participant</button>
+                              <button *ngIf="moderatorBtnShow==true" class="btn btn-success"
+                                 (click)="AssignMeettoModeratorConfirm()">Assign Moderator</button>
+                           </div>
+                           <div class="col-md-12 longtext" style="background-color: #e9e9e9;" id="scrollbar_c">
+                              <div style="text-align: center;">
+                                 Selected Users
+                              </div>
+                              <table class="table table-bordered">
+                                 <thead>
+                                    <tr class="main_hed">
+                                       <th>
+                                          <p-checkbox *ngIf="allUsers.length>0" value='0'
+                                             (onChange)="checkedAllUser($event)" [(ngModel)]="selectedUsers">
+                                          </p-checkbox>
+                                       </th>
+                                       <th>ID</th>
+                                       <th>Username</th>
+                                       <th>User type</th>
+                                       <th>Class</th>
+                                       <!-- <th>Grade</th> -->
+                                       <th>School</th>
+                                       <th>Country</th>
+                                       <th>State</th>
+                                       <th>City</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    <tr *ngFor="let usr of allUsers; let i=index">
+                                       <td>
+                                          <p-checkbox value="{{usr.UserId}}" label="{{i+1}}"
+                                             [(ngModel)]="selectedUsers"></p-checkbox>
+                                       </td>
+                                       <td>{{usr.UserId}}</td>
+                                       <td>{{usr.user_dname}}</td>
+                                       <td>{{usr.usrtyp_name}}</td>
+                                       <td>{{usr.user_class}}</td>
+                                       <td>{{usr.schoolName}}</td>
+                                       <td>{{usr.cntry_name}}</td>
+                                       <td>{{usr.state_name}}</td>
+                                       <td>{{usr.city_name}}</td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                           <div>
+                              <button class="btn btn-warning" (click)="unAssignMeetforUserConfirm()">Unassign
+                                 Users</button>
+                           </div>
+                           <div class="col-md-12 longtext" style="background-color: #e9e9e9;" id="scrollbar_c">
+                              <div style="text-align: center;">
+                                 Assigned Users
+                              </div>
+                              <table class="table table-bordered">
+                                 <thead>
+                                    <tr class="main_hed">
+                                       <th>
+                                          <p-checkbox value='0' *ngIf="assignedUsers.length>0"
+                                             (onChange)="checkedAll($event)" [(ngModel)]="selectedUsersunassign">
+                                          </p-checkbox>
+                                       </th>
+                                       <th>ID</th>
+                                       <th>Username</th>
+                                       <th>User type</th>
+                                       <th>Class</th>
+                                       <!-- <th>Grade</th> -->
+                                       <th>School</th>
+                                       <th>Country</th>
+                                       <th>State</th>
+                                       <th>City</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    <tr *ngFor="let usr of assignedUsers; let i=index"
+                                       [ngStyle]="usr.moderator == 1?moderatorClass:''">
+                                       <td>
+                                          <p-checkbox value="{{usr.UserId}}" label="{{i+1}}"
+                                             (onChange)="checkedUserEvent($event,usr.UserId)"
+                                             [(ngModel)]="selectedUsersunassign"></p-checkbox>
+                                       </td>
+                                       <td>{{usr.UserId}}</td>
+                                       <td>{{usr.user_dname}}</td>
+                                       <td>{{usr.usrtyp_name}}</td>
+                                       <td>{{usr.user_class}}</td>
+                                       <td>{{usr.schoolName}}</td>
+                                       <td>{{usr.cntry_name}}</td>
+                                       <td>{{usr.state_name}}</td>
+                                       <td>{{usr.city_name}}</td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                           <!-- <button *ngIf="testtype_id==4" class="btn btn-primary" (click)="AssignQnsforConfirm()">Assign Qns</button> -->
+                           <!--div class="col-md-12 longtext" id="scrollbar_c">
+                              <table class="table table-bordered">
+                                  <thead>
+                                      <tr class="main_hed">                                                    
+                                          <-- <th>Question Id</th> --
+                                          <th>Lesson Topic</th>
+                                          <th>Question Type</th>
+                                          <th>Grade</th>
+                                          <th>Owner</th>
+                                          <th>Marks</th>
+                                          <th>Neg.Marks</th>
+                                          <th>Time</th>
+                                          <th>Rating</th>                                
+                                      </tr>  
+                                  </thead>
+                                  <tbody>
+                                      <tr>
+                                          <-- <td></td> --
+                                          <td>
+                                              <p-multiSelect [options]="lessnsList" [(ngModel)]="assgnedseltdLesList" (onChange)="getAssignedQuestionsforTest()" [panelStyle]="{minWidth:'12em'}">
+                                              </p-multiSelect>
+                                          </td>
+                                          <td>
+                                                  <p-multiSelect [options]="qnsTypeList" [(ngModel)]="assgnedseltdqntList" (onChange)="getAssignedQuestionsforTest()" [panelStyle]="{minWidth:'12em'}">
+                                                  </p-multiSelect>
+                                              </td>
+                                              <td>
+                                                      <p-multiSelect [options]="qnsGrade" [(ngModel)]="assgnedseltdqnGrdList" (onChange)="getAssignedQuestionsforTest()" [panelStyle]="{minWidth:'12em'}">
+                                                      </p-multiSelect>
+                                                  </td>
+                                          <td>
+                                              <p-multiSelect [options]="ownersList" [(ngModel)]="assgnedselectedOwners" (onChange)="getAssignedQuestionsforTest()" [panelStyle]="{minWidth:'12em'}">
+                                              </p-multiSelect>
+                                          </td>
+                                         
+                                          
+                                          <td>
+                                              <p-multiSelect [options]="marksList" [(ngModel)]="assgnedseltdqnMrksList" (onChange)="getAssignedQuestionsforTest()"></p-multiSelect>
+                                          </td>
+                                          <td>
+                                              <p-multiSelect [options]="nmarksList" [(ngModel)]="assgnedseltdqnnMrksList" (onChange)="getAssignedQuestionsforTest()" [panelStyle]="{minWidth:'12em'}">
+                                              </p-multiSelect>
+                                          </td>
+                                          <td>
+                                              <p-calendar [(ngModel)]="assgnedquestion_time" [timeOnly]="true" (onSelect)="getTime($event)"></p-calendar>
+                                              <br>
+                                          </td>
+                                          <td>
+                                              <p-multiSelect [options]="nmarksList" [(ngModel)]="assgnedseltdqnnMrksList" (onChange)="getAssignedQuestionsforTest()" [panelStyle]="{minWidth:'12em'}">
+                                              </p-multiSelect>
+                                          </td>                                                    
+                                          </tr>
+                                  </tbody>                                             
+                              </table>
+                              </div-->
+
+
+                           <div class="row pd-10">
+                              <!--div class="col-md-4">
+                           <div class="upload_content" id="pers_inf">
+                              <h3 class="Per3_title">Test Creation</h3>
+                              <--edit bar--Start--
+                              <div class="file_name row">
+                                 <div class="col-md-12">
+                                    <div class="input-group">
+                                       <span class="input-group-addon">Test Title</span>
+                                       <input type="text" class="form-control" 
+                                          placeholder="Create Test Page">
+                                    </div>
+                                 </div>
+                                 <div class="col-md-12">
+                                    <div class="input-group comment_npt">
+                                       <span class="input-group-addon">Description</span>
+                                       <textarea rows="6"></textarea>
+                                    </div>
+                                 </div>
+                                 <div class="col-md-12">
+                                    <div class="input-group">
+                                       <span class="input-group-addon">County</span>
+                                       <select class="form-control basic-single">
+                                          <option value="AL">Select County</option>
+                                          <option value="AR">Arkansas</option>
+                                          <option value="IL">Illinois</option>
+                                          <option value="IA">Iowa</option>
+                                          <option value="KS">Kansas</option>
+                                       </select>
+                                    </div>
+                                 </div>
+                                 <div class="col-md-12">
+                                    <div class="input-group">
+                                       <span class="input-group-addon">Course</span>
+                                       <input type="text" class="form-control" placeholder="Course"> 
+                                    </div>
+                                 </div>
+                                 <div class="col-md-12">
+                                    <div class="input-group">
+                                       <span class="input-group-addon">Class</span>
+                                       <input type="text" class="form-control" placeholder="Class"> 
+                                    </div>
+                                 </div>
+                                 <div class="col-md-12">
+                                    <div class="input-group">
+                                       <span class="input-group-addon">Select Subject</span>
+                                       <input type="text" class="form-control" placeholder="Class">
+                                    </div>
+                                 </div>
+                                 <div class="col-md-12">
+                                    <div class="input-group">
+                                       <span class="input-group-addon">Lessons / Topic</span>
+                                       <p-multiSelect [options]="lestopic" [(ngModel)]="lessiontopic" [ngClass]="'selectlesson'"></p-multiSelect>
+                                    </div>
+                                 </div>
+                                 <div class="col-md-12">
+                                    <div class="input-group">
+                                       <span class="input-group-addon">NO Of Questions</span>
+                                       <input type="text" class="form-control" placeholder="Enter NO Of Questions"> 
+                                    </div>
+                                 </div>
+                                 <div class="col-md-12">
+                                    <div class="input-group">
+                                       <span class="input-group-addon">Start Date & Time</span>
+                                       <input type="text"
+                                       class="form-control"
+                                       ngxDaterangepickerMd
+                                       [(ngModel)]="createtestdate"
+                                       [alwaysShowCalendars]="true"
+                                       [singleDatePicker]="true"
+                                       [autoApply]="true"
+                                       placeholder="start Date">
+                                    </div>
+                                 </div>
+                                 <div class="col-md-12">
+                                    <div class="input-group">
+                                       <span class="input-group-addon">End Date & Time</span>
+                                       <input type="text"
+                                       class="form-control"
+                                       ngxDaterangepickerMd
+                                       [(ngModel)]="endcreatetestdate"
+                                       [alwaysShowCalendars]="true"
+                                       [singleDatePicker]="true"
+                                       [autoApply]="true"
+                                       placeholder="End Date">
+                                    </div>
+                                 </div>
+                              </div>
+                              <--edit bar--end->
+                              <div class="all_save">
+                                 <button type="submit" class="bt btn-inverse">Create Test</button>
+                              </div>
+                           </div>
+                           </div-->
+                              <!--left tab--end--->
+                              <!--right strat--->
+
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!--====top profile background End====-->
+   </div>
+</div>
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
+<p-toast [style]="{marginTop: '80px'}" position="top-left" key="tl"></p-toast>
+<p-toast [style]="{marginTop: '80px'}" position="top-center" key="tc"></p-toast>
+<p-toast [style]="{marginTop: '80px'}" styleClass="custom-toast" key="custom" position="bottom-center"></p-toast>
+<p-toast position="center" key="c" (onClose)="onReject()" [modal]="true" [baseZIndex]="5000">
+   <ng-template let-message pTemplate="message">
+      <div style="text-align: center">
+         <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i>
+         <h3>{{message.summary}}</h3>
+         <p>{{message.detail}}</p>
+      </div>
+      <div class="ui-g ui-fluid">
+         <div class="ui-g-6">
+            <button type="button" pButton (click)="onConfirm()" label="Yes" class="ui-button-success"></button>
+         </div>
+         <div class="ui-g-6">
+            <button type="button" pButton (click)="onReject()" label="No" class="ui-button-secondary"></button>
+         </div>
+      </div>
+   </ng-template>
+</p-toast>
+<div class="modal fade" #assignmoderatorConfirm id="assignmoderatorConfirm" role="dialog">
+   <div class="modal-dialog vry_modal">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+         </div>
+         <div class="modal-body modal_text">
+            <p>{{textonModel}}</p>
+         </div>
+         <div class="modal-footer modal_foot">
+            <button type="submit" *ngIf="showSubBtn==true" (click)="AssignMeettomoderator()" data-dismiss="modal"
+               class="bt btn-warning">Assign</button>
+            <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="modal fade" #assignConfirm id="assignConfirm" role="dialog">
+   <div class="modal-dialog vry_modal">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+         </div>
+         <div class="modal-body modal_text">
+            <p>{{textonModel}}</p>
+         </div>
+         <div class="modal-footer modal_foot">
+            <button type="submit" *ngIf="showSubBtn==true" (click)="AssignMeettoUser()" data-dismiss="modal"
+               class="bt btn-warning">Assign</button>
+            <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="modal fade" #unassignConfirm id="unassignConfirm" role="dialog">
+   <div class="modal-dialog vry_modal">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+         </div>
+         <div class="modal-body modal_text">
+            <p>{{textonModel}}</p>
+         </div>
+         <div class="modal-footer modal_foot">
+            <button type="submit" *ngIf="showSubBtn==true" (click)="unAssignMeetforUser()" data-dismiss="modal"
+               class="bt btn-warning">UnAssign</button>
+            <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="modal fade" #assignQnsConfirm id="assignQnsConfirm" role="dialog">
+   <div class="modal-dialog vry_modal">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+         </div>
+         <div class="modal-body modal_text">
+            <p>{{textonModel}}</p>
+         </div>
+         <div class="modal-footer modal_foot">
+            <button type="submit" *ngIf="showSubBtn==true" (click)="AssignQnsforTest()" data-dismiss="modal"
+               class="bt btn-warning">Assign</button>
+            <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="modal fade" #unassignQnsConfirm id="unassignQnsConfirm" role="dialog">
+   <div class="modal-dialog vry_modal">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+         </div>
+         <div class="modal-body modal_text">
+            <p>{{textonModel}}</p>
+         </div>
+         <div class="modal-footer modal_foot">
+            <button type="submit" *ngIf="showSubBtn==true" (click)="unAssignQnsforTest()" data-dismiss="modal"
+               class="bt btn-warning">unAssign</button>
+            <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="modal fade" #rescheduledate id="rescheduledate" role="dialog" data-backdrop="static" data-keyboard="false">
+   <div class="modal-dialog vry_modal">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+         </div>
+         <div class="modal-body modal_text">
+            <div class="col-md-12">
+               <p-calendar class="col-md-5" [minDate]="sminDate" (onSelect)="getDateTime($event,1)"
+                  [(ngModel)]="teststart_datetimes" dateFormat="dd-mm-yy" showTime="true" hourFormat="24"></p-calendar>
+               <p class="clear-fix"></p>
+               <p-calendar class="col-md-5" [minDate]="sminDate" (onSelect)="getDateTime($event,2)"
+                  [(ngModel)]="testend_datetimes" dateFormat="dd-mm-yy" showTime="true" hourFormat="24"></p-calendar>
+            </div>
+         </div>
+         <div class="modal-footer modal_foot">
+            <button type="submit" *ngIf="showSubBtn==true" (click)="rescheduleTestdates()" data-dismiss="modal"
+               class="bt btn-warning">Assign</button>
+            <button type="submit" class="bt btn-info" data-dismiss="modal"
+               (click)="rescheduleTestdatesConfirmClose()">Close</button>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="modal fade" #unassignUserConfirm id="unassignUserConfirm" role="dialog">
+   <div class="modal-dialog vry_modal">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+         </div>
+         <div class="modal-body modal_text">
+            <p>{{textonModel}}</p>
+         </div>
+         <div class="modal-footer modal_foot">
+            <button type="submit" *ngIf="showSubBtn==true" (click)="removeAssignUser()" data-dismiss="modal"
+               class="bt btn-warning">unAssign</button>
+            <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+         </div>
+      </div>
+   </div>
+</div>

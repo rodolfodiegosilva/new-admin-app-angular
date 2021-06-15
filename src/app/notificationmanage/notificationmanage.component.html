@@ -1,0 +1,281 @@
+<!--verified  Modal start -->
+<div class="modal fade" id="verified" role="dialog">
+    <div class="modal-dialog vry_modal">
+       <div class="modal-content">
+        <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+               </div>
+              <div class="modal-body modal_text">
+                  <p>Do you really want to verify these records? This process cannot be undone</p>
+              </div>
+               <div class="modal-footer modal_foot">
+                <button type="submit" class="bt btn-warning">verify</button>
+                  <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+              </div>
+          </div>
+     </div>
+ </div>
+<!-- verified Modal end-->
+  
+  <!--Blocked  Modal start -->
+  <div class="modal fade" id="block" role="dialog">
+    <div class="modal-dialog vry_modal">
+       <div class="modal-content">
+        <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+               </div>
+              <div class="modal-body modal_text">
+                  <p>Do you really want to Block these records? This process cannot be undone</p>
+              </div>
+               <div class="modal-footer modal_foot">
+                <button type="submit" class="bt btn-warning">Block</button>
+                  <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+              </div>
+          </div>
+     </div>
+ </div>
+<!-- Blocked Modal end-->
+  
+  <!--Delete  Modal start -->
+  <div class="modal fade" id="delete" role="dialog">
+    <div class="modal-dialog vry_modal">
+       <div class="modal-content">
+        <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+               </div>
+              <div class="modal-body modal_text">
+                  <p>Do you really want to Delete these records? This process cannot be undone</p>
+              </div>
+               <div class="modal-footer modal_foot">
+                <button  *ngIf="selectedNotifyid && selectedNotifyid.length>0" type="submit" (click)="deleteNotification();" class="bt btn-warning">Delete</button>
+                  <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+              </div>
+          </div>
+     </div>
+ </div>
+<!-- Delete Modal end-->
+<app-sdashheader></app-sdashheader>
+<div class="leftsidemenus">
+<app-sdahshmenu></app-sdahshmenu>
+</div>
+<div id="page-wrapper">
+<div class="content">
+    <section class="question_search question_sec selt_ht scroll-yes">
+        <div class="container-fluid">
+                 <div class="col-md-12"> 
+                      <div class="all_brd">
+                           <div class="question_title" id="pers_inf">
+                              <h3>Search Notification List</h3>
+                            </div>
+                            <div class="top_btn">
+                              <button type="submit" class="bt btn-info" (click)="resetFilter() ">Clear Selection</button>
+                              <button type="submit" class="bt btn-danger"  data-toggle="modal" data-target="#delete" (click)="deleteTestConfirm()">Delete</button>
+                              <!-- <button type="submit" class="bt btn-info">verify</button>
+                              <button type="submit" class="bt btn-warning">Block</button>
+                              <button type="submit" class="bt btn-danger">Delete</button> -->
+                            </div>
+                           <div class="content_sub"> 
+                             <div class="all_mian">     	 
+                                <div class="table-responsive check_all">
+                                   <table class="table table-bordered">
+                                      <thead>
+                                          <tr>
+                                              <th><input type="checkbox" id="fruit1" name="checkbox" checked=
+                                              "checked"/>
+                                              <label for="fruit1">Lable</label></th>
+                                              <th>ID </th>
+                                              <th>Country</th>
+                                              <th>Course</th>
+                                              <th>Class</th>
+                                              <th>Subject</th>
+                                              <th>Lession / topic</th>
+                                              <th>Date</th>
+                                              <!-- <th>Admin</th> -->
+                                              <th>Title</th>
+                                              <th>Cancled</th>
+                                              <th>Date</th>
+                                          </tr>
+                                      </thead>
+                                          <tbody class=" clfy_tbl">
+                                             <tr class="info"> 
+                                                  <td>Default/Value</td>
+                                                    <td>
+                                                      <!-- <p-multiSelect [options]="classification" [(ngModel)]="selectedclasid" [panelStyle]="{minWidth:'12em'}"></p-multiSelect> -->
+                                                    </td>
+                                                    <td>
+                                                       <!-- <p-multiSelect [options]="clascountry" [(ngModel)]="selecteclascountry" [panelStyle]="{minWidth:'12em'}"></p-multiSelect> -->
+                                                       <p-multiSelect [options]="countryList" (onChange)="setFilter()" [(ngModel)]="seltdCntryList"></p-multiSelect>
+                                                    </td>
+                                                    <td>
+                                                      <p-multiSelect [options]="courseList" (onChange)="setFilter()" [(ngModel)]="seltdCrsList"></p-multiSelect>
+                                                    </td>
+
+                                                    <td>
+                                                      <p-multiSelect [options]="classList" (onChange)="setFilter()" [(ngModel)]="seltdClsList"></p-multiSelect>
+                                                    </td>
+
+                                                    <td>
+                                                      <p-multiSelect [options]="subjectList" (onChange)="setFilter();getLessonsonForSubj(seltdSubjList)" [(ngModel)]="seltdSubjList"></p-multiSelect>
+                                                    </td>
+                                                   
+                                                    <td><!--verified start-->
+                                                      <!-- <p-multiSelect [options]="lessonsList" (onChange)="setFilter()" [(ngModel)]="seltdLesList"></p-multiSelect> -->
+                                                    </td><!--verified end-->
+                                                    <td> 
+                                                      <!-- <input type="text"   id="creationDate"
+                                                    (change)="getDate($event,'creationDate')" 
+                                                    ngxDaterangepickerMd 
+                                                    [(ngModel)]="creationDate" 
+                                                    [showCustomRangeLabel]="true" 
+                                                    [alwaysShowCalendars]="true" 
+                                                    [ranges]="ranges" 
+                                                    [linkedCalendars]="true" 
+                                                    [showClearButton]="true" 
+                                                    [locale]="{applyLabel: 'ok', format: 'DD-MM-YYYY'}"                     
+                                                    placeholder="Select please..."> -->
+                                                      <!-- <input type="text"
+                                                      class="form-control"
+                                                      ngxDaterangepickerMd
+                                                      [(ngModel)]="creationDate"
+                                                      [alwaysShowCalendars]="true"
+                                                      [singleDatePicker]="true"
+                                                      [autoApply]="true"
+                                                      placeholder="create date"
+                                                      (change)="getDate($event,'creationDate')"> -->
+                                                      <div class="ui-g-12 ui-md-4">
+                                                        <input type="text"
+                                                            (change)="getDate(1,10,1,$event,'creationDate')"
+                                                            ngxDaterangepickerMd [(ngModel)]="selected"
+                                                            [showCustomRangeLabel]="true"
+                                                            [alwaysShowCalendars]="true" [ranges]="ranges"
+                                                            [linkedCalendars]="true" [isInvalidDate]="isInvalidDate"
+                                                            [showClearButton]="true" placeholder="Select Date..."
+                                                            style="color: black">
+                                                    </div>
+                                                    </td>
+                                                    <!-- <td><p-multiSelect [options]="clasverifyedadmin" [(ngModel)]="selecteclasverifyadmin" [panelStyle]="{minWidth:'12em'}"></p-multiSelect></td> -->
+                                                   
+                                                    <td>
+                                                       <!-- <p-multiSelect [options]="clasnocontent" [(ngModel)]="selecteclasnocontent" [panelStyle]="{minWidth:'12em'}"></p-multiSelect> -->
+                                                    </td>
+                                                    
+                                                       
+                                                    <td>
+                                                      <!-- <p-multiSelect [options]="clasnoquest" [(ngModel)]="selecteclasnoquest" [panelStyle]="{minWidth:'12em'}"></p-multiSelect> -->
+                                                      <p-multiSelect [options]="notificationDelete" (onChange)="setFilter()" [(ngModel)]="deletednotificationList" maxSelectedLabels='0'></p-multiSelect>
+                                                    </td>
+                                                    <td> 
+                                                    <!-- <input type="text"
+                                                        class="form-control"
+                                                        ngxDaterangepickerMd
+                                                        [(ngModel)]="verifydate"
+                                                        [alwaysShowCalendars]="true"
+                                                        [singleDatePicker]="true"
+                                                        [autoApply]="true"
+                                                        placeholder="verify Date"> -->
+                                                        <input type="text"
+                                                            (change)="getDate(1,10,1,$event,'deleteNotificationDate')"
+                                                            ngxDaterangepickerMd [(ngModel)]="selected"
+                                                            [showCustomRangeLabel]="true"
+                                                            [alwaysShowCalendars]="true" [ranges]="ranges"
+                                                            [linkedCalendars]="true" [isInvalidDate]="isInvalidDate"
+                                                            [showClearButton]="true" placeholder="Select Date..."
+                                                            style="color: black">
+                                                     </td>
+                                                </tr>
+                                                <!-- <div class="loadertable">
+                                                  <ng4-loading-spinner [timeout]="8000" [template]="template" [zIndex]="9999"> </ng4-loading-spinner>
+                                              </div> -->
+                                          <!--tr-1-->
+                                          <!-- <ng-container *ngFor="let nSr of searchLlist; let i = index;">
+                                              {{nSr | json }} -->
+                                              <!-- {{searchLlist | json }} -->
+                                          <tr *ngFor="let nSr of searchLlist; let i = index;">
+                                            <td>
+                                              <!-- <input type="checkbox" id="check_{{i+1}}" name="checkbox" value="{{nSr.notify_id}}" (change)="getCheckedQuensValues(qSr.question_id,$event.target.checked)"/>
+                                              <label for="check_{{i+1}}">{{i+1}}</label> -->
+                                              <p-checkbox value="{{nSr.notify_id}}"  [(ngModel)]="selectedNotifyid"></p-checkbox>
+                                            </td>
+                                            <td>{{nSr.notify_id}}</td>
+                                            <!-- <td>{{nSr.cntry_name}}</td> -->
+                                            <td  pTooltip="{{nSr.cntry_name}}" tooltipPosition="top"> <ng-container *ngIf="nSr.cntry_name.toString().trim().length > 17">
+                                              {{nSr.cntry_name.toString().trim().slice(0,17)}}...
+                                             </ng-container><ng-container *ngIf="nSr.cntry_name.toString().trim().length <= 17">
+                                              {{nSr.cntry_name}}
+                                             </ng-container> </td> 
+                                            <!-- <td>{{nSr.course_sname}}</td> -->
+                                            <td  pTooltip="{{nSr.course_fname}}" tooltipPosition="top"> <ng-container *ngIf="nSr.course_fname.toString().trim().length > 17">
+                                              {{nSr.course_fname.toString().trim().slice(0,17)}}...
+                                             </ng-container><ng-container *ngIf="nSr.course_fname.toString().trim().length <= 17">
+                                              {{nSr.course_fname}}
+                                             </ng-container> </td> 
+                                            <!-- <td>{{nSr.class_fname}}</td> -->
+                                            <td  pTooltip="{{nSr.class_fname}}" tooltipPosition="top"> <ng-container *ngIf="nSr.class_fname.toString().trim().length > 17">
+                                              {{nSr.class_fname.toString().trim().slice(0,17)}}...
+                                             </ng-container><ng-container *ngIf="nSr.class_fname.toString().trim().length <= 17">
+                                              {{nSr.class_fname}}
+                                             </ng-container> </td>
+                                            <!-- <td>{{nSr.subject_fname}}</td> -->
+                                            <td  pTooltip="{{nSr.subject_fname}}" tooltipPosition="top"> <ng-container *ngIf="nSr.subject_fname.toString().trim().length > 17">
+                                              {{nSr.subject_fname.toString().trim().slice(0,17)}}...
+                                             </ng-container><ng-container *ngIf="nSr.subject_fname.toString().trim().length <= 17">
+                                              {{nSr.subject_fname}}
+                                             </ng-container> </td>
+                                            <!-- <td>{{nSr.lessons}}</td> -->
+                                            <td  pTooltip="{{nSr.lessons}}" tooltipPosition="top"> <ng-container *ngIf="nSr.lessons.toString().trim().length > 17">
+                                              {{nSr.lessons.toString().trim().slice(0,17)}}...
+                                             </ng-container><ng-container *ngIf="nSr.lessons.toString().trim().length <= 17">
+                                              {{nSr.lessons}}
+                                             </ng-container> </td>
+                                            <td>{{nSr.notify_date | date:'dd-MM-yyyy'}}</td>
+                                            <!-- <td>{{nSr.notify_cr_admin}}</td> -->
+                                            <!-- <td>{{nSr.notify_title}}</td> -->
+                                            <td  pTooltip="{{nSr.notify_title}}" tooltipPosition="top"> <ng-container *ngIf="nSr.notify_title.toString().trim().length > 17">
+                                              {{nSr.notify_title.toString().trim().slice(0,17)}}...
+                                             </ng-container><ng-container *ngIf="nSr.notify_title.toString().trim().length <= 17">
+                                              {{nSr.notify_title}}
+                                             </ng-container> </td> 
+                                            <td>{{nSr.is_notify_canceled}}</td>
+                                            <td>{{nSr.notify_canceled_date | date:'dd-MM-yyyy'}}</td>
+                                                   
+                                          </tr>
+                                          <!-- </ng-container> -->
+                                          <tr *ngIf="showData==false" >
+                                              <td colspan="21" class="alert alert-danger">No data found!</td>
+                                          </tr>
+                                          </tbody>
+                                       </table>
+                                       <div style="text-align: center; margin-top: 8%;" *ngIf="searchLoader">
+                                        <p-progressSpinner></p-progressSpinner>
+                                       </div>
+                                       <div class="pages_but">
+                                         <div class="badge-inner">
+                                          <p-paginator [rows]="10" [totalRecords]="totalNotification" [rowsPerPageOptions]="[10,20,30]"
+                                          (onPageChange)="currentPage = $event.page; onPageChange($event) " #paginator></p-paginator>
+                    
+                                          <!-- <p-paginator [rows]="rowsPerPage" [totalRecords]="totalPages"
+                                          (onPageChange)="currentPage = $event.page; onPageChange($event) " #p>
+                                      </p-paginator> -->
+                                           </div>
+                                           <!-- <select [(ngModel)]="rowsPerPage" (change)="selectItemsperpage($event.target.value)">
+                                            <option value="10">10</option>
+                                            <option value="15">15</option>
+                                            <option value="20">20</option>
+                                            <option value="30">30</option>
+                                            <option value="50">50</option>
+                                        </select> -->
+                                       </div>
+                                   </div>   
+
+                                    
+                               </div>
+                           </div>
+                     </div>
+                 </div>
+               </div> 
+           </section>
+       </div>
+       </div>

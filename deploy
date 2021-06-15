@@ -1,0 +1,6 @@
+#!/bin/bash
+ssh root@93.118.32.90 <<EOF
+cd /root/new-code/admin-app/
+pm2 restart all
+exit
+EOF 

@@ -1,0 +1,578 @@
+<!--verified  Modal start -->
+<div class="modal fade" id="verified" role="dialog">
+    <div class="modal-dialog vry_modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+            </div>
+            <div class="modal-body modal_text">
+                <p>Do you really want to verify these records? This process cannot be undone</p>
+            </div>
+            <div class="modal-footer modal_foot">
+                <button type="submit" class="bt btn-warning">verify</button>
+                <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- verified Modal end-->
+
+<!--Blocked  Modal start -->
+<div class="modal fade" id="block" role="dialog">
+    <div class="modal-dialog vry_modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+            </div>
+            <div class="modal-body modal_text">
+                <p>Do you really want to Block these records? This process cannot be undone</p>
+            </div>
+            <div class="modal-footer modal_foot">
+                <button type="submit" class="bt btn-warning">Block</button>
+                <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Blocked Modal end-->
+
+<!--Delete  Modal start -->
+<div class="modal fade" id="delete" role="dialog">
+    <div class="modal-dialog vry_modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+            </div>
+            <div class="modal-body modal_text">
+                <p>Do you really want to Delete these records? This process cannot be undone</p>
+            </div>
+            <div class="modal-footer modal_foot">
+                <button type="submit" class="bt btn-warning">Delete</button>
+                <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Delete Modal end-->
+<app-sdashheader></app-sdashheader>
+<div class="leftsidemenus">
+    <app-sdahshmenu></app-sdahshmenu>
+</div>
+<div id="page-wrapper">
+    <div class="content">
+        <!--====Question upload page start====-->
+        <section class="question_search question_sec selt_ht scroll-yes">
+            <div class="container-fluid">
+                <div class="col-md-12">
+                    <div class="all_brd">
+                        <div class="question_title" id="pers_inf">
+                            <h3>Content Search & List View</h3>
+                        </div>
+                        <div class="top_btn">
+                            <div class="col-md-5">
+                                <div class="col-md-8" style="text-align: left" >
+                                    <input class="btn btn-default"(change)="myContent()" style="height: 32px;width: 20%;" type="checkbox" id="contentCheck" >My own content
+                            </div>
+
+                            </div>
+                            <input type="hidden" [(ngModel)]="checkedValues">
+                            <!-- <button type="button" class="bt btn-info" (click)="verifyContent(inst_id)" *ngIf="admintype_id==1 || admintype_id==2">verify</button> -->
+                            <input type="text" [(ngModel)]="search_words" placeholder="Search for content"
+                                (keyup)="(($event.which <= 90 && $event.which >= 48)||$event.keyCode == 8 ||$event.keyCode == 13 )?searchContent($event.target.value,inst_id):''">
+                            <!-- <button type="submit" class="bt btn-warning">Block</button>
+                            <button type="submit" class="bt btn-danger">Delete</button> -->
+                        </div>
+                        <div class="content_sub">
+                            <!--<div class="question_bg">
+                             <h4>Upload QA Database</h4>
+                          </div>-->
+                            <div class="col-md-3 input-group-btn" style="float: right;margin-right: 5%;">
+                                <input type="hidden" [(ngModel)]="checkedValues">
+                                <button class="bt btn-info" (click)="verifyContent(inst_id)"
+                                    [attr.class]="checkedContentid.length<1?'disabled-class bt btn-info':'bt btn-info'"
+                                    [disabled]="checkedContentid.length<1">verify</button>
+                            </div>
+                            <div class="col-md-3 input-group-btn"  style="float: right;margin-right: 7%;">
+
+                                <button class="bt btn-info" type="submit" (click)="resetFilters()">Reset</button>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="col-md-6">
+
+                                </div>
+
+                            </div>
+                            <div class=" file_name top_btn">
+                                <!--div class=" col-md-offset-3 col-md-6 mrb_10 m-t-20">
+                                 <label class="col-md-3 col-form-label">Search Here</label>
+                                    <div class="col-md-7">
+                                        <input class="form-control" type="text" value="">
+                                     </div>
+                                   <div class="col-md-2">
+                                         <label for="checkbox4"><a href="">
+                                              <i class="fa fa-search"></i>Search</a>
+                                           </label> 
+                                      </div>
+                                  </div-->
+                                <div class="clearfix"></div>
+
+                            </div>
+
+                            <div class="all_mian">
+                                <div class="table-responsive check_all" style="height:374px;overflow-x: auto;">
+                                    <table class="table table-bordered table-striped fixed_header">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    <label>Sl No</label>
+                                                </th>
+                                                <th>ID</th>
+                                                <th>ClfId</th>
+                                                <th>Country</th>
+                                                <th>Course</th>
+                                                <th>Class</th>
+                                                <th>Subject</th>
+                                                <th>Lesson/Topics</th>
+                                                <th>Content/Type</th>
+                                                <th>Owner</th>
+                                                <th>Created/Date</th>
+                                                <th>Verified</th>
+                                                <th>Verify/Date</th>
+                                                <th>Verify/By</th>
+                                                <th>Blocked</th>
+                                                <th>Blocked/Date</th>
+                                                <th>Blocked By</th>
+                                                <th>Delete</th>
+                                                <th>Delete/Date</th>
+                                                <th>Deleted By</th>
+                                                <th>File/Size</th>
+                                                <th>Avg/Rating</th>
+                                            </tr>
+                                            <tr class="info">
+                                                <td>
+                                                    <input *ngIf="admintype_id==1 || admintype_id==2" type="checkbox"
+                                                        id="fruit1" [(ngModel)]="selectedAll" (change)="selectAll();" />
+                                                    <label for="fruit1"></label>
+                                                </td>
+                                                <td>
+                                                    <p-multiSelect [options]="contentIdList"
+                                                        [(ngModel)]="selectedcontentIdList"
+                                                        (onChange)="getAllContent(inst_id,'content');getAllContentCount(inst_id,'content');"
+                                                        [panelStyle]="{minWidth:'12em'}"[maxSelectedLabels]='0'></p-multiSelect>
+                                                </td>
+                                                <td>ClfId</td>
+                                                <td>
+                                                    <p-multiSelect [options]="countryList"
+                                                        [(ngModel)]="selectedcountryList"
+                                                        (onChange)="getAllContent(inst_id,'country');getAllContentCount(inst_id,'content')"
+                                                        [panelStyle]="{minWidth:'12em'}"[maxSelectedLabels]='0'></p-multiSelect>
+                                                </td>
+                                                <td>
+                                                    <p-multiSelect [options]="courseList"
+                                                        [(ngModel)]="selectedcourseList"
+                                                        (onChange)="getAllContent(inst_id,'course');getAllContentCount(inst_id,'content')"
+                                                        [panelStyle]="{minWidth:'12em'}"[maxSelectedLabels]='0'></p-multiSelect>
+                                                </td>
+                                                <td>
+                                                    <p-multiSelect [options]="classList" [(ngModel)]="selectedclassList"
+                                                        (onChange)="getAllContent(inst_id,'class');getAllContentCount(inst_id,'content')"
+                                                        [panelStyle]="{minWidth:'12em'}"[maxSelectedLabels]='0'></p-multiSelect>
+                                                </td>
+                                                <td>
+                                                    <p-multiSelect [options]="subjectList"
+                                                        [(ngModel)]="selectedsubjectList"
+                                                        (onChange)="getAllContent(inst_id,'subject');getAllContentCount(inst_id,'content')"
+                                                        [panelStyle]="{minWidth:'12em'}"[maxSelectedLabels]='0'></p-multiSelect>
+                                                </td>
+                                                <td>
+                                                    <p-multiSelect [options]="lessonsList"
+                                                        [(ngModel)]="selectedlessonList"
+                                                        (onChange)="getAllContent(inst_id,'lesson');getAllContentCount(inst_id,'content')"
+                                                        [panelStyle]="{minWidth:'12em'}"[maxSelectedLabels]='0'></p-multiSelect>
+                                                </td>
+                                                <td>
+                                                    <p-multiSelect [options]="typesList" [(ngModel)]="selectedtypesList"
+                                                        (onChange)="getAllContent(inst_id,'media_type');getAllContentCount(inst_id,'content')"
+                                                        [panelStyle]="{minWidth:'12em'}"[maxSelectedLabels]='0'></p-multiSelect>
+                                                </td>
+                                                <td>
+                                                    <p-multiSelect [options]="classification"
+                                                        [(ngModel)]="selectedclasid" [panelStyle]="{minWidth:'12em'}"[maxSelectedLabels]='0'>
+                                                    </p-multiSelect>
+                                                </td>
+                                                <td class="date_pic" (click)="addDateCss()">
+
+                                                    <input type="text"
+                                                        (change)="getDate(inst_id,'content',$event,'content_created_date');getAllContentCount(inst_id,'content')"
+                                                        ngxDaterangepickerMd [(ngModel)]="selected"
+                                                        [showCustomRangeLabel]="true" [alwaysShowCalendars]="true"
+                                                        [ranges]="ranges" [linkedCalendars]="true"
+                                                        [isInvalidDate]="isInvalidDate" [showClearButton]="true"
+                                                        placeholder="Select please...">
+                                                </td>
+                                                <td>
+                                                    <p-multiSelect [options]="contentVerify"
+                                                        [(ngModel)]="selectedcontentVerify"
+                                                        (onChange)="getAllContent(inst_id,'content')"
+                                                        [panelStyle]="{minWidth:'12em'}"[maxSelectedLabels]='0'></p-multiSelect>
+                                                </td>
+                                                <td (click)="addDateCss()">
+                                                    <input type="text"
+                                                        (change)="getDate(inst_id,'content',$event,'content_verified_date');getAllContentCount(inst_id,'content')"
+                                                        ngxDaterangepickerMd [(ngModel)]="vrfselected"
+                                                        [showCustomRangeLabel]="true" [alwaysShowCalendars]="true"
+                                                        [ranges]="ranges" [linkedCalendars]="true"
+                                                        [isInvalidDate]="isInvalidDate" [showClearButton]="true"
+                                                        placeholder="Select please...">
+                                                </td>
+                                                <td>
+                                                    <p-multiSelect [options]="classification"
+                                                        [(ngModel)]="selectedclasid" [panelStyle]="{minWidth:'12em'}"[maxSelectedLabels]='0'>
+                                                    </p-multiSelect>
+                                                </td>
+                                                <td>
+                                                    <p-multiSelect [options]="contentVerify"
+                                                        [(ngModel)]="selectedcontentBlock"
+                                                        (onChange)="getAllContent(inst_id,'content');getAllContentCount(inst_id,'content')"
+                                                        [panelStyle]="{minWidth:'12em'}"[maxSelectedLabels]='0'></p-multiSelect>
+
+                                                </td>
+                                                <td (click)="addDateCss()">
+                                                    <input type="text"
+                                                        (change)="getDate(inst_id,'content',$event,'content_blocked_date');getAllContentCount(inst_id,'content')"
+                                                        ngxDaterangepickerMd [(ngModel)]="blselected"
+                                                        [showCustomRangeLabel]="true" [alwaysShowCalendars]="true"
+                                                        [ranges]="ranges" [linkedCalendars]="true"
+                                                        [isInvalidDate]="isInvalidDate" [showClearButton]="true"
+                                                        placeholder="Select please...">
+                                                </td>
+                                                <td>
+                                                    <p-multiSelect [options]="classification"
+                                                        [(ngModel)]="selectedclasid" [panelStyle]="{minWidth:'12em'}"[maxSelectedLabels]='0'>
+                                                    </p-multiSelect>
+                                                </td>
+                                                <td>
+                                                    <p-multiSelect [options]="contentDelete"
+                                                        [(ngModel)]="selectedcontentDelete"
+                                                        (onChange)="getAllContent(inst_id,'content');getAllContentCount(inst_id,'content')"
+                                                        [panelStyle]="{minWidth:'12em'}"[maxSelectedLabels]='0'></p-multiSelect>
+
+                                                </td>
+
+                                                <td (click)="addDateCss()">
+                                                    <input type="text"
+                                                        (change)="getDate(inst_id,'content',$event,'content_deleted_date');getAllContentCount(inst_id,'content')"
+                                                        ngxDaterangepickerMd [(ngModel)]="delselected"
+                                                        [showCustomRangeLabel]="true" [alwaysShowCalendars]="true"
+                                                        [ranges]="ranges" [linkedCalendars]="true"
+                                                        [isInvalidDate]="isInvalidDate" [showClearButton]="true"
+                                                        placeholder="Select please...">
+                                                </td>
+
+                                                <td>
+                                                    <p-multiSelect [options]="contentVerify" [(ngModel)]="delselected"
+                                                        (onChange)="getAllContent(inst_id,'content');getAllContentCount(inst_id,'content')"
+                                                        [panelStyle]="{minWidth:'12em'}"[maxSelectedLabels]='0'></p-multiSelect>
+
+                                                </td>
+                                                <td>
+                                                    <p-multiSelect [options]="classification"
+                                                        [(ngModel)]="selectedclasid" [panelStyle]="{minWidth:'12em'}"[maxSelectedLabels]='0'>
+                                                    </p-multiSelect>
+
+                                                </td>
+                                                <td>
+                                                    <p-multiSelect [options]="classification"
+                                                        [(ngModel)]="selectedclasid" [panelStyle]="{minWidth:'12em'}"[maxSelectedLabels]='0'>
+                                                    </p-multiSelect>
+
+                                                </td>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody style="height: 268px;"
+                                            *ngIf="!classificationLoader&&allClassifications.length>0">
+
+                                            <!--tr-1-->
+                                            <ng-container *ngIf="!classificationLoader">
+                                                <ng-container
+                                                    *ngFor="let clsf of allClassifications ; let i=index">
+
+                                                    <tr *ngIf="clsf.is_content_blocked == '1'"[style.background-color]="clsf.is_content_blocked == '1'?'#c9c5c5':''" [style.font-weight]="clsf.is_content_verified == '1'?normal:600">
+                                                        <td>
+                                                            <input type="checkbox"
+                                                                *ngIf="clsf.is_content_verified !='1'"
+                                                                id="check_{{i+1}}" value="{{clsf.content_id}}"
+                                                                (change)="getCheckedcontentValues(clsf.content_id,$event.target.checked)" />
+                                                            <label for="check_{{i+1}}">{{i+1}}</label>
+                                                        </td>
+                                                        <td><a routerLink='/contentview/{{clsf.content_id}}'
+                                                                [queryParams]="{debug: true}" routerActive='active'><i
+                                                                    class="ti-user"></i>{{clsf.content_id}}</a></td>
+                                                        <td>{{clsf.classf_id}}</td>
+                                                        <td>{{clsf.cntry_name}}</td>
+                                                        <td pTooltip="{{clsf.course_fname}}" tooltipPosition="top">
+                                                            <ng-container *ngIf="clsf.course_fname !==null">
+                                                                {{clsf.course_fname.substr(0,12)}}<ng-container
+                                                                    *ngIf="clsf.course_fname.length>12">...
+                                                                </ng-container>
+                                                            </ng-container>
+                                                        </td>
+                                                        <td pTooltip="{{clsf.class_fname}}" tooltipPosition="top">
+                                                            <ng-container *ngIf="clsf.class_fname !==null">
+                                                                {{clsf.class_fname.substr(0,12)}}<ng-container
+                                                                    *ngIf="clsf.class_fname.length>12">...
+                                                                </ng-container>
+                                                            </ng-container>
+                                                        </td>
+                                                        <td pTooltip="{{clsf.subject_fname}}" tooltipPosition="top">
+                                                            <ng-container *ngIf="clsf.subject_fname !==null">
+                                                                {{clsf.subject_fname.substr(0,12)}}<ng-container
+                                                                    *ngIf="clsf.subject_fname.length>12">...
+                                                                </ng-container>
+                                                            </ng-container>
+                                                        </td>
+                                                        <td pTooltip="{{clsf.lesson_name}}" tooltipPosition="top">
+                                                            <ng-container *ngIf="clsf.lesson_name !==null">
+                                                                {{clsf.lesson_name.substr(0,12)}}<ng-container
+                                                                    *ngIf="clsf.lesson_name.length>12">...
+                                                                </ng-container>
+                                                            </ng-container>
+                                                        </td>
+                                                        <td>{{clsf.mediatyp_extnsn}}</td>
+                                                        <td>{{(clsf.content_owner_admin!=0)?'Admin':''}}{{(clsf.content_owner_user!=0)?'User':''}}
+                                                        </td>
+                                                        <td pTooltip="{{clsf.content_created_date}}"
+                                                            tooltipPosition="top">
+                                                            <ng-container *ngIf="clsf.content_created_date !==null">
+                                                                {{clsf.content_created_date.substr(0,12)}}<ng-container
+                                                                    *ngIf="clsf.content_created_date.length>12">...
+                                                                </ng-container>
+                                                            </ng-container>
+                                                        </td>
+                                                        <td>{{(clsf.is_content_verified==0)?'Not Verified':'Verified'}}
+                                                        </td>
+                                                        <td pTooltip="{{clsf.content_verified_date}}"
+                                                            tooltipPosition="top">
+                                                            <ng-container *ngIf="clsf.content_verified_date !==null">
+                                                                {{clsf.content_verified_date.substr(0,12)}}<ng-container
+                                                                    *ngIf="clsf.content_verified_date.length>12">...
+                                                                </ng-container>
+                                                            </ng-container>
+                                                        </td>
+                                                        <td pTooltip="{{clsf.vrfname}}"
+                                                            tooltipPosition="top">
+                                                            <ng-container *ngIf="clsf.vrfname !==null">
+                                                                {{clsf.vrfname.substr(0,12)}}<ng-container
+                                                                    *ngIf="clsf.vrfname.length>12">...
+                                                                </ng-container>
+                                                            </ng-container>
+                                                        </td>
+                                                        <td>{{(clsf.is_content_blocked==0)?'Not Blocked':'Blocked'}}
+                                                        </td>
+                                                        <td pTooltip="{{clsf.content_blocked_date}}"
+                                                            tooltipPosition="top">
+                                                            <ng-container *ngIf="clsf.content_blocked_date !==null">
+                                                                {{clsf.content_blocked_date.substr(0,12)}}<ng-container
+                                                                    *ngIf="clsf.content_blocked_date.length>12">...
+                                                                </ng-container>
+                                                            </ng-container>
+                                                        </td>
+                                                        <td pTooltip="{{clsf.blockedname}}"
+                                                            tooltipPosition="top">
+                                                            <ng-container *ngIf="clsf.blockedname !==null">
+                                                                {{clsf.blockedname.substr(0,12)}}<ng-container
+                                                                    *ngIf="clsf.blockedname.length>12">...
+                                                                </ng-container>
+                                                            </ng-container>
+                                                        </td>
+                                                        <td>{{(clsf.deleted_by_admin!=null)?'Deleted':'Not Deleted'}}
+                                                        </td>
+                                                        <td pTooltip="{{clsf.content_deleted_date}}"
+                                                            tooltipPosition="top">
+                                                            <ng-container *ngIf="clsf.content_deleted_date !==null">
+                                                                {{clsf.content_deleted_date.substr(0,12)}}<ng-container
+                                                                    *ngIf="clsf.content_deleted_date.length>12">...
+                                                                </ng-container>
+                                                            </ng-container>
+                                                        </td>
+                                                        <td>{{(clsf.is_content_deleted_by_user!=0)?'User':''}}{{(clsf.deleted_by_admin!=null)?'Admin':''}}
+                                                        </td>
+                                                        <td>{{clsf.content_sizemb}}</td>
+                                                        <td>Rating</td>
+                                                    </tr>
+                                                    <tr *ngIf="clsf.is_content_blocked == '0'"  [style.font-weight]="clsf.is_content_verified == '1'?normal:600"
+                                                        [style.background-color]="clsf.deleted_by_admin != null?'#ffc8bf':''">
+                                                        <td>
+                                                            <input type="checkbox"
+                                                                *ngIf="clsf.is_content_verified !='1'"
+                                                                id="check_{{i+1}}" value="{{clsf.content_id}}"
+                                                                (change)="getCheckedcontentValues(clsf.content_id,$event.target.checked)" />
+                                                            <label for="check_{{i+1}}">{{i+1}}</label>
+                                                        </td>
+                                                        <td><a routerLink='/contentview/{{clsf.content_id}}'
+                                                                [queryParams]="{debug: true}" routerActive='active'><i
+                                                                    class="ti-user"></i>{{clsf.content_id}}</a></td>
+                                                        <td>{{clsf.classf_id}}</td>
+                                                        <td>{{clsf.cntry_name}}</td>
+                                                        <td pTooltip="{{clsf.course_fname}}" tooltipPosition="top">
+                                                            <ng-container *ngIf="clsf.course_fname !==null">
+                                                                {{clsf.course_fname.substr(0,12)}}<ng-container
+                                                                    *ngIf="clsf.course_fname.length>12">...
+                                                                </ng-container>
+                                                            </ng-container>
+                                                        </td>
+                                                        <td pTooltip="{{clsf.class_fname}}" tooltipPosition="top">
+                                                            <ng-container *ngIf="clsf.class_fname !==null">
+                                                                {{clsf.class_fname.substr(0,12)}}<ng-container
+                                                                    *ngIf="clsf.class_fname.length>12">...
+                                                                </ng-container>
+                                                            </ng-container>
+                                                        </td>
+                                                        <td pTooltip="{{clsf.subject_fname}}" tooltipPosition="top">
+                                                            <ng-container *ngIf="clsf.subject_fname !==null">
+                                                                {{clsf.subject_fname.substr(0,12)}}<ng-container
+                                                                    *ngIf="clsf.subject_fname.length>12">...
+                                                                </ng-container>
+                                                            </ng-container>
+                                                        </td>
+                                                        <td pTooltip="{{clsf.lesson_name}}" tooltipPosition="top">
+                                                            <ng-container *ngIf="clsf.lesson_name !==null">
+                                                                {{clsf.lesson_name.substr(0,12)}}<ng-container
+                                                                    *ngIf="clsf.lesson_name.length>12">...
+                                                                </ng-container>
+                                                            </ng-container>
+                                                        </td>
+                                                        <td>{{clsf.mediatyp_extnsn}}</td>
+                                                        <td>{{(clsf.content_owner_admin!=0)?'Admin':''}}{{(clsf.content_owner_user!=0)?'User':''}}
+                                                        </td>
+                                                        <td pTooltip="{{clsf.content_created_date}}"
+                                                            tooltipPosition="top">
+                                                            <ng-container *ngIf="clsf.content_created_date !==null">
+                                                                {{clsf.content_created_date.substr(0,12)}}<ng-container
+                                                                    *ngIf="clsf.content_created_date.length>12">...
+                                                                </ng-container>
+                                                            </ng-container>
+                                                        </td>
+                                                        <td>{{(clsf.is_content_verified==0)?'Not Verified':'Verified'}}
+                                                        </td>
+                                                        <td pTooltip="{{clsf.content_verified_date}}"
+                                                            tooltipPosition="top">
+                                                            <ng-container *ngIf="clsf.content_verified_date !==null">
+                                                                {{clsf.content_verified_date.substr(0,12)}}<ng-container
+                                                                    *ngIf="clsf.content_verified_date.length>12">...
+                                                                </ng-container>
+                                                            </ng-container>
+                                                        </td>
+                                                        <td pTooltip="{{clsf.vrfname}}"
+                                                            tooltipPosition="top">
+                                                            <ng-container *ngIf="clsf.vrfname !==null">
+                                                                {{clsf.vrfname.substr(0,12)}}<ng-container
+                                                                    *ngIf="clsf.vrfname.length>12">...
+                                                                </ng-container>
+                                                            </ng-container>
+                                                        </td>
+                                                        <td>{{(clsf.is_content_blocked==0)?'Not Blocked':'Blocked'}}
+                                                        </td>
+                                                        <td pTooltip="{{clsf.content_blocked_date}}"
+                                                            tooltipPosition="top">
+                                                            <ng-container *ngIf="clsf.content_blocked_date !==null">
+                                                                {{clsf.content_blocked_date.substr(0,12)}}<ng-container
+                                                                    *ngIf="clsf.content_blocked_date.length>12">...
+                                                                </ng-container>
+                                                            </ng-container>
+                                                        </td>
+                                                        <td pTooltip="{{clsf.blockedname}}"
+                                                            tooltipPosition="top">
+                                                            <ng-container *ngIf="clsf.blockedname !==null">
+                                                                {{clsf.blockedname.substr(0,12)}}<ng-container
+                                                                    *ngIf="clsf.blockedname.length>12">...
+                                                                </ng-container>
+                                                            </ng-container>
+                                                        </td>
+                                                        <td>{{(clsf.deleted_by_admin!=null)?'Deleted':'Not Deleted'}}
+                                                        </td>
+                                                        <td pTooltip="{{clsf.content_deleted_date}}"
+                                                            tooltipPosition="top">
+                                                            <ng-container *ngIf="clsf.content_deleted_date !==null">
+                                                                {{clsf.content_deleted_date.substr(0,12)}}<ng-container
+                                                                    *ngIf="clsf.content_deleted_date.length>12">...
+                                                                </ng-container>
+                                                            </ng-container>
+                                                        </td>
+                                                        <td>{{(clsf.is_content_deleted_by_user!=0)?'User':''}}{{(clsf.deleted_by_admin!=null)?'Admin':''}}
+                                                        </td>
+                                                        <td>{{clsf.content_sizemb}}</td>
+                                                        <td>Rating</td>
+                                                    </tr>
+                                                </ng-container>
+                                            </ng-container>
+                                            <!--tr-2 end-->
+                                        </tbody>
+                                    </table>
+                                    <div style="
+                                  text-align: center;
+                                  margin-top: 8%;" *ngIf="classificationLoader">
+                                        <p-progressSpinner></p-progressSpinner>
+                                    </div>
+                                    <div style="
+                                  text-align: center;
+                                  margin-top: 8%;" *ngIf="!classificationLoader&&allClassifications.length<1">
+                                        <h3>No records found!</h3>
+                                    </div>
+
+                                </div>
+
+                                <!-- <div class="pages_but">
+                                    <div class="badge-inner">
+                                        <p-paginator [rows]="rowsperpage" [totalRecords]="50" [rowsPerPageOptions]="[10,20,30]"></p-paginator>
+                                        <app-angular-paginator (pageChange)="currentPage = $event" maxSize="5">
+                                        </app-angular-paginator>
+                                        <select (change)="selectItemsperpage($event.target.value)">
+                                            <option value="10">10</option>
+                                            <option value="15">15</option>
+                                            <option value="20">20</option>
+                                            <option value="30">30</option>
+                                            <option value="50">50</option>
+                                        </select>
+                                    </div>
+                                </div> -->
+                            </div>
+                            <div class="pages_but">
+                                <div class="badge-inner">
+                                  <p-paginator [rows]="10" [totalRecords]="totalContent" [rowsPerPageOptions]="[10,20,30]"
+                                    (onPageChange)="currentPage = $event.page; onPageChange($event) " #paginator></p-paginator>
+              
+                                </div>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
+<p-toast [style]="{marginTop: '80px'}" position="top-left" key="tl"></p-toast>
+<p-toast [style]="{marginTop: '80px'}" position="top-center" key="tc"></p-toast>
+<p-toast [style]="{marginTop: '80px'}" styleClass="custom-toast" key="custom" position="bottom-center"></p-toast>
+<p-toast position="center" key="c" (onClose)="onReject()" [modal]="true" [baseZIndex]="5000">
+    <ng-template let-message pTemplate="message">
+        <div style="text-align: center">
+            <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i>
+            <h3>{{message.summary}}</h3>
+            <p>{{message.detail}}</p>
+        </div>
+        <div class="ui-g ui-fluid">
+            <div class="ui-g-6">
+                <button type="button" pButton (click)="onConfirm()" label="Yes" class="ui-button-success"></button>
+            </div>
+            <div class="ui-g-6">
+                <button type="button" pButton (click)="onReject()" label="No" class="ui-button-secondary"></button>
+            </div>
+        </div>
+    </ng-template>
+</p-toast>

@@ -1,0 +1,12 @@
+.table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: #d9edf7;
+}
+.dropdown-menu {
+    overflow-y: auto !important;
+    max-height: 261px !important;
+    overflow-x: hidden !important;
+    width: 100% !important;
+}
+.dropdown>ul>li:nth-of-type(odd) {
+    background-color: #d9edf7 !important;
+}

@@ -1,0 +1,548 @@
+<app-sdashheader></app-sdashheader>
+<div class="leftsidemenus">
+    <app-sdahshmenu></app-sdahshmenu>
+</div>
+<div id="page-wrapper">
+    <div class="content">
+        <!--====Question upload page start====-->
+        <div class="modal fade" #courseModel id="courseModel" role="dialog">
+            <div class="modal-dialog vry_modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+                    </div>
+                    <div class="modal-body modal_text">
+                        <form [formGroup]="createCourseForm" (ngSubmit)="courseCreateForm()">
+                            <input type="hidden" formControlName="inst_id" [(ngModel)]="inst_id">
+                            <div class="col-md-12">
+                                <label>Course Shortname</label>
+                                <input type="text" placeholder="course Short name" formControlName="course_sname">
+                            </div>
+                            <div class="col-md-12">
+                                <label>Course Fullname</label>
+                                <input type="text" placeholder="course Full name" formControlName="course_fname" [(ngModel)]="course_value">
+                            </div>
+                            <!-- <div class="col-md-12">
+                             <label>Course Logo</label>
+                             <input type="file" (change)="handleClsfLogo($event.target.files,'course')" formControlName="course_logo" accept="image/*">
+                         </div> -->
+                            <div class="col-md-12">
+                                <select class="form-control" formControlName="crs_search_id">
+                                    <option value="">Select Group</option>
+                                    <option *ngFor="let crg of crsGroup" value="{{crg.crs_group_id}}">{{crg.course_group_name}}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <button type="submit" class="bt btn-warning">Create</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer modal_foot">
+                        <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" #classModel id="classModel" role="dialog">
+            <div class="modal-dialog vry_modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+                    </div>
+                    <div class="modal-body modal_text">
+                        <form [formGroup]="createClassForm" (ngSubmit)="classCreateForm()">
+                            <input type="hidden" formControlName="inst_id" [(ngModel)]="inst_id">
+                            <div class="col-md-12">
+                                <label>Class Shortname</label>
+                                <input type="text" placeholder="Class Short name" formControlName="class_sname">
+                            </div>
+                            <div class="col-md-12">
+                                <label>Class Fullname</label>
+                                <input type="text" placeholder="Class Full name" formControlName="class_fname" [(ngModel)]="class_value">
+                            </div>
+                            <div class="col-md-12">
+                                <button type="submit" class="bt btn-warning">Create</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer modal_foot">
+                        <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" #subjectModel id="subjectModel" role="dialog">
+            <div class="modal-dialog vry_modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+                    </div>
+                    <div class="modal-body modal_text">
+                        <form [formGroup]="createSubjectForm" (ngSubmit)="subjCreateForm()">
+                            <input type="hidden" formControlName="inst_id" [(ngModel)]="inst_id">
+                            <div class="col-md-12">
+                                <label>Subject Shortname</label>
+                                <input type="text" placeholder="Class Short name" formControlName="subject_sname">
+                            </div>
+                            <div class="col-md-12">
+                                <label>Subject Fullname</label>
+                                <input type="text" placeholder="Class Full name" formControlName="subject_fname" [(ngModel)]="subject_value">
+                            </div>
+                            <div class="col-md-12">
+                                <select class="form-control" formControlName="search_id">
+                                    <option value="">Subject Group</option>
+                                    <option *ngFor="let sug of subGroup" value="{{sug.sub_grp_id}}">{{sug.sub_group_name}}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <button type="submit" class="bt btn-warning">Create</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer modal_foot">
+                        <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="loadertable">
+            <ng4-loading-spinner [template]="template"> </ng4-loading-spinner>
+        </div>
+    <!-- <img src="https://www.vedantaresources.com/SiteAssets/Images/loading.gif" /> -->
+        <section class="question_search question_sec selt_ht scroll-yes">
+            <div class="container-fluid">
+                <div class="question_search selt_ht">
+                    <div class="student-bg question_title">
+                        <h4 class="h_box_tit">Questions Upload
+                        </h4>
+                    </div>
+                    <div class="all_brd inst_det_box">
+                        <div class="content_sub">
+                            <form autocomplete="off" role="form" #myForm="ngForm" (ngSubmit)="questionUpload(myForm)" accept-charset="UTF-8" novalidate>
+                                <input type="hidden" #inst_ids="ngModel" name="inst_ids" [(ngModel)]="inst_id">
+                                <input type="hidden" #question_admin="ngModel" name="question_admin" [(ngModel)]="Check_admin_id">
+                                <input type="hidden" #lesson_id="ngModel" name="lesson_id" [(ngModel)]="selectedlessonList">
+                                <div class="col-md-12">
+                                    <div class="">
+                                        <!-- <div class="question_title" id="pers_inf">
+                                            <h3><strong>Upload Q/a</strong> Upload your Questions/Answers to the database for tests.</h3>
+                                        </div> -->
+                                        <div class="question_sub">
+                                            <div class="all_mian">
+                                                <div class="row">
+
+                                                    <div class="col-md-6">
+                                                        <div class="input-group input_group_box">
+                                                            <span class="input-group-addon">Country</span>
+                                                            <div class="select_box_outer">
+                                                                <ng-select [items]="countrieslist" bindLabel="cntry_name" bindValue="cntry_id" placeholder="Select country" #country="ngModel" name="country" [(ngModel)]="country_id" required>
+                                                                </ng-select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <div class="input-group input_group_box">
+                                                            <span class="input-group-addon">Courses</span>
+                                                            <div class="select_box_outer">
+                                                               <ng-select [items]="allCourses" bindLabel="course_fname" bindValue="course_id" placeholder="Select Course" #course_ids="ngModel" name="course_ids" [(ngModel)]="course_value" (keyup)="getClassificationValue($event.target.value,'course_sname','course_fname','course')" required>
+                                                                </ng-select>
+                                                                <!-- <p>Selecte value : {{course_value}}</p>  -->
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2" *ngIf="is_course_notavailable==true">
+                                                            <br>
+                                                            <span class="btn-success btn show-addbtn-course" data-toggle="modal" data-target="#courseModel">Add</span>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+
+                                               
+                                               <div class="row">     
+                                                    <div class="col-md-6">
+                                                            <div class="input-group input_group_box">
+                                                                <span class="input-group-addon">Class</span>
+                                                                <div class="select_box_outer">
+                                                                  <!-- <label>Class</label> -->
+                                                                    <ng-select [items]="allClasses" bindLabel="class_fname" bindValue="class_id" placeholder="Select Class" #class_ids="ngModel" name="class_ids" [(ngModel)]="class_value" (keyup)="getClassificationValue($event.target.value,'class_sname','class_fname','class')" required>
+                                                                    </ng-select>
+                                                                    <!-- <p>Selected class : {{class_value}}</p>  -->
+                                                                    <!-- <input type="text" class="form-control" #class_values="ngModel" name="class_values" [(ngModel)]="class_value" (keyup)="getClassificationValue($event.target.value,'class_sname','class_fname','class')" placeholder="class" required> 
+                                                                      <input type="hidden" #class_ids="ngModel" name="class_ids" [(ngModel)]="class_id" required>
+                                                                      <ul class="searchfm" *ngIf="is_class_available==true">
+                                                                         <li *ngFor="let cls of clfValues" (click)="showInputValue(cls.class_id,cls.class_fname,'class')">{{cls.class_sname}} {{cls.class_fname}}</li>
+                                                                      </ul> -->
+                                                                </div>
+                                                            </div>
+                                                                <div class="col-md-1" *ngIf="is_class_notavailable==true">
+                                                                <br>
+                                                                <span class="btn-success btn show-addbtn-course" data-toggle="modal" data-target="#classModel">Add</span>
+                                                            </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                            <div class="input-group input_group_box">
+                                                                <span class="input-group-addon">Subjects</span>
+                                                                <div class="select_box_outer">
+                                                                  <!-- <label>Subject</label> -->
+                                                                    <ng-select [items]="allSubjects" bindLabel="subject_fname" bindValue="subject_id" placeholder="Select Subjects" #subject_ids="ngModel" name="subject_ids" [(ngModel)]="subject_values" (keyup)="getClassificationValue($event.target.value,'subject_sname','subject_fname','subject')" (change)="getLessonsonForSubj()"(clear)="lessonsList =[];" required>
+                                                                    </ng-select>
+                                                                    <!-- <input type="hidden" #subject_ids="ngModel" name="subject_ids" [(ngModel)]="subject_id" required>
+                                                                      <input type="text" class="form-control" #subject_values="ngModel" name="subject_values" [(ngModel)]="subject_value" (keyup)="getClassificationValue($event.target.value,'subject_sname','subject_fname','subject')" placeholder="Subject" required>
+                                                                      <ul class="searchfm" *ngIf="is_subject_available==true">
+                                                                         <li *ngFor="let sub of clfValues" (click)="showInputValue(sub.subject_id,sub.subject_fname,'subject')">{{sub.subject_sname}} {{sub.subject_fname}}</li>
+                                                                      </ul> -->
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div class="col-md-1">
+                                                                <br>
+                                                                <p *ngIf="is_subject_notavailable==true" class="bt btn-success btn" data-toggle="modal" data-target="#subjectModel">Add</p>
+
+                                                            </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">                                                   
+                                                    <div class="col-md-6">
+                                                        <div class="">
+                                                            <div class="input-group input_group_box">
+                                                                <span class="input-group-addon">Lesson/Topic</span>
+                                                                <div class="select_box_outer">
+                                                                    <p-multiSelect [options]="lessonsList" #selectedLessonIds="ngModel" name="selectedLessonIds" [(ngModel)]="selectedlessonList" (keyup)="getLessons($event.target.value)"maxSelectedLabels='0' [panelStyle]="{minWidth:'12em'}" required></p-multiSelect>
+                                                                    <!-- <input type="text" class="form-control" #lesson_names="ngModel" name="lesson_names" (focus)="getLessonsonFocus()" [(ngModel)]="lesson_value" (keyup)="getLessons($event.target.value)" [readonly]="!subj_id_avail">
+                                                                      <input type="hidden" #selectedLessonIds="ngModel" name="selectedLessonIds" [(ngModel)]="CheckedValues">
+                                                                      <ul *ngIf="showLessons">
+                                                                         <span style="float:right" (click)="closeAllChecks()">X</span>
+                                                                         <li *ngFor="let les of allLessons">
+                                                                            !-- <input type="checkbox" #checkboxValues="ngModel" [attr.id]="les.lesson_id" [checked]="selected === les.lesson_id" name="checkboxValues" [(ngModel)]="checkboxValue"  (change)="getCheckedValues(les.lesson_id,$event.target.checked)" [value]="les.lesson_id">{{les.lesson_name}} ->
+                                                                            <input type="checkbox" #checkboxValues="ngModel" name="checkboxValues" [(ngModel)]="checkboxValue"  (change)="getCheckedValues(les.lesson_id,$event.target.checked)" value="les.lesson_id">{{les.lesson_name}}
+                                                                         </li>
+                                                                      </ul> -->
+
+                                                                    <span *ngIf="lessSlct==true" class="error-msg alert-danger">Please select lesson(s)</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2" *ngIf="noLessonsmsg">
+                                                            <span>Please select subject!</span>
+                                                        </div>
+                                                        <div class="col-md-2" *ngIf="noLessons">
+                                                            <p class="btn btn-success" (click)="lessonCreate(lesson_name,'')">Add</p>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="col-md-6">
+                                                        <div class="row">
+                                                            <div class="col-md-2">
+                                                                <label class="input-group-addon">Grade</label>
+                                                                <div class="input-group input_group_box">
+                                                                    <div class="select_box_outer">
+                                                                        <select class="form-control basic-single" #question_grades="ngModel" name="question_grades" [(ngModel)]="question_grade">
+                                                                            <option *ngFor="let grd of qnsgrd" [value]="grd.gradtyp_id">{{grd.gradtyp_name}}</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>        
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <label class="input-group-addon">Marks</label>
+                                                                <div class="input-group input_group_box">
+                                                                    <div class="select_box_outer">
+                                                                        <input type="text" [(ngModel)]="tMarks" #marks="ngModel" name="marks" (keypress)="numberOnly($event,1)" class="form-control" placeholder="enter Marks" required>
+                                                                        <p *ngIf="mErrMsg_1" class="alert alert-danger">{{mErrMsg_1}}</p>
+                                                                    </div>
+                                                                </div>        
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <label class="input-group-addon">Nagtive  Marks</label>
+                                                                <div class="input-group input_group_box">
+                                                                    <div class="select_box_outer">
+                                                                        <input type="text" [(ngModel)]="tMarks" #marks="ngModel" name="marks" (keypress)="numberOnly($event,1)" class="form-control" placeholder="enter Marks" required>
+                                                                        <p *ngIf="mErrMsg_1" class="alert alert-danger">{{mErrMsg_1}}</p>
+                                                                    </div>
+                                                                </div>        
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="row">    
+                                                                    <div class="col-md-6">
+                                                                        <div class="input-group input_group_box">
+                                                                            <span class="input-group-addon">Nagtive Marks</span>
+                                                                            <div class="select_box_outer">
+                                                                                <input type="text" (keypress)="numberOnly($event,2)" #nmarks="ngModel" name="nmarks" [(ngModel)]="nmarkss" class="form-control" placeholder="enter Nagtive Marks" required>
+                                                                                <p *ngIf="mErrMsg_2" class="alert alert-danger">{{mErrMsg_2}}</p>
+                                                                            </div>
+                                                                            <!-- <input type="text" class="form-control" #question_times="ngModel" name="question_times" [(ngModel)]="question_time" placeholder=""> -->
+                                                                        </div>
+                                                                    </div>        
+                                                                    <div class="col-md-6">
+                                                                        <div class="row row-xs">
+                                                                            <div class="col-md-6 pr-5">
+                                                                                <div class="input-group input_group_box">
+                                                                                    <span class="input-group-addon">Hours</span>
+                                                                                    <div class="select_box_outer">
+                                                                                        <select class="form-control" name="qnHr" [(ngModel)]="qnHrs" #qnHr="ngModel">
+                                                                                            <option value="00">00</option>
+                                                                                            <option value="01">01</option>
+                                                                                            <option value="02">02</option>
+                                                                                            <option value="03">03</option>
+                                                                                            <option value="04">04</option>
+                                                                                            <option value="05">05</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>       
+                                                                            </div>
+                                                                            
+                                                                            <div class="col-md-6 pl-5">
+                                                                                <div class="input-group input_group_box">
+                                                                                    <span class="input-group-addon">Minutes</span>
+                                                                                    <div class="select_box_outer">
+                                                                                        <select class="form-control" name="qnMn" [(ngModel)]="qnMns" #qnMn="ngModel">
+                                                                                            <option value="00">00</option>
+                                                                                            <option value="01">01</option>
+                                                                                            <option value="02">02</option>
+                                                                                            <option value="03">03</option>
+                                                                                            <option value="04">04</option>
+                                                                                            <option value="05">05</option>
+                                                                                            <option value="10">10</option>
+                                                                                            <option value="15">15</option>
+                                                                                            <option value="20">20</option>
+                                                                                            <option value="25">25</option>
+                                                                                            <option value="30">30</option>
+                                                                                            <option value="40">40</option>
+                                                                                            <option value="50">50</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>        
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>            
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    
+                                                </div>
+
+                                                
+                                                <div class="all_pd">
+                                                    <div class="row">
+
+                                                        <div class="col-md-4">
+                                                            <label>Question Type</label>
+                                                            <br>
+                                                            <div class="i-check">
+                                                                <input tabindex="5" (change)="setQuestionsType($event.target.checked,2)" type="radio" #question_type_id="ngModel" name="question_type_id" [value]="2" [(ngModel)]="questntyp_id">
+                                                                <label for="minimal-checkbox-1">True/False Question</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label></label>
+                                                            <div class="i-check">
+                                                                <input tabindex="5" (change)="setQuestionsType($event.target.checked,1)" type="radio" #question_type_id="ngModel" name="question_type_id" [value]="1" [(ngModel)]="questntyp_id">
+                                                                <label for="minimal-checkbox-1">Multiple Choice Question</label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-4" *ngIf="ans_type_shw">
+                                                            <label>Inlcude Addtional Answer </label>                                                
+                                                            <div class="i-check">
+                                                                <input tabindex="5" (change)="setAnsType($event.target.checked,3)" type="checkbox" #ans_id="ngModel" name="ans_id" value="3" [(ngModel)]="ans_type">
+                                                                <label for="minimal-checkbox-1">All of the Above</label>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <p-dialog header="{{titleMsg}}" [(visible)]="display" [modal]="true" [responsive]="true" [style]="{width: '200px', minWidth: '200px'}" [minY]="70" [maximizable]="true" [baseZIndex]="10000">
+                                                    <span [innerHtml]="dilogueMsg">{{dilogueMsg}}</span>
+                                                    <p-footer>                                            
+                                                            {{dlbtn_two_txt}}<br>
+                                                        <button *ngIf="dlbtn_tow==true" type="button" style="margin-right: 72%;"  pButton (click)="forContinue(acceptnumber)" label="Submit"></button>
+                                                        <button *ngIf="dlbtn_one==true" type="button" pButton (click)="clearMsg()" label="{{dlbtn_one_txt}}"></button>
+                                                    </p-footer>
+                                                </p-dialog>                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div *ngIf="myForm.valid">
+                                    <div class="row">
+                                        <!-- <div class="col-md-12">
+                                            <div class="col-md-4">                                    
+                                                <div class="i-check">
+                                                    <input tabindex="5" (change)="FileorTextCtrl($event.target.checked,1)" type="radio" #FileorText="ngModel" name="FileorText" [value]="1" [(ngModel)]="FileorTexts">
+                                                    <label for="minimal-checkbox-1">Text/Images</label>
+                                                </div>                                    
+                                                <div class="i-check">
+                                                    <input tabindex="5" (change)="FileorTextCtrl($event.target.checked,2)" type="radio" #FileorText="ngModel" name="FileorText" [value]="2" [(ngModel)]="FileorTexts">
+                                                    <label for="minimal-checkbox-1">Audio/Video</label>
+                                                </div>                                    
+                                            </div>
+                                        </div> -->                            
+                                            <div class="col-md-6">
+                                                <label>Question Details</label>
+                                                <div class="col-md-12" style="padding-right: 0px;padding-left: 0px;">
+                                                    <div class="col-md-4">                                    
+                                                        <div class="i-check">
+                                                            <input tabindex="5" (change)="FileorTextCtrl($event.target.checked,1)" type="radio" #FileorText="ngModel" name="FileorText" [value]="1" [(ngModel)]="FileorTexts">
+                                                            <label for="minimal-checkbox-1">Text/Images</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="i-check">
+                                                            <input tabindex="5" (change)="FileorTextCtrl($event.target.checked,2)" type="radio" #FileorText="ngModel" name="FileorText" [value]="2" [(ngModel)]="FileorTexts">
+                                                            <label for="minimal-checkbox-1">Audio/Video</label>
+                                                        </div>                                    
+                                                    </div>
+                                                
+                                                <div class="col-md-12" *ngIf="FileorTexts==1"  style="padding-right: 0px;padding-left: 0px;">
+                                                    <p-editor  [(ngModel)]="question_detail" #question_details="ngModel" name="question_details" [style]="{'height':'225px'}"></p-editor>
+                                                </div>
+                                                <div class="col-md-12" *ngIf="FileorTexts==2">
+                                                <input class="form-control" type="file" (change)="videoAudioQns($event.target.files)" #question_detailsFile="ngModel" name="question_detailsFile" [(ngModel)]="qnt_detls" accept="video/*,audio/*">
+                                                <div *ngIf="fileExtError" class="text-danger">{{fileExtErrorText}}</div>                                   
+                                                <video *ngIf="selFile==true" controls="true" [src]="fileUrl | safeurl" width="425" height="220" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen oncontextmenu="return false"></video>
+                                            </div>
+                                        </div>
+                                            </div>
+                                            <!-- <div class="col-md-5">
+                                                <label>Question Solution</label>
+                                                <p-editor [(ngModel)]="question_solutions" #question_solution="ngModel" name="question_solution" [style]="{'height':'225px'}"></p-editor>
+                                            </div> --> 
+                                            <!-- <div class="col-md-5">
+                                                <label>Question Details</label>
+                                                <input class="form-control" type="file" (change)="videoAudioQns($event.target.files)" #question_detailsFile="ngModel" name="question_detailsFile" [(ngModel)]="qnt_detls" accept="video/*,audio/*">
+                                                <div *ngIf="fileExtError" class="text-danger">{{fileExtErrorText}}</div>                                   
+                                                <video *ngIf="selFile==true" controls="true" [src]="fileUrl | safeurl" width="425" height="220" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen oncontextmenu="return false"></video>                                    
+                                            </div> -->
+                                            <div class="col-md-6">
+                                                <label>Question Solution</label>
+                                                <div class="col-md-12" style="padding-right: 0px;padding-left: 0px;">
+                                                    <div class="col-md-5">
+                                                        <div class="i-check">
+                                                            <input tabindex="5" (change)="FileorTextSol($event.target.checked,1)" type="radio" #FileorTextsol="ngModel" name="FileorTextsol" [value]="1" [(ngModel)]="FileorTextsols">
+                                                            <label for="minimal-checkbox-1">Text/Images</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-5">
+                                                        <div class="i-check">
+                                                            <input tabindex="5" (change)="FileorTextSol($event.target.checked,2)" type="radio" #FileorTextsol="ngModel" name="FileorTextsol" [value]="2" [(ngModel)]="FileorTextsols">
+                                                            <label for="minimal-checkbox-1">Audio/Video</label>                                                
+                                                        </div>                                    
+                                                    </div>
+                                                    <div class="col-md-12" *ngIf="FileorTextsols==2" style="padding-right: 0px;padding-left: 0px;"> 
+                                                      <input  class="form-control" type="file" (change)="videoAudioSolns($event.target.files)" #question_solutionFile="ngModel" name="question_solutionFile" [(ngModel)]="question_solutionFiles" accept="video/*,audio/*">
+                                                      <video *ngIf="selFiles==true" controls="true" [src]="fileUrls | safeurl" width="425" height="220" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen oncontextmenu="return false"></video>
+                                                    </div>
+                                                    <div class="col-md-12" *ngIf="FileorTextsols==1" tyle="padding-right: 0px;padding-left: 0px;">
+                                                      <p-editor  [(ngModel)]="question_solutions" #question_solution="ngModel" name="question_solution" [style]="{'height':'225px'}"></p-editor>
+                                                    </div>
+                                                </div>
+                                               
+                                            </div>
+                                    </div>
+                                    <div class="row" *ngIf="questntyp_id==2">
+                                        <br>
+                                        <h3>Choose Correct Answer</h3>
+                                        <div class="col-md-4">
+                                            <div class="i-check">
+                                                <input tabindex="5" type="radio" #t_f_crt_ans="ngModel" name="t_f_crt_ans" [value]="1" [(ngModel)]="t_f_crt_answr">
+                                                <label for="minimal-checkbox-1">True</label>
+                                            </div>
+                                            <div class="i-check">
+                                                <input tabindex="5" type="radio" #t_f_crt_ans="ngModel" name="t_f_crt_ans" [value]="0" [(ngModel)]="t_f_crt_answr">
+                                                <label for="minimal-checkbox-1">False</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" *ngIf="questntyp_id==1">
+                                        <div class="col-md-6">
+                                            <label>Wrong Answer 1</label>
+                                            <p-editor class="wrong" (keyup)="questionsCount(wrOptn1,'false',1)" [(ngModel)]="wrOptn1" #wrOptn_1="ngModel" name="wrOptn_1" [style]="{'height':'225px'}"></p-editor>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Correct Answer 1</label>
+                                            <p-editor class="correct" (keyup)="questionsCount(crOptn1,'true',1)" [(ngModel)]="crOptn1" #crOptn_1="ngModel" name="crOptn_1" [style]="{'height':'225px'}"></p-editor>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Wrong Answer 2</label>
+                                            <p-editor class="wrong" (keyup)="questionsCount(wrOptn_2,'false',2)" [(ngModel)]="wrOptn2" #wrOptn_2="ngModel" name="wrOptn_2" [style]="{'height':'225px'}"></p-editor>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Correct Answer 2</label>
+                                            <p-editor class="correct" (keyup)="questionsCount(crOptn_2,'true',2)" [(ngModel)]="crOptn2" #crOptn_2="ngModel" name="crOptn_2" [style]="{'height':'225px'}"></p-editor>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Wrong Answer 3</label>
+                                            <p-editor class="wrong" (keyup)="questionsCount(wrOptn_3,'false',3)" [(ngModel)]="wrOptn3" #wrOptn_3="ngModel" name="wrOptn_3" [style]="{'height':'225px'}"></p-editor>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Correct Answer 3</label>
+                                            <p-editor  class="correct" (keyup)="questionsCount(crOptn_3,'true',3)" [(ngModel)]="crOptn3" #crOptn_3="ngModel" name="crOptn_3" [style]="{'height':'225px'}"></p-editor>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Wrong Answer 4</label>
+                                            <p-editor class="wrong" (keyup)="questionsCount(wrOptn_4,'false',4)" [(ngModel)]="wrOptn4" #wrOptn_4="ngModel" name="wrOptn_4" [style]="{'height':'225px'}"></p-editor>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Correct Answer 4</label>
+                                            <p-editor class="correct" (keyup)="questionsCount(crOptn_4,'true',4)" [(ngModel)]="crOptn4" #crOptn_4="ngModel" name="crOptn_4" [style]="{'height':'225px'}"></p-editor>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Wrong Answer 5</label>
+                                            <p-editor class="wrong" (keyup)="questionsCount(wrOptn_5,'false',5)" [(ngModel)]="wrOptn5" #wrOptn_5="ngModel" name="wrOptn_5" [style]="{'height':'225px'}"></p-editor>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Wrong Answer 6</label>
+                                            <p-editor class="wrong" (keyup)="questionsCount(wrOptn_6,'false',6)" [(ngModel)]="wrOptn6" #wrOptn_6="ngModel" name="wrOptn_6" [style]="{'height':'225px'}"></p-editor>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Wrong Answer 7</label>
+                                            <p-editor class="wrong" (keyup)="questionsCount(wrOptn_7,'false',7)" [(ngModel)]="wrOptn7" #wrOptn_7="ngModel" name="wrOptn_7" [style]="{'height':'225px'}"></p-editor>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Wrong Answer 8</label>
+                                            <p-editor class="wrong" (keyup)="questionsCount(wrOptn_8,'false',8)" [(ngModel)]="wrOptn8" #wrOptn_8="ngModel" name="wrOptn_8" [style]="{'height':'225px'}"></p-editor>
+                                        </div>
+                                    </div>                       
+                                    <br>
+                                    <div class="col-md-4">
+                                        <button [disabled]="myForm.invalid" class="btn btn-primary">Upload</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>    
+            </div>
+        </section>
+    </div>    
+</div>
+
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
+<p-toast [style]="{marginTop: '80px'}" position="top-left" key="tl"></p-toast>
+<p-toast [style]="{marginTop: '80px'}" position="top-center" key="tc"></p-toast>
+<p-toast [style]="{marginTop: '80px'}" styleClass="custom-toast" key="custom" position="bottom-center"></p-toast>
+<p-toast position="center" key="c" (onClose)="onReject()" [modal]="true" [baseZIndex]="5000">
+    <ng-template let-message pTemplate="message">
+        <div style="text-align: center">
+            <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i>
+            <h3>{{message.summary}}</h3>
+            <p>{{message.detail}}</p>
+        </div>
+        <div class="ui-g ui-fluid">
+            <div class="ui-g-6">
+                <button type="button" pButton (click)="onConfirm()" label="Yes" class="ui-button-success"></button>
+            </div>
+            <div class="ui-g-6">
+                <button type="button" pButton (click)="onReject()" label="No" class="ui-button-secondary"></button>
+            </div>
+        </div>
+    </ng-template>
+</p-toast>

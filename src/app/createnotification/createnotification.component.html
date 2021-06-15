@@ -1,0 +1,131 @@
+<app-sdashheader></app-sdashheader>
+<div class="leftsidemenus">
+<app-sdahshmenu></app-sdahshmenu>
+</div>
+<div id="page-wrapper">
+    <div class="content">
+        <div class="all_brd p-10">
+            <div class="question_title" id="pers_inf">
+                 <h3>Create Notification </h3>
+            </div>
+            <form (ngSubmit)="onSubmitCreateNotification()" #formCreateNotification="ngForm">
+                <div class="table-responsive">
+                    <div class="col-md-12">
+                        <table class="table p-10">
+                            <thead>
+                                <tr class="adm_tr_bg">
+                                    <th>Country </th>
+                                    <th>Course</th>
+                                    <th>Class</th>
+                                    <th>Subject</th>
+                                    <th>Lession / Topic (s)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="blc_del_bg">
+                                    <td>
+                                        <!-- <p-multiSelect [options]="clascountry" [(ngModel)]="selecteclascountry" [panelStyle]="{minWidth:'12em'}"></p-multiSelect> -->
+                                        <select class="form-control" name="country" ngModel >
+                                            <option value="">Select Country</option>
+                                            <option value="{{country_list.cntry_id}}" *ngFor="let country_list of country">{{ country_list.cntry_name}}</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <!-- <p-multiSelect [options]="clascountry" [(ngModel)]="selecteclascountry" [panelStyle]="{minWidth:'12em'}"></p-multiSelect> -->
+                                        <select class="form-control" name="course" ngModel >
+                                            <option value="">Select Course</option>
+                                            <option value="{{course.course_id}}" *ngFor="let course of allCourses">{{ course.course_sname}}</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <!-- <p-multiSelect [options]="clascountry" [(ngModel)]="selecteclascountry" [panelStyle]="{minWidth:'12em'}"></p-multiSelect> -->
+                                        <select class="form-control" name="class" ngModel >
+                                            <option value="">Select Class</option>
+                                            <option value="{{class.class_id}}" *ngFor="let class of allClasses">{{ class.class_sname}}</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <!-- <p-multiSelect [options]="clascountry" [(ngModel)]="selecteclascountry" [panelStyle]="{minWidth:'12em'}"></p-multiSelect> -->
+                                        <select class="form-control" name="subject" ngModel (change)="getLessonsonForSubj($event.target.value)">
+                                            <option value="">Select Subject</option>
+                                            <option value="{{subject.subject_id}}" *ngFor="let subject of allSubjects">{{ subject.subject_sname}}</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <!-- <p-multiSelect [options]="clascountry" [(ngModel)]="selecteclascountry" [panelStyle]="{minWidth:'12em'}"></p-multiSelect> -->
+                                        <!-- <select class="form-control" name="lession" ngModel >
+                                            <option value="">Select Lessons</option>
+                                            <option value="{{Lessons.lesson_id}}" *ngFor="let Lessons of allLessons">{{ Lessons.lesson_name}}</option>
+                                        </select> -->
+                                        <p-multiSelect [options]="lessonsList" #lession="ngModel" name="lession" [(ngModel)]="selectedlessonList" maxSelectedLabels='0' [panelStyle]="{minWidth:'12em'}" ></p-multiSelect>
+                                    </td>
+                                    <!-- <td>
+                                        <p-multiSelect [options]="clascountry" [(ngModel)]="selecteclascountry" [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
+                                    </td>
+                                    <td>
+                                        <p-multiSelect [options]="clascountry" [(ngModel)]="selecteclascountry" [panelStyle]="{minWidth:'12em'}"></p-multiSelect> 
+                                    </td>
+                                    <td>
+                                        <p-multiSelect [options]="clascountry" [(ngModel)]="selecteclascountry" [panelStyle]="{minWidth:'12em'}"></p-multiSelect> 
+                                    </td>
+                                    <td>
+                                        <p-multiSelect [options]="clascountry" [(ngModel)]="selecteclascountry" [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
+                                    </td> -->
+                                </tr>
+                            </tbody>
+                        </table>
+                <!---///details--tabs----->  
+                        <div class="comment_npt"> 
+                            <div class="form-group">
+                                <label>Title</label>
+                                <input type="text" class="col-md-12" name="title" ngModel #title="ngModel"  placeholder="Title" required>
+                                <span style="color: red" *ngIf="formCreateNotification.submitted && formCreateNotification.invalid">
+                                    <p *ngIf="title.errors.required">Title is required!</p>
+                                </span>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="col-md-2">                                    
+                                    <div class="i-check">
+                                        <input tabindex="5" (change)="FileorTextCtrl($event.target.checked,1)" type="radio" #FileorText="ngModel" name="FileorText" [value]="1" checked=true  [(ngModel)]="FileorTexts">
+                                        <label for="minimal-checkbox-1">Enter Details</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="i-check">
+                                        <input tabindex="5" (change)="FileorTextCtrl($event.target.checked,2)" type="radio" #FileorText="ngModel" name="FileorText" [value]="2" [(ngModel)]="FileorTexts">
+                                        <label for="minimal-checkbox-1">Choose File</label>
+                                    </div>                                    
+                                </div>
+                            </div>
+                            
+                            <div class="form-group" *ngIf="FileorTexts == 2">
+                                <label>File path</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="sizing-addon2">File path</span>
+                                    <input type="file" class="form-control" (change)="handleTimelinePic($event.target.files)" aria-describedby="sizing-addon2">
+                                </div>
+                                <span style="color: red;" *ngIf="formCreateNotification.submitted && FileorTexts == 2">
+                                    <p>{{file_error}}</p>
+                                </span>
+                            </div> 
+                            <div class="form-group" *ngIf="FileorTexts == 1">
+                                <label>Notification Details</label>
+                                <p-editor [style]="{'height':'150px'}"  name="notification_details" ngModel ></p-editor>
+                                <!-- <textarea id="froala-editor" name="notification_details" ngModel (change)="changeeditor($event)">
+                                    
+                                </textarea> -->
+                                
+                                <span style="color: red;" *ngIf="formCreateNotification.submitted && FileorTexts == 1">
+                                    <p>{{notification_detail_error}}</p>
+                                </span>
+                            </div>  
+                            <button type="submit" class="bt btn-danger pull-right">Submit</button>
+                            <button type="submit" class="bt btn-defult pull-leftt" data-target="#reply" data-toggle="collapse">Cancel</button>
+                        <!-- </div> -->
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

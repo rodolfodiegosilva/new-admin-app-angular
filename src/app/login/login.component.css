@@ -1,0 +1,108 @@
+.discussion-title{
+	background: url(../../aasets/img/discussion-bg.jpg);
+	background-size: cover;
+    background-position: center;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	position: relative;
+}
+
+.content-title{
+	background: url(../../assets/img/content-bg.jpg);
+	background-size: cover;
+    background-position: center;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	position:relative;
+}
+.panel-group {
+    margin-bottom: 20px;
+    padding: 17px 5px;
+}
+ 
+/*====Test-tab card-css======*/
+.test-title{
+	background: url(../../assets/gems-img/test-bg.jpg);
+	background-size: cover;
+    background-position: center;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	position:relative;
+} 
+/*====notification-tab card-css======*/
+.notification-title{
+	background: url(../../assets/img/notification-bg.jpg);
+	background-size: cover;
+    background-position: center;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	position:relative;
+	
+}
+/*====classifide-tab card-css======*/
+.classifide-title{
+	background: url(../../assets/img/class-bg.jpg);
+	background-size: cover;
+    background-position: center;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	position:relative;
+	
+    }
+    .icon-picture {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        line-height: 14px;
+        vertical-align: text-top;
+        background-image: url(../../assets/img/glyphicons-halflings.png);
+        background-position: 14px 14px;
+        background-repeat: no-repeat;
+    }
+    #bottom_text a {
+        font-weight: 700;
+        padding: 0 8px 0 0;
+        background: url(../../assets/img/bullet.png) no-repeat 100% 50%;
+    }
+    .profile-widget .panel-heading {
+        min-height: 200px;
+        background: #fff url(../../assets/img/The-Lion-King-Desktop-1024x640.jpg) no-repeat top center;
+        background-size: cover;
+    }
+    .card-header-headshot {
+        height: 6em;
+        width: 6em;
+        border-radius: 50%;
+        border: 2px solid #558B2F;
+        background-image: url(../../assets/img/avatar.png);
+        background-size: cover;
+        background-position: center center;
+        box-shadow: 1px 3px 3px #3E4142;
+    }
+    .card-header {
+        position: relative;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        background-image: url(../../assets/img/profile-bg.jpg);
+        background-size: cover;
+        background-position: center center;
+        padding: 30px 15px;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+    }
+    .icon.rainy-2 {
+        background-image: url(../../assets/img/weather-animated/rainy-2.svg);
+    }
+    .header-titlea {
+        margin-left: 168px;
+    }
+    .btn {
+        box-shadow: 0px 0px 0px #b9334d !important;
+      }
+      input.form-control.ng-pristine.ng-valid.ng-touched {
+        border: 1px solid red;
+    }

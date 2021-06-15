@@ -1,0 +1,369 @@
+ALTER TABLE `activities`
+  ADD CONSTRAINT `activities_ibfk_10` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `activities_ibfk_11` FOREIGN KEY (`ac_type_id`) REFERENCES `activities_index` (`acttyp_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `activities_ibfk_12` FOREIGN KEY (`recom_user_id`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `activities_ibfk_13` FOREIGN KEY (`content_id`) REFERENCES `content` (`content_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `activities_ibfk_14` FOREIGN KEY (`content_clsf_id`) REFERENCES `content_classification` (`content_clsf_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `activities_ibfk_15` FOREIGN KEY (`question_id`) REFERENCES `question_bank` (`question_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `activities_ibfk_16` FOREIGN KEY (`question_clsf_id`) REFERENCES `question_clsf` (`qstnclsf_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `activities_ibfk_17` FOREIGN KEY (`test_id`) REFERENCES `test_head` (`test_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `activities_ibfk_18` FOREIGN KEY (`discus_id`) REFERENCES `discussion` (`discus_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `activities_ibfk_19` FOREIGN KEY (`frdship_id`) REFERENCES `friend` (`frd_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `activities_ibfk_2` FOREIGN KEY (`user_clsfpref_id`) REFERENCES `userclassf_pref` (`ucf_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `activities_ibfk_20` FOREIGN KEY (`group_id`) REFERENCES `groups` (`grp_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `activities_ibfk_21` FOREIGN KEY (`grpadmin_id`) REFERENCES `group_admin` (`grpadmin_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `activities_ibfk_22` FOREIGN KEY (`bookmark_id`) REFERENCES `bookmarks` (`bm_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `activities_ibfk_23` FOREIGN KEY (`alarm_id`) REFERENCES `alarm` (`alarm_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `activities_ibfk_24` FOREIGN KEY (`verified_by`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `activities_ibfk_3` FOREIGN KEY (`review_id`) REFERENCES `reviews` (`review_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `activities_ibfk_4` FOREIGN KEY (`refer_id`) REFERENCES `referal` (`refer_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `activities_ibfk_5` FOREIGN KEY (`rating_id`) REFERENCES `ratings` (`rating_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `activities_ibfk_6` FOREIGN KEY (`feedback_id`) REFERENCES `feedback` (`feedback_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `activities_ibfk_7` FOREIGN KEY (`recomnd_id`) REFERENCES `recommends` (`recom_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `activities_ibfk_8` FOREIGN KEY (`view_id`) REFERENCES `views` (`view_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `activities_ibfk_9` FOREIGN KEY (`timeline_id`) REFERENCES `timeline` (`timeline_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `admin_access`
+--
+ALTER TABLE `admin_access`
+  ADD CONSTRAINT `admin_access_ibfk_2` FOREIGN KEY (`ac_country_id`) REFERENCES `country` (`cntry_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `admin_access_ibfk_4` FOREIGN KEY (`ac_blocked_by`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `admin_access_ibfk_5` FOREIGN KEY (`ac_blocked_reasonid`) REFERENCES `user_block_type` (`usrblock_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `admin_access_ibfk_6` FOREIGN KEY (`admin_id`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `admin_access_ibfk_7` FOREIGN KEY (`inst_id`) REFERENCES `institute` (`inst_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `admin_user`
+--
+ALTER TABLE `admin_user`
+  ADD CONSTRAINT `admin_user_ibfk_1` FOREIGN KEY (`admintype_id`) REFERENCES `admin_type` (`admintyp_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `admin_user_ibfk_2` FOREIGN KEY (`admin_country`) REFERENCES `country` (`cntry_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `admin_user_ibfk_3` FOREIGN KEY (`admin_city`) REFERENCES `city` (`city_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `admin_user_ibfk_4` FOREIGN KEY (`admin_created_by`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `admin_user_ibfk_5` FOREIGN KEY (`admin_updated_by`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `alarm`
+--
+ALTER TABLE `alarm`
+  ADD CONSTRAINT `alarm_ibfk_1` FOREIGN KEY (`inst_id`) REFERENCES `institute` (`inst_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `alarm_ibfk_2` FOREIGN KEY (`alarm_test_id`) REFERENCES `test_head` (`test_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `alarm_ibfk_3` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `alarm_ibfk_4` FOREIGN KEY (`alarm_type_id`) REFERENCES `object_type` (`objtyp_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `alarm_ibfk_5` FOREIGN KEY (`alarm_timeline_id`) REFERENCES `timeline` (`timeline_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `answer_bank`
+--
+ALTER TABLE `answer_bank`
+  ADD CONSTRAINT `answer_bank_ibfk_1` FOREIGN KEY (`inst_id`) REFERENCES `institute` (`inst_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `answer_bank_ibfk_2` FOREIGN KEY (`question_id`) REFERENCES `question_bank` (`question_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `answer_bank_ibfk_3` FOREIGN KEY (`answer_type_id`) REFERENCES `answer_type` (`answertyp_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `bookmarks`
+--
+ALTER TABLE `bookmarks`
+  ADD CONSTRAINT `bookmarks_ibfk_1` FOREIGN KEY (`inst_id`) REFERENCES `institute` (`inst_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `bookmarks_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `bookmarks_ibfk_3` FOREIGN KEY (`bm_timeline_id`) REFERENCES `timeline` (`timeline_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `bookmarks_ibfk_4` FOREIGN KEY (`bm_type_id`) REFERENCES `object_type` (`objtyp_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `bookmarks_ibfk_5` FOREIGN KEY (`bm_content_id`) REFERENCES `content` (`content_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `changelogs`
+--
+ALTER TABLE `changelogs`
+  ADD CONSTRAINT `changelogs_ibfk_1` FOREIGN KEY (`inst_id`) REFERENCES `institute` (`inst_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `changelogs_ibfk_2` FOREIGN KEY (`chlog_user_id`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `changelogs_ibfk_3` FOREIGN KEY (`verified_by`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `city`
+--
+ALTER TABLE `city`
+  ADD CONSTRAINT `city_ibfk_1` FOREIGN KEY (`city_country`) REFERENCES `country` (`cntry_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `class`
+--
+ALTER TABLE `class`
+  ADD CONSTRAINT `class_ibfk_1` FOREIGN KEY (`inst_id`) REFERENCES `institute` (`inst_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `class_ibfk_2` FOREIGN KEY (`class_blocked_by`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `class_ibfk_3` FOREIGN KEY (`class_verified_by`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `class_ibfk_4` FOREIGN KEY (`alt_class_id`) REFERENCES `class` (`class_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `classification`
+--
+ALTER TABLE `classification`
+  ADD CONSTRAINT `classification_ibfk_1` FOREIGN KEY (`inst_id`) REFERENCES `institute` (`inst_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `classification_ibfk_2` FOREIGN KEY (`classf_country_id`) REFERENCES `country` (`cntry_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `classification_ibfk_3` FOREIGN KEY (`classf_course_id`) REFERENCES `course` (`course_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `classification_ibfk_4` FOREIGN KEY (`classf_class_id`) REFERENCES `class` (`class_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `classification_ibfk_5` FOREIGN KEY (`classf_subject_id`) REFERENCES `subject` (`subject_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `classification_ibfk_6` FOREIGN KEY (`classf_verified_by`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `commercial`
+--
+ALTER TABLE `commercial`
+  ADD CONSTRAINT `commercial_ibfk_1` FOREIGN KEY (`com_country_id`) REFERENCES `country` (`cntry_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `commercial_ibfk_3` FOREIGN KEY (`com_media_type`) REFERENCES `media_type` (`mediatyp_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `commercial_ibfk_4` FOREIGN KEY (`com_blocked_by`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `commercial_ibfk_5` FOREIGN KEY (`com_loc_id`) REFERENCES `commercial_loc` (`comloc_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `commercial_ibfk_6` FOREIGN KEY (`inst_id`) REFERENCES `institute` (`inst_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `commercial_loc`
+--
+ALTER TABLE `commercial_loc`
+  ADD CONSTRAINT `commercial_loc_ibfk_1` FOREIGN KEY (`comloc_pageid`) REFERENCES `pages` (`page_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `commercial_loc_ibfk_2` FOREIGN KEY (`comloc_pagelocid`) REFERENCES `page_loc` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `commercial_loc_ibfk_3` FOREIGN KEY (`comloc_created_by`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `commercial_loc_ibfk_4` FOREIGN KEY (`inst_id`) REFERENCES `institute` (`inst_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `content`
+--
+ALTER TABLE `content`
+  ADD CONSTRAINT `content_ibfk_1` FOREIGN KEY (`inst_id`) REFERENCES `institute` (`inst_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `content_ibfk_2` FOREIGN KEY (`content_owner`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `content_ibfk_3` FOREIGN KEY (`content_media_type`) REFERENCES `media_type` (`mediatyp_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `content_ibfk_4` FOREIGN KEY (`content_verified_by`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `content_ibfk_5` FOREIGN KEY (`content_blocked_by`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `content_classification`
+--
+ALTER TABLE `content_classification`
+  ADD CONSTRAINT `content_classification_ibfk_1` FOREIGN KEY (`inst_id`) REFERENCES `institute` (`inst_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `content_classification_ibfk_2` FOREIGN KEY (`created_by_user`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `content_classification_ibfk_3` FOREIGN KEY (`created_by_admin`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `content_classification_ibfk_4` FOREIGN KEY (`verified_by`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `content_classification_ibfk_5` FOREIGN KEY (`clsf_id`) REFERENCES `classification` (`classf_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `course`
+--
+ALTER TABLE `course`
+  ADD CONSTRAINT `course_ibfk_1` FOREIGN KEY (`course_blocked_by`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `course_ibfk_2` FOREIGN KEY (`course_verified_by`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `course_ibfk_3` FOREIGN KEY (`inst_id`) REFERENCES `institute` (`inst_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `course_ibfk_4` FOREIGN KEY (`alt_course_id`) REFERENCES `course` (`course_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `discussion`
+--
+ALTER TABLE `discussion`
+  ADD CONSTRAINT `discussion_ibfk_1` FOREIGN KEY (`inst_id`) REFERENCES `institute` (`inst_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `discussion_ibfk_2` FOREIGN KEY (`discus_owner`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `discussion_ibfk_3` FOREIGN KEY (`discus_verified_by`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `discussion_ibfk_4` FOREIGN KEY (`discus_blocked_by`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `discussion_ibfk_5` FOREIGN KEY (`discus_closed_admin`) REFERENCES `admin_user` (`admin_id`);
+
+--
+-- Constraints for table `discussion_topic`
+--
+ALTER TABLE `discussion_topic`
+  ADD CONSTRAINT `discussion_topic_ibfk_1` FOREIGN KEY (`distopic_created_by_user`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `discussion_topic_ibfk_2` FOREIGN KEY (`distopic_created_by_admin`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `discussion_topic_ibfk_3` FOREIGN KEY (`distopic_updated_by_admin`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `discussion_topic_ibfk_4` FOREIGN KEY (`distopic_blocked_by`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `discussion_topic_ibfk_5` FOREIGN KEY (`distopic_verified_by`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `feedback`
+--
+ALTER TABLE `feedback`
+  ADD CONSTRAINT `feedback_ibfk_1` FOREIGN KEY (`feedback_verified_by`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `feedback_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `feedback_ibfk_3` FOREIGN KEY (`inst_id`) REFERENCES `institute` (`inst_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `feedback_ibfk_4` FOREIGN KEY (`content_id`) REFERENCES `content` (`content_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `feedback_ibfk_5` FOREIGN KEY (`discus_id`) REFERENCES `discussion` (`discus_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `feedback_ibfk_6` FOREIGN KEY (`question_id`) REFERENCES `question_bank` (`question_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `feedback_ibfk_7` FOREIGN KEY (`timeline_id`) REFERENCES `question_bank` (`question_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `feedback_ibfk_8` FOREIGN KEY (`review_id`) REFERENCES `reviews` (`review_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `friend`
+--
+ALTER TABLE `friend`
+  ADD CONSTRAINT `friend_ibfk_1` FOREIGN KEY (`inst_id`) REFERENCES `institute` (`inst_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `friend_ibfk_2` FOREIGN KEY (`frd_friend_id`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `friend_ibfk_3` FOREIGN KEY (`frd_user_id`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `friend_ibfk_4` FOREIGN KEY (`frd_verified_by`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `friends_chat`
+--
+ALTER TABLE `friends_chat`
+  ADD CONSTRAINT `friends_chat_ibfk_1` FOREIGN KEY (`inst_id`) REFERENCES `institute` (`inst_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `friends_chat_ibfk_2` FOREIGN KEY (`frdchat_user_id`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `friends_chat_ibfk_3` FOREIGN KEY (`frdchat_friend_id`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `friends_chat_ibfk_4` FOREIGN KEY (`frdchat_verified_by`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `groups`
+--
+ALTER TABLE `groups`
+  ADD CONSTRAINT `groups_ibfk_1` FOREIGN KEY (`grp_type_id`) REFERENCES `group_type` (`grouptyp_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `groups_ibfk_2` FOREIGN KEY (`inst_id`) REFERENCES `institute` (`inst_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `groups_ibfk_3` FOREIGN KEY (`grp_created_by_admin`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `groups_ibfk_4` FOREIGN KEY (`grp_created_by_user`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `groups_ibfk_5` FOREIGN KEY (`grp_verified_by`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `group_admin`
+--
+ALTER TABLE `group_admin`
+  ADD CONSTRAINT `group_admin_ibfk_1` FOREIGN KEY (`inst_id`) REFERENCES `institute` (`inst_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `group_admin_ibfk_2` FOREIGN KEY (`grpadmin_userid`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `group_admin_ibfk_3` FOREIGN KEY (`grpadmin_granted_by`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `group_admin_ibfk_4` FOREIGN KEY (`grpadmin_verified_by`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `group_admin_ibfk_5` FOREIGN KEY (`grp_id`) REFERENCES `groups` (`grp_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `group_assign_req`
+--
+ALTER TABLE `group_assign_req`
+  ADD CONSTRAINT `group_assign_req_ibfk_1` FOREIGN KEY (`grpass_grp_id`) REFERENCES `groups` (`grp_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `group_assign_req_ibfk_2` FOREIGN KEY (`grpass_grptyp_id`) REFERENCES `group_type` (`grouptyp_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `group_assign_req_ibfk_3` FOREIGN KEY (`inst_id`) REFERENCES `institute` (`inst_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `group_assign_req_ibfk_4` FOREIGN KEY (`grpass_requested_by`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `group_assign_req_ibfk_5` FOREIGN KEY (`grpass_requester_id`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `group_assign_req_ibfk_6` FOREIGN KEY (`grpass_req_declined_by`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `group_chat`
+--
+ALTER TABLE `group_chat`
+  ADD CONSTRAINT `group_chat_ibfk_1` FOREIGN KEY (`inst_id`) REFERENCES `institute` (`inst_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `group_chat_ibfk_2` FOREIGN KEY (`grpchat_grp_id`) REFERENCES `groups` (`grp_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `group_chat_ibfk_3` FOREIGN KEY (`grpchat_mem_id`) REFERENCES `group_members` (`grpmem_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `group_chat_ibfk_4` FOREIGN KEY (`grpchat_verified_by`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `group_members`
+--
+ALTER TABLE `group_members`
+  ADD CONSTRAINT `group_members_ibfk_1` FOREIGN KEY (`inst_id`) REFERENCES `institute` (`inst_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `group_members_ibfk_2` FOREIGN KEY (`grpmem_grptyp_id`) REFERENCES `group_type` (`grouptyp_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `group_members_ibfk_3` FOREIGN KEY (`grpmem_grp_id`) REFERENCES `groups` (`grp_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `group_members_ibfk_4` FOREIGN KEY (`grpmem_approved_by`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `group_members_ibfk_5` FOREIGN KEY (`grpmem_approved_by_admin`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `group_members_ibfk_6` FOREIGN KEY (`grpmem_canceled_by_admin`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `group_members_ibfk_7` FOREIGN KEY (`grpmem_assreq_id`) REFERENCES `group_assign_req` (`grpass_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `institute`
+--
+ALTER TABLE `institute`
+  ADD CONSTRAINT `institute_ibfk_1` FOREIGN KEY (`inst_user_id`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `institute_ibfk_2` FOREIGN KEY (`inst_created_by`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `institute_ibfk_3` FOREIGN KEY (`inst_access_updateadby`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `institute_branch`
+--
+ALTER TABLE `institute_branch`
+  ADD CONSTRAINT `institute_branch_ibfk_1` FOREIGN KEY (`inst_id`) REFERENCES `institute` (`inst_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `lesson`
+--
+ALTER TABLE `lesson`
+  ADD CONSTRAINT `lesson_ibfk_1` FOREIGN KEY (`inst_id`) REFERENCES `institute` (`inst_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `lesson_ibfk_2` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`subject_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `lesson_ibfk_3` FOREIGN KEY (`lesson_verified_by`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `marks_grade`
+--
+ALTER TABLE `marks_grade`
+  ADD CONSTRAINT `marks_grade_ibfk_1` FOREIGN KEY (`inst_id`) REFERENCES `institute` (`inst_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `marks_grade_ibfk_2` FOREIGN KEY (`mrk_created_by`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `marks_grade_ibfk_3` FOREIGN KEY (`mrk_updated_by`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `marks_grade_ibfk_4` FOREIGN KEY (`mrk_user_grade`) REFERENCES `grade_type` (`gradtyp_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `media_type`
+--
+ALTER TABLE `media_type`
+  ADD CONSTRAINT `media_type_ibfk_1` FOREIGN KEY (`mediatypes_id`) REFERENCES `media_types` (`mediatypes_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `mentor`
+--
+ALTER TABLE `mentor`
+  ADD CONSTRAINT `mentor_ibfk_1` FOREIGN KEY (`inst_id`) REFERENCES `institute` (`inst_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `mentor_ibfk_2` FOREIGN KEY (`mentor_user_id`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `notification`
+--
+ALTER TABLE `notification`
+  ADD CONSTRAINT `notification_ibfk_1` FOREIGN KEY (`inst_id`) REFERENCES `institute` (`inst_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `notification_ibfk_2` FOREIGN KEY (`notify_country_id`) REFERENCES `country` (`cntry_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `notification_ibfk_3` FOREIGN KEY (`notify_clsf_id`) REFERENCES `classification` (`classf_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `notification_ibfk_4` FOREIGN KEY (`notify_cr_admin`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `notification_ibfk_5` FOREIGN KEY (`notify_canceled_by`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `notify_center`
+--
+ALTER TABLE `notify_center`
+  ADD CONSTRAINT `notify_center_ibfk_1` FOREIGN KEY (`inst_id`) REFERENCES `institute` (`inst_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `notify_center_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `notify_center_ibfk_3` FOREIGN KEY (`nc_notifytyp_id`) REFERENCES `notify_type` (`notifytyp_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `notify_center_ibfk_4` FOREIGN KEY (`nc_notify_by`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `question_bank`
+--
+ALTER TABLE `question_bank`
+  ADD CONSTRAINT `question_bank_ibfk_1` FOREIGN KEY (`inst_id`) REFERENCES `institute` (`inst_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `question_bank_ibfk_2` FOREIGN KEY (`question_owner`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `question_bank_ibfk_3` FOREIGN KEY (`question_admin`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `question_bank_ibfk_4` FOREIGN KEY (`question_type_id`) REFERENCES `question_type` (`questntyp_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `question_bank_ibfk_5` FOREIGN KEY (`question_grade`) REFERENCES `grade_type` (`gradtyp_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `question_bank_ibfk_6` FOREIGN KEY (`question_blocked_by`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `question_bank_ibfk_7` FOREIGN KEY (`question_verified_by`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `question_mapping`
+--
+ALTER TABLE `question_mapping`
+  ADD CONSTRAINT `question_mapping_ibfk_1` FOREIGN KEY (`inst_id`) REFERENCES `institute` (`inst_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `question_mapping_ibfk_2` FOREIGN KEY (`qmap_created_by`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `question_mapping_ibfk_3` FOREIGN KEY (`qmap_updated_by`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `question_mapping_ibfk_4` FOREIGN KEY (`qmap_ques_grade`) REFERENCES `grade_type` (`gradtyp_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `question_mapping_ibfk_5` FOREIGN KEY (`qmap_user_grade`) REFERENCES `grade_type` (`gradtyp_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `user`
+--
+ALTER TABLE `user`
+  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`usertype_id`) REFERENCES `user_type` (`usrtyp_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `user_ibfk_2` FOREIGN KEY (`user_country`) REFERENCES `country` (`cntry_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `user_ibfk_3` FOREIGN KEY (`user_city`) REFERENCES `city` (`city_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `user_ibfk_4` FOREIGN KEY (`createdby_admin`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `user_ibfk_5` FOREIGN KEY (`updatedby_admin`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `user_ibfk_6` FOREIGN KEY (`user_verified_by`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `user_ibfk_7` FOREIGN KEY (`inst_id`) REFERENCES `institute` (`inst_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `user_access`
+--
+ALTER TABLE `user_access`
+  ADD CONSTRAINT `user_access_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `user_access_ibfk_2` FOREIGN KEY (`uac_reg_cnftype_id`) REFERENCES `reg_conf_type` (`regcnf_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `user_access_ibfk_3` FOREIGN KEY (`uac_reg_cnf_by`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `user_access_ibfk_4` FOREIGN KEY (`uac_free`) REFERENCES `institute` (`inst_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `user_access_ibfk_5` FOREIGN KEY (`uac_gems`) REFERENCES `institute` (`inst_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `user_access_ibfk_6` FOREIGN KEY (`uac_school`) REFERENCES `institute` (`inst_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `user_access_ibfk_7` FOREIGN KEY (`uac_blocked_by`) REFERENCES `user_block_type` (`usrblock_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `user_access_ibfk_8` FOREIGN KEY (`uac_blocked_reasonid`) REFERENCES `user_block_type` (`usrblock_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `user_access_ibfk_9` FOREIGN KEY (`uac_deleted_by`) REFERENCES `admin_user` (`admin_id`) ON UPDATE CASCADE;
+COMMIT;

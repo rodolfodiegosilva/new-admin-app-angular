@@ -1,0 +1,630 @@
+<!--create user Profile-->
+<app-sdashheader></app-sdashheader>
+<div class="leftsidemenus">
+   <app-sdahshmenu></app-sdahshmenu>
+</div>
+<div id="page-wrapper">
+   <div class="content">
+      <!--verified  Modal start -->
+      <div class="modal fade popup_z" id="verified" role="dialog">
+         <div class="modal-dialog vry_modal">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+               </div>
+               <div class="modal-body modal_text">
+                  <p>Do you really want to verify these records? This process cannot be undone</p>
+               </div>
+               <div class="modal-footer modal_foot">
+                  <button type="submit" class="bt btn-warning">verify</button>
+                  <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- verified Modal end-->
+      <!--Blocked  Modal start -->
+      <div class="modal fade popup_z" id="block" role="dialog">
+         <div class="modal-dialog vry_modal">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+               </div>
+               <div class="modal-body modal_text">
+                  <p>Do you really want to Block these records? This process cannot be undone</p>
+               </div>
+               <div class="modal-footer modal_foot">
+                  <button type="submit" class="bt btn-warning">Block</button>
+                  <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Blocked Modal end-->
+      <!--Delete  Modal start -->
+      <div class="modal fade popup_z" id="delete" role="dialog">
+         <div class="modal-dialog vry_modal">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+               </div>
+               <div class="modal-body modal_text">
+                  <p>Do you really want to Delete these records? This process cannot be undone</p>
+               </div>
+               <div class="modal-footer modal_foot">
+                  <button type="submit" class="bt btn-warning">Delete</button>
+                  <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Delete Modal end-->
+      <section class="question_search question_sec selt_ht scroll-yes">
+         <div id="pers_inf">
+            <!--<a href="#" id="edit_profil">Edit</a>-->
+            <!-- <div id="pers_int_cont">
+               <div id="pers_intitule">
+                  <img src="../../assets/img/upload/avatar.png" alt=""/>
+                  <h4 pers_inf>Kaizoku Kuma</h4>
+                  <p>User id : 125206</p>
+               </div>
+            </div> -->
+            <!--<div class="shadow sh1"></div><div class="shadow sh2"></div>--> 
+            <div id="status_inf">
+              <div class="container-fluid">
+                  <div class="top_admin">
+                    <div class="admin_add">
+                      <div class=" student-bg question_title">
+                            <h4 class="h_box_tit">Create User</h4>
+                      </div>
+                      <div class="all_brd inst_det_box">
+                        <div class="content_sub">
+                          <div class="popup_dla popup_dla2">
+                             <form [formGroup]="createUser" (ngSubmit)="UserCreate(createUser)">
+                              <input type="hidden" formControlName="uac_school" [(ngModel)]="inst_id">
+                              <input type="hidden" formControlName="Created_by_admin" [(ngModel)]="Check_admin_id">
+                              <div class="row">
+                                   <div class="col-lg-4">
+                                      <div class=" row">                                                     
+                                         <div class="col-sm-10">
+                                            <input class="form-control" type="text" formControlName="user_dname" placeholder="Display Name">
+                                         </div>
+                                         <div class="col-sm-10">
+                                            <input class="form-control" type="text" formControlName="user_fname" placeholder="First Name">
+                                         </div>
+                                      </div>
+                                      <div class="row">
+                                         <div class="col-sm-10">
+                                            <input class="form-control" type="text" formControlName="user_mname" placeholder="Middle Name">
+                                         </div>
+                                      </div>
+                                      <div class=" row">
+                                         <div class="col-sm-10">
+                                            <input class="form-control" type="text" formControlName="user_lname" placeholder="Last Name">
+                                         </div>
+                                      </div>
+                                      <div class=" row">
+                                         <div class="col-sm-10">
+                                              <input type="radio" formControlName="user_gender" value="Male">&nbsp;&nbsp;Male  
+                                              <input type="radio" formControlName="user_gender" value="Female">&nbsp;&nbsp;Female
+                                              <!-- <select class="language form-control" formControlName="user_gender">
+                                                      <optgroup label="Gender">
+                                                         <option value="Male">Male</option>
+                                                         <option value="Female">Female</option>
+                                                      </optgroup>
+                                                   </select> -->
+                                         </div>
+                                      </div>
+                                      <div class=" row">
+                                         <div class="col-sm-10">
+                                              <!-- <input type="text"
+                                              class="form-control"
+                                              ngxDaterangepickerMd
+                                              [autoApply]="true"
+                                              [linkedCalendars]="options.linkedCalendars"
+                                              [singleDatePicker]="true"
+                                              applyLabel="Okay"
+                                              [showDropdowns]="true"
+                                              [(ngModel)]="dateselect"
+                                             placeholder="date of birth"
+                                              formControlName="user_dob"
+                                             > -->
+                                            <input class="form-control" type="date" formControlName="user_dob" placeholder="date birth">
+                                         </div>
+                                      </div>
+                                   </div>
+                                   <div class="col-lg-4">
+                                      <div class=" row">
+                                         <div class="col-sm-10">
+                                            <input class="form-control" type="text" formControlName="user_school" placeholder="School Name">
+                                         </div>
+                                      </div>
+                                      <div class=" row">
+                                         <div class="col-sm-10">
+                                            <input class="form-control" type="text" formControlName="user_class" placeholder="Class">
+                                         </div>
+                                      </div>
+                                      <div class=" row">
+                                         <div class="col-md-10">
+                                            <input class="form-control" type="text" formControlName="user_email" placeholder="Email">
+                                            <div *ngIf="createUser.controls.user_email.hasError('pattern')" class="text-danger " style="color:red;">Enter valid email</div>
+                                         </div>
+                                      </div>
+                                      <div class=" row">
+                                         <div class="col-md-10">
+                                            <input class="form-control" type="text" formControlName="user_alt_email" placeholder="Email-2">
+                                            <div *ngIf="createUser.controls.user_alt_email.hasError('pattern')" class="text-danger " style="color:red;">Enter valid email</div>
+
+                                         </div>
+                                      </div>
+                                      <div class=" row">
+                                         <div class="col-md-3">
+                                              <select class="form-control color-filter" formControlName="user_phone_code" (ngModelChange)="enbalePhone($event,'1')">
+                                                  <!--<option [ngValue]="userInst.cntry_id" [selected]="userInst.cntry_id">{{userInst.cntry_name}}</option>-->
+                                                  <option value="">Code</option>
+                                                  <option *ngFor="let cnt of country" value="{{cnt.cntry_id}}">{{cnt.cntry_isdcode+'&nbsp; '}} {{'&nbsp;&nbsp;&nbsp; '+cnt.cntry_name}}</option>
+                                              </select>
+                                         </div>
+                                         <div class="col-md-7">
+                                            <input class="form-control" type="text" (keypress)="numberOnly($event)" formControlName="user_phone" placeholder="phone" [readonly]="!phoneEnable_1">
+                                        <div *ngIf="createUser.controls.user_phone.hasError('minLength')" class="text-danger " style="color:red;">enter valid Phone Number</div>
+
+                                         </div>
+                                      </div>
+                                      <div class=" row">
+                                         <div class="col-md-3">
+                                              <select class="form-control color-filter" formControlName="user_alt_phone_code" (ngModelChange)="enbalePhone($event,'2')">
+                                                      <!--<option [ngValue]="userInst.cntry_id" [selected]="userInst.cntry_id">{{userInst.cntry_name}}</option>-->
+                                                      <option value="">Code</option>
+                                                      <option *ngFor="let cnt of country" value="{{cnt.cntry_id}}">{{cnt.cntry_isdcode+'&nbsp; '}} {{'&nbsp;&nbsp;&nbsp; '+cnt.cntry_name}}</option>
+                                              </select>
+                                         </div>
+                                         <div class="col-md-7">
+                                            <input class="form-control" type="text" (keypress)="numberOnly($event)" formControlName="user_alt_phone" placeholder="phone" [readonly]="!phoneEnable_2">
+                                            <div *ngIf="createUser.controls.user_alt_phone.hasError('minLength')" class="text-danger " style="color:red;">enter valid Phone Number</div>
+
+                                         </div>
+                                      </div>
+                                      <div class=" row">
+                                         <div class="col-md-3">
+                                              <select class="form-control color-filter" formControlName="user_fax_code" (ngModelChange)="enbalePhone($event,'3')">
+                                                      <!--<option [ngValue]="userInst.cntry_id" [selected]="userInst.cntry_id">{{userInst.cntry_name}}</option>-->
+                                                      <option value="">Code</option>
+                                                      <option *ngFor="let cnt of country" value="{{cnt.cntry_id}}">{{cnt.cntry_isdcode+'&nbsp; '}} {{'&nbsp;&nbsp;&nbsp; '+cnt.cntry_name}}</option>
+                                              </select>
+                                         </div>
+                                         <div class="col-md-7">
+                                            <input class="form-control" type="text" formControlName="user_fax" placeholder="Fax" [readonly]="!phoneEnable_3">
+                                         </div>
+                                      </div>
+                                   </div>
+                                   <div class="col-lg-4">
+                                      <div class=" row">
+                                         <div class="col-sm-11">
+
+                                              <select class="form-control color-filter" formControlName="user_country" (ngModelChange)="getStatesoncountry($event)" >
+                                                  
+                                                  <!--option [ngValue]="uPro.cntry_id" >{{uPro.cntry_name}}</option--> 
+                                                  <option value="">Select Country</option>
+                                                      <option *ngFor="let cnt of country" value="{{cnt.cntry_id}}" >{{cnt.cntry_name}}</option>
+                                              </select>
+                                         </div>
+                                      </div>
+                                      <div class=" row">
+                                         <div class="col-sm-11">
+                                            <select class="language form-control" formControlName="user_state" (ngModelChange)="getCitiesonstates($event)">
+                                              <option value="">Select State</option>                                
+                                                      <option *ngFor="let state of states" value="{{state.state_id}}">{{state.state_name}}</option>
+                                                 </select>
+                                         </div>
+                                      </div>
+                                      <div class=" row">
+                                              <div class="col-sm-11">
+                                                 <select class="language form-control" formControlName="user_city"  (ngModelChange)="getCitiesoncities($event)">
+                                                  <option value="">Select City</option>
+                                                  <option *ngFor="let city of cities" value="{{city.city_id}}">{{city.city_name}}</option>
+                                                  
+                                                 </select>
+                                              </div>
+                                           </div>
+                                      <div class=" row">
+                                         <div class="col-md-11">
+                                            <textarea class="form-control" formControlName="user_address" placeholder="address" rows="10" ></textarea>
+                                         </div>
+                                      </div>
+                                   </div>
+                                </div>
+                                <div class="row usertype-createprofile">
+                                   <div class="col-md-2">
+                                      <select class="language form-control" formControlName="usertype_id" (ngModelChange)="selectUserType($event)">
+                                          <option value="">User Type</option>                            
+                                          <option *ngFor="let usrtyp of userTypes" [ngValue]="usrtyp.usrtyp_id">{{usrtyp.usrtyp_name}}</option>
+                                      </select>
+                                      <span *ngIf="userTypeErr==true" style="color:red">{{userTypeErrText}}</span>
+                                   </div>
+                                   <div class="col-md-5">
+                                      <input class="form-control" type="text" formControlName="uac_email" placeholder="Register Email" (keyup)="uniqueEmail($event.target.value,'uac_email')">
+                                      <span *ngIf="userEmailErr==true" style="color:red" >{{userEmailErrText}}</span>
+                                      <div *ngIf="createUser.controls.uac_email.hasError('pattern')" class="text-danger " style="color:red;">Enter valid email</div>          
+                                   </div>
+                                    <div class="col-md-2">
+                                      <input class="form-control" type="text" formControlName="username" placeholder="Username" (keyup)="uniqueUsername($event.target.value,'username')">
+                                      <span *ngIf="usernameErr==true" style="color:red" >{{usernameErrText}}</span>
+                                      <div *ngIf="createUser.controls.username.hasError('pattern')" class="text-danger " style="color:red;">Enter Username</div>          
+                                   </div>
+                                   <div class="col-md-2">
+                                      <input class="form-control" type="hidden" formControlName="uac_phone" [(ngModel)]="uac_phone" placeholder="Register Phone">          
+                                   </div>
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="bt btn-success">Create User</button>
+                                </div>
+                              </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>  
+         <!-- <div class="main_holder table-responsive">
+            <table class="table  table-responsive">
+               <thead>
+                  <tr class="adm_tr_bg">
+                     <th>Sing Up </th>
+                     <th>Reg&nbsp;Conform</th>
+                     <th> verified </th>
+                     <th>Blokced</th>
+                     <th>Deleted</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="blc_del_bg">
+                     <td>
+                        <!--span><strong> Action </strong></span->
+                        <div data-toggle="modal" data-target="#verified">
+                           <div class="toggle btn btn-info off" data-toggle="toggle" style="width: 0px; height: 0px;">
+                              <input type="checkbox" data-toggle="toggle" data-on="Blokced" data-off="Cancel" data-onstyle="success" data-offstyle="info">
+                              <div class="toggle-group">
+                                 <label class="btn btn-success toggle-on">Blokced</label>
+                                 <label class="btn btn-info active toggle-off">Cancel</label><span class="toggle-handle btn btn-default"></span>
+                              </div>
+                           </div>
+                        </div>
+                        <p> <Label>Date</Label> <span class="actin_dat">: 25-06-18</span> </p>
+                        <p> <label>Person</label> <span class="person">: GemsBond007</span> </p>
+                     </td>
+                     <td>
+                        <div class=" brd_r">
+                           <div data-toggle="modal" data-target="#verified">
+                              <div class="toggle btn btn-info off" data-toggle="toggle" style="width: 0px; height: 0px;">
+                                 <input type="checkbox" data-toggle="toggle" data-on="Blokced" data-off="Cancel" data-onstyle="success" data-offstyle="info">
+                                 <div class="toggle-group">
+                                    <label class="btn btn-success toggle-on">Blokced</label>
+                                    <label class="btn btn-info active toggle-off">Cancel</label><span class="toggle-handle btn btn-default"></span>
+                                 </div>
+                              </div>
+                           </div>
+                           <p> <Label>Date</Label> <span class="actin_dat">: 25-06-18</span> </p>
+                           <p> <label>Person</label> <span class="person">: GemsBond007</span> </p>
+                        </div>
+                     </td>
+                     <td>
+                        <div data-toggle="modal" data-target="#verified">
+                           <div class="toggle btn btn-info off" data-toggle="toggle" style="width: 0px; height: 0px;">
+                              <input type="checkbox" data-toggle="toggle" data-on="Blokced" data-off="Cancel" data-onstyle="success" data-offstyle="info">
+                              <div class="toggle-group">
+                                 <label class="btn btn-success toggle-on">Blokced</label>
+                                 <label class="btn btn-info active toggle-off">Cancel</label><span class="toggle-handle btn btn-default"></span>
+                              </div>
+                           </div>
+                        </div>
+                        <p> <Label>Date</Label> <span class="actin_dat">: 25-06-18</span> </p>
+                        <p> <label>Person</label> <span class="person">: GemsBond007</span> </p>
+                     </td>
+                     <td>
+                        <div class=" brd_r">
+                           <div data-toggle="modal" data-target="#verified">
+                              <div class="toggle btn btn-info off" data-toggle="toggle" style="width: 0px; height: 0px;">
+                                 <input type="checkbox" data-toggle="toggle" data-on="Blokced" data-off="Cancel" data-onstyle="success" data-offstyle="info">
+                                 <div class="toggle-group">
+                                    <label class="btn btn-success toggle-on">Blokced</label>
+                                    <label class="btn btn-info active toggle-off">Cancel</label><span class="toggle-handle btn btn-default"></span>
+                                 </div>
+                              </div>
+                           </div>
+                           <p> <Label>Date</Label> <span class="actin_dat">: 25-06-18</span> </p>
+                           <p> <label>Person</label> <span class="person">: GemsBond007</span> </p>
+                        </div>
+                     </td>
+                     <td>
+                        <p> <Label>Date</Label> <span class="actin_dat">: 25-06-18</span> </p>
+                        <p> <label>Admin Name</label> <span class="person">: GemsBond007</span> </p>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+            <div class="row">
+               <div class="col-md-6">
+                  <table class="table">
+                     <thead>
+                        <tr class="adm_tr_bg1">
+                           <th>GEMS Access</th>
+                           <th></th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr class="blc_del_bg1">
+                           <td>
+                              <label>Free Access</label>
+                              <div class=" brd_r">
+                                 <div data-toggle="modal" data-target="#verified">
+                                    <div class="toggle btn btn-info off" data-toggle="toggle" style="width: 0px; height: 0px;">
+                                       <input type="checkbox" data-toggle="toggle" data-on="Deleted" data-off="Cancel" data-onstyle="success" data-offstyle="info">
+                                       <div class="toggle-group">
+                                          <label class="btn btn-success toggle-on">Deleted</label>
+                                          <label class="btn btn-info active toggle-off">Cancel</label><span class="toggle-handle btn btn-default"></span>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </td>
+                           <td>
+                              <label>Gems Access</label>
+                              <div class=" brd_l">
+                                 <div data-toggle="modal" data-target="#verified">
+                                    <div class="toggle btn btn-info off" data-toggle="toggle" style="width: 0px; height: 0px;">
+                                       <input type="checkbox" data-toggle="toggle" data-on="Deleted" data-off="Cancel" data-onstyle="success" data-offstyle="info">
+                                       <div class="toggle-group">
+                                          <label class="btn btn-success toggle-on">Deleted</label>
+                                          <label class="btn btn-info active toggle-off">Cancel</label><span class="toggle-handle btn btn-default"></span>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+               <div class="col-md-6">
+                  <table class="table">
+                     <thead>
+                        <tr class="adm_tr_bg2">
+                           <th>Instute Access</th>
+                           <!--th>GEMS Access</th>
+                              <th>Reset Password</th->
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr class="blc_del_bg2">
+                           <td>
+                              <!--verified start->
+                              <div data-toggle="modal" data-target="#verified">
+                                 <div class="toggle btn btn-warning" data-toggle="toggle" style="width: 0px; height: 0px;">
+                                    <input type="checkbox" checked="" data-toggle="toggle" data-on="Conform" data-off="Cancel" data-onstyle="warning" data-offstyle="success">
+                                    <div class="toggle-group"><label class="btn btn-warning toggle-on">Conform</label><label class="btn btn-success active toggle-off">Cancel</label><span class="toggle-handle btn btn-default"></span></div>
+                                 </div>
+                              </div>
+                           </td>
+                           <!--verified end-->
+                           <!--td><!--block start-->
+                           <!--div data-toggle="modal" data-target="#verified">
+                              <div class="toggle btn btn-info off" data-toggle="toggle" style="width: 0px; height: 0px;">
+                                  <input type="checkbox" data-toggle="toggle" data-on="Deleted" data-off="Cancel" data-onstyle="success" data-offstyle="info">
+                                  <div class="toggle-group">
+                                      <label class="btn btn-success toggle-on">Deleted</label>
+                                      <label class="btn btn-info active toggle-off">Cancel</label><span class="toggle-handle btn btn-default"></span></div>
+                              </div>
+                              </div>
+                              </td--><!--block end-->
+                           <!--td><!--block start-->
+                           <!--div data-toggle="modal" data-target="#verified">
+                              <div class="toggle btn btn-info off" data-toggle="toggle" style="width: 0px; height: 0px;">
+                                  <input type="checkbox" data-toggle="toggle" data-on="Deleted" data-off="Cancel" data-onstyle="success" data-offstyle="info">
+                                  <div class="toggle-group">
+                                      <label class="btn btn-success toggle-on">Deleted</label>
+                                      <label class="btn btn-info active toggle-off">Cancel</label><span class="toggle-handle btn btn-default"></span></div>
+                              </div>
+                              </div>
+                              </td><!-block end->
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </div> -->
+      </section>
+      <!-- <div class="row  main_holder">
+         <div class="col-md-3 table-responsive">
+            <div class="all_brd m-t-10">
+               <div class="question_title">
+                  <h4> User Mentor Mentor </h4>
+               </div>
+               <div class="content_sub">
+                  <table class="table">
+                     <thead>
+                        <tr class="danger">
+                           <th>Mentor Name</th>
+                        </tr>
+                     </thead>
+                     <tbody class="multiple_bg">
+                        <tr>
+                           <td>Ravindar2</td>
+                        </tr>
+                     </tbody>
+                  </table>
+                  <select class="language form-control">
+                     <optgroup label="Subject">
+                        <option value="CT">Search Mentor</option>
+                        <option value="DE">Mentor2</option>
+                        <option value="FL">Mentor3</option>
+                     </optgroup>
+                  </select>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-4 table-responsive">
+            <div class="all_brd m-0">
+               <div class="question_title">
+                  <h4> Subject Leve Mentor </h4>
+               </div>
+               <div class="content_sub">
+                  <table class="table">
+                     <thead>
+                        <tr class="danger">
+                           <th>Subject</th>
+                           <th>Grade</th>
+                           <th>Mentor</th>
+                        </tr>
+                     </thead>
+                     <tbody class="multiple_bg">
+                        <tr>
+                           <td>Social</td>
+                           <td>B Grade</td>
+                           <td>Ravindar</td>
+                        </tr>
+                        <tr>
+                           <td>Social</td>
+                           <td>B Grade</td>
+                           <td>Ravindar</td>
+                        </tr>
+                        <tr>
+                           <td>Social</td>
+                           <td>B Grade</td>
+                           <td>Ravindar</td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <select class="language form-control">
+                                 <optgroup label="Add Subject">
+                                    <option value="CT">Add Subject</option>
+                                    <option value="DE">Subject2</option>
+                                    <option value="FL">Subject3</option>
+                                 </optgroup>
+                              </select>
+                           </td>
+                           <td></td>
+                           <td><a href="">Add</a></td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-5 table-responsive">
+            <div class="all_brd m-0">
+               <div class="question_title">
+                  <h4>Restricted Access</h4>
+               </div>
+               <div class="content_sub">
+                  <table class="table">
+                     <thead>
+                        <tr class="blc_del_bg">
+                           <th>Country</th>
+                           <th>Course</th>
+                           <th>Class</th>
+                           <th>Subject</th>
+                           <th>Remove/Add</th>
+                        </tr>
+                     </thead>
+                     <tbody class="multiple_bg">
+                        <tr>
+                           <td>Country</td>
+                           <td>Course</td>
+                           <td>Class</td>
+                           <td>Subject</td>
+                           <td><a href="">Remove</a></td>
+                        </tr>
+                        <tr>
+                           <td>Country</td>
+                           <td>Course</td>
+                           <td>Class</td>
+                           <td>Subject</td>
+                           <td><a href="">Remove</a></td>
+                        </tr>
+                        <tr>
+                           <td>Country</td>
+                           <td>Course</td>
+                           <td>Class</td>
+                           <td>Subject</td>
+                           <td><a href="">Remove</a></td>
+                        </tr>
+                        <tr >
+                           <td>
+                              <select class="language form-control">
+                                 <optgroup label="Countrys">
+                                    <option value="CT">Bangladesh</option>
+                                    <option value="DE">Belarus</option>
+                                    <option value="FL">Belize</option>
+                                 </optgroup>
+                              </select>
+                           </td>
+                           <td>
+                              <select class="language form-control">
+                                 <optgroup label="Course">
+                                    <option value="CT">Course1</option>
+                                    <option value="DE">Course2</option>
+                                    <option value="FL">Course3</option>
+                                 </optgroup>
+                              </select>
+                           </td>
+                           <td>
+                              <select class="language form-control">
+                                 <optgroup label="Class">
+                                    <option value="CT">Class1</option>
+                                    <option value="DE">Class2</option>
+                                    <option value="FL">Class3</option>
+                                 </optgroup>
+                              </select>
+                           </td>
+                           <td>
+                              <select class="language form-control">
+                                 <optgroup label="Subject">
+                                    <option value="CT">Subject1</option>
+                                    <option value="DE">Subject2</option>
+                                    <option value="FL">Subject3</option>
+                                 </optgroup>
+                              </select>
+                           </td>
+                           <td><a href="">Add</a></td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </div>
+      </div> -->
+      <!--test holder end-->
+   </div>
+   <!--/. content-->
+</div>
+<!-- #/page Wrapper -->
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
+
+<p-toast [style]="{marginTop: '80px'}" position="top-left" key="tl"></p-toast>
+
+<p-toast [style]="{marginTop: '80px'}" position="top-center" key="tc"></p-toast>
+
+<p-toast [style]="{marginTop: '80px'}" styleClass="custom-toast" key="custom" position="bottom-center"></p-toast>
+<p-toast position="center" key="c" (onClose)="onReject()" [modal]="true" [baseZIndex]="5000">
+    <ng-template let-message pTemplate="message">
+        <div style="text-align: center">
+            <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i>
+            <h3>{{message.summary}}</h3>
+            <p>{{message.detail}}</p>
+        </div>
+        <div class="ui-g ui-fluid">
+            <div class="ui-g-6">
+                <button type="button" pButton (click)="onConfirm()" label="Yes" class="ui-button-success"></button>
+            </div>
+            <div class="ui-g-6">
+                <button type="button" pButton (click)="onReject()" label="No" class="ui-button-secondary"></button>
+            </div>
+        </div>
+    </ng-template>
+</p-toast>

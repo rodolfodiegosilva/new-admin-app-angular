@@ -1,0 +1,545 @@
+<app-sdashheader></app-sdashheader>
+<div class="leftsidemenus">
+   <app-sdahshmenu></app-sdahshmenu>
+</div>
+<div class="loadertable">
+   <ng4-loading-spinner [timeout]="8000" [template]="template" [zIndex]="9999"> </ng4-loading-spinner>
+</div>
+<div id="page-wrapper">
+   <div class="content">
+      <!--verified  Modal start -->
+      <div class="modal fade" id="verified" role="dialog">
+         <div class="modal-dialog vry_modal">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+               </div>
+               <div class="modal-body modal_text">
+                  <p>Do you really want to verify these records? This process cannot be undone</p>
+               </div>
+               <div class="modal-footer modal_foot">
+                  <button type="submit" class="bt btn-warning">verify</button>
+                  <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- verified Modal end-->
+      <!--Blocked  Modal start -->
+      <div class="modal fade" id="block" role="dialog">
+         <div class="modal-dialog vry_modal">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+               </div>
+               <div class="modal-body modal_text">
+                  <p>Do you really want to Block these records? This process cannot be undone</p>
+               </div>
+               <div class="modal-footer modal_foot">
+                  <button type="submit" class="bt btn-warning">Block</button>
+                  <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Blocked Modal end-->
+      <!--Delete  Modal start -->
+      <div class="modal fade" id="delete" role="dialog">
+         <div class="modal-dialog vry_modal">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+               </div>
+               <div class="modal-body modal_text">
+                  <p>Do you really want to Delete these records? This process cannot be undone</p>
+               </div>
+               <div class="modal-footer modal_foot">
+                  <button type="submit" class="bt btn-warning">Delete</button>
+                  <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Delete Modal end-->
+      <!--====Question upload page start====-->
+      <section class="question_search question_sec selt_ht scroll-yes">
+         <div class="container-fluid">
+            <div class="col-md-12">
+               <div class="all_brd">
+                  <div class="question_title" id="pers_inf">
+                     <h3>Manage Meeting Page</h3>
+                  </div>
+                  <div class="question_sub">
+                     <div class="question_bg">                        
+                     </div>
+                     <div class="all_mian" *ngFor="let td of meetDetails">
+                                             
+                        <div class="row">
+                              <div class="col-md-1" *ngIf="test_id != ''">
+                                    <span class="ui-float-label">                                                
+                                    <label for="float-input">Meeting Id</label>                                                
+                                    </span>
+                                    <br>
+                                    <p style="background-color: #eee; opacity: 1;">
+                                       {{meeting_id}}
+                                    </p>
+                                 </div> 
+                           <div class="col-md-5">
+                              <span class="ui-float-label">                                                
+                              <input *ngIf="titleEdit" type="text" id="float-input" size="50" pInputText [(ngModel)]="title_test" placeholder="">
+                              <label for="float-input">Meeting Title</label>                                                
+                              </span>
+                              <br>
+                              <p *ngIf="!titleEdit" class="form-control" readonly (click)="editTestFields('titleEdit',td.title,'title_test')" pTooltip="Click to edit Test title" tooltipPosition="top">{{td.title}}</p>
+                              <p *ngIf="titleEdit_show">
+                                 <i class="fa fa-times btn btn-danger" (click)="closeTestEdit('titleEdit','title_test')" aria-hidden="true"></i>
+                                 <i class="fa fa-check btn btn-success" (click)="updateTestSpec(meeting_id,title_test,'test_title','titleEdit')" aria-hidden="true"></i>
+                              </p>
+                           </div>
+                           <div class="col-md-6">
+                              <span class="ui-float-label"> 
+                              <textarea *ngIf="descEdit" id="float-input" rows="2" cols="50" pInputTextarea [(ngModel)]="desc_test" required></textarea>
+                              <label for="float-input">Description</label>
+                              </span>
+                              <br>
+                              <p *ngIf="!descEdit" class="form-control" readonly (click)="editTestFields('descEdit',td.description,'desc_test')" pTooltip="Click to edit test Description" tooltipPosition="top">{{td.description}}</p>
+                              <p *ngIf="descEdit_show">
+                                 <i class="fa fa-times btn btn-danger" (click)="closeTestEdit('descEdit','desc_test')" aria-hidden="true"></i>
+                                 <i class="fa fa-check btn btn-success" (click)="updateTestSpec(test_id,desc_test,'test_desc','descEdit')" aria-hidden="true"></i>
+                              </p>
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-md-6">
+                              <label>Country</label>                             
+                              <p class="form-control" id="float-input" size="50" pInputText readonly>{{td.cntry_name}}</p>
+                           </div>
+                           <div class="col-md-4">
+                              <label>Course</label>                             
+                              <p class="form-control" id="float-input" size="50" pInputText readonly>{{td.course_fname}}</p>
+                           </div>
+                        </div>
+                        <hr class="hr_bt">
+                        <div class="row">
+                           <div class="col-md-3">
+                                 <label>Class</label>                             
+                                 <p class="form-control" id="float-input" size="50" pInputText readonly>{{td.class_fname}}</p>                            
+                           </div>
+                           <div class="col-md-3">
+                                 <label>Subject</label>                             
+                                 <p class="form-control" id="float-input" size="50" pInputText readonly>{{td.subject_fname}}</p>                             
+                           </div>
+                           <div class="col-md-4">
+                              <div class="col-md-12">
+                                 <label>Lesson/Topic</label>
+                                 <ng-container *ngIf="td.lessons.length >= '60'">
+                                    <p class="form-control" id="greater"  readonly pTooltip="{{td.lessons}}" tooltipPosition="top">{{td.lessons.slice(0,60)}} ..</p>
+                                 </ng-container>
+                                 <ng-container *ngIf="td.lessons.length <= '60'">
+                                    <p class="form-control" id="lower" readonly pTooltip="{{td.lessons}}" tooltipPosition="top">{{td.lessons}}</p>
+                                 </ng-container>                             
+                              </div>                                                          
+                           </div>
+                        </div>
+                        <!-- <div *ngIf="showAvailableQns==true">
+                           <p>Total Available Qns : {{totalAvailableQns}} </p>
+                           <p>Grade A : {{alqLabelA}}</p>
+                           <p>Grade B : {{alqLabelB}}</p>
+                           <p>Grade C : {{alqLabelC}}</p>
+                           <p>Grade D : {{alqLabelD}}</p>
+                        </div> -->
+                        <hr class="hr_bt">
+                        <div class="row">
+                          
+                           <div class="col-md-3">                             
+                              <span class="ui-float-label">
+                              <p-calendar *ngIf="sdntEdit" id="float-input" [readonlyInput]="true" [minDate]="sminDate" (onSelect)="getDateTime($event,1)" [(ngModel)]="teststart_datetimes" dateFormat="dd-mm-yy" showTime="true" hourFormat="24" placeholder="" required></p-calendar>
+                              <label for="float-input">Start date & Time</label>
+                              </span>                              
+                              <br>
+                              <p *ngIf="!sdntEdit" class="form-control" readonly>{{td.meet_start_datetime}}</p>                             
+                           </div>
+                           <div class="col-md-3">
+                              <!-- <label>End date & Time</label><br> -->
+                              <!-- <input type="text" class="form-control" #test_end_datetime="ngModel" name="test_end_datetime" [(ngModel)]="testend_datetime" placeholder="End date & Time"> -->
+                              <span class="ui-float-label">
+                              <p-calendar *ngIf="edntEdit" id="float-input"  [minDate]="eminDate" (onSelect)="getDateTime($event,2)" #test_end_datetimes="ngModel" name="test_end_datetimes" [(ngModel)]="testend_datetimes" dateFormat="dd-mm-yy" showTime="true" hourFormat="24" required></p-calendar>
+                              <label for="float-input">End date & Time</label>
+                              </span>                              
+                              <br>
+                              <p *ngIf="!edntEdit" class="form-control" readonly>{{td.meet_end_datetime}}</p>
+                              <p >
+                                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#rescheduledate" (click)="rescheduledatesConfirm(td.meet_start_datetime,td.meet_end_datetime)">Re-Schedule</button>
+                              </p>                              
+                           </div>
+                           <!-- <div class="col-md-3">
+                              <span class="ui-float-label">
+                              <input *ngIf="durtEdit" id="float-input" type="text" #test_duration="ngModel" name="test_duration" [(ngModel)]="duration_test" pInputText> 
+                              <label for="float-input">Test duration</label>
+                              </span>
+                              <p *ngIf="!durtEdit" class="form-control" (click)="editTestFields('durtEdit',duration_test)" pTooltip="Click to edit test duration" tooltipPosition="top">{{duration_test}}</p>
+                              <p *ngIf="durtEdit_show">
+                                 <i class="fa fa-times btn btn-danger" (click)="closeTestEdit('durtEdit','duration_test')" aria-hidden="true"></i>
+                                 <i class="fa fa-check btn btn-success" (click)="updateTestSpec(test_id,duration_test,'test_duration','durtEdit')" aria-hidden="true"></i>
+                              </p>
+                           </div> -->
+                        </div>
+                        <div class="row all_pd">
+                           <div class="col-md-12">
+                             
+                             
+                           </div> 
+                          
+                           <div class="col-md-3">
+                              <button class="btn btn-success" data-toggle="modal" data-target="#VerifyModel" (click)="VerifyTestConfirm(td.test_is_verified)">{{(td.verifed_date !='')?'Verified':'Verify'}}</button>
+                              <p>{{td.verifed_date}}</p>
+                           </div>
+                           <div class="col-md-3">
+                              <button class="btn btn-warning" data-toggle="modal" data-target="#CancelModel" (click)="CancelTestConfirm(td.is_cancel)">{{(td.canceled_date !='')?'Cancelled':'Cancel'}}</button>
+                              <p>{{td.canceled_date}}</p>
+                           </div>
+                           <div class="col-md-3">
+                              <button class="btn btn-danger" data-toggle="modal" data-target="#DeleteModel" (click)="DeleteTestConfirm(td.is_delete)">{{(td.deleted_date !='')?'Deleted':'Delete'}}</button>
+                              <p>{{td.deleted_date}}</p>
+                           </div>
+                           
+                        </div>                       
+                     </div>
+                  </div>
+                  <div *ngIf="showUsers==true" class="content_sub">                     
+                     <div class="qusn_oner">
+                        <div class="col-md-12 longtext" id="scrollbar_c">
+                           <table class="table table-bordered">
+                              <thead>
+                                 <tr class="main_hed">
+                                    <!-- <th>ID</th> -->
+                                    <th>Username</th>
+                                    <th>User type</th>
+                                    <th>Class</th>
+                                    <!-- <th>Grade</th> -->
+                                    <th>School</th>
+                                    <th>Country</th>
+                                    <th>State</th>
+                                    <th>City</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr>
+                                    <!-- <td></td> -->
+                                    <td>
+                                       <p-multiSelect [options]="userDname" [(ngModel)]="selectedDisplayNames" (onChange)="getAllRegisteredUsers()" [panelStyle]="{minWidth:'12em'}">
+                                       </p-multiSelect>
+                                    </td>
+                                    <td>
+                                       <p-multiSelect [options]="userType" [(ngModel)]="selectedUserType" (onChange)="getAllRegisteredUsers()" [panelStyle]="{minWidth:'12em'}">
+                                       </p-multiSelect>
+                                    </td>
+                                    <td>
+                                       <p-multiSelect [options]="Classname" [(ngModel)]="selectedClasses" (onChange)="getAllRegisteredUsers()" [panelStyle]="{minWidth:'12em'}">
+                                       </p-multiSelect>
+                                    </td>
+                                    <td>
+                                       <p-multiSelect [options]="Schoolname" [(ngModel)]="selectedSchoolNames" (onChange)="getAllRegisteredUsers()" [panelStyle]="{minWidth:'12em'}">
+                                       </p-multiSelect>
+                                    </td>
+                                    <td>
+                                       <p-multiSelect [options]="userCountries" [(ngModel)]="selectedUsercountry" (onChange)="getAllRegisteredUsers()"></p-multiSelect>
+                                    </td>
+                                    <td>
+                                       <p-multiSelect [options]="stateNames" [(ngModel)]="selectedStates" (onChange)="getAllRegisteredUsers()" [panelStyle]="{minWidth:'12em'}">
+                                       </p-multiSelect>
+                                    </td>
+                                    <td>
+                                       <p-multiSelect [options]="cityNames" [(ngModel)]="selectedCities" (onChange)="getAllRegisteredUsers()" [panelStyle]="{minWidth:'12em'}">
+                                       </p-multiSelect>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                        <div class="clear-fix"></div>
+                        <br>
+                        <div>
+                           <button *ngIf="haveModerator" class="btn btn-success" (click)="AssignMeettoUserConfirm()">Assign Participant</button>
+                              <button *ngIf="!haveModerator" class="btn btn-success" (click)="AssignMeettoModeratorConfirm()">Assign Moderator</button>
+                        </div>
+                        <div class="col-md-12 longtext" id="scrollbar_c">
+                           <table class="table table-bordered">
+                              <thead>
+                                 <tr class="main_hed">
+                                    <th><p-checkbox *ngIf="allUsers.length>0" value='0' (onChange)="checkedAllUser($event)" [(ngModel)]="selectedUsers"></p-checkbox></th>
+                                    <th>ID</th>
+                                    <th>Username</th>
+                                    <th>User type</th>
+                                    <th>Class</th>
+                                    <!-- <th>Grade</th> -->
+                                    <th>School</th>
+                                    <th>Country</th>
+                                    <th>State</th>
+                                    <th>City</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr *ngFor="let usr of allUsers; let i=index">
+                                    <td>
+                                       <p-checkbox value="{{usr.UserId}}" label="{{i+1}}" [(ngModel)]="selectedUsers"></p-checkbox>
+                                    </td>
+                                    <td>{{usr.UserId}}</td>
+                                    <td>{{usr.user_dname}}</td>
+                                    <td>{{usr.usrtyp_name}}</td>
+                                    <td>{{usr.user_class}}</td>
+                                    <td>{{usr.schoolName}}</td>
+                                    <td>{{usr.cntry_name}}</td>
+                                    <td>{{usr.state_name}}</td>
+                                    <td>{{usr.city_name}}</td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                        <div>
+                           <button class="btn btn-warning" (click)="unAssignTestforUserConfirm()">Unassign Users</button>
+                        </div>
+                        <div class="col-md-12 longtext" id="scrollbar_c">
+                           <table class="table table-bordered table-striped">
+                              <thead>
+                                 <tr class="main_hed">
+                                    <th><p-checkbox value='0' *ngIf="assignedUsers.length>0" (onChange)="checkedAll($event)" [(ngModel)]="selectedUsersunassign"></p-checkbox></th>
+                                    <th>ID</th>
+                                    <th>Username</th>
+                                    <th>User type</th>
+                                    <th>Class</th>
+                                    <!-- <th>Grade</th> -->
+                                    <th>School</th>
+                                    <th>Country</th>
+                                    <th>State</th>
+                                    <th>City</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr *ngFor="let usr of assignedUsers; let i=index">
+                                    <td>
+                                       <p-checkbox value="{{usr.user_id}}"  label="{{i+1}}" (onChange)="checkedUserEvent($event,usr.user_id)" [(ngModel)]="selectedUsersunassign"></p-checkbox>
+                                    </td>
+                                    <td>{{usr.user_id}}</td>
+                                    <td>{{usr.user_dname}}</td>
+                                    <td>{{usr.usrtyp_name}}</td>
+                                    <td>{{usr.user_class}}</td>
+                                    <td>{{usr.schoolName}}</td>
+                                    <td>{{usr.cntry_name}}</td>
+                                    <td>{{usr.state_name}}</td>
+                                    <td>{{usr.city_name}}</td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>                        
+                           <div *ngIf="type3Show==true">
+                      
+                     </div>
+                      
+               </div>
+            </div>
+         </div>
+   </div>
+</div>
+</section>
+<!--====top profile background End====-->
+</div>
+</div>
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
+<p-toast [style]="{marginTop: '80px'}" position="top-left" key="tl"></p-toast>
+<p-toast [style]="{marginTop: '80px'}" position="top-center" key="tc"></p-toast>
+<p-toast [style]="{marginTop: '80px'}" styleClass="custom-toast" key="custom" position="bottom-center"></p-toast>
+<p-toast position="center" key="c" (onClose)="onReject()" [modal]="true" [baseZIndex]="5000">
+<ng-template let-message pTemplate="message">
+   <div style="text-align: center">
+      <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i>
+      <h3>{{message.summary}}</h3>
+      <p>{{message.detail}}</p>
+   </div>
+   <div class="ui-g ui-fluid">
+      <div class="ui-g-6">
+         <button type="button" pButton (click)="onConfirm()" label="Yes" class="ui-button-success"></button>
+      </div>
+      <div class="ui-g-6">
+         <button type="button" pButton (click)="onReject()" label="No" class="ui-button-secondary"></button>
+      </div>
+   </div>
+</ng-template>
+</p-toast> 
+<div class="modal fade" #assignConfirm id="assignConfirm" role="dialog">
+   <div class="modal-dialog vry_modal">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+         </div>
+         <div class="modal-body modal_text">
+            <p>{{textonModel}}</p>
+         </div>
+         <div class="modal-footer modal_foot">
+            <button type="submit" *ngIf="showSubBtn==true" (click)="AssignMeettoUser()" data-dismiss="modal" class="bt btn-warning">Assign</button>
+            <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="modal fade" #assignModeratorConfirm id="assignConfirm" role="dialog">
+   <div class="modal-dialog vry_modal">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+         </div>
+         <div class="modal-body modal_text">
+            <p>{{textonModel}}</p>
+         </div>
+         <div class="modal-footer modal_foot">
+            <button type="submit" *ngIf="showSubBtn==true" (click)="AssignMeettoModerator()" data-dismiss="modal" class="bt btn-warning">Assign</button>
+            <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="modal fade" #unassignConfirm id="unassignConfirm" role="dialog">
+   <div class="modal-dialog vry_modal">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+         </div>
+         <div class="modal-body modal_text">
+            <p>{{textonModel}}</p>
+         </div>
+         <div class="modal-footer modal_foot">
+            <button type="submit" *ngIf="showSubBtn==true" (click)="unAssignTestforUser()" data-dismiss="modal" class="bt btn-warning">UnAssign</button>
+            <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="modal fade" id="VerifyModel" role="dialog">
+      <div class="modal-dialog vry_modal">
+         <div class="modal-content">
+          <div class="modal-header">
+                   <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+                 </div>
+                <div class="modal-body modal_text">
+                    <p>{{textonModel}}</p>
+                </div>
+                 <div class="modal-footer modal_foot">
+                  <button *ngIf="showSubBtn==true" type="submit" class="bt btn-warning" (click)="VerifyTest()" data-dismiss="modal">Verify</button>
+                  <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+       </div>
+   </div> 
+   <div class="modal fade" id="CancelModel" role="dialog">
+      <div class="modal-dialog vry_modal">
+         <div class="modal-content">
+          <div class="modal-header">
+                   <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+                 </div>
+                <div class="modal-body modal_text">
+                    <p>{{textonModel}}</p>
+                </div>
+                 <div class="modal-footer modal_foot">
+                  <button *ngIf="showSubBtn==true" type="submit" class="bt btn-warning" (click)="CancelTest()" data-dismiss="modal">{{showBtnTxt}}</button>
+                  <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+       </div>
+   </div>
+   <div class="modal fade" id="DeleteModel" role="dialog">
+      <div class="modal-dialog vry_modal">
+         <div class="modal-content">
+          <div class="modal-header">
+                   <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+                 </div>
+                <div class="modal-body modal_text">
+                    <p>{{textonModel}}</p>
+                </div>
+                 <div class="modal-footer modal_foot">
+                  <button *ngIf="showSubBtn==true" type="submit" class="bt btn-warning" (click)="DeleteTest()" data-dismiss="modal">{{showBtnTxt}}</button>
+                  <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+       </div>
+   </div>
+<div class="modal fade" id="rescheduledate" role="dialog" data-backdrop="static" data-keyboard="false">
+   <div class="modal-dialog vry_modal">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+         </div>
+         <div class="modal-body modal_text">
+            <div class="col-md-12">
+               <p-calendar class="col-md-5" [minDate]="sminDate" (onSelect)="getDateTime($event,1)" [(ngModel)]="teststart_datetimes" dateFormat="dd-mm-yy" showTime="true" hourFormat="24">{{teststart_datetimes}}</p-calendar>
+               <p class="clear-fix"></p>
+               <p-calendar class="col-md-5" [minDate]="sminDate" (onSelect)="getDateTime($event,2)" [(ngModel)]="testend_datetimes" dateFormat="dd-mm-yy" showTime="true" hourFormat="24">{{testend_datetimes}}</p-calendar>
+            </div>
+         </div>
+         <div class="modal-footer modal_foot">
+            <button type="submit" *ngIf="showSubBtn==true" (click)="rescheduleTestdates()" data-dismiss="modal" class="bt btn-warning">Assign</button>
+            <button type="submit" class="bt btn-info" data-dismiss="modal" (click)="rescheduleTestdatesConfirmClose()">Close</button>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="modal fade" #assignQnsConfirm id="assignQnsConfirm" role="dialog">
+   <div class="modal-dialog vry_modal">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+         </div>
+         <div class="modal-body modal_text">
+            <p>{{textonModel}}</p>
+         </div>
+         <div class="modal-footer modal_foot">
+            <button type="submit" *ngIf="showSubBtn==true" (click)="AssignQnsforTest()" data-dismiss="modal" class="bt btn-warning">Assign</button>
+            <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="modal fade" #unassignQnsConfirm id="unassignQnsConfirm" role="dialog">
+   <div class="modal-dialog vry_modal">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+         </div>
+         <div class="modal-body modal_text">
+            <p>{{textonModel}}</p>
+         </div>
+         <div class="modal-footer modal_foot">
+            <button type="submit" *ngIf="showSubBtn==true" (click)="unAssignQnsforTest()" data-dismiss="modal" class="bt btn-warning">unAssign</button>
+            <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="modal fade" #unassignUserConfirm id="unassignUserConfirm" role="dialog">
+   <div class="modal-dialog vry_modal">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4><i class="fa fa-info-circle"></i> Are You Sure?</h4>
+         </div>
+         <div class="modal-body modal_text">
+            <p>{{textonModel}}</p>
+         </div>
+         <div class="modal-footer modal_foot">
+            <button type="submit" *ngIf="showSubBtn==true" (click)="removeAssignUser()" data-dismiss="modal" class="bt btn-warning">unAssign</button>
+            <button type="submit" class="bt btn-info" data-dismiss="modal">Close</button>
+         </div>
+      </div>
+   </div>
+</div>
